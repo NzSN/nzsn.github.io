@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IndexedDB</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">IndexedDB</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org22c7ca8">1. Subtopic of</a></li>
+<li><a href="#org8de5baf">2. Basic pattern to use IndexedDB</a></li>
+<li><a href="#org7df7653">3. Createing and structuring the store</a>
+<ul>
+<li><a href="#org2e6913b">3.1. Opening a database</a>
+<ul>
+<li><a href="#org4c06257">3.1.1. Parameters</a></li>
+<li><a href="#org4d5b383">3.1.2. Action of open</a></li>
+</ul>
+</li>
+<li><a href="#org8b27999">3.2. Generating handlers</a>
+<ul>
+<li><a href="#orgf9d2c2b">3.2.1. Caution</a></li>
+</ul>
+</li>
+<li><a href="#orgfd48d49">3.3. Handling Errors</a>
+<ul>
+<li><a href="#org3b80463">3.3.1. Error events bubble</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga9f1889">4. Creating or updating the version of the database</a></li>
+<li><a href="#org2df8b85">5. Structuring hte database</a>
+<ul>
+<li><a href="#orge8faaa7">5.1. Key Path/ Key Generator</a></li>
+<li><a href="#org5ec02e8">5.2. Example</a></li>
+<li><a href="#org833931f">5.3. Using a key generator</a></li>
+</ul>
+</li>
+<li><a href="#orgf26af19">6. Adding, retrieving, and removing data</a>
+<ul>
+<li><a href="#orgb9f0de3">6.1. Speed up data access</a></li>
+<li><a href="#org55d0fdf">6.2. Adding data to the database</a>
+<ul>
+<li><a href="#org1ee58a4">6.2.1. Life time of transcation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb2ba48a">7. Removing data from the database</a></li>
+<li><a href="#orge981cd0">8. Getting data from the database</a></li>
+<li><a href="#org626f124">9. Updating an entry in the database</a>
+<ul>
+<li><a href="#org9c939b1">9.1. Using a cursor</a></li>
+<li><a href="#org4bdf373">9.2. Using an index</a></li>
+</ul>
+</li>
+<li><a href="#org1453516">10. Version changes while a web app is open in another tab</a></li>
+<li><a href="#orgc1997c3">11. Security</a></li>
+<li><a href="#orgd626f74">12. Warning about browser shutdown</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org22c7ca8" class="outline-2">
+<h2 id="org22c7ca8"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="storage.html#ID-3ee8a061-d71d-4a3b-8ee6-a70deab0f958">Storage</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org8de5baf" class="outline-2">
+<h2 id="org8de5baf"><span class="section-number-2">2.</span> Basic pattern to use IndexedDB</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Open a database</li>
+<li>Create an object store in the database.</li>
+<li>Start a transaction and make a request to do some database operation,
+like adding or retrieving data.</li>
+<li>Wait for the operation to complete by listening to the right kind of DOM event.</li>
+<li>Do something with the results (which can be found on the request object.)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7df7653" class="outline-2">
+<h2 id="org7df7653"><span class="section-number-2">3.</span> Createing and structuring the store</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org2e6913b" class="outline-3">
+<h3 id="org2e6913b"><span class="section-number-3">3.1.</span> Opening a database</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = window.indexedDB.<span style="color: #91b9c7;">open</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"MyTestDatabase"</span>, <span style="color: #ef6787;">3</span><span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-org4c06257" class="outline-4">
+<h4 id="org4c06257"><span class="section-number-4">3.1.1.</span> Parameters</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+First parameter is database name, the second paramenter is
+the version of the database.
+</p>
+
+<p>
+The version of the database determines the database schema &#x2013; the object stores in
+the database and their structure.
+</p>
+</div>
+</div>
+<div id="outline-container-org4d5b383" class="outline-4">
+<h4 id="org4d5b383"><span class="section-number-4">3.1.2.</span> Action of open</h4>
+<div class="outline-text-4" id="text-3-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org7be5d66"></a>Database not exists<br />
+<div class="outline-text-5" id="text-3-1-2-1">
+<ul class="org-ul">
+<li>Create a database by open operation, then an onupgradeneeded event is
+triggered, you are able to create the database schema in the handler for
+this event.</li>
+</ul>
+</div>
+</li>
+<li><a id="org8d00765"></a>Database exists<br />
+<div class="outline-text-5" id="text-3-1-2-2">
+<ul class="org-ul">
+<li>If you specifying an upgraded version number, an onupgradeneeded event
+is triggered straight away, allowing you to provide an updated schema
+in the handler.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8b27999" class="outline-3">
+<h3 id="org8b27999"><span class="section-number-3">3.2.</span> Generating handlers</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-typescript">request.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Do something with request.errorCode!</span>
+<span style="color: #4EB8CA;">}</span>;
+request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Do something with request.result!</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">db</span>;
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = indexedDB.<span style="color: #91b9c7;">open</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"MyTestDatabase"</span><span style="color: #4EB8CA;">)</span>;
+request.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"Why didn't you allow my web app to use IndexedDB?!"</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    db = event.target.result;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf9d2c2b" class="outline-4">
+<h4 id="orgf9d2c2b"><span class="section-number-4">3.2.1.</span> Caution</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>The most likely problem is that the user decided not to give your web app
+permission to create a database.</li>
+<li>browsers do not want to allow some advertising network or malicious website to
+pollute your computer, so browsers used to prompt the user the first time any given
+web app attempts to open an IndexedDB for storage</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd48d49" class="outline-3">
+<h3 id="orgfd48d49"><span class="section-number-3">3.3.</span> Handling Errors</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-org3b80463" class="outline-4">
+<h4 id="org3b80463"><span class="section-number-4">3.3.1.</span> Error events bubble</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Error events &#x2013;&gt; Request &#x2013;&gt; Transaction &#x2013;&gt; Database
+</p>
+
+<p>
+So if you don&rsquo;t want to deal with errors on every request
+you can handle errors on database.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-typescript">db.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Generic error handler for all errors targeted at this database's</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">requests!</span>
+  <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">error</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"Database error: "</span> + event.target.errorCode<span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga9f1889" class="outline-2">
+<h2 id="orga9f1889"><span class="section-number-2">4.</span> Creating or updating the version of the database</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Whe yo ucreate a new database or increase the version number of an existing
+database:
+</p>
+<ul class="org-ul">
+<li>the onupgradeneeded event will be triggered</li>
+<li>and an IDBVersionChangeEvent object will be passed to any onversionchange
+event handler.</li>
+</ul>
+
+<p>
+in onupgradeneeded event, youshould create the object stores needed for this
+version of the database.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-typescript">  <span style="color: #697375;">// </span><span style="color: #697375;">This event is only implemented in recent browsers</span>
+  request.onupgradeneeded = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">Save the IDBDatabase interface</span>
+    <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">db</span> = event.target.result;
+
+    <span style="color: #697375;">// </span><span style="color: #697375;">Create an objectStore for this database</span>
+    <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = db.<span style="color: #91b9c7;">createObjectStore</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"name"</span>, <span style="color: #4FA8A3;">{</span> keyPath: <span style="color: #fbaed2;">"myKey"</span> <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+  <span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+you are unable to edit the previous ObjectStore, you can only delete it and
+create a new object.
+</p>
+
+<p>
+if the onupgradeneeded event exits success, the onsuccess handler of the open
+database request will be triggered.
+</p>
+</div>
+</div>
+<div id="outline-container-org2df8b85" class="outline-2">
+<h2 id="org2df8b85"><span class="section-number-2">5.</span> Structuring hte database</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+A single database can contain any number of object stores.
+</p>
+
+<p>
+Value within object store is associated with a key.
+</p>
+</div>
+<div id="outline-container-orge8faaa7" class="outline-3">
+<h3 id="orge8faaa7"><span class="section-number-3">5.1.</span> Key Path/ Key Generator</h3>
+<div class="outline-text-3" id="text-5-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key Path</th>
+<th scope="col" class="org-left">Key Generator</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">Store Primitie values</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">Hold JavaScript objects.</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">The objects must have a property with the same</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">name as the keypath.</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">hold any kind of value. The key is generated</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">for you automatically, or you can supply a</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">seperate key argument if you want to use</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">a specific key.</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">If an object is already exists, the value</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">of that property is used as key rather than</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">generating a new key.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org5ec02e8" class="outline-3">
+<h3 id="org5ec02e8"><span class="section-number-3">5.2.</span> Example</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-typescript">
+<span style="color: #697375;">// </span><span style="color: #697375;">This is what our customer data looks like.</span>
+<span style="color: #4EB8CA;">const</span> <span style="color: #47ba99;">customerData</span> = <span style="color: #4EB8CA;">[</span>
+  <span style="color: #91b9c7;">{</span> ssn: <span style="color: #fbaed2;">"444-44-4444"</span>, name: <span style="color: #fbaed2;">"Bill"</span>, age: <span style="color: #ef6787;">35</span>, email: <span style="color: #fbaed2;">"bill@company.com"</span> <span style="color: #91b9c7;">}</span>,
+  <span style="color: #91b9c7;">{</span> ssn: <span style="color: #fbaed2;">"555-55-5555"</span>, name: <span style="color: #fbaed2;">"Donna"</span>, age: <span style="color: #ef6787;">32</span>, email: <span style="color: #fbaed2;">"donna@home.org"</span> <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">]</span>;
+
+<span style="color: #4EB8CA;">const</span> <span style="color: #47ba99;">dbName</span> = <span style="color: #fbaed2;">"the_name"</span>;
+
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = indexedDB.<span style="color: #91b9c7;">open</span><span style="color: #4EB8CA;">(</span>dbName, <span style="color: #ef6787;">2</span><span style="color: #4EB8CA;">)</span>;
+
+request.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Handle errors.</span>
+<span style="color: #4EB8CA;">}</span>;
+request.onupgradeneeded = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">db</span> = event.target.result;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Create an objectStore to hold information about our customers. We're</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">going to use "ssn" as our key path because it's guaranteed to be</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">unique - or at least that's what I was told during the kickoff meeting.</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = db.<span style="color: #91b9c7;">createObjectStore</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"customers"</span>, <span style="color: #4FA8A3;">{</span> keyPath: <span style="color: #fbaed2;">"ssn"</span> <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Create an index to search customers by name. We may have duplicates</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">so we can't use a unique index.</span>
+  objectStore.<span style="color: #91b9c7;">createIndex</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"name"</span>, <span style="color: #fbaed2;">"name"</span>, <span style="color: #4FA8A3;">{</span> unique: <span style="color: #4FA8A3;">false</span> <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Create an index to search customers by email. We want to ensure that</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">no two customers have the same email, so use a unique index.</span>
+  objectStore.<span style="color: #91b9c7;">createIndex</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"email"</span>, <span style="color: #fbaed2;">"email"</span>, <span style="color: #4FA8A3;">{</span> unique: <span style="color: #4FA8A3;">true</span> <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Use transaction oncomplete to make sure the objectStore creation is</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">finished before adding data into it.</span>
+  objectStore.transaction.oncomplete = <span style="color: #4EB8CA;">function</span><span style="color: #91b9c7;">(</span><span style="color: #47ba99;">event</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">Store values in the newly created objectStore.</span>
+    <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">customerObjectStore</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4FA8A3;">(</span><span style="color: #fbaed2;">"customers"</span>, <span style="color: #fbaed2;">"readwrite"</span><span style="color: #4FA8A3;">)</span>.<span style="color: #91b9c7;">objectStore</span><span style="color: #4FA8A3;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4FA8A3;">)</span>;
+    customerData.<span style="color: #91b9c7;">forEach</span><span style="color: #4FA8A3;">(</span><span style="color: #4EB8CA;">function</span><span style="color: #c791aa;">(</span><span style="color: #47ba99;">customer</span><span style="color: #c791aa;">)</span> <span style="color: #c791aa;">{</span>
+      customerObjectStore.<span style="color: #91b9c7;">add</span><span style="color: #4EB8CA;">(</span>customer<span style="color: #4EB8CA;">)</span>;
+    <span style="color: #c791aa;">}</span><span style="color: #4FA8A3;">)</span>;
+  <span style="color: #91b9c7;">}</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+onupgradeneeded is the only place where you can alter the structure of the database.
+In it, you can create and delte object stores and build and remove indices.
+</p>
+</div>
+</div>
+<div id="outline-container-org833931f" class="outline-3">
+<h3 id="org833931f"><span class="section-number-3">5.3.</span> Using a key generator</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #697375;">// </span><span style="color: #697375;">Open the indexedDB.</span>
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = indexedDB.<span style="color: #91b9c7;">open</span><span style="color: #4EB8CA;">(</span>dbName, <span style="color: #ef6787;">3</span><span style="color: #4EB8CA;">)</span>;
+
+request.onupgradeneeded = <span style="color: #4EB8CA;">function</span> <span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+
+    <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">db</span> = event.target.result;
+
+    <span style="color: #697375;">// </span><span style="color: #697375;">Create another object store called "names" with the autoIncrement flag set as true.</span>
+    <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objStore</span> = db.<span style="color: #91b9c7;">createObjectStore</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"names"</span>, <span style="color: #4FA8A3;">{</span> autoIncrement : <span style="color: #4FA8A3;">true</span> <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+
+    <span style="color: #697375;">// </span><span style="color: #697375;">Because the "names" object store has the key generator, the key for the name value is generated automatically.</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">The added records would be like:</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">key : 1 =&gt; value : "Bill"</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">key : 2 =&gt; value : "Donna"</span>
+    customerData.<span style="color: #91b9c7;">forEach</span><span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">function</span><span style="color: #4FA8A3;">(</span><span style="color: #47ba99;">customer</span><span style="color: #4FA8A3;">)</span> <span style="color: #4FA8A3;">{</span>
+        objStore.<span style="color: #91b9c7;">add</span><span style="color: #c791aa;">(</span>customer.name<span style="color: #c791aa;">)</span>;
+    <span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf26af19" class="outline-2">
+<h2 id="orgf26af19"><span class="section-number-2">6.</span> Adding, retrieving, and removing data</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Before you do anything with your new database you need to:
+</p>
+<ul class="org-ul">
+<li>Start a transaction, transaction come from the database object, and you
+have to specify which object stores you want the transaction to span.</li>
+<li><p>
+Need to decide if you&rsquo;re going to make changes or if you just need to read from it.
+</p>
+
+<p>
+Transactions have three available modes: readonly, readwrite and verionchange.
+</p>
+
+<p>
+By default, where no mode is specified, transactions open in readonly mode.
+</p></li>
+</ul>
+</div>
+<div id="outline-container-orgb9f0de3" class="outline-3">
+<h3 id="orgb9f0de3"><span class="section-number-3">6.1.</span> Speed up data access</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+By using the right scope and mode in the transaction.
+</p>
+
+<p>
+Tips:
+</p>
+<ul class="org-ul">
+<li>Specify only the object stores you need. This way, you can run multiple
+transactions with non-overlapping scopes concurrently.</li>
+<li>Only specify a readwrite transaction mode when necessary. readonly can
+concurrently run on mulitple overlapping scopes, but readwrite can&rsquo;t.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org55d0fdf" class="outline-3">
+<h3 id="org55d0fdf"><span class="section-number-3">6.2.</span> Adding data to the database</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">transaction</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4EB8CA;">(</span><span style="color: #91b9c7;">[</span><span style="color: #fbaed2;">"customers"</span><span style="color: #91b9c7;">]</span>, <span style="color: #fbaed2;">"readwrite"</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #697375;">// </span><span style="color: #697375;">Note: Older experimental implementations use the deprecated constant IDBTransaction.READ_WRITE instead of "readwrite".</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">In case you want to support such an implementation, you can write:</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">var transaction = db.</span><span style="color: #91b9c7;">transaction</span><span style="color: #697375;">(["customers"], IDBTransaction.READ_WRITE);</span>
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Do something when all the data is added to the database.</span>
+transaction.oncomplete = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"All done!"</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+transaction.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Don't forget to handle errors!</span>
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = transaction.<span style="color: #91b9c7;">objectStore</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>;
+customerData.<span style="color: #91b9c7;">forEach</span><span style="color: #4EB8CA;">(</span><span style="color: #4EB8CA;">function</span><span style="color: #91b9c7;">(</span><span style="color: #47ba99;">customer</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = objectStore.<span style="color: #91b9c7;">add</span><span style="color: #4FA8A3;">(</span>customer<span style="color: #4FA8A3;">)</span>;
+  request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4FA8A3;">(</span><span style="color: #47ba99;">event</span><span style="color: #4FA8A3;">)</span> <span style="color: #4FA8A3;">{</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">event.target.result === customer.ssn;</span>
+  <span style="color: #4FA8A3;">}</span>;
+<span style="color: #91b9c7;">}</span><span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-org1ee58a4" class="outline-4">
+<h4 id="org1ee58a4"><span class="section-number-4">6.2.1.</span> Life time of transcation</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+Transactions are tied very closely to the event loop.
+</p>
+
+<p>
+If you make a transaction and return to the event loop without using it then
+then the transaction will become inactive.
+</p>
+
+<p>
+Then only way to keep the transaction active is to make a request on it.
+When the request is finished you&rsquo;ll get a DOM event and , assuming that the
+request succeeded, you&rsquo;ll have another opportunity to extend the transaction
+during that callback (success handler). if you return to the event loop without
+extending the transaction then it will become inactive, and so on.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb2ba48a" class="outline-2">
+<h2 id="orgb2ba48a"><span class="section-number-2">7.</span> Removing data from the database</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4EB8CA;">(</span><span style="color: #91b9c7;">[</span><span style="color: #fbaed2;">"customers"</span><span style="color: #91b9c7;">]</span>, <span style="color: #fbaed2;">"readwrite"</span><span style="color: #4EB8CA;">)</span>
+                .<span style="color: #91b9c7;">objectStore</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>
+                .<span style="color: #91b9c7;">delete</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"444-44-4444"</span><span style="color: #4EB8CA;">)</span>;
+request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">It's gone!</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge981cd0" class="outline-2">
+<h2 id="orge981cd0"><span class="section-number-2">8.</span> Getting data from the database</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">transaction</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4EB8CA;">(</span><span style="color: #91b9c7;">[</span><span style="color: #fbaed2;">"customers"</span><span style="color: #91b9c7;">]</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = transaction.<span style="color: #91b9c7;">objectStore</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = objectStore.<span style="color: #91b9c7;">get</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"444-44-4444"</span><span style="color: #4EB8CA;">)</span>;
+request.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Handle errors!</span>
+<span style="color: #4EB8CA;">}</span>;
+request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Do something with the request.result!</span>
+  <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"Name for SSN 444-44-4444 is "</span> + request.result.name<span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org626f124" class="outline-2">
+<h2 id="org626f124"><span class="section-number-2">9.</span> Updating an entry in the database</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Ways to getting data from the database:
+</p>
+<ul class="org-ul">
+<li>get()</li>
+<li>using a cursor</li>
+<li>Index</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4EB8CA;">(</span><span style="color: #91b9c7;">[</span><span style="color: #fbaed2;">"customers"</span><span style="color: #91b9c7;">]</span>, <span style="color: #fbaed2;">"readwrite"</span><span style="color: #4EB8CA;">)</span>.<span style="color: #91b9c7;">objectStore</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">request</span> = objectStore.<span style="color: #91b9c7;">get</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"444-44-4444"</span><span style="color: #4EB8CA;">)</span>;
+request.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Handle errors!</span>
+<span style="color: #4EB8CA;">}</span>;
+request.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Get the old value that we want to update</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">data</span> = event.target.result;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">update the value(s) in the object that you want to </span><span style="color: #47ba99;">change</span>
+  data.age = <span style="color: #ef6787;">42</span>;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Put this updated object back into the database.</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">requestUpdate</span> = objectStore.<span style="color: #91b9c7;">put</span><span style="color: #91b9c7;">(</span>data<span style="color: #91b9c7;">)</span>;
+   requestUpdate.onerror = <span style="color: #4EB8CA;">function</span><span style="color: #91b9c7;">(</span><span style="color: #47ba99;">event</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+     <span style="color: #697375;">// </span><span style="color: #697375;">Do something with the error</span>
+   <span style="color: #91b9c7;">}</span>;
+   requestUpdate.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #91b9c7;">(</span><span style="color: #47ba99;">event</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+     <span style="color: #697375;">// </span><span style="color: #697375;">Success - the data is updated!</span>
+   <span style="color: #91b9c7;">}</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-org9c939b1" class="outline-3">
+<h3 id="org9c939b1"><span class="section-number-3">9.1.</span> Using a cursor</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+If you want to step through all the values in your object store, then you can use a cursor. Hers&rsquo;s what it llks like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">objectStore</span> = db.<span style="color: #91b9c7;">transaction</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>.<span style="color: #91b9c7;">objectStore</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"customers"</span><span style="color: #4EB8CA;">)</span>;
+
+objectStore.<span style="color: #91b9c7;">openCursor</span><span style="color: #4EB8CA;">()</span>.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">cursor</span> = event.target.result;
+  <span style="color: #4EB8CA;">if</span> <span style="color: #91b9c7;">(</span>cursor<span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+    <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #4FA8A3;">(</span><span style="color: #fbaed2;">"Name for SSN "</span> + cursor.key + <span style="color: #fbaed2;">" is "</span> + cursor.value.name<span style="color: #4FA8A3;">)</span>;
+    cursor.<span style="color: #91b9c7;">continue</span><span style="color: #4FA8A3;">()</span>;
+  <span style="color: #91b9c7;">}</span>
+  <span style="color: #4EB8CA;">else</span> <span style="color: #91b9c7;">{</span>
+    <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #4FA8A3;">(</span><span style="color: #fbaed2;">"No more entries!"</span><span style="color: #4FA8A3;">)</span>;
+  <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+openCursor() args:
+</p>
+<ul class="org-ul">
+<li>limit the range of items</li>
+<li>direction</li>
+</ul>
+
+<p>
+cursor.continue() will raise another request that access to the next object within
+the objectStore.
+</p>
+
+<p>
+cursor.advance(count) is similar to continue() but advance() able to take several
+step.
+</p>
+</div>
+</div>
+<div id="outline-container-org4bdf373" class="outline-3">
+<h3 id="org4bdf373"><span class="section-number-3">9.2.</span> Using an index</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+If you want to find an object from an object store, you need to iterate over all
+objects within the store, this is slow, so instead you can use an index.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #697375;">// </span><span style="color: #697375;">First, make sure you created index in request.onupgradeneeded:</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">objectStore.</span><span style="color: #91b9c7;">createIndex</span><span style="color: #697375;">("name", "name");</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">Otherwise you will get DOMException.</span>
+
+<span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">index</span> = objectStore.<span style="color: #91b9c7;">index</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"name"</span><span style="color: #4EB8CA;">)</span>;
+
+index.<span style="color: #91b9c7;">get</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"Donna"</span><span style="color: #4EB8CA;">)</span>.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"Donna's SSN is "</span> + event.target.result.ssn<span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1453516" class="outline-2">
+<h2 id="org1453516"><span class="section-number-2">10.</span> Version changes while a web app is open in another tab</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+When open() call with a greater version than the actual version of the database,
+all other open databases must explicitly acknowledge the request before you
+can start making changes to the database. Hers&rsquo;s how it works:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-typescript"><span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">openReq</span> = mozIndexedDB.<span style="color: #91b9c7;">open</span><span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"MyTestDatabase"</span>, <span style="color: #ef6787;">2</span><span style="color: #4EB8CA;">)</span>;
+
+openReq.onblocked = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">If some other tab is loaded with the database, then it needs to be closed</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">before we can proceed.</span>
+  <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"Please close all other tabs with this site open!"</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+openReq.onupgradeneeded = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">All other databases have been closed. Set everything up.</span>
+  db.<span style="color: #91b9c7;">createObjectStore</span><span style="color: #91b9c7;">(</span><span style="color: #697375;">/* </span><span style="color: #697375;">... */</span><span style="color: #91b9c7;">)</span>;
+  <span style="color: #91b9c7;">useDatabase</span><span style="color: #91b9c7;">(</span>db<span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+openReq.onsuccess = <span style="color: #4EB8CA;">function</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">event</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #4EB8CA;">var</span> <span style="color: #47ba99;">db</span> = event.target.result;
+  <span style="color: #91b9c7;">useDatabase</span><span style="color: #91b9c7;">(</span>db<span style="color: #91b9c7;">)</span>;
+  <span style="color: #4EB8CA;">return</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #4EB8CA;">function</span> <span style="color: #91b9c7;">useDatabase</span><span style="color: #4EB8CA;">(</span><span style="color: #47ba99;">db</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">Make sure to add a handler to be notified if another page requests a version</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">change. We must close the database. This allows the other page to upgrade the database.</span>
+  <span style="color: #697375;">// </span><span style="color: #697375;">If you don't do this then the upgrade won't happen until the user closes the tab.</span>
+  db.onversionchange = <span style="color: #4EB8CA;">function</span><span style="color: #91b9c7;">(</span><span style="color: #47ba99;">event</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+    db.<span style="color: #91b9c7;">close</span><span style="color: #4FA8A3;">()</span>;
+    <span style="color: #b9c791;">console</span>.<span style="color: #91b9c7;">log</span><span style="color: #4FA8A3;">(</span><span style="color: #fbaed2;">"A new version of this page is ready. Please reload or close this tab!"</span><span style="color: #4FA8A3;">)</span>;
+  <span style="color: #91b9c7;">}</span>;
+
+  <span style="color: #697375;">// </span><span style="color: #697375;">Do stuff with the database.</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<p>
+You should also listen for VersionError errors to handle the situation where already opened apps may initiate code leading to a new attempt to open the database, but using anoutdated version.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1997c3" class="outline-2">
+<h2 id="orgc1997c3"><span class="section-number-2">11.</span> Security</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+IndexedDB uses the same-origin principle, which means that it ties the store to the origin of the site that creates it (typically, this is the site domain or subdomain), so it cannot be accessed by any other origin.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd626f74" class="outline-2">
+<h2 id="orgd626f74"><span class="section-number-2">12.</span> Warning about browser shutdown</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+When the browser shuts down, the disk containing the database is removed
+unexpectedly, or permissions are lost to the database store, the following things
+happen:
+</p>
+
+<ul class="org-ul">
+<li>Each transaction on every affected database is aborted with and AbortError.</li>
+<li>Once all of the transactions have completed, the database connection is closed.</li>
+<li>Finally, the IDBDatabase object representing the database connection receives
+a close event. You can use the IDBDatabase.onclose event handler to listen for
+these events.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

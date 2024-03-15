@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="partialloc.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.829812"
+     inkscape:cx="347.84994"
+     inkscape:cy="172.42208"
+     inkscape:window-width="1868"
+     inkscape:window-height="1243"
+     inkscape:window-x="1438"
+     inkscape:window-y="908"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1986" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker4529"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="EmptyTriangleIn"
+       markerWidth="5.8241119"
+       markerHeight="6.7330775"
+       viewBox="0 0 5.8241121 6.7330776"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4527" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker4427"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="EmptyTriangleIn"
+       markerWidth="5.8241119"
+       markerHeight="6.7330775"
+       viewBox="0 0 5.8241121 6.7330776"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4425" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2825"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="EmptyTriangleIn"
+       markerWidth="5.8241119"
+       markerHeight="6.7330775"
+       viewBox="0 0 5.8241121 6.7330776"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path2823" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="EmptyTriangleIn"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="EmptyTriangleIn"
+       markerWidth="5.8241119"
+       markerHeight="6.7330775"
+       viewBox="0 0 5.8241121 6.7330776"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path153" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.282422"
+       id="rect184"
+       width="35.697769"
+       height="10.538079"
+       x="12.08247"
+       y="17.287922"
+       inkscape:export-filename="partialloc.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.29486"
+       id="rect184-3"
+       width="38.957165"
+       height="10.525641"
+       x="54.23988"
+       y="17.333267" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.29486"
+       id="rect184-3-1"
+       width="38.957165"
+       height="10.525641"
+       x="99.534302"
+       y="17.231024" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.29486"
+       id="rect184-3-1-2"
+       width="38.957165"
+       height="10.525641"
+       x="142.46884"
+       y="17.00495" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.18212px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="14.387293"
+       y="21.761684"
+       id="text240"><tspan
+         sodipodi:role="line"
+         id="tspan238"
+         x="14.387293"
+         y="21.761684"
+         style="stroke-width:0.264583">blink::</tspan><tspan
+         sodipodi:role="line"
+         x="14.387293"
+         y="25.739334"
+         style="stroke-width:0.264583"
+         id="tspan400">ArrayBufferAllocator</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 28.702288,27.834713 V 88.131206"
+       id="path465" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.264999"
+       id="rect467"
+       width="3.9040895"
+       height="8.0973711"
+       x="26.822542"
+       y="34.630726" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#EmptyTriangleIn)"
+       d="m 17.423807,35.3537 h 7.808179"
+       id="path469" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.43572px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.202523"
+       x="15.130681"
+       y="33.774445"
+       id="text1246"><tspan
+         sodipodi:role="line"
+         id="tspan1244"
+         style="stroke-width:0.202523"
+         x="15.130681"
+         y="33.774445">Allocate</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+       x="56.336853"
+       y="21.880377"
+       id="text2761"><tspan
+         sodipodi:role="line"
+         id="tspan2759"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="56.336853"
+         y="21.880377">ArrayBufferContents::</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="56.336853"
+         y="25.849127"
+         id="tspan2763">AllocateMemoryOrNull</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 72.798259,27.810571 V 93.04272"
+       id="path2765" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.264999"
+       id="rect2769"
+       width="4.3965244"
+       height="9.0997829"
+       x="70.855606"
+       y="35.581173" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2825)"
+       d="M 30.775669,36.603619 H 69.424184"
+       id="path2771" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.43572px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="41.000141"
+       y="35.683418"
+       id="text2891"><tspan
+         sodipodi:role="line"
+         id="tspan2889"
+         style="stroke-width:0.264583"
+         x="41.000141"
+         y="35.683418">AllocateMemoryOrNull</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       x="108.9929"
+       y="23.311804"
+       id="text4417"><tspan
+         sodipodi:role="line"
+         id="tspan4415"
+         style="stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:3.175px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="108.9929"
+         y="23.311804">PartitionRoot</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 118.19493,27.810571 V 103.26719"
+       id="path4419" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.264999"
+       id="rect4421"
+       width="6.7481532"
+       height="16.563648"
+       x="115.33208"
+       y="36.194641" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4427)"
+       d="M 75.456623,37.421579 H 114.41187"
+       id="path4423" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.43572px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="87.419258"
+       y="36.399132"
+       id="text4491"><tspan
+         sodipodi:role="line"
+         id="tspan4489"
+         style="stroke-width:0.264583"
+         x="87.419258"
+         y="36.399132">AllocWithFlags</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+       x="150.66893"
+       y="23.27994"
+       id="text4517"><tspan
+         sodipodi:role="line"
+         id="tspan4515"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="150.66893"
+         y="23.27994">PartitionBucket</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 161.94742,27.473222 V 109.02532"
+       id="path4519" />
+    <rect
+       style="fill:#afdde9;stroke:#000000;stroke-width:0.264999"
+       id="rect4523"
+       width="4.1932812"
+       height="13.158228"
+       x="159.92307"
+       y="40.197662" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4529)"
+       d="m 122.32814,41.209835 h 36.43817"
+       id="path4525" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.43572px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="133.46202"
+       y="39.763874"
+       id="text4611"><tspan
+         sodipodi:role="line"
+         id="tspan4609"
+         style="stroke-width:0.264583"
+         x="133.46202"
+         y="39.763874">SlowPathAlloc</tspan></text>
+  </g>
+</svg>

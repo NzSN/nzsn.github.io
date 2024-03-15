@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>H.264 Syntax</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">H.264 Syntax</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaca7d7c">1. Keyword</a></li>
+<li><a href="#org5195d7c">2. Introduction</a></li>
+<li><a href="#org2a1851c">3. Terminology</a></li>
+<li><a href="#orgb22fe5a">4. Syntax Overview</a></li>
+<li><a href="#orgef7be47">5. Frame, Field and Picture</a>
+<ul>
+<li><a href="#org4c03a43">5.1. Decoding Order</a></li>
+<li><a href="#orgce26826">5.2. Display Order</a>
+<ul>
+<li><a href="#orgada57f1">5.2.1. Type 0: Slice header with least significant bits of POC.</a></li>
+<li><a href="#org39eb71e">5.2.2. Type 1: Cyclic Increament</a></li>
+</ul>
+</li>
+<li><a href="#org39bb47d">5.3. Reference order</a>
+<ul>
+<li><a href="#orgeb9d484">5.3.1. Reference picture lists</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5abeb2d">6. NAL Unit (Netwokr Abstraction Layer Units)</a></li>
+<li><a href="#org83feb71">7. Slice layer</a>
+<ul>
+<li><a href="#orga6462af">7.1. Slice Types</a>
+<ul>
+<li><a href="#orgb13ae88">7.1.1. I Slice (Including IDR)</a></li>
+<li><a href="#org5cfdbad">7.1.2. P Slice</a></li>
+<li><a href="#org3833344">7.1.3. B Slice</a></li>
+<li><a href="#orgfa2bb45">7.1.4. SP Slice</a></li>
+<li><a href="#org45ac03d">7.1.5. SI Slice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1ab829c">8. Macroblock layer</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaca7d7c" class="outline-2">
+<h2 id="orgaca7d7c"><span class="section-number-2">1.</span> Keyword</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Protocol</li>
+<li>Hierarchy</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5195d7c" class="outline-2">
+<h2 id="org5195d7c"><span class="section-number-2">2.</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+H.264 Syntax is a rule or a format that need to obey during representing a H.264 video by sequence.
+</p>
+
+<p>
+H.264 Syntax is a Hierarchical syntax, from the top level, the sequence level, down through frames and slices to macroblocks and blocks.
+</p>
+</div>
+</div>
+<div id="outline-container-org2a1851c" class="outline-2">
+<h2 id="org2a1851c"><span class="section-number-2">3.</span> Terminology</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Access Unit: A coded frame or field, is made up of one or more slices.
+</p>
+
+<p>
+H.264/AVC Frame: An array of luma samples and two corresponding arrays of chroma samples.
+</p>
+
+<p>
+H.264/AVC Field: such as TopField or BottomField.
+</p>
+
+<p>
+Picture: Referes collectively to a frame or a field.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb22fe5a" class="outline-2">
+<h2 id="orgb22fe5a"><span class="section-number-2">4.</span> Syntax Overview</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+H.264 Syntax is a Hierarchical syntax which means It have some layers as show follow (from high to low layer):
+</p>
+
+<ul class="org-ul">
+<li><p>
+Network Abstraction Layer: consists of series of NAL Units.
+</p>
+
+<p>
+Sequence Parameter sets (SPS) and Picture Parameter Sets (PPS) are NAL Units.
+</p>
+
+<p>
+Coded video data is communicated in Video Coding Layer VCL NAL Units, known as coded slices.
+</p></li>
+
+<li>Slice Layer: Each slice consists of a Slice Header and Slice Data. Slice Data is a series of coded macroblocks (MB).</li>
+
+<li>Macroblock Layer: Each macroblock contains the following syntax elements:
+
+<ul class="org-ul">
+<li>MB type: I/intra coded or P/inter, B/inter</li>
+<li>Prediction information</li>
+<li>Coded Block Pattern (CBP)</li>
+<li>Quantization Parameter (QP), for macroblocks with CBP != 0.</li>
+<li>Residual data, for blocks containing non-zero residual coeffcients.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgef7be47" class="outline-2">
+<h2 id="orgef7be47"><span class="section-number-2">5.</span> Frame, Field and Picture</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+There are three different orders of pictures:
+</p>
+<ul class="org-ul">
+<li>Decoding Order</li>
+<li>Display Order</li>
+<li>Reference Order</li>
+</ul>
+</div>
+<div id="outline-container-org4c03a43" class="outline-3">
+<h3 id="org4c03a43"><span class="section-number-3">5.1.</span> Decoding Order</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Decoding Order is determined by the parameter frame<sub>num</sub>, which decoded from the slice header.
+</p>
+
+<p>
+frame<sub>num</sub> for each decoded frame is increase by 1 compared with the previous reference frame in decoding order.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce26826" class="outline-3">
+<h3 id="orgce26826"><span class="section-number-3">5.2.</span> Display Order</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Determined by the POC parameters:
+</p>
+<ul class="org-ul">
+<li>ToPFieldOrderCount</li>
+<li>BottomFieldOrderCount</li>
+</ul>
+
+<p>
+which are derived from slice header using one of three methods :
+</p>
+</div>
+<div id="outline-container-orgada57f1" class="outline-4">
+<h4 id="orgada57f1"><span class="section-number-4">5.2.1.</span> Type 0: Slice header with least significant bits of POC.</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+Display Order is determine by POC LSBs. frame<sub>num</sub> is increase after a Reference frame.
+</p>
+
+<p>
+e.g.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">Slice</td>
+<td class="org-left">Type</td>
+<td class="org-left">Reference?</td>
+<td class="org-right">frame<sub>num</sub></td>
+<td class="org-right">POC LSBs</td>
+<td class="org-right">Display Order</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">I</td>
+<td class="org-left">Y</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">2</td>
+<td class="org-right">8</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">3</td>
+<td class="org-right">6</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">3</td>
+<td class="org-right">12</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">4</td>
+<td class="org-right">10</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">4</td>
+<td class="org-right">16</td>
+<td class="org-right">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org39eb71e" class="outline-4">
+<h4 id="org39eb71e"><span class="section-number-4">5.2.2.</span> Type 1: Cyclic Increament</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+Interval between two reference frame is a &rsquo;cycle&rsquo;. POCs of two consecutive reference frame form an interval, POC of non-reference frames must within this interval by cyclic.
+</p>
+
+<p>
+The &rsquo;cycle&rsquo; is set up in the sequence parameter set.
+</p>
+
+<p>
+e.g.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">Slice</td>
+<td class="org-left">Type</td>
+<td class="org-left">Reference</td>
+<td class="org-right">frame<sub>num</sub></td>
+<td class="org-right">Delta POC</td>
+<td class="org-right">Offset</td>
+<td class="org-right">POC</td>
+<td class="org-right">Display Order</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">I</td>
+<td class="org-left">Y</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">+6</td>
+<td class="org-right">6</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">-4</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">-4+2</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">+6</td>
+<td class="org-right">12</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-right">-4</td>
+<td class="org-right">8</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">B</td>
+<td class="org-left">N</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">-4+2</td>
+<td class="org-right">10</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">P</td>
+<td class="org-left">Y</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-right">+6</td>
+<td class="org-right">18</td>
+<td class="org-right">9</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The 4th POC is evaluate in the way like: [(2 - 4) = -2 = 2 &lt;cause of cyclic&gt;] + 2 = 4
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org39bb47d" class="outline-3">
+<h3 id="org39bb47d"><span class="section-number-3">5.3.</span> Reference order</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Reference order
+</p>
+</div>
+<div id="outline-container-orgeb9d484" class="outline-4">
+<h4 id="orgeb9d484"><span class="section-number-4">5.3.1.</span> Reference picture lists</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+A picture that is coded and available for reference is stored in the Decoded Picture Buffer(DPB) and marked as one of the following:
+</p>
+
+<ul class="org-ul">
+<li>A short term reference picture, indexed according to frame<sub>num</sub> or POC</li>
+<li><p>
+A Long term reference picture, indexed according to LongTermPicNum, a reference number
+that derived from parameter LongTermFrameIdx which is assigned when a picture is marked
+as a long term reference picture.
+</p>
+
+<p>
+A short term reference picture may be changed to long term reference picture by assigned a LongTermFrameIdx at a later time..
+</p></li>
+</ul>
+
+<p>
+Short term reference pictures are able to removed from the DPB by
+</p>
+<ul class="org-ul">
+<li>explicit command in the bitstream or</li>
+<li>when the DPB is full and an automatic mode of DPB handling is in use, in which case
+the oldest short term picture is removed.</li>
+</ul>
+
+<p>
+Long term reference pictures can only be removed by explicit command in the bitstream.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org91ab2b2"></a>Defalut reference picture list order<br />
+<div class="outline-text-5" id="text-5-3-1-1">
+<p>
+Reference Picture list is ordered prior to encoding or decoding. There are two lists, list0 and list1. P-slice use Reference Picture List 0, B-Slice use both list0 and list1.
+</p>
+
+<p>
+Short Term Reference Pictures are listed first and Long Term Reference Pictures follows.
+</p>
+
+<p>
+List Order is important because the earlier in the list require fewer bits to signal. So the default order are organized so that Reference Pictures temporal &rsquo;nearer&rsquo; to the current picture occur earlier in the list since they are likely to contain the best prediction match for the current picture.
+</p>
+
+<p>
+Order of List0:
+</p>
+<ul class="org-ul">
+<li><p>
+List0(P-Slice): Decreasing order of PicNum
+</p>
+
+<p>
+PicNum = frame % MaxFrameNum
+</p></li>
+<li>List0(B-Slice): (1) Decreasing order of POC
+(2) Increasing order of POC</li>
+</ul>
+
+<p>
+Order of List1:
+</p>
+<ul class="org-ul">
+<li>List1(B-Slice): (1) Increasing order of POC
+(2) Decreasing order of POC</li>
+</ul>
+</div>
+</li>
+<li><a id="orgff5f5d7"></a>Frame and Field coding<br />
+<ol class="org-ol">
+<li><a id="orgf9cee59"></a>Picture Adaptive Frame Field Coding (PAFF)<br /></li>
+
+<li><a id="org6d78415"></a>Macroblocks Adaptive Frame Field (MBAFF)<br /></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org5abeb2d" class="outline-2">
+<h2 id="org5abeb2d"><span class="section-number-2">6.</span> NAL Unit (Netwokr Abstraction Layer Units)</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+There are two types of NAL Units:
+</p>
+<ul class="org-ul">
+<li>VCL NAL Units:
+<ul class="org-ul">
+<li>Coded slice, IDR.</li>
+<li>Coded slice, non-IDR</li>
+<li>coded slice data partition</li>
+</ul></li>
+<li>Non-VCL NAL Units:
+<ul class="org-ul">
+<li>Sequence Parameter Sets</li>
+<li>Picture Parameter Sets</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org83feb71" class="outline-2">
+<h2 id="org83feb71"><span class="section-number-2">7.</span> Slice layer</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orga6462af" class="outline-3">
+<h3 id="orga6462af"><span class="section-number-3">7.1.</span> Slice Types</h3>
+<div class="outline-text-3" id="text-7-1">
+</div>
+<div id="outline-container-orgb13ae88" class="outline-4">
+<h4 id="orgb13ae88"><span class="section-number-4">7.1.1.</span> I Slice (Including IDR)</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+Intra Prediction Only
+</p>
+
+<p>
+Contains Only I macroblocks.
+</p>
+</div>
+</div>
+<div id="outline-container-org5cfdbad" class="outline-4">
+<h4 id="org5cfdbad"><span class="section-number-4">7.1.2.</span> P Slice</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+Intra Prediction (I) and/or prediction from one reference per macroblock partition (P).
+</p>
+
+<p>
+Contains I and/or P macroblocks.
+</p>
+</div>
+</div>
+<div id="outline-container-org3833344" class="outline-4">
+<h4 id="org3833344"><span class="section-number-4">7.1.3.</span> B Slice</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+Intra Prediction (I), prediction from one reference (P) or biprediction, i.e prediction from two reference (B).
+</p>
+
+<p>
+Contains I, P and/or B macroblocks.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfa2bb45" class="outline-4">
+<h4 id="orgfa2bb45"><span class="section-number-4">7.1.4.</span> SP Slice</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<p>
+Switching P slice
+</p>
+
+<p>
+Contains P and/or I macroblocks.
+</p>
+</div>
+</div>
+<div id="outline-container-org45ac03d" class="outline-4">
+<h4 id="org45ac03d"><span class="section-number-4">7.1.5.</span> SI Slice</h4>
+<div class="outline-text-4" id="text-7-1-5">
+<p>
+Switching I slice
+</p>
+
+<p>
+Contains SI macroblocks.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1ab829c" class="outline-2">
+<h2 id="org1ab829c"><span class="section-number-2">8.</span> Macroblock layer</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+The Macroblock Layer contains all the syntax elements necessary to decode a single macroblock.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

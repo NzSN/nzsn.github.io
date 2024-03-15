@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Second order typed lambda calculus</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Second order typed lambda calculus</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd166727">1. \(\Pi\text{-type}\)</a></li>
+<li><a href="#orgc5fe5b6">2. Abstraction Level</a>
+<ul>
+<li><a href="#org1834cff">2.1. Terms depends on term</a></li>
+<li><a href="#orgb1f7c27">2.2. Terms depends on type</a></li>
+</ul>
+</li>
+<li><a href="#org5533c96">3. Second order abstraction and application rules</a></li>
+<li><a href="#orge6f9c02">4. The system \(\lambda 2\)</a>
+<ul>
+<li><a href="#org2edaa44">4.1. List of derivation rule</a></li>
+<li><a href="#org8be794c">4.2. Equality</a></li>
+<li><a href="#orga317268">4.3. Evaluation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd166727" class="outline-2">
+<h2 id="orgd166727"><span class="section-number-2">1.</span> \(\Pi\text{-type}\)</h2>
+</div>
+
+<div id="outline-container-orgc5fe5b6" class="outline-2">
+<h2 id="orgc5fe5b6"><span class="section-number-2">2.</span> Abstraction Level</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1834cff" class="outline-3">
+<h3 id="org1834cff"><span class="section-number-3">2.1.</span> Terms depends on term</h3>
+</div>
+
+<div id="outline-container-orgb1f7c27" class="outline-3">
+<h3 id="orgb1f7c27"><span class="section-number-3">2.2.</span> Terms depends on type</h3>
+</div>
+</div>
+<div id="outline-container-org5533c96" class="outline-2">
+<h2 id="org5533c96"><span class="section-number-2">3.</span> Second order abstraction and application rules</h2>
+<div class="outline-text-2" id="text-3">
+<div class="DEF" id="org44f0d33">
+<p>
+\(\frac{\Gamma, \alpha : * \vdash M : A}{\Gamma \vdash \lambda \alpha : *. M : \Pi \alpha : *. A}\)
+</p>
+
+</div>
+
+<div class="DEF" id="org061a64d">
+<p>
+\(\frac{\Gamma \vdash M : \Pi \alpha : * A; \Gamma \vdash B : *}{\Gamma \vdash MB : A[\alpha := B]}\)
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-orge6f9c02" class="outline-2">
+<h2 id="orge6f9c02"><span class="section-number-2">4.</span> The system \(\lambda 2\)</h2>
+<div class="outline-text-2" id="text-4">
+<div class="DEF" id="org48086cf">
+<p>
+\(\mathbb{T}2 = \mathbb{V} | (\mathbb{T}2 \rightarrow \mathbb{T}2) | (\Pi\mathbb{V}:*. \mathbb{T}2)\), with \(\mathbb{V}\) a set of type variables.
+</p>
+
+</div>
+
+<div class="DEF" id="org6f32f3f">
+<p>
+\(\Lambda_{\mathbb{T}2} = V | (\Lambda_{\mathbb{T}2}\Lambda_{\mathbb{T}2}) | (\Lambda_{\mathbb{T}2}\mathbb{T}2) | (\lambda V : \mathbb{T}2 : \Lambda_{\mathbb{T}2}) | (\lambda\mathbb{V}:*. \Lambda_{\mathbb{T}2})\)
+</p>
+
+<p>
+There are
+</p>
+<ul class="org-ul">
+<li>Object variables</li>
+<li>first order application</li>
+<li>first order abstraction</li>
+</ul>
+
+<p>
+Extra second order terms
+</p>
+
+<ul class="org-ul">
+<li>second order application</li>
+<li>second order abstraction (\(\mathbb{V}\) is type variables)</li>
+</ul>
+
+<p>
+from left to right respectivly.
+</p>
+
+</div>
+
+<div class="DEF" id="org24d59b4">
+<ul class="org-ul">
+<li>Statement. \(M : \sigma\) where \(M \in \Lambda_{\mathbb{T}2}\) and \(\sigma \in \mathbb{T}2\)</li>
+<li>Declaration. A statement with a term variables or a type variable as subject.</li>
+</ul>
+
+</div>
+
+<div class="DEF" id="org891ebd0">
+<ul class="org-ul">
+<li>\(\emptyset\) is a \(\lambda\text{2-context}\).</li>
+<li>If \(\Gamma\) is a \(\lambda\text{2-context}\), \(\alpha \in \mathbb{V} \wedge \alpha \notin dom(\Gamma)\), then \(\Gamma, \alpha: *\) is a \(\lambda\text{2-context}\) .</li>
+<li>If \(\Gamma\) is a \(\lambda\text{2-context}\), \(\rho \in \mathbb{T}2\) such that \(\alpha \in dom(\Gamma)\) for all free type variables in \(\rho\) and if \(x \notin dom(\Gamma)\), then \(\Gamma,x : \rho\) is a \(\lambda\text{2-context}\) .</li>
+</ul>
+
+</div>
+
+<div class="DEF" id="org78c9cad">
+<p>
+\(\Gamma \vdash x : \sigma\) if \(\Gamma\) is a \(\lambda2\) context and \(x : \sigma \in \Gamma\) .
+</p>
+
+</div>
+
+<div class="DEF" id="org357d503">
+<p>
+(form) \(\Gamma \vdash B:*\) if \(\Gamma\) is a \(\lambda2\) context, \(B \in \mathbb{T}2\) and all free type variables in B are declared in \(\Gamma\)
+</p>
+
+</div>
+
+<div class="DEF" id="orgf90d280">
+<p>
+A term M in ΛT2 is called legal if there exists a λ2-context Γ and a type ρ in T2 such that Γ \(\vdash\) M : ρ .
+</p>
+
+</div>
+</div>
+<div id="outline-container-org2edaa44" class="outline-3">
+<h3 id="org2edaa44"><span class="section-number-3">4.1.</span> List of derivation rule</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>(var) \(\Gamma \vdash x : \sigma\) if \(\Gamma\) is a \(\lambda2\) context and \(x : \sigma \in \Gamma\)</li>
+
+<li>(appl) \(\frac{\Gamma \vdash M : \alpha \rightarrow \beta; \Gamma \vdash N: \alpha}{\Gamma \vdash MN : \beta}\)</li>
+
+<li>(abst) \(\frac{\Gamma, x : \sigma \vdash M : \tau}{\Gamma \vdash \lambda x: \sigma . M : \sigma \rightarrow \tau}\)</li>
+
+<li>(form) \(\Gamma \vdash B:*\) if \(\Gamma\) is a \(\lambda2\) context, \(B \in \mathbb{T}2\) and all free type variables in B are declared in \(\Gamma\)</li>
+
+<li>(\(appl_{2}\)) \(\frac{\Gamma \vdash M : \Pi \alpha : * A; \Gamma \vdash B : *}{\Gamma \vdash MB : A[\alpha := B]}\)</li>
+
+<li>(\(abst_{2}\)) \(\frac{\Gamma, \alpha : * \vdash M : A}{\Gamma \vdash \lambda \alpha : *. M : \Pi \alpha : *. A}\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8be794c" class="outline-3">
+<h3 id="org8be794c"><span class="section-number-3">4.2.</span> Equality</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="DEF" id="orga625920">
+<p>
+(1a) &#x2026;
+(1b) (Renaming of type variable)
+</p>
+
+<p>
+\(\lambda \alpha:*. M =_{\alpha} \lambda \beta:*. M[\alpha := \beta]\) if \(\beta\) not occur in M.
+\(\Pi\alpha:*. M =_{\alpha} \lambda\beta:*. M[\alpha := \beta]\) if \(\beta\) not occur in M.
+</p>
+
+<p>
+(2)  &#x2026;
+(3a) &#x2026;
+(3b) &#x2026;
+(3c) &#x2026;
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-orga317268" class="outline-3">
+<h3 id="orga317268"><span class="section-number-3">4.3.</span> Evaluation</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="DEF" id="org0889e34">
+<ul class="org-ul">
+<li>(Basis, first order) \((\lambda x:\sigma. M)N \rightarrow_{\beta} M[x := N]\)</li>
+<li>(Basis, second order) \((\lambda \alpha: *. M)T \rightarrow_{\beta} M[\alpha := T]\)</li>
+<li>(Compatibility) no modified</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

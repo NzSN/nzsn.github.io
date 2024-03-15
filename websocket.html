@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebSocket</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">WebSocket</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgec8cfd9">1. Introduction</a></li>
+<li><a href="#org4e41f4a">2. Handshake</a>
+<ul>
+<li><a href="#orga994762">2.1. Client Requirements</a></li>
+<li><a href="#org2538f81">2.2. Server-Side Requirements</a></li>
+<li><a href="#orge5b5d8c">2.3. Open Handshake HTTP message example</a></li>
+<li><a href="#org1697bdf">2.4. Close the Connection</a></li>
+</ul>
+</li>
+<li><a href="#org8a073f8">3. Data Framing (Pending)</a>
+<ul>
+<li><a href="#orgee313a2">3.1. Extensibility</a></li>
+</ul>
+</li>
+<li><a href="#orgba4216c">4. Sending and Receving Data</a>
+<ul>
+<li><a href="#orgd7e78ef">4.1. Sending data</a></li>
+<li><a href="#orgcb25e1c">4.2. Receiving Data</a></li>
+</ul>
+</li>
+<li><a href="#org523e1fe">5. Extension</a></li>
+<li><a href="#orgd546a4b">6. MYQ</a>
+<ul>
+<li><a href="#org726eaa9">6.1. How to negotiate extension ?</a></li>
+<li><a href="#org261e9b5">6.2. Why masking ?</a></li>
+<li><a href="#org0996f39">6.3. Why only client-to-server need masking ?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec8cfd9" class="outline-2">
+<h2 id="orgec8cfd9"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WebSocket is a application layer proto that provide bidirectional
+communications between Clients and Server.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e41f4a" class="outline-2">
+<h2 id="org4e41f4a"><span class="section-number-2">2.</span> Handshake</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga994762" class="outline-3">
+<h3 id="orga994762"><span class="section-number-3">2.1.</span> Client Requirements</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+There are two steps during client opening handshanke
+</p>
+<ul class="org-ul">
+<li>Estabilish a Websocket connection: Following things need to concered
+<ul class="org-ul">
+<li>Proxy: Pending</li>
+<li>Number of simultaneous pending connections should reasonably low.</li>
+<li>Whether is TLS need, if URI is &ldquo;wss&rdquo;.</li>
+</ul></li>
+<li>Send Open Handshake
+<ul class="org-ul">
+<li>Make sure handshake&rsquo;s fields is valid;</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2538f81" class="outline-3">
+<h3 id="org2538f81"><span class="section-number-3">2.2.</span> Server-Side Requirements</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Server have two steps to deal with client Handshake:
+</p>
+<ul class="org-ul">
+<li>Reading Client Handshake: During this stage server need to make sure such client handshake as
+valid, |Upgrade|,|Connection|&#x2026;</li>
+<li>Sending the Server&rsquo;s Opening Handshake
+<ul class="org-ul">
+<li>May Need TLS Handshake.</li>
+<li>Server able to require additional client authentication.</li>
+<li>Verify Informations</li>
+</ul></li>
+</ul>
+
+<p>
+WebSocket Connection States
+</p>
+<ul class="org-ul">
+<li>Close State</li>
+<li>Open State</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge5b5d8c" class="outline-3">
+<h3 id="orge5b5d8c"><span class="section-number-3">2.3.</span> Open Handshake HTTP message example</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Client Handshake:
+</p>
+<pre class="example" id="org53469fc">
+GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Origin: http://example.com
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+</pre>
+
+<p>
+Server Handshake:
+</p>
+<pre class="example" id="orgfb4afeb">
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+</pre>
+</div>
+</div>
+<div id="outline-container-org1697bdf" class="outline-3">
+<h3 id="org1697bdf"><span class="section-number-3">2.4.</span> Close the Connection</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Close the Connection means an endpoint closes the underlying TCP connection, the connection
+should closed cleanly.
+</p>
+
+<p>
+Stages for WebSocket Closing Handshake:
+</p>
+<ul class="org-ul">
+<li>Start the WebSocket Closing Handshake (Send a Close control frame)</li>
+<li>WebSocket Closing Handshake is Started (Either sending or receiving a Close control frame)</li>
+<li>The WebSocket Connection is Closed (TCP connection is closed): if TCP connection is closed
+after WebSocket connection closed, the WebSocket connection close is cleanly.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a073f8" class="outline-2">
+<h2 id="org8a073f8"><span class="section-number-2">3.</span> Data Framing (Pending)</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgee313a2" class="outline-3">
+<h3 id="orgee313a2"><span class="section-number-3">3.1.</span> Extensibility</h3>
+</div>
+</div>
+<div id="outline-container-orgba4216c" class="outline-2">
+<h2 id="orgba4216c"><span class="section-number-2">4.</span> Sending and Receving Data</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgd7e78ef" class="outline-3">
+<h3 id="orgd7e78ef"><span class="section-number-3">4.1.</span> Sending data</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+endpoint should make sure
+</p>
+<ul class="org-ul">
+<li>Websocket connection is OPEN</li>
+<li>Is fragementation required</li>
+</ul>
+<p>
+etc &#x2026;
+</p>
+</div>
+</div>
+<div id="outline-container-orgcb25e1c" class="outline-3">
+<h3 id="orgcb25e1c"><span class="section-number-3">4.2.</span> Receiving Data</h3>
+</div>
+</div>
+<div id="outline-container-org523e1fe" class="outline-2">
+<h2 id="org523e1fe"><span class="section-number-2">5.</span> Extension</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+WebSocket specification provide ways to add new extensions.And now
+an extension that I have to implement is <a href="compression_extensions_for_websocket.html#ID-3eabd068-e902-463c-82c9-1df0736f717b">Compression Extensions for WebSocket</a>. Ways to help attach extensions can be found in RFC6455.
+</p>
+
+<p>
+Which Extension to used is determined by negotiation between Client and Server. Such
+negotiation carry on as following ways:
+</p>
+
+<ul class="org-ul">
+<li>Client including a |Sec-WebSocket-Extensions| header filed in Handshake.</li>
+<li>If Server accepts one or more extensions then such server will including correspond extensions
+in |Sec-WebSocket-Extensions| header field.</li>
+</ul>
+
+<p>
+Note that the order of extensions is significant. The first options listed being most
+preferable.
+</p>
+
+<p>
+For example, if there are two extensions &ldquo;foo&rdquo; and &ldquo;bar&rdquo; and if the
+header field |Sec-WebSocket-Extensions| sent by the server has the
+value &ldquo;foo, bar&rdquo;, then operations on the data will be made as
+bar(foo(data)), be those changes to the data itself (such as
+compression) or changes to the framing that may &ldquo;stack&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd546a4b" class="outline-2">
+<h2 id="orgd546a4b"><span class="section-number-2">6.</span> MYQ</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org726eaa9" class="outline-3">
+<h3 id="org726eaa9"><span class="section-number-3">6.1.</span> How to negotiate extension ?</h3>
+</div>
+
+<div id="outline-container-org261e9b5" class="outline-3">
+<h3 id="org261e9b5"><span class="section-number-3">6.2.</span> Why masking ?</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+To avoid confusing network intermediaries (such as intercepting proxies) and for security reasons. Websocket is plain text it.
+</p>
+
+<p>
+More details on RFC6455 10.3.
+</p>
+</div>
+</div>
+<div id="outline-container-org0996f39" class="outline-3">
+<h3 id="org0996f39"><span class="section-number-3">6.3.</span> Why only client-to-server need masking ?</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Cause only client be attacked by proxy cache poisoning attacks.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

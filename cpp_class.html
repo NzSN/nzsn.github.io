@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Class</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Class</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3a6fb0e">1. Introduction</a></li>
+<li><a href="#orgabe3e5f">2. First view of a concrete class</a></li>
+<li><a href="#orgc42fb09">3. Basic facilities</a>
+<ul>
+<li><a href="#orgb08cf0e">3.1. using-Declarations</a></li>
+<li><a href="#org20d1916">3.2. Return Type Relaxation</a></li>
+<li><a href="#org5b3aee2">3.3. Pointer-To Member (For indirect call to member function)</a></li>
+<li><a href="#org557a920">3.4. Default Copying</a>
+<ul>
+<li><a href="#org13fe6c5">3.4.1. The Type of <i><b>Defaulted Copy Constructor</b></i>:</a></li>
+<li><a href="#orgfe953df">3.4.2. When default copy constructor deleted</a></li>
+<li><a href="#orgc9d4946">3.4.3. Category of <i><b>Defaulted COpy Constructor</b></i>:</a></li>
+</ul>
+</li>
+<li><a href="#org871c8a5">3.5. Access Control</a></li>
+<li><a href="#orgf2674e4">3.6. Constness</a></li>
+<li><a href="#org1a7189b">3.7. Overloaded Operators</a></li>
+</ul>
+</li>
+<li><a href="#orgf204daa">4. Construction, Cleanup, Copy, and Move</a>
+<ul>
+<li><a href="#org6ac42c4">4.1. Construction and Destruction</a></li>
+<li><a href="#org2af6d7f">4.2. Copy and Move</a></li>
+</ul>
+</li>
+<li><a href="#orgcec29af">5. Class Hierarchy</a></li>
+<li><a href="#org4c2ea29">6. Run-Time Type Information</a></li>
+<li><a href="#org8683f5c">7. References</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3a6fb0e" class="outline-2">
+<h2 id="org3a6fb0e"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+OOP is a design philosphy. OOP focus on Concepts be involved in their program and relationship among them and also support extra properties that presentation of Concepts, Encauslation, Polymorphism, Inheritence.
+</p>
+
+<p>
+This document is talking about how CPP support such design philosphy.
+</p>
+
+<p>
+Class provide a way to user to define types in <a href="cpp.html#ID-c6bad242-6eb0-4057-b8e3-fad97e2ee5c0">CPP</a> , which provide mechanism to user to apply constrains to their programs for correctness. Class also represent as a concept.
+</p>
+
+<p>
+Class has two kinds of members:
+</p>
+<ul class="org-ul">
+<li>Data members</li>
+<li>Member functions</li>
+<li>Type members</li>
+</ul>
+
+<p>
+With <i><b>Data member</b></i> we are able to provide <i><b>State</b></i> to a new type and with <i><b>Member function</b></i> we are able to provide <i><b>actions</b></i> to a new type. A type has internal state and could be as operand in operations can be create from define a class with both members.
+</p>
+
+<p>
+In the following sections we will introduce
+</p>
+
+<ul class="org-ul">
+<li>Structure of a class</li>
+<li>Basic facilities to definning a class</li>
+<li>Construction, Cleanup, Copy and Move of class</li>
+<li>Operator Overloading</li>
+<li>Derived Classes</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgabe3e5f" class="outline-2">
+<h2 id="orgabe3e5f"><span class="section-number-2">2.</span> First view of a concrete class</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An example of a trivial class
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">B</span> <span style="color: #4EB8CA;">{}</span>;
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">C</span> <span style="color: #697375;">/* </span><span style="color: #697375;">Identifier</span><span style="color: #697375;"> */</span> : <span style="color: #4EB8CA;">public</span> B <span style="color: #697375;">/* </span><span style="color: #697375;">Relation</span><span style="color: #697375;"> */</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">f</span><span style="color: #91b9c7;">()</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Operation</span>
+<span style="color: #4EB8CA;">private</span>:
+    <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">s</span>; <span style="color: #697375;">// </span><span style="color: #697375;">State</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc42fb09" class="outline-2">
+<h2 id="orgc42fb09"><span class="section-number-2">3.</span> Basic facilities</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgb08cf0e" class="outline-3">
+<h3 id="orgb08cf0e"><span class="section-number-3">3.1.</span> using-Declarations</h3>
+</div>
+
+<div id="outline-container-org20d1916" class="outline-3">
+<h3 id="org20d1916"><span class="section-number-3">3.2.</span> Return Type Relaxation</h3>
+</div>
+
+<div id="outline-container-org5b3aee2" class="outline-3">
+<h3 id="org5b3aee2"><span class="section-number-3">3.3.</span> Pointer-To Member (For indirect call to member function)</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Indirect call to member function
+</p>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">A</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+ <span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">f</span><span style="color: #91b9c7;">()</span>;
+ <span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">(</span><span style="color: #4FA8A3;">A</span>::<span style="color: #91b9c7;">*</span><span style="color: #b9c791;">x</span><span style="color: #91b9c7;">)()</span>; <span style="color: #697375;">// </span><span style="color: #697375;">&lt;- declare by saying what class it is a pointer to</span>
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #b9c791;">int</span> <span style="color: #4FA8A3;">A</span>::<span style="color: #91b9c7;">f</span><span style="color: #4EB8CA;">()</span> <span style="color: #4EB8CA;">{</span>
+ <span style="color: #4EB8CA;">return</span> <span style="color: #ef6787;">1</span>;
+<span style="color: #4EB8CA;">}</span>
+
+
+<span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">main</span><span style="color: #4EB8CA;">()</span> <span style="color: #4EB8CA;">{</span>
+ <span style="color: #b9c791;">A</span> <span style="color: #47ba99;">a</span>;
+ a.x = &amp;<span style="color: #4FA8A3;">A</span>::f; <span style="color: #697375;">// </span><span style="color: #697375;">use the :: syntax</span>
+ printf<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"%d\n"</span>,<span style="color: #4FA8A3;">(</span>a.*<span style="color: #c791aa;">(</span>a.x<span style="color: #c791aa;">)</span><span style="color: #4FA8A3;">)()</span><span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">use together with an object of its class</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org557a920" class="outline-3">
+<h3 id="org557a920"><span class="section-number-3">3.4.</span> Default Copying</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<i><b>Defaulted Copy Constructor</b></i> Copy object with <i><b>Memberwise Copy</b></i>.
+</p>
+
+<p>
+For union types, the implicitly-defined copy constructor copies the object representation (as by std::memmove). For non-union class types (class and struct), the constructor performs full member-wise copy of the object&rsquo;s bases and non-static members, in their initialization order, using direct initialization.
+</p>
+</div>
+<div id="outline-container-org13fe6c5" class="outline-4">
+<h4 id="org13fe6c5"><span class="section-number-4">3.4.1.</span> The Type of <i><b>Defaulted Copy Constructor</b></i>:</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li><p>
+T::T(const T&amp;)
+</p>
+
+<p>
+if able to cosntruct it&rsquo;s base class and data member with <i><b>Copy Constructor</b></i> which arguments with const quantifier or const volatile quantifier.
+</p></li>
+
+<li><p>
+T::T(T&amp;)
+</p>
+
+<p>
+if above rules are not satisfied.
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe953df" class="outline-4">
+<h4 id="orgfe953df"><span class="section-number-4">3.4.2.</span> When default copy constructor deleted</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+if T has
+</p>
+
+<ul class="org-ul">
+<li>non-static data members</li>
+<li>direct or virtual base class</li>
+</ul>
+
+<p>
+that cannot be copied (have deleted, inaccessible, or ambiguous copy constructor).
+</p>
+
+<p>
+or
+</p>
+
+<p>
+if T has direct or base class or a non-static data member with a delted or inaccessible destructor.
+</p>
+
+<p>
+or
+</p>
+
+<p>
+T has a data member of rvalue reference type.
+</p>
+
+<p>
+or
+</p>
+
+<p>
+T has a user-defined move constructor or move assignment operator.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9d4946" class="outline-4">
+<h4 id="orgc9d4946"><span class="section-number-4">3.4.3.</span> Category of <i><b>Defaulted COpy Constructor</b></i>:</h4>
+<div class="outline-text-4" id="text-3-4-3">
+</div>
+<ol class="org-ol">
+<li><a id="org6a4d3dc"></a>Trivial copy constructor<br />
+<div class="outline-text-5" id="text-3-4-3-1">
+<p>
+Do nothing but copy raw bytes.
+</p>
+</div>
+</li>
+<li><a id="orgd7cf6ce"></a>Eligible copy constructor<br />
+<div class="outline-text-5" id="text-3-4-3-2">
+<p>
+A copy constructor is eligible if
+</p>
+
+<ul class="org-ul">
+<li>not deleted</li>
+<li>constraints satisfied</li>
+<li>most constrained one in all <i><b>Copy Constructors</b></i>.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org871c8a5" class="outline-3">
+<h3 id="org871c8a5"><span class="section-number-3">3.5.</span> Access Control</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Class authors able to make decisions about what is open for users and what is hide from users With access control provide by CPP. Users in this context include class users and another class authors.
+</p>
+
+<p>
+With access control we gain area of internal state and interface.
+</p>
+
+<p>
+see also <a href="access_control.html#ID-fc9fcfdd-b136-4564-a5d4-f65d4e558d15">Access Control</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf2674e4" class="outline-3">
+<h3 id="orgf2674e4"><span class="section-number-3">3.6.</span> Constness</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Object or member function with <i><b>Constness</b></i> should make sure that the part that could be observed from users remain unchanged over times.
+</p>
+
+<p>
+see also <a href="constness.html#ID-d715865a-ca64-4131-83b7-77e8df3631be">Constness</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a7189b" class="outline-3">
+<h3 id="org1a7189b"><span class="section-number-3">3.7.</span> Overloaded Operators</h3>
+</div>
+</div>
+<div id="outline-container-orgf204daa" class="outline-2">
+<h2 id="orgf204daa"><span class="section-number-2">4.</span> Construction, Cleanup, Copy, and Move</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org6ac42c4" class="outline-3">
+<h3 id="org6ac42c4"><span class="section-number-3">4.1.</span> Construction and Destruction</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+With <i><b>Constructor</b></i> and <i><b>Destructor</b></i> pair, people have capability to
+</p>
+
+<ul class="org-ul">
+<li>Control states of Object or states of Context during or after construction/destruction of objects(start/off, enable/disable, etc).</li>
+<li>Manage resources during life cycle of object &#x2013; RAII (Resource Acquisition Is Initialization).</li>
+<li>Estabilish the invariant of object.</li>
+</ul>
+
+<p>
+see also <a href="constructor_and_destructor.html#ID-5582ac2d-5388-4ff1-a0ee-6afbe0587330">Construction and Destruction</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org2af6d7f" class="outline-3">
+<h3 id="org2af6d7f"><span class="section-number-3">4.2.</span> Copy and Move</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Mechanisms to support semantic &rsquo;Value Transfer (x=y)&rsquo; are:
+</p>
+
+<ul class="org-ul">
+<li>Copy: To transfer value from one to another by make a duplicate of given value</li>
+<li>Move: To transfer value from one to another by transfer the ownership of physical part of value.</li>
+</ul>
+
+<p>
+&rsquo;Value Transfer&rsquo; is the commonality of those two mechanisms. There are differences between them, Copy do not affect the entity that copy from but Move do, Move will let the copy from entity in to <i><b>Move-From Stated</b></i>, this state only guarantee correctly of copy (copy-from, copy-to) and destruction.
+</p>
+
+<p>
+There are another subtle properties that a copy operation should obey:
+</p>
+
+<ul class="org-ul">
+<li>Equivalence: x&rsquo;s value must be equal to y&rsquo; after &rsquo;x=y&rsquo;.</li>
+<li>Indenpendence: Change on each of x and y should not change another after &rsquo;x=y&rsquo;.</li>
+</ul>
+
+<p>
+see also <a href="copy_and_move.html#ID-1c53464a-44f2-4055-9fac-510a900b249a">Copy and Move</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcec29af" class="outline-2">
+<h2 id="orgcec29af"><span class="section-number-2">5.</span> Class Hierarchy</h2>
+</div>
+
+<div id="outline-container-org4c2ea29" class="outline-2">
+<h2 id="org4c2ea29"><span class="section-number-2">6.</span> Run-Time Type Information</h2>
+</div>
+
+<div id="outline-container-org8683f5c" class="outline-2">
+<h2 id="org8683f5c"><span class="section-number-2">7.</span> References</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>The C++ programming language - stroustrup - 2013 [1]</li>
+
+<li><a href="https:en.cppreference.com">CPP Rerference</a> [2]</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

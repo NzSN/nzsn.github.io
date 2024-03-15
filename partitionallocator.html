@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PartitionAllocator (PA)</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">PartitionAllocator (PA)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org447d836">1. Glossary</a></li>
+<li><a href="#orgd17a226">2. Introduction</a></li>
+<li><a href="#org512c355">3. Inside PartitionAllocator (PA)</a>
+<ul>
+<li><a href="#org732acc5">3.1. The Whole structure of PartitionRoot</a>
+<ul>
+<li><a href="#org1f976d7">3.1.1. Important Objects in PA</a></li>
+</ul>
+</li>
+<li><a href="#org8396c7e">3.2. How to alloc SuperPages ?</a></li>
+</ul>
+</li>
+<li><a href="#orge658469">4. Extras</a>
+<ul>
+<li><a href="#orgab4952c">4.1. Drafts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org447d836" class="outline-2">
+<h2 id="org447d836"><span class="section-number-2">1.</span> Glossary</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+\texttt{base/allocator/partition\_allocator/glossary.md}
+</p>
+</div>
+</div>
+<div id="outline-container-orgd17a226" class="outline-2">
+<h2 id="orgd17a226"><span class="section-number-2">2.</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+PA gurantee that allocate memory security, fast and low latency. This document will deep into the inside of PA.
+</p>
+</div>
+</div>
+<div id="outline-container-org512c355" class="outline-2">
+<h2 id="org512c355"><span class="section-number-2">3.</span> Inside PartitionAllocator (PA)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+PA is essentially an allocator, which provide two main operations:
+</p>
+
+<ul class="org-ul">
+<li>Alloc</li>
+<li>Free</li>
+</ul>
+
+<p>
+Follow these operations could be a way to understand the internal of PA. Let&rsquo;s talk about the <i>Alloc</i> of PA. When you request memory from PA, you are actually request memory from <i>Partition</i>, a structure that hold a region of memory and caller able to reserve memory from it. PA is more like a frontend to enable another objects to use memory from <i>Partition</i> so just deep inside the internal of <i>Partition</i>.
+</p>
+</div>
+<div id="outline-container-org732acc5" class="outline-3">
+<h3 id="org732acc5"><span class="section-number-3">3.1.</span> The Whole structure of PartitionRoot</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The following diagram show structure of <i><b>Partition</b></i> or <i><b>Root</b></i>. The structure is logical rather than physical, which means this structure is not same as the layout they present in memory.
+</p>
+
+
+<div id="org962a835" class="figure">
+<p><img src="figures/Chromium/PartAlloc/AllocStructure.png" alt="AllocStructure.png" />
+</p>
+</div>
+
+<p>
+Partition is a structure to maintain a consecutive memory among <i>Reserve</i> and <i>Unreserves</i>, it also gurantee that those <i>Reserve</i> and <i>Unreserve</i> are fast,low latency and security. For these purposes, there are extra level of Pages and allocation units are defined, their are documented in glossary.md (\texttt{base/allocator/partition\_allocator/glossary.md}), knowledge of glossary.md is the requisition of following contents.
+</p>
+</div>
+<div id="outline-container-org1f976d7" class="outline-4">
+<h4 id="org1f976d7"><span class="section-number-4">3.1.1.</span> Important Objects in PA</h4>
+<div class="outline-text-4" id="text-3-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="org15c5aca"></a>Partition/Root<br />
+<div class="outline-text-5" id="text-3-1-1-1">
+<p>
+A entity that hold all virtual address space that has reserved memory (By AddressPollManager). Partition split these memory into SuperSpages except directmap object but still align to the size of SuperPage.
+</p>
+
+<p>
+The entity also serve as the entry to require or release memory, so some important statistics are recorded here.
+</p>
+</div>
+</li>
+<li><a id="org433eca2"></a>Bucket<br />
+<div class="outline-text-5" id="text-3-1-1-2">
+<p>
+A collection of regions in a partition that contains similar-sized objects. Regions in a <b>Bucket</b> are not required to be consecutive. For the purposes of fast and low latency, States of reserved memory is keep tracked, but tack directly to reserved memories is complicated and fussy so another abstraction is created to help, which is SlotSpan.
+</p>
+</div>
+</li>
+<li><a id="org97c3588"></a>SlotSpan<br />
+<div class="outline-text-5" id="text-3-1-1-3">
+<p>
+SlotSpan can be one of four major states:
+</p>
+
+<ol class="org-ol">
+<li>Active: Slotspan has free slots.</li>
+<li>Full: No free slots.</li>
+<li>Empty: All slots of such Slotspan are free.</li>
+<li>Decommitted: A Empty SlotSpan that had its backing memory back to the system.</li>
+</ol>
+
+<p>
+States of SlotSpan of a SlotSpan list are almost equal. Which is explained in comment in source code:
+</p>
+
+<p>
+Bucket maintain three <b>SlotSpan Lists</b>:
+</p>
+
+<ol class="org-ol">
+<li>Active</li>
+<li>Empty</li>
+<li>Decommitted</li>
+</ol>
+
+<p>
+I was wonder why only three of four states are maintained by PA, how PA maintain all SlotSpans that in <b>Full</b> states. I got the fact of how to maintain <b>SlotSpans</b> After reading the part that how it Free allocated objects. More precisely, PA does not maintain any <b>Full SlotSpans</b>, those <b>Slotspans</b> is not reside in any of those lists. <b>Full SlotSpans</b> is actually hold by the caller who request for memory from <b>PA</b>. It&rsquo;s make sense that memory of a <b>Full SlotSpan</b> must hold by requester, if we able to perfrom transformation between <b>address of payload of SlotSpan</b> and <b>address of SlotSpan</b> then able to left those <b>Full SlotSpans</b> out of <b>PA</b> before their freed.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org8f5fc02"></a>How address transform between payload to SlotSpanMetadata<br /></li>
+
+<li><a id="org4071786"></a>Decommit system pages<br />
+<div class="outline-text-6" id="text-3-1-1-3-2">
+<p>
+When to decommit from empty ? What is the condition to enable decommit during Free() ?
+</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8396c7e" class="outline-3">
+<h3 id="org8396c7e"><span class="section-number-3">3.2.</span> How to alloc SuperPages ?</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Following contents of this section is the details of \textt{PartitionBucket<thread\_safe>::\\AllocNewSuperPageSpan}.
+</p>
+
+<p>
+Pseudo Code to explain how to allocate a single SuperPage.
+</p>
+
+<pre class="example" id="orgebf3ace">
+data Root = Root {
+    -- An address of memory that new SuperPage should be resided on.
+    next_super_page :: Address
+    -- An address of memory that new PartitionPage should be resided on
+    next_partition_page :: Address
+}
+
+-- Entry
+AllocNewSuperPage :: Root -&gt; IO (Maybe Address)
+AllocNewSuperPage r = do
+    span &lt;- AllocNewSuperPageSpan r
+    if isNothing span
+        then return Nothing
+        -- Return the address of begin of payload of the SuperPage.
+        else return $ SuperPagePayloadBegin span
+
+AllocNewSuperPageSpan :: Root -&gt; IO (Maybe SuperPage)
+AllocNewSuperPageSpan r = do
+    let requested_address = r.next_super_page
+    let requedted_superpage = ReserveMemoryFromPool requested_address
+    if isNothing requested_memory
+        then return Nothing
+        else return $ InitializeSuperPage r requested_superpage
+
+
+InitializeSuperPage :: Root -&gt; SuperPage -&gt; SuperPage
+InitializeSuperPage r sp = do
+    let state_bitmap = sp.state_bitmap
+
+    -- Recommit system pages
+    RecommitSystemPages SuperPage SUPER_PAGE_SIZE
+
+    ...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge658469" class="outline-2">
+<h2 id="orge658469"><span class="section-number-2">4.</span> Extras</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgab4952c" class="outline-3">
+<h3 id="orgab4952c"><span class="section-number-3">4.1.</span> Drafts</h3>
+<div class="outline-text-3" id="text-4-1">
+<pre class="example" id="org64b9e57">
+Note: object -&gt; Root is not the prerequisites to do object -&gt; slot_span.
+</pre>
+
+
+<div id="org2e73e11" class="figure">
+<p><img src="figures/Chromium/PartAlloc/HandWriteDrafts/How object transfer to SlotSpan (1).jpg" alt="How object transfer to SlotSpan (1).jpg" />
+</p>
+</div>
+
+
+
+<div id="orgbb30ff0" class="figure">
+<p><img src="figures/Chromium/PartAlloc/HandWriteDrafts/How object transfer to SlotSpan (2).jpg" alt="How object transfer to SlotSpan (2).jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

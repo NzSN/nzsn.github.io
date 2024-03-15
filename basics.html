@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Basics</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Basics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8a2af12">1. Functions</a>
+<ul>
+<li><a href="#org4c73fca">1.1. Candidate functions best match</a></li>
+</ul>
+</li>
+<li><a href="#orgd7ab2c1">2. Synthesized Constructor</a></li>
+<li><a href="#orgd5c72b7">3. Copy Control</a>
+<ul>
+<li><a href="#org8f7d915">3.1. Copy, Assign, and Destroy</a>
+<ul>
+<li><a href="#org0f99c56">3.1.1. The Copy Constructor</a></li>
+<li><a href="#org48652fd">3.1.2. The Copy-Assignment Operator</a></li>
+<li><a href="#org28ecaf5">3.1.3. The Destructor</a></li>
+<li><a href="#org3ab99fd">3.1.4. Prevent Copies</a></li>
+</ul>
+</li>
+<li><a href="#orge52280b">3.2. Moving Objects</a>
+<ul>
+<li><a href="#org41428b6">3.2.1. Lvalues Persist; Rvalues Are Ephemeral</a></li>
+<li><a href="#org45171cc">3.2.2. Move constructor and Move Assignment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3ce547e">4. OO Programming</a>
+<ul>
+<li><a href="#org00e596b">4.1. Constructors and Copy Control</a></li>
+</ul>
+</li>
+<li><a href="#org9291011">5. Refed</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a2af12" class="outline-2">
+<h2 id="org8a2af12"><span class="section-number-2">1.</span> Functions</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org4c73fca" class="outline-3">
+<h3 id="org4c73fca"><span class="section-number-3">1.1.</span> Candidate functions best match</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Steps to select best match
+</p>
+<ul class="org-ul">
+<li>Choose set of overloaded functions by identifier of function call.</li>
+<li>Choose viable functions from candidate functions.</li>
+<li><p>
+Match each arguments one by one to find out the best.
+The best match should no argument match is wrose than others and
+at least one argument match better than anothers.
+</p>
+
+<p>
+For example, folloing call is ambiguous because for the first argument
+f(int, int) is better than f(double, double) but f(double, double) is
+better than f(int, int) for the second argument. So it&rsquo;s ambiguous.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">f</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">int</span>, <span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">f</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">double</span>, <span style="color: #b9c791;">double</span><span style="color: #4EB8CA;">)</span>;
+
+f<span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">42</span>, <span style="color: #ef6787;">2.56</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Ambiguous</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd7ab2c1" class="outline-2">
+<h2 id="orgd7ab2c1"><span class="section-number-2">2.</span> Synthesized Constructor</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The most common reason that a class must define
+its own default constructor is that the compiler generates the default for us only if we
+do not define any other constructors for the class. If we define any constructors, the
+class will not have a default constructor unless we define that constructor ourselves.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd5c72b7" class="outline-2">
+<h2 id="orgd5c72b7"><span class="section-number-2">3.</span> Copy Control</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org8f7d915" class="outline-3">
+<h3 id="org8f7d915"><span class="section-number-3">3.1.</span> Copy, Assign, and Destroy</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org0f99c56" class="outline-4">
+<h4 id="org0f99c56"><span class="section-number-4">3.1.1.</span> The Copy Constructor</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+A constructor is the copy constructor if its first parameter is a reference to the class
+type and any additional parameters have default values:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">  <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Foo</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #4EB8CA;">public</span>:
+      <span style="color: #91b9c7;">Foo</span><span style="color: #91b9c7;">()</span>;           <span style="color: #697375;">// </span><span style="color: #697375;">Default constructor</span>
+      <span style="color: #91b9c7;">Foo</span><span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">Foo</span>&amp;<span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Copy constructor</span>
+  <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="orgbfd9c88"></a>The Synthesized Copy Constructor<br />
+<div class="outline-text-5" id="text-3-1-1-1">
+<p>
+User defined <i><b>Copy Constructor</b></i> will not prevent define of <i><b>Synthesized Copy Constructor</b></i>.
+</p>
+
+<p>
+Synthesized do memberwise copies.
+</p>
+</div>
+</li>
+<li><a id="orge18d855"></a>Copy Initialization<br />
+<div class="outline-text-5" id="text-3-1-1-2">
+<p>
+Initialzation the use <i><b>Copy Constructor</b></i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">  <span style="color: #b9c791;">FOO</span> <span style="color: #47ba99;">f1</span> = <span style="color: #4FA8A3;">FOO</span><span style="color: #4EB8CA;">()</span>;  <span style="color: #697375;">// </span><span style="color: #697375;">Direct</span>
+  <span style="color: #b9c791;">FOO</span> <span style="color: #47ba99;">f2</span> = f1;  <span style="color: #697375;">// </span><span style="color: #697375;">Copy</span>
+</pre>
+</div>
+
+<p>
+Copy Initialization may happen when
+</p>
+
+<ul class="org-ul">
+<li>Pass and object as an argument to a parameter of nonreference type</li>
+<li>Return an object from a function that has nonreference return type</li>
+<li>Brace Initialize the elements in an array or the members of an aggregate class</li>
+<li>A user-defined move constructor or move assignment operator (this condition only causes
+the implicitly-declared, not the defaulted, copy constructor to be deleted).</li>
+</ul>
+</div>
+</li>
+<li><a id="org712abb5"></a>Constraints on Copy Initialization<br />
+<div class="outline-text-5" id="text-3-1-1-3">
+<p>
+Declare copy constructor as explicit to disallow copy initializations.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org48652fd" class="outline-4">
+<h4 id="org48652fd"><span class="section-number-4">3.1.2.</span> The Copy-Assignment Operator</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+Note: Copy-Assignment operator should return a reference to their left hand
+operand.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">
+  <span style="color: #b9c791;">Sales_data</span> <span style="color: #47ba99;">trans</span>, <span style="color: #47ba99;">accum</span>;
+  trans = accum; <span style="color: #697375;">// </span><span style="color: #697375;">uses the Sales_data copy-assignment operator</span>
+
+  <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Foo</span> <span style="color: #4EB8CA;">{</span>
+  <span style="color: #4EB8CA;">public</span>:
+  &#160;&#160;&#160;&#160;Foo&amp; <span style="color: #4EB8CA;">operator</span>=<span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">Foo</span>&amp;<span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">assignment operator</span>
+  &#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">...</span>
+  <span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+Synthesis version do things like <i><b>Copy Constructor</b></i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org28ecaf5" class="outline-4">
+<h4 id="org28ecaf5"><span class="section-number-4">3.1.3.</span> The Destructor</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+Destructor consist of
+</p>
+
+<ul class="org-ul">
+<li>Function body: Do things that designer wants.</li>
+<li>Destruct part: Destroy members, if member is a class type then call destructor
+of it otherwise do nothing.</li>
+</ul>
+
+<p>
+Destruct part is run after function body done.
+</p>
+</div>
+</div>
+<div id="outline-container-org3ab99fd" class="outline-4">
+<h4 id="org3ab99fd"><span class="section-number-4">3.1.4.</span> Prevent Copies</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+Defining these function as Deleted.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">NoCopy</span> <span style="color: #4EB8CA;">{</span>
+&#160;&#160;&#160;&#160;NoCopy<span style="color: #91b9c7;">()</span> = <span style="color: #4EB8CA;">default</span>;&#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">use the synthesized default constructor</span>
+&#160;&#160;&#160;&#160;NoCopy<span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">NoCopy</span>&amp;<span style="color: #91b9c7;">)</span> = <span style="color: #4EB8CA;">delete</span>;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">no copy</span>
+&#160;&#160;&#160;&#160;NoCopy &amp;<span style="color: #4EB8CA;">operator</span>=<span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">NoCopy</span>&amp;<span style="color: #91b9c7;">)</span> = <span style="color: #4EB8CA;">delete</span>; <span style="color: #697375;">// </span><span style="color: #697375;">no assignment</span>
+&#160;&#160;&#160;&#160;~NoCopy<span style="color: #91b9c7;">()</span> = <span style="color: #4EB8CA;">default</span>;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">use the synthesized destructor</span>
+&#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">other members</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+or you can declare these function as private.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org0e7195d"></a>Synthesized May be deleted<br />
+<div class="outline-text-5" id="text-3-1-4-1">
+<p>
+Synthesized as deleted if
+</p>
+
+<ul class="org-ul">
+<li>Synthesized unable to deal with class&rsquo;s members.</li>
+<li>Synthesized unable to create object that destroy by itself.</li>
+<li>There is reference member or const member.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge52280b" class="outline-3">
+<h3 id="orge52280b"><span class="section-number-3">3.2.</span> Moving Objects</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org41428b6" class="outline-4">
+<h4 id="org41428b6"><span class="section-number-4">3.2.1.</span> Lvalues Persist; Rvalues Are Ephemeral</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Looking at the list of lvalue and rvalue expressions, it should be clear that lvalues and
+rvalues differ from each other in an important manner: Lvalues have persistent state,
+whereas rvalues are either literals or temporary objects created in the course of
+evaluating expressions.
+</p>
+
+<p>
+Because rvalue references can only be bound to temporaries, we know that
+</p>
+<ul class="org-ul">
+<li>The referred-to object is about to be destroyed</li>
+<li>There can be no other users of that object</li>
+</ul>
+
+<p>
+These facts together mean that code that uses an rvalue reference is free to take over
+resources from the object to which the reference refers.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">  <span style="color: #b9c791;">int</span> &amp;<span style="color: #47ba99;">rr1</span> = <span style="color: #ef6787;">1</span>;
+  <span style="color: #b9c791;">int</span> &amp;&amp;<span style="color: #47ba99;">rr3</span> = <span style="color: #4FA8A3;">std</span>::move<span style="color: #4EB8CA;">(</span>rr1<span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+
+<p>
+Calling move tells the compiler that we have an lvalue that we want to treat as if it
+were an rvalue.It is essential to realize that the call to move promises that we do not
+intend to use rr1 again except to assign to it or to destroy it.
+</p>
+
+<p>
+<i><b>Caution: After a call to move, we cannot make any assumptions about the value of the moved-from object.</b></i>
+</p>
+</div>
+</div>
+<div id="outline-container-org45171cc" class="outline-4">
+<h4 id="org45171cc"><span class="section-number-4">3.2.2.</span> Move constructor and Move Assignment</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Example of <i><b>Move Constructor</b></i>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">  <span style="color: #4FA8A3;">StrVec</span>::StrVec<span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">StrVec</span> &amp;&amp;<span style="color: #47ba99;">s</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">noexcept</span>&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">move won't throw any</span>
+  exceptions
+  &#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">member initializers take over the resources in s</span>
+  elements<span style="color: #4EB8CA;">(</span>s.elements<span style="color: #4EB8CA;">)</span>,
+  first_free<span style="color: #4EB8CA;">(</span>s.first_free<span style="color: #4EB8CA;">)</span>,
+  &#160;&#160;:
+  cap<span style="color: #4EB8CA;">(</span>s.cap<span style="color: #4EB8CA;">)</span>
+  <span style="color: #4EB8CA;">{</span>
+  &#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">leave s in a state in which it is safe to run the destructor</span>
+  &#160;&#160;&#160;&#160;s.elements = s.first_free = s.cap = <span style="color: #4FA8A3;">nullptr</span>;
+  <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<p>
+Moved-from object will be destroyed after moved so need to make it be safe in function body.
+</p>
+
+<p>
+Example of <i><b>Move Assignment</b></i>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">  <span style="color: #b9c791;">StrVec</span> &amp;<span style="color: #4FA8A3;">StrVec</span>::<span style="color: #4EB8CA;">operator</span>=<span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">StrVec</span> &amp;&amp;<span style="color: #47ba99;">rhs</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">noexcept</span>
+  <span style="color: #4EB8CA;">{</span>
+  &#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">direct test for self-assignment</span>
+  &#160;&#160;&#160;&#160;<span style="color: #4EB8CA;">if</span> <span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">this</span> != &amp;rhs<span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;free<span style="color: #4FA8A3;">()</span>;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">free existing elements</span>
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;elements = rhs.elements; <span style="color: #697375;">// </span><span style="color: #697375;">take over resources from rhs</span>
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;first_free = rhs.first_free;
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;cap = rhs.cap;
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color: #697375;">// </span><span style="color: #697375;">leave rhs in a destructible state</span>
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;rhs.elements = rhs.first_free = rhs.cap = <span style="color: #4FA8A3;">nullptr</span>;
+  &#160;&#160;&#160;&#160;<span style="color: #91b9c7;">}</span>
+  <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<p>
+Synthesized Move as deleted follow rules:
+</p>
+
+<ul class="org-ul">
+<li>has const member or reference member</li>
+<li>has member that provide copy operation and not define move operation</li>
+<li>has member can&rsquo;t be move</li>
+<li>has member that copy operation is not defined</li>
+</ul>
+
+<p>
+Some compilers does not synthesize the move operations at all.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ce547e" class="outline-2">
+<h2 id="org3ce547e"><span class="section-number-2">4.</span> OO Programming</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org00e596b" class="outline-3">
+<h3 id="org00e596b"><span class="section-number-3">4.1.</span> Constructors and Copy Control</h3>
+</div>
+</div>
+<div id="outline-container-org9291011" class="outline-2">
+<h2 id="org9291011"><span class="section-number-2">5.</span> Refed</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="c.html#ID-3d674298-98fa-427f-9227-14880d7169ec">C++</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

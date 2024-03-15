@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Construction and Destruction</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Construction and Destruction</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5fa15be">1. Overview</a></li>
+<li><a href="#org36b289b">2. Implicitly-declared default constructor</a>
+<ul>
+<li><a href="#orgf797ea6">2.1. Deleted Implicitly-declared default constructor</a></li>
+</ul>
+</li>
+<li><a href="#org7b767cc">3. Constructor and Invariants</a></li>
+<li><a href="#orgb8c6304">4. Destructor and Resources</a>
+<ul>
+<li><a href="#org4d0021d">4.1. Virtual Destructor</a></li>
+</ul>
+</li>
+<li><a href="#orge6855c1">5. Class Object Initialization</a>
+<ul>
+<li><a href="#orgd8e1ac7">5.1. Without Constructor</a></li>
+<li><a href="#orgfb61b0a">5.2. With Constructor</a>
+<ul>
+<li><a href="#org748dca6">5.2.1. Initialization Order</a></li>
+</ul>
+</li>
+<li><a href="#org81ec1d7">5.3. initializer<sub>list</sub> Constructor</a>
+<ul>
+<li><a href="#orgc337c99">5.3.1. initializer<sub>list</sub> Constructor Disambiguation</a></li>
+</ul>
+</li>
+<li><a href="#org18af4b6">5.4. Member and Base Initialization</a></li>
+<li><a href="#orgd448bd7">5.5. In-Class Initializers</a></li>
+<li><a href="#org366989a">5.6. static Member Initialization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5fa15be" class="outline-2">
+<h2 id="org5fa15be"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+With <i><b>Constructor</b></i> and <i><b>Destructor</b></i> pair, people have capability specify <a href="cpp_class.html#ID-1ade29e7-9331-40fa-9c73-0ac1036e9553">Class</a> in following ways:
+</p>
+
+<ul class="org-ul">
+<li>Control states of Object or states of Context during or after construction/destruction of objects(start/off, enable/disable, etc).</li>
+<li>Manage resources during life cycle of object &#x2013; RAII (Resource Acquisition Is Initialization).</li>
+<li>Estabilish the invariant of object.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org36b289b" class="outline-2">
+<h2 id="org36b289b"><span class="section-number-2">2.</span> Implicitly-declared default constructor</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Implicitly-defiend default constructor willl calls the default constructors of the bases and of the non-static members of this class.
+</p>
+</div>
+<div id="outline-container-orgf797ea6" class="outline-3">
+<h3 id="orgf797ea6"><span class="section-number-3">2.1.</span> Deleted Implicitly-declared default constructor</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+If there are some something that will cause those operations failed then the implicitly-defined default constructor be deleted, e.g,
+</p>
+
+<ul class="org-ul">
+<li>Has a member of reference type without a default initializer.</li>
+<li>Base class&rsquo; default constructor is deleted, inaccessible, ambiguous or</li>
+<li>Has non-static data member with deleted, inaccessible, ambiguous default constructor.</li>
+<li>Has a direct or virtual base or a non-static data member which has a deleted destructor or inaccessable destructor.</li>
+<li>Has a non-const-default-constructible const member without a default member initializer.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7b767cc" class="outline-2">
+<h2 id="org7b767cc"><span class="section-number-2">3.</span> Constructor and Invariants</h2>
+</div>
+
+<div id="outline-container-orgb8c6304" class="outline-2">
+<h2 id="orgb8c6304"><span class="section-number-2">4.</span> Destructor and Resources</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org4d0021d" class="outline-3">
+<h3 id="org4d0021d"><span class="section-number-3">4.1.</span> Virtual Destructor</h3>
+</div>
+</div>
+<div id="outline-container-orge6855c1" class="outline-2">
+<h2 id="orge6855c1"><span class="section-number-2">5.</span> Class Object Initialization</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgd8e1ac7" class="outline-3">
+<h3 id="orgd8e1ac7"><span class="section-number-3">5.1.</span> Without Constructor</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Builtin type has no constructors but still able to initialize it with a value of suitable type.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b9c791;">int</span> <span style="color: #47ba99;">a</span><span style="color: #4EB8CA;">{}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Default initialization</span>
+<span style="color: #b9c791;">int</span> <span style="color: #47ba99;">a</span><span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">1</span><span style="color: #4EB8CA;">}</span>;
+<span style="color: #b9c791;">char</span> *<span style="color: #47ba99;">p</span><span style="color: #4EB8CA;">{</span><span style="color: #4FA8A3;">nullptr</span><span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+similarly, initialize an object without explicit constructor defined can be initialize in following ways:
+</p>
+
+<ul class="org-ul">
+<li>Memberwise Initialization</li>
+<li>Copy Initialization</li>
+<li>Default Initialization</li>
+</ul>
+
+<p>
+for example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">X</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">a</span>;
+    <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">b</span>;
+    <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">c</span>;
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+X x1 {1, 2, 3}; <i>/ Memberwise Initialization
+X x2 {x1};      /</i> Copy Initialization
+X x3 {};        // Default Initialization
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb61b0a" class="outline-3">
+<h3 id="orgfb61b0a"><span class="section-number-3">5.2.</span> With Constructor</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Initialize object with an explicit constructor can establish the invariant of object.
+</p>
+
+<p>
+Initialize can be done by three notations:
+</p>
+
+<ul class="org-ul">
+<li>{}, Universal initializer and can be unsed in anywhere for initialize purposes.</li>
+<li>(), In some case, must use () to indicate that to initialize a list of elements.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #ef6787;">#include</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #fbaed2;">vector</span><span style="color: #4EB8CA;">&gt;</span>
+
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">vector</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #47ba99;">v1</span><span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">77</span><span style="color: #4EB8CA;">}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Initialize v1 with an element which value is 77.</span>
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">vector</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #47ba99;">v2</span><span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">77</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Initialize v2 with 77 elements and all elements with value 0.</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>=</li>
+</ul>
+
+<p>
+Default constructor is the constructor without any arguments.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">X</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">int</span> <span style="color: #47ba99;">a</span><span style="color: #91b9c7;">)</span>;
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">double</span> <span style="color: #47ba99;">a</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #b9c791;">X</span> <span style="color: #47ba99;">x</span><span style="color: #4EB8CA;">(</span><span style="color: #91b9c7;">{}</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">ERROR: Which will incur an error due to</span>
+         <span style="color: #697375;">//        </span><span style="color: #697375;">ambiguous of constructor selection.</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org748dca6" class="outline-4">
+<h4 id="org748dca6"><span class="section-number-4">5.2.1.</span> Initialization Order</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+The order of member initializers in the list is irrelevant: the actual order of initialization is as follows:
+</p>
+
+<ul class="org-ul">
+<li>If the constructor is for the most-derived class, virtual bases are initialized in the order in which they appear in depth-first left-to-right traversal of the base class declarations (left-to-right refers to the appearance in base-specifier lists)</li>
+<li>Then, direct bases are initialized in left-to-right order as they appear in this class&rsquo;s base-specifier list</li>
+<li>Then, non-static data member are initialized in order of declaration in the class definition.</li>
+<li><p>
+Finally, the body of the constructor is executed
+</p>
+
+<p>
+Note: if initialization order was controlled by the appearance in the member initializer lists of different constructors, then the destructor wouldn&rsquo;t be able to ensure that the order of destruction is the reverse of the order of construction
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org81ec1d7" class="outline-3">
+<h3 id="org81ec1d7"><span class="section-number-3">5.3.</span> initializer<sub>list</sub> Constructor</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+A constructor that takes only one argument of type std::initializer<sub>list</sub>&lt;T&gt; is called  <i><b>initializer<sub>list</sub> Constructor</b></i>.
+</p>
+
+<p>
+Object of a class type can be initialized by initializer-list if a <i><b>Initializer<sub>list</sub> Constructor</b></i> is declared and defined by the Class.
+</p>
+
+<p>
+Examples:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b9c791;">vector</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">double</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #47ba99;">v</span> = <span style="color: #4EB8CA;">{</span> <span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2</span>, <span style="color: #ef6787;">3.456</span>, <span style="color: #ef6787;">99.99</span> <span style="color: #4EB8CA;">}</span>;
+<span style="color: #b9c791;">list</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">pair</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">string</span>,<span style="color: #b9c791;">string</span><span style="color: #91b9c7;">&gt;</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #47ba99;">languages</span> = <span style="color: #4EB8CA;">{</span>
+<span style="color: #91b9c7;">{</span><span style="color: #fbaed2;">"Nygaard"</span>,<span style="color: #fbaed2;">"Simula"</span><span style="color: #91b9c7;">}</span>, <span style="color: #91b9c7;">{</span><span style="color: #fbaed2;">"Richards"</span>,<span style="color: #fbaed2;">"BCPL"</span><span style="color: #91b9c7;">}</span>, <span style="color: #91b9c7;">{</span><span style="color: #fbaed2;">"Ritchie"</span>,<span style="color: #fbaed2;">"C"</span><span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #b9c791;">map</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">string</span><span style="color: #91b9c7;">&gt;</span>,<span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #91b9c7;">&gt;</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #47ba99;">years</span> = <span style="color: #4EB8CA;">{</span>
+<span style="color: #91b9c7;">{</span> <span style="color: #4FA8A3;">{</span><span style="color: #fbaed2;">"Maurice"</span>,<span style="color: #fbaed2;">"Vincent"</span>, <span style="color: #fbaed2;">"Wilkes"</span><span style="color: #4FA8A3;">}</span>,<span style="color: #4FA8A3;">{</span><span style="color: #ef6787;">1913</span>, <span style="color: #ef6787;">1945</span>, <span style="color: #ef6787;">1951</span>, <span style="color: #ef6787;">1967</span>, <span style="color: #ef6787;">2000</span><span style="color: #4FA8A3;">}</span> <span style="color: #91b9c7;">}</span>,
+<span style="color: #91b9c7;">{</span> <span style="color: #4FA8A3;">{</span><span style="color: #fbaed2;">"Mar tin"</span>, <span style="color: #fbaed2;">"Richards"</span><span style="color: #4FA8A3;">}</span> <span style="color: #4FA8A3;">{</span><span style="color: #ef6787;">1982</span>, <span style="color: #ef6787;">2003</span>, <span style="color: #ef6787;">2007</span><span style="color: #4FA8A3;">}</span> <span style="color: #91b9c7;">}</span>,
+<span style="color: #91b9c7;">{</span> <span style="color: #4FA8A3;">{</span><span style="color: #fbaed2;">"David"</span>, <span style="color: #fbaed2;">"John"</span>, <span style="color: #fbaed2;">"Wheeler"</span><span style="color: #4FA8A3;">}</span>, <span style="color: #4FA8A3;">{</span><span style="color: #ef6787;">1927</span>, <span style="color: #ef6787;">1947</span>, <span style="color: #ef6787;">1951</span>, <span style="color: #ef6787;">2004</span><span style="color: #4FA8A3;">}</span> <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+This is done by declared an <i><b>Initializer-List Constructor</b></i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">X</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">initializer_list</span><span style="color: #4FA8A3;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4FA8A3;">&gt;</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #b9c791;">X</span> <span style="color: #47ba99;">x1</span><span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">1</span><span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc337c99" class="outline-4">
+<h4 id="orgc337c99"><span class="section-number-4">5.3.1.</span> initializer<sub>list</sub> Constructor Disambiguation</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">X</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">initializer_list</span><span style="color: #4FA8A3;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4FA8A3;">&gt;</span><span style="color: #91b9c7;">)</span>;
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">()</span>;
+    <span style="color: #91b9c7;">X</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">int</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #b9c791;">X</span> <span style="color: #47ba99;">x0</span> <span style="color: #4EB8CA;">{}</span>;   <span style="color: #697375;">// </span><span style="color: #697375;">empty list: default constructor or initializer-list constructor? (the default constructor)</span>
+<span style="color: #b9c791;">X</span> <span style="color: #47ba99;">x1</span> <span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">1</span><span style="color: #4EB8CA;">}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">one integer: an int argument or a list of one element? (the initializer-list constructor)</span>
+</pre>
+</div>
+
+<p>
+Rules to selectd constructor:
+</p>
+
+<ul class="org-ul">
+<li>If either a default constructor or an initializer-list constructor could be invoked, prefer the default constructor.</li>
+
+<li><p>
+If both an initializer-list constructor and an ‘‘ordinary constructor’’ could be invoked, prefer the initializer-list constructor.
+</p>
+
+<p>
+Cause to keep semantic of different number of argument of initializer<sub>list</sub> Construction is necessary.
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org18af4b6" class="outline-3">
+<h3 id="org18af4b6"><span class="section-number-3">5.4.</span> Member and Base Initialization</h3>
+</div>
+
+<div id="outline-container-orgd448bd7" class="outline-3">
+<h3 id="orgd448bd7"><span class="section-number-3">5.5.</span> In-Class Initializers</h3>
+</div>
+
+<div id="outline-container-org366989a" class="outline-3">
+<h3 id="org366989a"><span class="section-number-3">5.6.</span> static Member Initialization</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+In general, a static member declared in class and define in outside of class.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Node</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">...</span>
+    <span style="color: #4EB8CA;">static</span> <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">node_count</span>; <span style="color: #697375;">// </span><span style="color: #697375;">declaration</span>
+<span style="color: #4EB8CA;">}</span>;
+<span style="color: #b9c791;">int</span> <span style="color: #4FA8A3;">Node</span>::<span style="color: #47ba99;">node_count</span> = <span style="color: #ef6787;">0</span>; <span style="color: #697375;">// </span><span style="color: #697375;">definition</span>
+</pre>
+</div>
+
+<p>
+but there are some special case
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Curious</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #4EB8CA;">static</span> <span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">c1</span> = <span style="color: #ef6787;">7</span>;  <span style="color: #697375;">// </span><span style="color: #697375;">OK</span>
+    <span style="color: #4EB8CA;">static</span> <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">c2</span> = <span style="color: #ef6787;">11</span>;  <span style="color: #697375;">// </span><span style="color: #697375;">error: not const</span>
+    <span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">c3</span> = <span style="color: #ef6787;">13</span>;  <span style="color: #697375;">// </span><span style="color: #697375;">OK, but not static (&#167;17.4.4)</span>
+    <span style="color: #4EB8CA;">static</span> <span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">c4</span> = sqrt<span style="color: #91b9c7;">(</span><span style="color: #ef6787;">9</span><span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">error: in-class initializer not constant</span>
+    <span style="color: #4EB8CA;">static</span> <span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">float</span> <span style="color: #47ba99;">c5</span> = <span style="color: #ef6787;">7.0</span>; <span style="color: #697375;">// </span><span style="color: #697375;">error: in-class not integral (use constexpr rather than const)</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">...</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

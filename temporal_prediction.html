@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Temporal Prediction</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Temporal Prediction</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaeaaa6b">1. Introduction</a></li>
+<li><a href="#org19bb938">2. Terminology</a></li>
+<li><a href="#orgc329f05">3. Prediction from the previous video frame</a>
+<ul>
+<li><a href="#orgd319a5f">3.1. Changes due to motion</a></li>
+<li><a href="#org37c29ea">3.2. Methods to predict:</a>
+<ul>
+<li><a href="#orgc321374">3.2.1. Optical flow of every pixel</a></li>
+<li><a href="#org1f05f7c">3.2.2. Block-based motion estimation and compensation</a></li>
+<li><a href="#orgaeca1fd">3.2.3. Motion compensated prediction of a macroblock</a></li>
+<li><a href="#org49bd0e5">3.2.4. Motion compensation block size</a></li>
+<li><a href="#orgdca81f5">3.2.5. Sub-Pixel motion compensation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaeaaa6b" class="outline-2">
+<h2 id="orgaeaaa6b"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Temporal Prediction is a technique that use to do inter-compression in<a href="h_264.html#ID-bedb22fa-78ab-4643-9c4c-5e7a80f76445"> H.264</a>.
+</p>
+
+<p>
+Prediction is describe by predicted frame which is created from one or more past or future frames known as reference frame.
+</p>
+</div>
+</div>
+<div id="outline-container-org19bb938" class="outline-2">
+<h2 id="org19bb938"><span class="section-number-2">2.</span> Terminology</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>reference frames: Frames that used to generate predicted frame for
+current frame. It may exists at past or future.</li>
+<li>Macroblock: 16x16-pixel region of a frame.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc329f05" class="outline-2">
+<h2 id="orgc329f05"><span class="section-number-2">3.</span> Prediction from the previous video frame</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgd319a5f" class="outline-3">
+<h3 id="orgd319a5f"><span class="section-number-3">3.1.</span> Changes due to motion</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Changes between video frames include:
+</p>
+<ul class="org-ul">
+<li>Moion</li>
+<li>Uncovered regions</li>
+<li>lighting changes</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org37c29ea" class="outline-3">
+<h3 id="org37c29ea"><span class="section-number-3">3.2.</span> Methods to predict:</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-orgc321374" class="outline-4">
+<h4 id="orgc321374"><span class="section-number-4">3.2.1.</span> Optical flow of every pixel</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Estimate the trajectory of each pixel between successive video frames.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgfa00b22"></a>Disadvantage<br />
+<div class="outline-text-5" id="text-3-2-1-1">
+<p>
+But this methods is not a practical method
+cause optical flow vector for every pixel is too big to transfered.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org1f05f7c" class="outline-4">
+<h4 id="org1f05f7c"><span class="section-number-4">3.2.2.</span> Block-based motion estimation and compensation</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Assume that  you are attempt to do motion estimation and compensation for a MxN samples then.
+</p>
+
+<p>
+Following subseciton is under the assumption that show above.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org10931be"></a>Motion Estimation<br />
+<div class="outline-text-5" id="text-3-2-2-1">
+<p>
+A process to search an area, the area is the centerd on the current block postion, in the reference frame to find
+a similar MxN-sample region.
+</p>
+
+<p>
+Matching criterion is the lower energy in the residual the better.
+</p>
+</div>
+</li>
+<li><a id="orga8ee73e"></a>Motion Compensation<br />
+<div class="outline-text-5" id="text-3-2-2-2">
+<p>
+The chosen candidate region as a predictor for the current MxN block and is subtracted from the current block to form a residual block (motion compensation).
+</p>
+
+<p>
+The residual block is encoded and transmited and the motion vector, the offset between current block and the position of predictor, is also transmited.
+</p>
+</div>
+</li>
+<li><a id="orgbfa3791"></a>Advantage<br />
+<div class="outline-text-5" id="text-3-2-2-3">
+<ul class="org-ul">
+<li>Fit well with rectangular video frames</li>
+<li>Provide reasonably effective temporal model with block-based image transforms.</li>
+</ul>
+</div>
+</li>
+<li><a id="org4912294"></a>Disadvantage<br />
+<div class="outline-text-5" id="text-3-2-2-4">
+<ul class="org-ul">
+<li>Real objects rarely have neat edge that match rectangular
+boundaries, this cause hard to compensate motion of such objects.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgaeca1fd" class="outline-4">
+<h4 id="orgaeca1fd"><span class="section-number-4">3.2.3.</span> Motion compensated prediction of a macroblock</h4>
+<div class="outline-text-4" id="text-3-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="org9cfcfa4"></a>Motion Estimation<br />
+<div class="outline-text-5" id="text-3-2-3-1">
+<p>
+Similar to Block-based but the search area is 16x16-sample region.
+</p>
+</div>
+</li>
+<li><a id="org07838d4"></a>Motion Compensation<br />
+<div class="outline-text-5" id="text-3-2-3-2">
+<p>
+Similar to Block-based Motion Compensation.
+</p>
+</div>
+</li>
+<li><a id="org07759e3"></a>Advantage<br />
+<div class="outline-text-5" id="text-3-2-3-3">
+<p>
+Variable block size provide more effcient to match unneat boundaries.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org49bd0e5" class="outline-4">
+<h4 id="org49bd0e5"><span class="section-number-4">3.2.4.</span> Motion compensation block size</h4>
+</div>
+
+<div id="outline-container-orgdca81f5" class="outline-4">
+<h4 id="orgdca81f5"><span class="section-number-4">3.2.5.</span> Sub-Pixel motion compensation</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

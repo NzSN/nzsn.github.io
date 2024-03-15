@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chromium</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chromium</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgde2dc51">1. High-level overview</a>
+<ul>
+<li><a href="#org07ab84f">1.1. Notes:</a></li>
+</ul>
+</li>
+<li><a href="#org3be4b4e">2. Web Page Display</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org58fa6fa">2.0.1. How Pages fetched from network</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org83781b7">3. Renderer</a>
+<ul>
+<li><a href="#org52a9b75">3.1. How renderer boot</a></li>
+<li><a href="#org915a500">3.2. How codes about views to organized</a></li>
+</ul>
+</li>
+<li><a href="#org9959699">4. How Chromium startup</a>
+<ul>
+<li><a href="#org6ea294f">4.1. Steps</a>
+<ul>
+<li><a href="#orga2869a3">4.1.1. Platform specific</a></li>
+<li><a href="#org44ad47d">4.1.2. Common Initliazation</a></li>
+<li><a href="#orgd39cf99">4.1.3. Process-Type-Specific Main function</a></li>
+</ul>
+</li>
+<li><a href="#org94e2c87">4.2. Browser-Process Stages</a></li>
+<li><a href="#org7c32e52">4.3. CallGraph</a></li>
+</ul>
+</li>
+<li><a href="#org489a1fd">5. How Chromium Drive ?</a>
+<ul>
+<li><a href="#org56dcce2">5.1. Concepts</a></li>
+</ul>
+</li>
+<li><a href="#org6aca282">6. Mojo and Services</a>
+<ul>
+<li><a href="#orgee5df23">6.1. Terminology</a></li>
+<li><a href="#orgaeebaaa">6.2. Introduction</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgde2dc51" class="outline-2">
+<h2 id="orgde2dc51"><span class="section-number-2">1.</span> High-level overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Two main parts:
+</p>
+
+<ul class="org-ul">
+<li>Browser: Main process and represents all the UI and I/O.</li>
+
+<li>Renderer (include Blink and Web engine): Is the (often) per-tab sub-process that is driven by the browser. It embeds Blink to do layout and rendering.</li>
+</ul>
+
+<p>
+More details in <a href="chromium_multi_process_arch.html#ID-4b9ed544-90bf-4951-b595-583d271e3a3f">Chromium-Multi-Process-Arch</a>.
+</p>
+
+
+<div id="org4097184" class="figure">
+<p><img src="figures/Chromium/outline.png" alt="outline.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org07ab84f" class="outline-3">
+<h3 id="org07ab84f"><span class="section-number-3">1.1.</span> Notes:</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><i><b>WebKit</b></i> has changed to <i><b>Blink</b></i>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3be4b4e" class="outline-2">
+<h2 id="org3be4b4e"><span class="section-number-2">2.</span> Web Page Display</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org58fa6fa" class="outline-4">
+<h4 id="org58fa6fa"><span class="section-number-4">2.0.1.</span> How Pages fetched from network</h4>
+</div>
+</div>
+<div id="outline-container-org83781b7" class="outline-2">
+<h2 id="org83781b7"><span class="section-number-2">3.</span> Renderer</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org52a9b75" class="outline-3">
+<h3 id="org52a9b75"><span class="section-number-3">3.1.</span> How renderer boot</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+content<sub>main</sub><sub>runner</sub><sub>impl.cc</sub> :: kMainFunctions
+render<sub>main.cc</sub>              :: RendererMain
+</p>
+</div>
+</div>
+<div id="outline-container-org915a500" class="outline-3">
+<h3 id="org915a500"><span class="section-number-3">3.2.</span> How codes about views to organized</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Page -&gt; RenderViewHost <code>==</code> blink::WebView
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9959699" class="outline-2">
+<h2 id="org9959699"><span class="section-number-2">4.</span> How Chromium startup</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org6ea294f" class="outline-3">
+<h3 id="org6ea294f"><span class="section-number-3">4.1.</span> Steps</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+<div id="outline-container-orga2869a3" class="outline-4">
+<h4 id="orga2869a3"><span class="section-number-4">4.1.1.</span> Platform specific</h4>
+</div>
+<div id="outline-container-org44ad47d" class="outline-4">
+<h4 id="org44ad47d"><span class="section-number-4">4.1.2.</span> Common Initliazation</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li>Commandline initialize: Process able to get it&rsquo;s process type from <b>base::CommandLine</b> once it&rsquo;s initialized.
+After that system may append some extra arguments to commandline. Also commandline setup for headless mode.</li>
+<li>Load Mojo DLL if MojoCore DLL provided.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd39cf99" class="outline-4">
+<h4 id="orgd39cf99"><span class="section-number-4">4.1.3.</span> Process-Type-Specific Main function</h4>
+<div class="outline-text-4" id="text-4-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="org7f4fab2"></a>Browser-Process<br />
+<div class="outline-text-5" id="text-4-1-3-1">
+<ul class="org-ul">
+<li>Initialize MojoCore.</li>
+<li>Start browser thread pool.</li>
+<li>Run BrowserMain.
+<ul class="org-ul">
+<li>Initialize main runner and run it.</li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org94e2c87" class="outline-3">
+<h3 id="org94e2c87"><span class="section-number-3">4.2.</span> Browser-Process Stages</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+see content/public/browser/browser<sub>main</sub><sub>parts.h</sub>.
+</p>
+</div>
+</div>
+<div id="outline-container-org7c32e52" class="outline-3">
+<h3 id="org7c32e52"><span class="section-number-3">4.3.</span> CallGraph</h3>
+<div class="outline-text-3" id="text-4-3">
+<pre class="example" id="org44ab287">
+    main (chrome/app/chrome_exe_main_aura.cc)
+==&gt; ChromeMain (chrome/app/chrome_main.cc)
+==&gt; content::ContentMain (content/app/content_main.cc)
+==&gt; content::RunContentProcess (content/app/content_main.cc)
+==&gt; content::ContentMainRunnderImpl::Run (content/app/content_main_runner_impl.cc)
+==&gt; content::RunBrowser (content/app/content_main_runner_impl.cc)
+==&gt; content::RunBrowserProcessMain (...)
+==&gt; BrowserMain (content/browser/browser_main.cc)
+</pre>
+
+<pre class="example" id="org65d5cb6">
+    main (chrome/app/chrome_exe_main_aura.cc)
+==&gt; ChromeMain (chrome/app/chrome_main.cc)
+==&gt; content::ContentMain (content/app/content_main.cc)
+==&gt; content::RunContentProcess (content/app/content_main.cc)
+==&gt; content::ContentMainRunnderImpl::Run (content/app/content_main_runner_impl.cc)
+==&gt; content::RunOtherNamedProcessTypeMain (content/app/content_main_runner_impl.cc)
+==&gt; RendererMain (content/Renderer/renderer_main.cc)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org489a1fd" class="outline-2">
+<h2 id="org489a1fd"><span class="section-number-2">5.</span> How Chromium Drive ?</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org56dcce2" class="outline-3">
+<h3 id="org56dcce2"><span class="section-number-3">5.1.</span> Concepts</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>MessagePump: Work like an engine to handle Tasks from another threads.</li>
+<li>SequenceManager: Manages TaskQueues multiplexing all posted tasks into a single backing sequence.</li>
+<li>TaskQueue: Not works as an interface for TaskQeueueImpl, by comments of this class.</li>
+<li>ThreadController: Used by SequenceManager to schedule actual work to be run.</li>
+<li>RunLoop: Helping to running a concrete event looping implementation.</li>
+<li>TaskExecutor
+<ul class="org-ul">
+<li>BrowserTaskExecutor (On Browser-Type-Process)</li>
+</ul></li>
+<li>TaskRunner, The final version of TaskRunner to run Task from TaskQueue in a SequenceManager is defined
+TaskQueueImpl::TaskRunner</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6aca282" class="outline-2">
+<h2 id="org6aca282"><span class="section-number-2">6.</span> Mojo and Services</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgee5df23" class="outline-3">
+<h3 id="orgee5df23"><span class="section-number-3">6.1.</span> Terminology</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>Endpoints: Entity that able to send messages and receive messages between entities
+of Endpoint set.</li>
+<li>Message pipe: Entity with type (Endpoint, Endpoint), a message pipe is  bidirectional.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaeebaaa" class="outline-3">
+<h3 id="orgaeebaaa"><span class="section-number-3">6.2.</span> Introduction</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+IPC in chromium is done by <b>Mojo</b>. So Renderer could be reuqest some information or some
+control from Browser or another Named-Process.
+</p>
+
+<p>
+To define a type of request and correspond reply by <b>Mojo</b>, you need a <b>mojom</b> file to describe interface.
+Given a mojom interfaces and a message pipe, one of the endpoints can be designated as a <b>Remote</b>, and is used to send
+messages described by the interface. The other endpoint can be designated as a <b>Receiver</b> and is used to receive itnerface messages.
+In another word, if you want to do IPC in <b>Chromium</b> you have to define interface on a <b>message pipe</b>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>
