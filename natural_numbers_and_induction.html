@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Natural Numbers and Induction</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Natural Numbers and Induction</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd8ebd7b">1. Sto</a></li>
+<li><a href="#org99c1988">2. Natural Numbers</a>
+<ul>
+<li><a href="#orgd4760f3">2.1. Definition</a></li>
+<li><a href="#org1a182d8">2.2. Fixpoint</a></li>
+<li><a href="#org08d3391">2.3. Example</a></li>
+</ul>
+</li>
+<li><a href="#orgb6f7674">3. Induction</a>
+<ul>
+<li><a href="#orga2da70c">3.1. Example</a></li>
+<li><a href="#orgf754eab">3.2. Iduction tactic</a></li>
+</ul>
+</li>
+<li><a href="#org37201b5">4. Induction using &ldquo;nat&rdquo;</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd8ebd7b" class="outline-2">
+<h2 id="orgd8ebd7b"><span class="section-number-2">1.</span> Sto</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="coq_tutorial.html#ID-dfe419d0-c9bd-4ed1-bdc7-0e454a4fccea">Tutorial</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org99c1988" class="outline-2">
+<h2 id="org99c1988"><span class="section-number-2">2.</span> Natural Numbers</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd4760f3" class="outline-3">
+<h3 id="orgd4760f3"><span class="section-number-3">2.1.</span> Definition</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Peano&rsquo;s definition of natural numbers is:
+0 is a natural number.
+For every natural number n, (S n) is a natural number.
+&ldquo;(S n)&rdquo; is spoken as &ldquo;the successor of n&rdquo; but you should think about it as &ldquo;1 + n&rdquo;. If we were to list the first few of Peano&rsquo;s natural numbers, they would be:
+0 is 0
+1 is (S 0) = (1 + 0)
+2 is (S (S 0)) = (1+ (1 + 0))
+3 is (S (S (S 0)) = (1 + (1 + (1 + 0)))
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Inductive</span> <span style="color: #91b9c7;">nat</span> : <span style="color: #b9c791;">Set</span> :=
+  | O : nat
+  | S : nat -&gt; nat.
+
+<span style="color: #4EB8CA;">Fixpoint</span> <span style="color: #91b9c7;">plus</span> (<span style="color: #47ba99;">n m</span>:nat) : nat :=
+  <span style="color: #b9c791;">match</span> n <span style="color: #b9c791;">with</span>
+  | O =&gt; m
+  | S p =&gt; S (p + m)
+  <span style="color: #b9c791;">end</span>
+
+<span style="color: #b9c791;">where</span> <span style="color: #fbaed2;">"n + m"</span> := (plus n m) : nat_scope
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1a182d8" class="outline-3">
+<h3 id="org1a182d8"><span class="section-number-3">2.2.</span> Fixpoint</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Previously, we used the vernacular command &ldquo;Definition&rdquo; to define a function. The command here is &ldquo;Fixpoint&rdquo;. &ldquo;Fixpoint&rdquo; must be used any time you define a recursive function. It&rsquo;s hard to see that &ldquo;plus&rdquo; calls itself because the recursive call is hidden by the &ldquo;+&rdquo; in &ldquo;p + m&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-org08d3391" class="outline-3">
+<h3 id="org08d3391"><span class="section-number-3">2.3.</span> Example</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">plus_2_3</span> : (S (S O)) + (S (S (S O))) = (S (S (S (S (S O))))).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">simpl</span>.
+  <span style="color: #ff0000;">exact</span> (eq_refl <span style="color: #ef6787;">5</span>).
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb6f7674" class="outline-2">
+<h2 id="orgb6f7674"><span class="section-number-2">3.</span> Induction</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If &ldquo;P&rdquo; is a predicate such that
+(P 0) is proven, and
+for all n, (P n) -&gt; (P (S n)) is proven,
+Then (P n) is proven for all n.
+</p>
+
+<p>
+The proof of &ldquo;(P O)&rdquo; is known as the &ldquo;base case&rdquo;. The proof of &ldquo;(forall n:nat, P n -&gt; P (S n))&rdquo; is known as the &ldquo;inductive case&rdquo; and, inside that case, &ldquo;P n&rdquo; is known as the &ldquo;inductive hypothesis&rdquo;.
+</p>
+
+<p>
+When &ldquo;nat&rdquo; was declared, Coq created a function that exactly represents induction on &ldquo;nat&rdquo;s. It is called &ldquo;nat<sub>ind</sub>&rdquo; and you can see its type with the vernacular command &ldquo;Check&rdquo;.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Check</span> nat_ind.
+
+<span style="color: #697375;">(* </span><span style="color: #697375;">Output</span><span style="color: #697375;"> *)</span>
+nat_ind
+     : <span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">P</span> : nat -&gt; <span style="color: #b9c791;">Type</span>,
+         P O -&gt; (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">n</span> : nat, P n -&gt; P (S n)) -&gt; <span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">n</span> : nat, P n
+</pre>
+</div>
+</div>
+<div id="outline-container-orga2da70c" class="outline-3">
+<h3 id="orga2da70c"><span class="section-number-3">3.1.</span> Example</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">plus_n_O</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">n</span>, n + O = n).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> n.
+  <span style="color: #9370db;">elim</span> n.
+    <span style="color: #697375;">(* </span><span style="color: #697375;">base caes</span><span style="color: #697375;"> *)</span>
+    <span style="color: #9370db;">simpl</span>.
+    <span style="color: #ff0000;">exact</span> (eq_refl O).
+
+    <span style="color: #697375;">(*</span><span style="color: #697375;">inductive case</span><span style="color: #697375;">*)</span>
+    <span style="color: #9370db;">intros</span> n'.
+    <span style="color: #9370db;">intros</span> inductive_hypothesis.
+    <span style="color: #9370db;">simpl</span>.
+    <span style="color: #9370db;">rewrite</span> inductive_hypothesis.
+    <span style="color: #ff0000;">exact</span> (eq_refl (S n')).
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+
+<p>
+RULE: If there is a hypothesis &ldquo;&lt;name&gt;&rdquo; of a created type AND that hypothesis is used in the subgoal, AND the type has a recursive definition, Then you can try the tactic &ldquo;elim &lt;name&gt;.&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf754eab" class="outline-3">
+<h3 id="orgf754eab"><span class="section-number-3">3.2.</span> Iduction tactic</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Just as the &ldquo;case&rdquo; tactic has a similar &ldquo;destruct&rdquo; tactic, the &ldquo;elim&rdquo; tactic has a similar &ldquo;induction&rdquo; tactic. Let&rsquo;s look at the previous proof, but using this new tactic.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">plus_n_Oagain</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">n</span>, n + O = n).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> n.
+  <span style="color: #9370db;">induction</span> n <span style="color: #b9c791;">as</span> [|n' inductive_hypothesis].
+    <span style="color: #697375;">(* </span><span style="color: #697375;">base case</span><span style="color: #697375;"> *)</span>
+    <span style="color: #9370db;">simpl</span>.
+    <span style="color: #ff0000;">exact</span> (eq_refl O).
+
+    <span style="color: #697375;">(* </span><span style="color: #697375;">Inductive case</span><span style="color: #697375;">  *)</span>
+    <span style="color: #9370db;">simpl</span>.
+    <span style="color: #9370db;">rewrite</span> inductive_hypothesis.
+    <span style="color: #ff0000;">exact</span> (eq_refl (S n')).
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+
+<p>
+So, the &ldquo;induction&rdquo; tactic does the same thing as &ldquo;elim.&rdquo;, except the names of the created variables are listed in the tactic, rather than being assigned later using &ldquo;intros&rdquo; in the inductive case of the proof.
+</p>
+
+<p>
+The &ldquo;induction&rdquo; command creates 2 subgoals, one for the base case and another for the inductive case, and after the &ldquo;as&rdquo; keyword, there are 2 lists of variable names, one for the base case and one for the inductive case. Those lists are separated by vertical bars (&rsquo;|&rsquo;) inside the square brackets. The base case doesn&rsquo;t create any variables, so its list is empty. The inductive case creates two variables, and they are named &ldquo;n&rsquo;&rdquo; and &ldquo;inductive<sub>hypothesis</sub>&rdquo;.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org37201b5" class="outline-2">
+<h2 id="org37201b5"><span class="section-number-2">4.</span> Induction using &ldquo;nat&rdquo;</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">plus_sym</span>: (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">n m</span>, n + m = m + n).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> n m.
+  <span style="color: #9370db;">elim</span> n.
+    <span style="color: #697375;">(* </span><span style="color: #697375;">base case for n</span><span style="color: #697375;"> *)</span>
+    <span style="color: #9370db;">elim</span> m.
+     <span style="color: #697375;">(* </span><span style="color: #697375;">base case for m</span><span style="color: #697375;"> *)</span>
+      <span style="color: #ff0000;">exact</span> (eq_refl (O + O)).
+
+      <span style="color: #697375;">(* </span><span style="color: #697375;">inductive case for m</span><span style="color: #697375;"> *)</span>
+      <span style="color: #9370db;">intros</span> m'.
+      <span style="color: #9370db;">intros</span> inductive_hyp_m.
+      <span style="color: #9370db;">simpl</span>.
+      <span style="color: #9370db;">rewrite</span> &lt;- inductive_hyp_m.
+      <span style="color: #9370db;">simpl</span>.
+      <span style="color: #ff0000;">exact</span> (eq_refl (S m')).
+
+      <span style="color: #697375;">(* </span><span style="color: #697375;">inductive case for n</span><span style="color: #697375;"> *)</span>
+    <span style="color: #9370db;">intros</span> n'.
+    <span style="color: #9370db;">intros</span> inductive_hyp_n.
+    <span style="color: #9370db;">simpl</span>.
+    <span style="color: #9370db;">rewrite</span> inductive_hyp_n.
+    <span style="color: #9370db;">elim</span> m.
+      <span style="color: #697375;">(* </span><span style="color: #697375;">case case for m</span><span style="color: #697375;"> *)</span>
+      <span style="color: #9370db;">simpl</span>.
+      <span style="color: #ff0000;">exact</span> (eq_refl (S n')).
+
+      <span style="color: #9370db;">intros</span> m'.
+      <span style="color: #9370db;">intros</span> inductive_hyp_m.
+      <span style="color: #9370db;">simpl</span>.
+      <span style="color: #9370db;">rewrite</span> inductive_hyp_m.
+      <span style="color: #9370db;">simpl</span>.
+      <span style="color: #ff0000;">exact</span> (eq_refl (S (m' + S n'))).
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

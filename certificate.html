@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Certificate</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Certificate</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga2f80eb">1. Subtopic of</a></li>
+<li><a href="#orgdd62207">2. How to create a self-signed certificate ?</a></li>
+<li><a href="#org8d42115">3. Principle (From zhihu)</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga2f80eb" class="outline-2">
+<h2 id="orga2f80eb"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="digital_signature.html#ID-973188ef-4987-4b56-a9bb-c4edcee7da66">Digital Signature</a>
+<a href="asymmetric_cryptography.html#ID-35056fbf-08a2-434e-b058-6e36ff9c1e61">Asymmetric-Cryptography</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd62207" class="outline-2">
+<h2 id="orgdd62207"><span class="section-number-2">2.</span> How to create a self-signed certificate ?</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example" id="org7242e8d">
+#./openssl genrsa -des3 -out mykey.pem 2048
+#./openssl req -key mykey.pem -config /u/ssl/openssl.cnf -out certreq.pem
+Using configuration from /u/ssl/openssl.cnf
+Getting request Private key
+Enter PEM pass phrase:
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name (DN).
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name [US]:US
+State [New York]:
+Locality [Fishkill]:Poughkeepsie
+Organization Name [IBM]:IBM
+Organizational Unit Name []:TPF
+Common Name []:John Doe
+Email address []:doe@fakename.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:whoareyou
+An optional company name []:IBM
+
+To See content of the certificate:
+#./openssl x509 -in mycert.pem -noout -text
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 123 (0x7B)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=US, ST=New York, L=Armonk, O=IBM, OU=HQ, CN=IBM Headquarters
+        Validity
+            Not Before: Jan 15 15:34:56 2001 GMT
+            Not After : Feb 14 15:34:56 2001 GMT
+        Subject: C=US, ST=New York, L=Poughkeepsie, O=IBM, OU=TPF, CN=John Doe
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:a7:92:dd:6b:78:5a:45:69:69:c3:91:f8:05:a6:
+                    55:15:8c:fc:d9:75:68:61:26:80:ce:0c:dc:60:dd:
+                    55:f9:ef:08:42:10:10:1c:0b:14:6a:4a:0a:08:64:
+                    42:51:7a:c7:78:ee:2e:0c:1e:17:75:b4:a3:46:c8:
+                    79:fb:a2:23:11:3a:4f:f0:0e:ac:b1:d4:23:32:aa:
+                    25:57:cf:08:9a:50:d4:88:73:b6:97:24:6a:9f:f9:
+                    43:d8:fd:db:2a:f7:74:42:d8:e6:36:f2:b4:fe:fa:
+                    e3:0b:4f:35:a0:53:ee:26:31:dc:87:7d:8e:c7:2e:
+                    80:0d:31:a1:cb:26:73:a3:67
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: md5WithRSAEncryption
+        5c:a8:33:a7:ca:19:19:0c:4c:3d:88:88:22:da:2e:03:14:c2:
+        6e:5f:38:e5:d6:00:36:e2:0f:9d:60:3f:68:e2:3b:06:d3:51:
+        9b:2f:b0:a5:8a:48:5e:e0:0a:ee:e2:a6:74:2a:87:c6:01:29:
+        10:c2:8e:49:3b:0a:18:37:5a:dd:f2:9a:65:42:1c:0a:c9:dc:
+        a8:70:27:82:b8:33:f3:5f:c2:5e:c4:7c:c5:f2:b8:ad:6a:93:
+        b5:e7:68:b8:7d:92:2c:15:4a:ec:0a:c8:05:6c:36:32:93:3c:
+        73:0f:10:3f:70:52:20:14:89:4a:16:5d:26:18:59:14:a7:1b:
+        e2:cb
+</pre>
+</div>
+</div>
+<div id="outline-container-org8d42115" class="outline-2">
+<h2 id="org8d42115"><span class="section-number-2">3.</span> Principle (From zhihu)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+先说加密。明文P，加上密码W一混淆之后，变成密文M
+如果不知道W，则无法从M反推回P。也就是无法进行解密。类似这种加密方式，称为对称加密。也就是加密、解密使用的密码是一样的。实际上加解密并不是直接使用密码，而是经由密码生成的密钥。这种算法有很多，比如AES。
+</p>
+
+<p>
+另外还有一种神奇的加解密算法，叫做非对称加密。比如RSA。非对称加密使用的密码有一对，一个称为公钥Pub，一个称为私钥Priv。明文P，经过公钥Pub使用RSA加密算法一混淆之后，变成了密文M。这个密文M，用公钥Pub是解不开的，需要用私钥Priv来解密。同样地，明文P，经过私钥Priv使用RSA加密算法一混淆之后，变成了密文M。这个M，也只能用公钥pub来解密。所谓公钥，就是可以公开出去可以供所有人使用的密钥。不像对称加密里的密码，要小心翼翼的存着。
+</p>
+
+<p>
+还有一种算法，叫做hash算法。是单向加密。就是只能从明文得到密文，却无法从密文得到明文。这种算法有一个好处，就是明文哪怕只有一位不一样，加密后得到的密文也不一样。所以常用来进行比较明文是否被篡改过。
+</p>
+
+<p>
+有了以上的基础，就可以开始说数字证书了。首先，有一个权威的证书签发机构，称为CA——全球就那么几个公司比较权威啦，这个机构，先用RSA产生一对公私钥。私钥自己留着藏起来，你要是能偷到手就厉害了。然后用自己的私钥对自己的公钥进行签名，生成所谓的数字证书。这个过程大概是这样的：先生成一个文件，文件内容大概是这样的：公钥内容签发者ID-&#x2014;谁签发的证书
+Subject-&#x2014;也就是这个证书签发给谁。这里subject和签发者ID相同。有效期其他信息
+</p>
+
+<p>
+以上内容都是明文。我们称为内容P。然后使用hash算法，对内容P进行hash计算，得到一个hash值H。然后使用签发机构的私钥对H进行RSA加密，得到签名信息S。这个步骤称为签名，就是用私钥对某公开内容的hash值进行加密。然后将P，S连成一个文件，这个文件就是所谓的数字证书了。所以数字证书里，包括证书持有者的身份信息，证书信息，证书持有人的公钥，以及签名信息。
+</p>
+
+<p>
+现在假设某人得到了这个证书，如何确认这个证书属于谁的呢？我们看数字证书里有些什么？可以得到P，可以得到S。我们用同样的hash算法对P进行hash计算，得到一个hash值H1.
+P里有公钥，签发者ID，Subject，有效期，及其他信息。我们用公钥解密S，得到了一个值H’。这个H‘，正常情况，或者说期望正常的话，应该就是制作数字证书的时候，用私钥对S加密的H。是否真如期望一样呢？比较一番就知道了。现在对比H’和H1是否相等，如果相等，那么就证明这个证书是有签发者签发给subject的证书，就是符合期望了，也就是正常情况。否则就说明：1.内容P被篡改过，或者2.证书不是由CA签发的。这个是对自签发证书的验证过程。需要说明的是，这种自签发证书的验证不常使用，但如何验证证书的原理类似。
+</p>
+
+<p>
+既然自己可以给自己签发证书，那黑客宣称自己是某著名CA，然后给自己签发一个证书。那验证者如何来验证这个证书是黑客自己的呢还是那个著名的CA呢？如果仅仅按照上文所说的自签发证书验证过程来看，是无法确认身份的。啥？那搞毛啊？不要急，这个问题，就是CA存在的意义了。
+</p>
+
+<p>
+所谓全球权威的CA，就那么几个公司，这几个公司的证书，被各软件厂商设置成“可信任的根证书”了。所谓的根证书，是指这个证书是受信任的起始点，随后可以用这个证书来证明其他的证书。就好像你爸爸绝对相信你是好人，然后你再证明你的朋友A是好人，于是你爸爸相信A也是好人一样。所谓其他的证书，自然就是由CA签发的证书了，这些证书无法享受CA可信任的根证书待遇。
+</p>
+
+<p>
+至于这些CA是怎么把自己的数字证书交给软件厂商而且让他们信任自己，我也不知道。如果你知道了，你就可以自己给自己签发一个证书，交给微软的IE，或者firefox等，让他们把你的证书嵌入到软件里去。这样一来，你就成了全球权威的CA之一了！
+</p>
+
+<p>
+现在知道了，自签发的数字证书，要被各软件信任，是不容易的。一旦CA的根证书存在用户的系统了，就可以用这个根证书来验证其他证书了。并用被验证过的证书来认证身份。嗯，这句有些绕，继续看下文。
+</p>
+
+<p>
+我们举一个例子，说明数字证书用来进行身份认证，就是https连接某网站的时候的身份认证过程。首先，某网站当然是一个web服务器，它要有一个数字证书。这个证书，要么是自己签发的，要么是由第三方签发的，一般这个第三方是全球权威的CA。
+IE或者firefox用https连上web server，这个时候，IE或者firefox最担心的是这个web server是冒充的网站，比如我登录某银行网站，结果连上了一个钓鱼网站，用户也没有发现，就在这个钓鱼网站做的和真网站一样的页面里，输入了自己的用户名密码，岂不是就这么泄露了机密信息么？那么怎么确认这个网站是正确的呢？这个就需要浏览器要求web server提供自己的数字证书来证明自己的身份。网站的身份是什么？域名！比如知乎 - 与世界分享你的知识、经验和见解（www dot zhihu dot com）。你如果打了<a href="https://www.zihu.com，也出现跟知乎一样的网站，浏览器没有警告你说此网站不合法，结果你输入了自己的用户名和密码登录，你觉得这个是什么问题？这就好比你让你的手下把">https://www.zihu.com，也出现跟知乎一样的网站，浏览器没有警告你说此网站不合法，结果你输入了自己的用户名和密码登录，你觉得这个是什么问题？这就好比你让你的手下把</a> 李逵叫过来，结果自己不小心说成了李鬼。你的手下查了查114，真的有个李鬼，手下自然的就把李鬼叫来了，结果这个李鬼和李逵长的还挺类似，然后你自己又不小心对李鬼说了很机密的话被李鬼知道了。整个过程，只能怨你自己不小心了。
+</p>
+
+<p>
+继续刚才的话题。浏览器要求web server的证书来证明确实是用户在浏览器中输入的网址，并没有连接到错误的网站域名上去，于是web server把自己的数字证书传给浏览器。浏览器对之进行验证，确认此网站的身份。请注意两个情况的区别：一，我在浏览器输入知乎 - 与世界分享你的知识、经验和见解（www dot zhihu dot com），连接到了黑客的钓鱼服务器，而没有连接到真正的服务器；二，我在浏览器输入<a href="https://www.zihu.com,连接到了一个黑客的钓鱼服务器">https://www.zihu.com,连接到了一个黑客的钓鱼服务器</a>。
+</p>
+
+<p>
+现在我们继续看这个数字证书怎么证明自己的身份。
+</p>
+
+<p>
+假设网站的数字证书是第三方签发的，但这个第三方却不权威。也就是说，给网站签发证书的这个CA，没有被IE等浏览器认可。
+</p>
+
+<p>
+这个时候，浏览器就会警告用户，说这个网站提供的证书不安全，比如一台干净的新系统，第一次访问12306网站的时候，提示：
+</p>
+
+
+<div id="orgea98a42" class="figure">
+<p><img src="https://pic4.zhimg.com/5183d065971f98e90357934034a35727_b.png" alt="5183d065971f98e90357934034a35727_b.png" />
+</p>
+</div>
+
+<p>
+这个警告的意思是说，证明该网站身份的数字证书，无法确认真假。既然数字证书无法确认真假，那自然也就无法确认我输入的网址是否连接到了真正的服务器了。
+</p>
+
+<p>
+可以查看此证书。（具体查看方法，IE是下图这样操作的，我举例子截图使用的是在访问<a href="http://cn.bing.com这个网站时候截取的图片）：">http://cn.bing.com这个网站时候截取的图片）：</a>
+</p>
+
+<p>
+&amp;lt;img src=&ldquo;<img src="https://pic3.zhimg.com/v2-d9276093b9530a3ddc4688a3bdc348a2_b.png" alt="v2-d9276093b9530a3ddc4688a3bdc348a2_b.png" />&rdquo; data-rawwidth=&ldquo;305&rdquo; data-rawheight=&ldquo;273&rdquo; class=&ldquo;content<sub>image</sub>&rdquo; width=&ldquo;305&rdquo;&amp;gt;查看12306网站的证书，内容是这样的：
+</p>
+
+<p>
+查看12306网站的证书，内容是这样的：
+</p>
+
+
+<p>
+签发者是SRCA，应该是这个签发中心签发的：中铁数字认证中心
+</p>
+
+<p>
+这是什么意思呢？就是说，中铁数字认证中心签发给12306网站的数字证书，其签发者”中铁数字认证中心“，在IE眼里是不受信任的。那IE自然对一个不受信任的签发机构签发的数字证书也认为不安全了。那么这个数字证书到底能不能证明12306的身份呢？答案是不能。
+</p>
+
+<p>
+因为这个证书是由SRCA签发的。也就是说，12306网站的数字证书，是用SRCA的私钥签名过的。回忆一下签名的意思，就是用私钥对公开内容的HASH值进行加密。这里的公开内容，就是12306的数字证书中的身份信息，12306网站公钥，证书信息等内容；而签名，就是SRCA的私钥对12306的数字证书部分公开内容的HASH值的加密。既然是用SRCA的私钥签名过的，就必须使用SRCA的公钥来验证这个签名。但是SRCA的公钥在哪里？怎么能证明这个公钥就是SRCA的而不是其他黑客的？这就回到了最初的CA存在意义的问题那里了。我们无法证明。
+</p>
+
+<p>
+所以IE并没有SRCA的公钥。如果SRCA将自己的数字证书嵌入到IE里了，IE自然就有了。既然没有嵌入进IE里，那通过手动添加SRCA到IE里可以吗？当然可以，这就是为什么12306要求安装受信任的根证书的原因。
+</p>
+
+<p>
+那么这个安装动作，就要非常小心了。你怎么能确认这个SRCA是一个合法权威的CA呢，或者说，你怎么能证明你下载的这个CA证书，真的就是SRCA的呢？一旦安装了这个CA证书，其影响是链式的。
+</p>
+
+<p>
+想想看我们为什么安装了12306网站提供的根证书？是基于对12306网站的信任。这个根证书是网站自身提供的，但是我们从新闻联播里，从大众行为里，信任了这个网站，安装了根证书。同样地，IE里内嵌的根证书我们为什么相信它？人为的被逼的相信，不相信就没有办法建立完整的安全链！
+</p>
+
+<p>
+我们看看从12306网站下载的SRCA的CA证书：
+</p>
+
+<p>
+&amp;lt;img src=&ldquo;<img src="https://pic3.zhimg.com/4909412e5cd0d127e6ea65d29f02d40a_b.png" alt="4909412e5cd0d127e6ea65d29f02d40a_b.png" />&rdquo; data-rawwidth=&ldquo;407&rdquo; data-rawheight=&ldquo;506&rdquo; class=&ldquo;content<sub>image</sub>&rdquo; width=&ldquo;407&rdquo;&amp;gt;签发者和签发给的人都是SRCA，就是自己给自己签发。但是这个证书，没有人能证明其是否可信任。但是我们，人类，基于对国家的信任，认为其可信任。安装了这个证书之后，在IE里可以查看到它：
+</p>
+
+<p>
+签发者和签发给的人都是SRCA，就是自己给自己签发。但是这个证书，没有人能证明其是否可信任。但是我们，人类，基于对国家的信任，认为其可信任。安装了这个证书之后，在IE里可以查看到它：
+</p>
+
+
+<p>
+安装了SRCA的根证书之后，然后访问<a href="http://12306.cn，就没有警告信息了：">http://12306.cn，就没有警告信息了：</a>
+</p>
+
+<p>
+&amp;lt;img src=&ldquo;<img src="https://pic4.zhimg.com/0e2d54129a01f0275a1fe409fd0a5da3_b.png" alt="0e2d54129a01f0275a1fe409fd0a5da3_b.png" />&rdquo; data-rawwidth=&ldquo;840&rdquo; data-rawheight=&ldquo;262&rdquo; class=&ldquo;content<sub>image</sub>&rdquo; width=&ldquo;840&rdquo; data-original=&ldquo;<img src="https://pic4.zhimg.com/0e2d54129a01f0275a1fe409fd0a5da3_r.png%22&amp;gt;%E9%82%A3%E4%B9%88SRCA%E6%98%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%8112306%E7%BD%91%E7%AB%99%E7%9A%84%E8%BA%AB%E4%BB%BD%E7%9A%84%E5%91%A2%EF%BC%9F%E6%98%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%8112306%E6%8F%90%E4%BE%9B%E7%9A%84%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%E5%91%A2" alt="0e2d54129a01f0275a1fe409fd0a5da3_r.png%22&amp;gt;%E9%82%A3%E4%B9%88SRCA%E6%98%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%8112306%E7%BD%91%E7%AB%99%E7%9A%84%E8%BA%AB%E4%BB%BD%E7%9A%84%E5%91%A2%EF%BC%9F%E6%98%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%8112306%E6%8F%90%E4%BE%9B%E7%9A%84%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%E5%91%A2" />？
+</p>
+
+<p>
+那么SRCA是如何验证12306网站的身份的呢？是如何验证12306提供的数字证书的有效性呢？也就是受信任的根证书，如何来验证网站的数字证书的呢？
+</p>
+
+<p>
+在以上描述中，对于自签发证书中的公钥的使用，可能对大家有一些误导。实际上，数字证书中的公钥，可以被用来验证其他数字证书，也可以被用来进行两个节点间通信时候的加密密钥（当然实际使用的加密密钥是另一回事情，这里暂且略过）。大多数https网站提供的数字证书的目的，一个是确认身份，一个是加密浏览器与Web Server之间的通信数据。
+</p>
+
+<p>
+我们构造一个场景：假设SRCA的公钥证书已经被用户添加为受信任的根证书。也就是SRCA的公钥存于用户的计算机系统中了。而SRCA的私钥存在于SRCA公司董事长的某个保险柜里。
+</p>
+
+<p>
+首先是12306网站向SRCA申请数字证书。
+12306网站申请数字证书的时候，需要提供一些信息，主要包括：12306的URL，12306自己产生的一对RSA公私钥对中的公钥，其他一些相关信息。
+SRCA就用自己的私钥对12306的申请内容进行签名，形成一个数字证书，还给12306网站。所以这个证书里，包括了：
+1.12306网站的URL
+2.12306网站使用的RSA公私钥对中的公钥。
+3.证书签发者的信息。
+4.证书签名。在12306网站里，于是就有一个数字证书，还有一份该数字证书中的公钥对应的私钥，这对公私钥是12306自己产生的。
+</p>
+
+<p>
+其中数字证书由SRCA的私钥签名了。而SRCA的公钥已经存在于用户浏览器中。
+</p>
+
+<p>
+12306网站的数字证书中包括了12306中的公私钥对的公钥和URL。
+</p>
+
+<p>
+当浏览器连接到12306，要求网站提供证书证明自己身份的时候，网站传输数字证书给浏览器（一个小问题，这个传输过程安全吗？）。浏览器得到12306的证书后，发现证书的签发者是SRCA，就用SRCA的公钥证书验证证书；确认数字证书确实属于12306之后，也就是输入的网址连到上的服务器是真正的12306网站的服务器，没有跑偏，因为这个网站提供了能够证明身份的数字证书而且数字证书中的URL与访问的URL是一致的；还从12306网站提供的数字证书中就得到了公钥，这个公钥是网站自己产生的，于是浏览器有12306网站的公钥，12306网站自己也有私钥，二者就可以用这对公私钥进行加密通讯了（当然实际通信过程的加密不是这样的，有一些变化）。具体流程如下：当用户在浏览器地址栏里输入了12306的网址后，经DNS解析，连接到了12306的网站的某台服务器。12306网站传输给浏览器一份数字证书CERT<sub>12306</sub>。浏览器根据数字证书内容，发现该证书签名者是SRCA。浏览器查找系统中受信任的根证书中是否有SRCA的公钥证书，找到了。浏览器得到SRCA公钥证书中的公钥Pub<sub>SRCA</sub>。用Pub<sub>SRCA解密CERT</sub><sub>12306中的签名部分</sub>，得到hash值H1.
+浏览器计算CERT<sub>12306中的明文内容</sub>，得到HASH值H2，对比H1，H2，验证数字证书有效性。如果有效，则得到明文内容中的URL，发现正在访问的URL与证书中得到的URL一致，则此次访问正常。身份认证通过。
+</p>
+
+<p>
+所以12306数字证书的验证，是使用SRCA公钥证书中的公钥验证的。因为12306网站数字证书是SRCA签发的，就必须用SRCA公钥验证。自签发证书，是用自己证书中的公钥来验证自己的。因为自签发证书是自己的私钥签发的，所以需要使用自己的公钥验证。也就签名的时候用的什么公私钥对中的私钥，则验证签名的时候就需要用对应的公钥。
+</p>
+
+<p>
+而网站的数字证书提供了公钥，网站自己有私钥。浏览器于是产生一个随机数R1，用公钥加密发给服务器，服务器用私钥解密后，得到这个随机数R1，后续两者就用这个R1作为对称加密的密钥来加密传输的数据。这个大约是SSL协议的简单过程，原理是这样的，细节可能差很多。
+</p>
+
+<p>
+假设，有一个坏蛋，不知道用什么方法，让访问<a href="http://12306.cn，不再连接到真正的12306网站，而连接到了自己网站，通过数字证书，能够阻止坏蛋做这样的事情吗">http://12306.cn，不再连接到真正的12306网站，而连接到了自己网站，通过数字证书，能够阻止坏蛋做这样的事情吗</a>？
+</p>
+
+<p>
+数字证书难度仅仅是用来进行https通信的吗？为什么在windows上安装驱动的时候，有些时候也提示数字证书不合法呢？
+</p>
+
+<p>
+x.509,PEM,CER,CRT这些都是什么意思呢？
+</p>
+
+<p>
+可信任的根证书存储在哪里呢？比如windows，linux，android，各浏览器等。这些地方安全吗？
+</p>
+
+<p>
+登录网银的时候，插入的Ukey包含了哪些内容？够安全吗？为什么要这个东西？
+</p>
+
+<p>
+……
+</p>
+
+<p>
+&#x2014;
+推荐这篇文章，比我讲的逻辑更清晰更靠谱些：数字签名与数字证书技术简介
+</p>
+
+<p>
+以及推荐本问题另一答案：数字证书的原理是什么？ - 张华的回答 - 知乎 数字证书的原理是什么？ - 张华的回答 - 知乎
+</p>
+
+<p>
+严谨而且靠谱。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

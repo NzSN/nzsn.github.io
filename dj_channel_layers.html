@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Channel-Layers</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Channel-Layers</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9b9164b">1. Subtopic of</a></li>
+<li><a href="#org25f171e">2. Definition</a></li>
+<li><a href="#orgcc2a5a1">3. Configuration</a></li>
+<li><a href="#org73b6f9f">4. Redis Channel Layer</a></li>
+<li><a href="#org9f68854">5. In-Memory Channel Layer</a></li>
+<li><a href="#org95d5db1">6. What to send over the channel layer</a></li>
+<li><a href="#org27a9249">7. Single Channels</a></li>
+<li><a href="#org6e3aec7">8. Groups</a></li>
+<li><a href="#org2e64ae9">9. Using Outside of Consumers</a></li>
+<li><a href="#orge0e1cda">10. Question</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9b9164b" class="outline-2">
+<h2 id="org9b9164b"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="django_channels.html#ID-2c633b7b-7bb1-422c-8c71-3b2f3d13726a">Django-Channels</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org25f171e" class="outline-2">
+<h2 id="org25f171e"><span class="section-number-2">2.</span> Definition</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Channel layers allow you to talk between different instances of an application.
+</p>
+
+<p>
+Able to combination with a worker process. Details on <a href="https://channels.readthedocs.io/en/stable/topics/worker.html">Worker and Background Tasks</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcc2a5a1" class="outline-2">
+<h2 id="orgcc2a5a1"><span class="section-number-2">3.</span> Configuration</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Channel layers are configured via the CHANNEL<sub>LAYERS</sub> Django setting.
+</p>
+
+<p>
+You can get the default channel layer from a project with channels.layers.get<sub>channel</sub><sub>layer</sub>(), but if you are using consumers a copy is automatically provided for you on the consumer as self.channel<sub>layer</sub>.
+</p>
+</div>
+</div>
+<div id="outline-container-org73b6f9f" class="outline-2">
+<h2 id="org73b6f9f"><span class="section-number-2">4.</span> Redis Channel Layer</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Supported for production use.
+</p>
+
+<p>
+Use Redis as its backing store, and supports both a single-server and shared configurations.
+</p>
+
+<p>
+Need to install channels<sub>redis</sub>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #47ba99;">CHANNEL_LAYERS</span> <span style="color: #91b9c7;">=</span> {
+    <span style="color: #fbaed2;">"default"</span>: {
+        <span style="color: #fbaed2;">"BACKEND"</span>: <span style="color: #fbaed2;">"channels_redis.core.RedisChannelLayer"</span>,
+        <span style="color: #fbaed2;">"CONFIG"</span>: {
+            <span style="color: #fbaed2;">"hosts"</span>: [(<span style="color: #fbaed2;">"127.0.0.1"</span>, <span style="color: #ef6787;">6379</span>)],
+        },
+    },
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9f68854" class="outline-2">
+<h2 id="org9f68854"><span class="section-number-2">5.</span> In-Memory Channel Layer</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+This layer can be helpful in for Testing or local-development purposes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #47ba99;">CHANNEL_LAYERS</span> <span style="color: #91b9c7;">=</span> {
+    <span style="color: #fbaed2;">"default"</span>: {
+        <span style="color: #fbaed2;">"BACKEND"</span>: <span style="color: #fbaed2;">"channels.layers.InMemoryChannelLayer"</span>
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org95d5db1" class="outline-2">
+<h2 id="org95d5db1"><span class="section-number-2">6.</span> What to send over the channel layer</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+&lt;Application&gt; &lt;-&#x2014; &lt;Channel Layer&gt; &#x2013;&#x2014;&gt; &lt;Application&gt;
+</p>
+
+<p>
+For example, a chat application could send events like this over the channel layer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">await</span> <span style="color: #4EB8CA;">self</span>.channel_layer.group_send(
+    room.group_name,
+    {
+        <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"chat.message"</span>,
+        <span style="color: #fbaed2;">"room_id"</span>: room_id,
+        <span style="color: #fbaed2;">"username"</span>: <span style="color: #4EB8CA;">self</span>.scope[<span style="color: #fbaed2;">"user"</span>].username,
+        <span style="color: #fbaed2;">"message"</span>: message,
+    }
+)
+</pre>
+</div>
+
+<p>
+And then the consumers define a handling function to receive those events and turn them into WebSocket frames:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">async def</span> <span style="color: #91b9c7;">chat_message</span>(<span style="color: #4EB8CA;">self</span>, event):
+    <span style="color: #BA667D;">"""</span>
+<span style="color: #BA667D;">    Called when someone has messaged our chat.</span>
+<span style="color: #BA667D;">    """</span>
+    <span style="color: #697375;"># </span><span style="color: #697375;">Send a message down to the client</span>
+    <span style="color: #4EB8CA;">await</span> <span style="color: #4EB8CA;">self</span>.send_json(
+        {
+            <span style="color: #fbaed2;">"msg_type"</span>: settings.MSG_TYPE_MESSAGE,
+            <span style="color: #fbaed2;">"room"</span>: event[<span style="color: #fbaed2;">"room_id"</span>],
+            <span style="color: #fbaed2;">"username"</span>: event[<span style="color: #fbaed2;">"username"</span>],
+            <span style="color: #fbaed2;">"message"</span>: event[<span style="color: #fbaed2;">"message"</span>],
+        },
+    )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org27a9249" class="outline-2">
+<h2 id="org27a9249"><span class="section-number-2">7.</span> Single Channels</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Each application instance if channel layers enabled, Consumers will
+generate a unique channel name for themselves, and start listening on it for events.
+</p>
+
+<p>
+A consumer deal with event with type chat.message
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">ChatConsumer</span>(WebsocketConsumer):
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">connect</span>(<span style="color: #4EB8CA;">self</span>):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Make a database row with our channel name</span>
+        Clients.objects.create(channel_name<span style="color: #91b9c7;">=</span><span style="color: #4EB8CA;">self</span>.channel_name)
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">disconnect</span>(<span style="color: #4EB8CA;">self</span>, close_code):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Note that in some rare cases (power loss, etc) disconnect may fail</span>
+        <span style="color: #697375;"># </span><span style="color: #697375;">to run; this naive example would leave zombie channel names around.</span>
+        Clients.objects.<span style="color: #91b9c7;">filter</span>(channel_name<span style="color: #91b9c7;">=</span><span style="color: #4EB8CA;">self</span>.channel_name).delete()
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">chat_message</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Handles the "chat.message" event when it's sent to us.</span>
+        <span style="color: #4EB8CA;">self</span>.send(text_data<span style="color: #91b9c7;">=</span>event[<span style="color: #fbaed2;">"text"</span>])
+</pre>
+</div>
+
+<p>
+To send to a single channel with a event that type is chat.message
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.layers <span style="color: #4EB8CA;">import</span> get_channel_layer
+
+<span style="color: #47ba99;">channel_layer</span> <span style="color: #91b9c7;">=</span> get_channel_layer()
+<span style="color: #4EB8CA;">await</span> channel_layer.send(<span style="color: #fbaed2;">"channel_name"</span>, {
+    <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"chat.message"</span>,
+    <span style="color: #fbaed2;">"text"</span>: <span style="color: #fbaed2;">"Hello there!"</span>,
+})
+</pre>
+</div>
+
+<p>
+You should prevent clash from type name, if you&rsquo;re mixing event handling from the channel layer and from the protocol
+connection. (It’s recommended you prefix type names (like we did here with chat.))
+</p>
+</div>
+</div>
+<div id="outline-container-org6e3aec7" class="outline-2">
+<h2 id="org6e3aec7"><span class="section-number-2">8.</span> Groups</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Send to multiple channels/consumers at once as a broadcast.
+</p>
+
+<p>
+Groups are a broadcast system that:
+</p>
+
+<ul class="org-ul">
+<li>Allows you to add and remove channel names from named groups, and send to those named groups.</li>
+<li>Provides group expiry for clean-up of connections whose disconnect handler didn’t get to run (e.g. power failure)</li>
+</ul>
+
+<p>
+They do not allow you to enumerate or list the channels in a group; it’s a pure broadcast system.
+</p>
+
+<p>
+You use groups by adding a channel to them during connection, and removing it during disconnection, illustrated here on the WebSocket generic consumer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #697375;"># </span><span style="color: #697375;">This example uses WebSocket consumer, which is synchronous, and so</span>
+<span style="color: #697375;"># </span><span style="color: #697375;">needs the async channel layer functions to be converted.</span>
+<span style="color: #4EB8CA;">from</span> asgiref.sync <span style="color: #4EB8CA;">import</span> async_to_sync
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">ChatConsumer</span>(WebsocketConsumer):
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">connect</span>(<span style="color: #4EB8CA;">self</span>):
+        async_to_sync(<span style="color: #4EB8CA;">self</span>.channel_layer.group_add)(<span style="color: #fbaed2;">"chat"</span>, <span style="color: #4EB8CA;">self</span>.channel_name)
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">disconnect</span>(<span style="color: #4EB8CA;">self</span>, close_code):
+        async_to_sync(<span style="color: #4EB8CA;">self</span>.channel_layer.group_discard)(<span style="color: #fbaed2;">"chat"</span>, <span style="color: #4EB8CA;">self</span>.channel_name)
+</pre>
+</div>
+
+<p>
+Then send to a group which name is &rsquo;chat&rsquo; :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">ChatConsumer</span>(WebsocketConsumer):
+
+    ...
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">receive</span>(<span style="color: #4EB8CA;">self</span>, text_data):
+        async_to_sync(<span style="color: #4EB8CA;">self</span>.channel_layer.group_send)(
+            <span style="color: #fbaed2;">"chat"</span>,
+            {
+                <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"chat.message"</span>,
+                <span style="color: #fbaed2;">"text"</span>: text_data,
+            },
+        )
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">chat_message</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #4EB8CA;">self</span>.send(text_data<span style="color: #91b9c7;">=</span>event[<span style="color: #fbaed2;">"text"</span>])
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e64ae9" class="outline-2">
+<h2 id="org2e64ae9"><span class="section-number-2">9.</span> Using Outside of Consumers</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.layers <span style="color: #4EB8CA;">import</span> get_channel_layer
+<span style="color: #47ba99;">channel_layer</span> <span style="color: #91b9c7;">=</span> get_channel_layer()
+
+<span style="color: #4EB8CA;">for</span> chat_name <span style="color: #4EB8CA;">in</span> chats:
+    <span style="color: #4EB8CA;">await</span> channel_layer.group_send(
+        chat_name,
+        {<span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"chat.system_message"</span>, <span style="color: #fbaed2;">"text"</span>: announcement_text},
+    )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge0e1cda" class="outline-2">
+<h2 id="orge0e1cda"><span class="section-number-2">10.</span> Question</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>How an application send event to a specifi consumer of another application.
+Answer: &#x2026;</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

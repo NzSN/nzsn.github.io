@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parallel Computing (Haskell)</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Parallel Computing (Haskell)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9e1beda">1. Overview</a></li>
+<li><a href="#orge1fc686">2. Eval Monad, rpar and rseq</a>
+<ul>
+<li><a href="#orge646477">2.1. Examples</a></li>
+</ul>
+</li>
+<li><a href="#org983c4bc">3. Evaluation Strategies</a>
+<ul>
+<li><a href="#org83e338f">3.1. Prameterized Strategies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9e1beda" class="outline-2">
+<h2 id="org9e1beda"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="haskell.html#ID-dab8b4e0-e6c8-41fa-8891-519ca047b0f2">Haskell</a> provide capability to process computations in <a href="parallel.html#ID-062d50e2-c676-434d-820e-5e3c976593a1">Parallel Computing</a>.
+</p>
+
+<p>
+In Haskell, Parallelism is expressed by <i><b>Eval</b></i>, which means is &ldquo;There is a computation need to computing in parallel&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-orge1fc686" class="outline-2">
+<h2 id="orge1fc686"><span class="section-number-2">2.</span> Eval Monad, rpar and rseq</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Eval&rsquo;s definition:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #4EB8CA;">data</span> <span style="color: #b9c791;">Eval</span> a
+<span style="color: #4EB8CA;">instance</span> <span style="color: #b9c791;">Monad</span> <span style="color: #b9c791;">Eval</span>
+
+<span style="color: #91b9c7;">runEval</span> <span style="color: #47ba99;">::</span> <span style="color: #b9c791;">Eval</span> a <span style="color: #47ba99;">-&gt;</span> a
+
+<span style="color: #91b9c7;">rpar</span> <span style="color: #47ba99;">::</span> a <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Eval</span> a
+<span style="color: #91b9c7;">rseq</span> <span style="color: #47ba99;">::</span> a <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Eval</span> a
+</pre>
+</div>
+
+<p>
+It&rsquo;s worth noting that argument to rpar and rseq should be unevaluated computation - a thunk otherwise It will do nothing.
+</p>
+</div>
+<div id="outline-container-orge646477" class="outline-3">
+<h3 id="orge646477"><span class="section-number-3">2.1.</span> Examples</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-haskell">runEval <span style="color: #91b9c7;">$</span> <span style="color: #4EB8CA;">do</span>
+  a <span style="color: #47ba99;">&lt;-</span> rpar (f x)
+  b <span style="color: #47ba99;">&lt;-</span> rpar (f y)
+  return (a,b)
+</pre>
+</div>
+
+<p>
+(f x) and (f y) begin to evaluate in parallel, while the return happens immediately: It doesn&rsquo;t wait for either (f x) and (f y).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">runEval <span style="color: #91b9c7;">$</span> <span style="color: #4EB8CA;">do</span>
+  a <span style="color: #47ba99;">&lt;-</span> rpar (f x)
+  b <span style="color: #47ba99;">&lt;-</span> rseq (f y)
+  rseq a
+  return (a,b)
+</pre>
+</div>
+
+<p>
+Computation first wait for b then wait for a and finally return.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org983c4bc" class="outline-2">
+<h2 id="org983c4bc"><span class="section-number-2">3.</span> Evaluation Strategies</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Evaluation Strategies is a way to seperate algorithms from parallelism for modularizing consideration.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #4EB8CA;">type</span> strategy a <span style="color: #47ba99;">=</span> a <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Eval</span> a
+</pre>
+</div>
+
+<p>
+For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #91b9c7;">sum</span> <span style="color: #47ba99;">::</span> <span style="color: #b9c791;">Int</span> <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Eval</span> <span style="color: #b9c791;">Int</span>
+<span style="color: #91b9c7;">sum</span> a <span style="color: #47ba99;">=</span> return <span style="color: #47ba99;">$</span> a <span style="color: #47ba99;">+</span> <span style="color: #ef6787;">1</span>
+
+<span style="color: #697375;">-- </span><span style="color: #697375;">Output: (2,3)</span>
+runEval <span style="color: #91b9c7;">$</span> (parTuple2 sum sum) (<span style="color: #ef6787;">1</span>,<span style="color: #ef6787;">2</span>)
+</pre>
+</div>
+</div>
+<div id="outline-container-org83e338f" class="outline-3">
+<h3 id="org83e338f"><span class="section-number-3">3.1.</span> Prameterized Strategies</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Take a Strategy as an argument then apply to datastructure which contain computations.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #91b9c7;">evalPair</span> <span style="color: #47ba99;">::</span> <span style="color: #b9c791;">Strategy</span> a <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Strategy</span> b <span style="color: #47ba99;">-&gt;</span> <span style="color: #b9c791;">Strategy</span> (a, b)
+<span style="color: #91b9c7;">evalPair</span> sa sb (a, b) <span style="color: #47ba99;">=</span> <span style="color: #4EB8CA;">do</span>
+  a' <span style="color: #47ba99;">&lt;-</span> sa a
+  b' <span style="color: #47ba99;">&lt;-</span> sb b
+  return (a', b')
+</pre>
+</div>
+
+<p>
+With <i><b>Parameterized Strategies</b></i> function able to control how to perform computations. For example, evaluate to <i><b>Normal form</b></i>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

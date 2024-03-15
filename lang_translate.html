@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lang Translate</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Lang Translate</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8118a02">1. Subtopic of</a></li>
+<li><a href="#org3a7eb32">2. Introduction</a></li>
+<li><a href="#org71901d0">3. How to translate an DevFunc into DAL ?</a>
+<ul>
+<li><a href="#org49748cc">3.1. Transform Methods</a>
+<ul>
+<li><a href="#org82e29a0">3.1.1. Structure Of Instructions</a></li>
+<li><a href="#org56e774a">3.1.2. Ways to build structure during _da<sub>xxx</sub><sub>convert</sub> functions</a></li>
+</ul>
+</li>
+<li><a href="#org6931e1b">3.2. Call Expression</a></li>
+<li><a href="#orgd085dc1">3.3. Assignment Stmt</a></li>
+<li><a href="#org0796ec6">3.4. If Stmt</a></li>
+<li><a href="#org514ac9f">3.5. Compare Equal</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8118a02" class="outline-2">
+<h2 id="org8118a02"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="lang_specification.html#ID-eede2cbc-4079-464e-bc11-aa9a24eed6de">Lang Specification</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org3a7eb32" class="outline-2">
+<h2 id="org3a7eb32"><span class="section-number-2">2.</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Before we think about how to translate from python layer to DA layer, some concepts
+is need.
+</p>
+
+<ul class="org-ul">
+<li>DAL (DevAutomator Language): Language that DA layer can understand.</li>
+<li>DevFunc: Functions in python layer that expected to be translated into language
+that able to read by DA layer.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71901d0" class="outline-2">
+<h2 id="org71901d0"><span class="section-number-2">3.</span> How to translate an DevFunc into DAL ?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Fisrst transform a DFunc into intermidiate form.
+</p>
+
+<p>
+Origin:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">    <span style="color: #b9c791;">@DA.function</span>
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">trivialTest</span>() <span style="color: #91b9c7;">-&gt;</span> <span style="color: #91b9c7;">bool</span>:
+        <span style="color: #47ba99;">box</span> <span style="color: #91b9c7;">=</span> BoxMachinePlus()
+
+        box.<span style="color: #91b9c7;">open</span>()
+        <span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">not</span> box.is_open():
+            <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">False</span>
+
+        box.put(<span style="color: #fbaed2;">"candy"</span>)
+        <span style="color: #47ba99;">things</span> <span style="color: #91b9c7;">=</span> box.get()
+
+        <span style="color: #4EB8CA;">if</span> things <span style="color: #91b9c7;">==</span> <span style="color: #fbaed2;">"candy"</span>:
+            <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">True</span>
+
+        <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">False</span>
+</pre>
+</div>
+
+
+<p>
+Intermidiate form:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">trivialTest</span>(insts) <span style="color: #91b9c7;">-&gt;</span> <span style="color: #91b9c7;">bool</span>:
+        <span style="color: #47ba99;">box</span> <span style="color: #91b9c7;">=</span> _da_convert(insts, BoxMachinePlus())
+
+        <span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">not</span> _da_convert(box.is_open()):
+            <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">False</span>
+
+        _da_convert(box.put(<span style="color: #fbaed2;">"candy"</span>))
+        <span style="color: #47ba99;">things</span> <span style="color: #91b9c7;">=</span> _da_convert(box.get())
+
+        <span style="color: #4EB8CA;">if</span> things <span style="color: #91b9c7;">==</span> <span style="color: #fbaed2;">"candy"</span>:
+            <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">True</span>
+
+        <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">False</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org49748cc" class="outline-3">
+<h3 id="org49748cc"><span class="section-number-3">3.1.</span> Transform Methods</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+According to examples that show above we choose the way to generate instructions, the way is
+modify &ldquo;Python AST&rdquo;.
+</p>
+
+<p>
+Things that need to pay attention during transform:
+</p>
+<ul class="org-ul">
+<li>Instruction generations</li>
+<li>Relations between Instructions</li>
+</ul>
+
+<p>
+Instruction generations is easy to do. But relations between instructions is more a little
+complicated cause it require to build Structure on Instructions.
+</p>
+
+<p>
+The first point is easy so it don&rsquo;t mention here. We thinking about the structure of
+Instructions.
+</p>
+</div>
+<div id="outline-container-org82e29a0" class="outline-4">
+<h4 id="org82e29a0"><span class="section-number-4">3.1.1.</span> Structure Of Instructions</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Instructions are connected by Var such as
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">      <span style="color: #ef6787;">0</span><span style="color: #91b9c7;">|</span> op opcode [] ret
+      <span style="color: #ef6787;">1</span><span style="color: #91b9c7;">|</span> op opcode [ret] ret1
+</pre>
+</div>
+
+<p>
+as you see the Instructions at line 1 need to be executed after the instruction at line 0
+so you can&rsquo;t put it onto line 0. This is called relations between Instructions and collect-
+ion of relations form a Structure Of Instructions.
+</p>
+</div>
+</div>
+<div id="outline-container-org56e774a" class="outline-4">
+<h4 id="org56e774a"><span class="section-number-4">3.1.2.</span> Ways to build structure during _da<sub>xxx</sub><sub>convert</sub> functions</h4>
+<div class="outline-text-4" id="text-3-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgfa36cf9"></a>Provide Identifier to _da<sub>xxx</sub><sub>convert</sub><br />
+<div class="outline-text-5" id="text-3-1-2-1">
+<div class="org-src-container">
+<pre class="src src-python">       <span style="color: #697375;"># </span><span style="color: #697375;">Src, Call with arguments</span>
+       m.op(m.query(<span style="color: #fbaed2;">"k1"</span>), m.query(<span style="color: #fbaed2;">"k2"</span>))
+
+       <span style="color: #697375;"># </span><span style="color: #697375;">Intermidiate</span>
+       _da_call_convert(
+           <span style="color: #fbaed2;">"__call_0__"</span>
+           m.op(
+               _da_call_convert(m.query(<span style="color: #fbaed2;">"k1"</span>), <span style="color: #fbaed2;">"__call_0__"</span>),
+               _da_call_convert(m.query(<span style="color: #fbaed2;">"k2"</span>), <span style="color: #fbaed2;">"__call_0__"</span>)
+           ))
+
+       <span style="color: #697375;"># </span><span style="color: #697375;">Src, Call without arguments</span>
+       m.op()
+
+       <span style="color: #697375;"># </span><span style="color: #697375;">Intermidiate</span>
+       _da_call_convert(m.op())
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org1ee8a0a"></a>Use mode in transform functions<br />
+<div class="outline-text-5" id="text-3-1-2-2">
+<div class="org-src-container">
+<pre class="src src-python">        <span style="color: #697375;"># </span><span style="color: #697375;">Src, Call with arguments</span>
+        m.op(m.query(<span style="color: #fbaed2;">"k1"</span>), m.query(<span style="color: #fbaed2;">"k2"</span>))
+
+        <span style="color: #697375;"># </span><span style="color: #697375;">Intermidiate</span>
+        _u(_da_call_convert(
+            m.op(
+                _u(_da_as_arg(_da_call_convert(m.query(<span style="color: #fbaed2;">"k1"</span>)))),
+                _u(_da_as_arg(_da_call_convert(m.query(<span style="color: #fbaed2;">"k2"</span>))))
+            ),
+            COLLECT_MODE
+        ))
+
+
+        <span style="color: #697375;"># </span><span style="color: #697375;">Src, Call without arguments</span>
+        m.op()
+
+        <span style="color: #697375;"># </span><span style="color: #697375;">Intermidiate</span>
+       _da_call_convert(m.op())
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org6931e1b" class="outline-3">
+<h3 id="org6931e1b"><span class="section-number-3">3.2.</span> Call Expression</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python">     <span style="color: #697375;">#</span><span style="color: #697375;">1</span>
+     box.op(_da_as_arg(box.query(DStr(<span style="color: #fbaed2;">"thing"</span>))))
+
+     <span style="color: #697375;">#</span><span style="color: #697375;">2</span>
+     box.op(_da_as_arg(box.query(_da_as_arg(DStr(<span style="color: #fbaed2;">"thing"</span>)))),
+            _da_as_arg(box.query(_da_as_arg(DStr(<span style="color: #fbaed2;">"thing"</span>)))))
+
+     <span style="color: #697375;"># </span><span style="color: #697375;">Generic</span>
+     <span style="color: #697375;"># </span><span style="color: #697375;">arg1 ... argN should also be transform in this fashion recursively.</span>
+     m.op(_da_as_arg(arg1), ... , _da_as_arg(argN))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd085dc1" class="outline-3">
+<h3 id="orgd085dc1"><span class="section-number-3">3.3.</span> Assignment Stmt</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Assignment stmts:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">
+  <span style="color: #697375;"># </span><span style="color: #697375;">Generic form</span>
+  <span style="color: #47ba99;">expr</span> <span style="color: #91b9c7;">=</span> expr
+
+  <span style="color: #697375;"># </span><span style="color: #697375;">Examples</span>
+  <span style="color: #47ba99;">v1</span> <span style="color: #91b9c7;">=</span> m.op(m.query(<span style="color: #fbaed2;">"key"</span>))
+</pre>
+</div>
+
+<p>
+These assignment stmts able to transform
+into following forms:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #47ba99;">target</span> <span style="color: #91b9c7;">=</span> _da_unwrap(visit(value))
+  da_assignment(insts, target_ident :: <span style="color: #91b9c7;">str</span>, target)
+</pre>
+</div>
+
+<p>
+Next question is how <i><b>da<sub>assignment</sub></b></i> generate Instructions, begin from what should
+these Instructions look like:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">  ... <span style="color: #697375;"># </span><span style="color: #697375;">Instructions generated by target_trans and value_trans</span>
+  ... <span style="color: #697375;"># </span><span style="color: #697375;">Suppose target_trans, value_trans relate to variable "var_t", "var_v"</span>
+  Assign var_t var_v
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0796ec6" class="outline-3">
+<h3 id="org0796ec6"><span class="section-number-3">3.4.</span> If Stmt</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Purpose of If stmt transform is to move those if stmts that unable to be handle in Python layer into
+DA Layer.
+</p>
+
+<p>
+With that purpose we only transform the kind of if statements which contain <i><b>DA Objects</b></i> with in
+it&rsquo;s test expression.
+</p>
+
+<p>
+Suppose there is an if statement:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">if</span> expr:
+      ...  <span style="color: #697375;"># </span><span style="color: #697375;">Statements</span>
+  <span style="color: #4EB8CA;">else</span>:
+      ...  <span style="color: #697375;"># </span><span style="color: #697375;">Statements</span>
+</pre>
+</div>
+
+<p>
+then is there a method to transform this into intermidiate form ?
+</p>
+
+<p>
+I think it&rsquo;s unable to do transform without destroy of python if statement&rsquo;s syntax. Cause
+if expr contain some <i><b>DA Object</b></i> then it will unable to get a real boolean value so need to
+transform it into another form maybe a function.
+</p>
+
+<p>
+Note the intermidiate form should make sure if statement work well whether expr contain <i><b>DA Object</b></i>
+or not.
+</p>
+
+<p>
+Try to rewrite this if statements in another form by python:
+</p>
+
+<p>
+Case0:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">body</span>() { ... }
+  <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">elseBody</span>() { ... }
+  <span style="color: #47ba99;">expr_tr</span> <span style="color: #91b9c7;">=</span> visit(expr)
+  <span style="color: #4EB8CA;">if</span> <span style="color: #91b9c7;">isinstance</span>(expr_tr, DType):
+      <span style="color: #697375;"># </span><span style="color: #697375;">Contain DA Object need to generate</span>
+      <span style="color: #697375;"># </span><span style="color: #697375;">DA Instructions.</span>
+
+      <span style="color: #697375;"># </span><span style="color: #697375;">instgrp_body and instgrp_else_body</span>
+      <span style="color: #697375;"># </span><span style="color: #697375;">should indicate that they are within</span>
+      <span style="color: #697375;"># </span><span style="color: #697375;">if mode.</span>
+      body(instgrp_body)
+      elseBody(instgrp_else_body)
+      da_if_transform(insts, instgrp_body, instgrp_else_body)
+  <span style="color: #4EB8CA;">else</span>:
+      <span style="color: #697375;"># </span><span style="color: #697375;">Able to work on python layer.</span>
+      <span style="color: #4EB8CA;">if</span> expr_tr:
+          ...
+      <span style="color: #4EB8CA;">else</span>:
+          ...
+
+</pre>
+</div>
+
+<p>
+But seems the Case0 has a little problem if a if statement&rsquo;s test expr contain a <i><b>DA Object</b></i> and codes
+that after the if statement use some definitions that define in body or elseBody of the if statement
+then an exception will be raised. This will also cause of different semantics on if statement which
+expr contain <i><b>DA OBJECT</b></i> and if statement which expr not contain <i><b>DA OBJECT</b></i>.
+</p>
+
+<p>
+we are unable to rewrite it&rsquo;s body or elseBody into a function cause if statement&rsquo;s body scope is
+different from function scope, for example:
+</p>
+
+<p>
+Case1:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">if</span> <span style="color: #4FA8A3;">True</span>:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> <span style="color: #ef6787;">1</span>
+  f(v)
+</pre>
+</div>
+
+<p>
+Case2:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">body</span>():
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> <span style="color: #ef6787;">1</span>
+
+  <span style="color: #4EB8CA;">if</span> <span style="color: #4FA8A3;">True</span>:
+      body()
+
+  f(v)
+</pre>
+</div>
+
+<p>
+Case1 will work well but Case2 will raise an exception: &ldquo;NameError: name &lsquo;v&rsquo; is not defined&rdquo;.
+</p>
+
+<p>
+A method is to change if statement&rsquo;s body scope&rsquo;s semantics to function scope&rsquo;s but seems not a good
+idea.
+</p>
+
+<p>
+Ok, after a minute I have a good idea:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #47ba99;">expr_tr</span> <span style="color: #91b9c7;">=</span> visit(expr)
+  <span style="color: #4EB8CA;">if</span> <span style="color: #91b9c7;">isinstance</span>(expr_tr, DType):
+      <span style="color: #697375;"># </span><span style="color: #697375;">Contain DA Object need to generate</span>
+      <span style="color: #697375;"># </span><span style="color: #697375;">DA Instructions.</span>
+      <span style="color: #47ba99;">instgrp_body</span> <span style="color: #91b9c7;">=</span> InstGrp()
+      <span style="color: #47ba99;">instgrp_elseBody</span> <span style="color: #91b9c7;">=</span> InstGrp()
+
+      <span style="color: #697375;"># </span><span style="color: #697375;">Transform Body statements</span>
+      ...
+      <span style="color: #697375;"># </span><span style="color: #697375;">Transform elseBody statements</span>
+      ...
+      da_if_transform(instgrp, instgrp_body, instgrp_elseBody)
+  <span style="color: #4EB8CA;">else</span>:
+      <span style="color: #697375;"># </span><span style="color: #697375;">Able to work on python layer.</span>
+      <span style="color: #4EB8CA;">if</span> expr_tr:
+          ...
+      <span style="color: #4EB8CA;">else</span>:
+          ...
+</pre>
+</div>
+
+<p>
+This form will not break if statement&rsquo;s scope semantics and remember that <i><b>instgrp<sub>body</sub></b></i> and
+<i><b>instgrp<sub>elseBody</sub></b></i> may broken cause there may exist an if statement with in body or elseBody
+so these two instruction group&rsquo;s identifier need to be allocated by IdentGenerator.
+</p>
+
+<p>
+Case3:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">if</span> expr:  <span style="color: #697375;"># </span><span style="color: #697375;">expr may contain DA Object.</span>
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> <span style="color: #ef6787;">1</span>
+  <span style="color: #4EB8CA;">else</span>:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> <span style="color: #ef6787;">2</span>
+
+  f(v)  <span style="color: #697375;"># </span><span style="color: #697375;">f can be a Python function or a DFunc</span>
+
+</pre>
+</div>
+
+<p>
+Let&rsquo;s look at Case3. Variable v is not a <i><b>DA Object</b></i>, is a PyObj, so it able to be evaluated in python
+layer but it&rsquo;s value is unpredictable cause expr contain <i><b>DA Object</b></i>. Variable v is referenced after if
+statement by function f. If f is a DFunc then we may try to put v into DA Layer and if it&rsquo;s a python
+function we can do nothing cause we&rsquo;re unable to put f into DA Layer.
+</p>
+
+<p>
+So with this Cases there is some rules should be obey:
+</p>
+
+<ul class="org-ul">
+<li>Python-Scope object should not reside within DA-Scopes that make it unpredictable,
+such as IF statement which contain <i><b>DA Object</b></i>.</li>
+</ul>
+
+<p>
+More than that:
+</p>
+
+<p>
+Case4:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">if</span> expr:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> DInt(<span style="color: #ef6787;">1</span>)
+  <span style="color: #4EB8CA;">else</span>:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> DInt(<span style="color: #ef6787;">2</span>)
+
+  f(v)  <span style="color: #697375;"># </span><span style="color: #697375;">DFunc</span>
+</pre>
+</div>
+
+<p>
+Ok, An use DInt(1), DInt(2) instead of 1, 2 in Case4 but it&rsquo; also not usable cause DInt does not
+</p>
+
+<p>
+create any Instructions in transform functions currently which means DInt is not delay to run to
+let it work within DA-Scope so when Instructs by f is performed by DA-Core v&rsquo;s value may be wrong.
+</p>
+
+<p>
+Transform Python-AST into DA-AST then generate Instructions from DA-AST should be a better method
+but this is things that be done after PHASE-ONE stage.
+</p>
+
+<p>
+Ok, to fix problems in Case4 a good idea is to generate Insts for DInt(1), DInt(2) and bind them
+to a same variable in DA-Layer.
+</p>
+
+<p>
+Ways to do that:
+</p>
+
+<p>
+Case5
+</p>
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">if</span> expr:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_define(<span style="color: #fbaed2;">"v"</span>, da_call_transform(DInt(<span style="color: #ef6787;">1</span>))))
+  <span style="color: #4EB8CA;">else</span>:
+      <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_define(<span style="color: #fbaed2;">"v"</span>, da_call_transform(DInt(<span style="color: #ef6787;">2</span>))))
+
+  f(v)
+</pre>
+</div>
+
+<p>
+The new modifier &ldquo;da<sub>define</sub>&rdquo; try bind DInt(1) to the DA Variable that relate to python Variable <i><b>v</b></i>.
+If the Variable is already exists then use the exists one. This modifier should only be used when
+variable is unpredictable.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python">  <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">IfStmt_Case_1</span>(insts) <span style="color: #91b9c7;">-&gt;</span>da_unwrap(da_name_transform(insts, <span style="color: #91b9c7;">bool</span>)):
+      <span style="color: #47ba99;">box</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_call_transform(insts, BoxMachinePlus(), <span style="color: #ef6787;">1</span>))
+      <span style="color: #47ba99;">test_expr</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_test(insts, da_binOp_Eq_transform(insts,
+          da_unwrap(da_comparator(insts, da_call_transform(insts, box.query(
+          da_unwrap(da_as_arg(insts, da_call_transform(insts, DStr(<span style="color: #fbaed2;">'ident'</span>),
+          <span style="color: #ef6787;">3</span>), <span style="color: #ef6787;">2</span>))), <span style="color: #ef6787;">2</span>))), <span style="color: #fbaed2;">'Box'</span>)))
+      <span style="color: #4EB8CA;">if</span> <span style="color: #91b9c7;">isinstance</span>(test_expr, DType):
+          <span style="color: #47ba99;">body_insts</span> <span style="color: #91b9c7;">=</span> InstGrp([], [], [])
+          <span style="color: #47ba99;">elseBody_insts</span> <span style="color: #91b9c7;">=</span> InstGrp([], [], [])
+          <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_define(body_insts, <span style="color: #fbaed2;">'v'</span>, da_call_transform(
+              body_insts, core.DInt(<span style="color: #ef6787;">1</span>), <span style="color: #ef6787;">2</span>)))
+          <span style="color: #47ba99;">v</span> <span style="color: #91b9c7;">=</span> da_unwrap(da_define(elseBody_insts, <span style="color: #fbaed2;">'v'</span>, da_call_transform(
+              elseBody_insts, core.DInt(<span style="color: #ef6787;">2</span>), <span style="color: #ef6787;">2</span>)))
+          da_if_transform(insts, body_insts, elseBody_insts)
+      <span style="color: #4EB8CA;">elif</span> test_expr:
+          ...
+      <span style="color: #4EB8CA;">else</span>:
+          ...
+      <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">True</span>
+
+
+  IfStmt_Case_1(insts)
+
+  query [ident] <span style="color: #91b9c7;">&lt;</span>__VAR__0<span style="color: #91b9c7;">&gt;</span>
+  equal [<span style="color: #91b9c7;">&lt;</span>__VAR__0<span style="color: #91b9c7;">&gt;</span> Box] <span style="color: #91b9c7;">&lt;</span>__VAR__1<span style="color: #91b9c7;">&gt;</span>
+</pre>
+</div>
+
+<p>
+Expected Instructions:
+</p>
+
+<pre class="example" id="orgc31c145">
+0| query [ident] &lt;__VAR__0&gt;
+1| equal [&lt;__VAR__0&gt; Box] &lt;__VAR__1&gt;
+2| Jmpt   &lt;__VAR__1&gt; 4
+3| def   &lt;__VAR__2&gt; 2
+4| def   &lt;__VAR__2&gt; 1
+</pre>
+</div>
+</div>
+<div id="outline-container-org514ac9f" class="outline-3">
+<h3 id="org514ac9f"><span class="section-number-3">3.5.</span> Compare Equal</h3>
+<div class="outline-text-3" id="text-3-5">
+<div class="org-src-container">
+<pre class="src src-python">  m.query(DStr(<span style="color: #fbaed2;">"123"</span>)) <span style="color: #91b9c7;">==</span> m.query(DStr(<span style="color: #fbaed2;">"123"</span>))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">  da_binOp_Equal_transform(insts,
+      da_call_transform(insts, m.query(da_as_arg(da_call_transform(insts, DStr(<span style="color: #fbaed2;">"123"</span>)))))
+      da_call_transform(insts, m.query(da_as_arg(da_call_transform(insts, DStr(<span style="color: #fbaed2;">"123"</span>))))))
+</pre>
+</div>
+
+
+<p>
+Let&rsquo;s look at <i><b>da<sub>binOp</sub><sub>Eq</sub><sub>transform</sub></b></i>, it&rsquo;s responsibility is make sure to transform
+compare expr into DA-Inst when necessary.
+</p>
+
+<p>
+Necessary means do transform only when one of operators of a compare expr is a Oper-Var
+(Oper-Var: DA-Var that generated by DA-Oper).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

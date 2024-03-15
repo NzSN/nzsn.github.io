@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coq Tutorial</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Coq Tutorial</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org28cbb3a">1. Subtopic of</a></li>
+<li><a href="#org0a37a57">2. First proof</a>
+<ul>
+<li><a href="#orga63d6b8">2.1. Proof state</a></li>
+<li><a href="#org0ef8962">2.2. Rules</a></li>
+<li><a href="#orgf966d89">2.3. Proof by Simplication</a></li>
+<li><a href="#orgbf30a6e">2.4. Proof by Rewrite</a></li>
+<li><a href="#orgde86d54">2.5. Proof by Case analysis</a></li>
+</ul>
+</li>
+<li><a href="#org7cacfa7">3. Proposition</a></li>
+<li><a href="#orgf48a513">4. More complicated example</a>
+<ul>
+<li><a href="#orgb36e829">4.1. Backward proof</a></li>
+<li><a href="#org00ff68f">4.2. Proof going forward (huge)</a></li>
+</ul>
+</li>
+<li><a href="#orgb0c694f">5. true and false vs. True and False</a>
+<ul>
+<li><a href="#orge9eeff5">5.1. Inductive</a></li>
+<li><a href="#org2a06963">5.2. Reduce to ad absurdium</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org28cbb3a" class="outline-2">
+<h2 id="org28cbb3a"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="coq.html#ID-55011be5-f71d-4599-a041-13d417edfdd8">Coq</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org0a37a57" class="outline-2">
+<h2 id="org0a37a57"><span class="section-number-2">2.</span> First proof</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">my_first_proof_againagi</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; A).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> A.
+  <span style="color: #9370db;">intros</span> proof_of_A.
+  <span style="color: #ff0000;">exact</span> proof_of_A.
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+<div id="outline-container-orga63d6b8" class="outline-3">
+<h3 id="orga63d6b8"><span class="section-number-3">2.1.</span> Proof state</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+You are able to see these proof state by Coqide.
+</p>
+<pre class="example" id="org24c73df">
+A : Prop
+proof_of_A : A
+============================
+A
+</pre>
+
+<p>
+Everything above the bar are called &ldquo;hypotheses&rdquo;, as &ldquo;the context&rdquo;.
+</p>
+
+<p>
+Below the bar is what we are trying to prove. It is called &ldquo;the current subgoal&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-org0ef8962" class="outline-3">
+<h3 id="org0ef8962"><span class="section-number-3">2.2.</span> Rules</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>RULE: If the subgoal starts with &ldquo;(forall &lt;name&gt; : &lt;type&gt;, &#x2026;&rdquo;
+Then use tactic &ldquo;intros &lt;name&gt;.&rdquo;</li>
+
+<li>RULE: If the subgoal starts with &ldquo;&lt;type&gt; -&gt; &#x2026;&rdquo; Then use tactic &ldquo;intros &lt;name&gt;.&rdquo;.</li>
+
+<li>RULE: If the subgoal matches an hypothesis, Then use tactic &ldquo;exact &lt;hyp<sub>name</sub>&gt;.&rdquo;.</li>
+
+<li>RULE: If you have subgoal &ldquo;&lt;goal<sub>type</sub>&gt;&rdquo; AND have hypothesis &ldquo;&lt;hyp<sub>name</sub>&gt;: &lt;type1&gt; -&gt; &lt;type2&gt; -&gt; &#x2026; -&gt; &lt;typeN&gt; -&gt; &lt;goal<sub>type</sub>&gt;&rdquo;, Then use tactic &ldquo;refine (&lt;hyp<sub>name</sub>&gt; _ &#x2026;).&rdquo; with N underscores.</li>
+
+<li>RULE: If your subgoal is &ldquo;~&lt;type&gt;&rdquo; or &ldquo;~(&lt;term&gt;)&rdquo; or &ldquo;(not &lt;term&gt;)&rdquo;, Then use tactic &ldquo;intros&rdquo;.</li>
+
+<li>RULE: If the current subgoal contains a function call with all its arguments, Then use the tactic &ldquo;simpl.&rdquo;.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf966d89" class="outline-3">
+<h3 id="orgf966d89"><span class="section-number-3">2.3.</span> Proof by Simplication</h3>
+</div>
+
+<div id="outline-container-orgbf30a6e" class="outline-3">
+<h3 id="orgbf30a6e"><span class="section-number-3">2.4.</span> Proof by Rewrite</h3>
+</div>
+
+<div id="outline-container-orgde86d54" class="outline-3">
+<h3 id="orgde86d54"><span class="section-number-3">2.5.</span> Proof by Case analysis</h3>
+</div>
+</div>
+<div id="outline-container-org7cacfa7" class="outline-2">
+<h2 id="org7cacfa7"><span class="section-number-2">3.</span> Proposition</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Prop is an important concept, so let&rsquo;s see some propositions:
+</p>
+<ul class="org-ul">
+<li>(forall x : nat, (x &lt; 5) -&gt; (x &lt; 6))</li>
+<li>(forall x y : nat, x + y = y + x)</li>
+<li>(forall A : Prop, A -&gt; A)</li>
+</ul>
+
+<p>
+A prop can be proven or unproven. Cause some true porp can never proven so coq don&rsquo;t treat
+a prop as true orfalse.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf48a513" class="outline-2">
+<h2 id="orgf48a513"><span class="section-number-2">4.</span> More complicated example</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">forward_small</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A B</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; (A-&gt;B) -&gt; B).
+<span style="color: #4EB8CA;">Proof</span>.
+ <span style="color: #9370db;">intros</span> A.
+ <span style="color: #9370db;">intros</span> B.
+ <span style="color: #9370db;">intros</span> proof_of_A.
+ <span style="color: #9370db;">intros</span> A_implies_B.
+ <span style="color: #9370db;">pose</span> (proof_of_B := A_implies_B proof_of_A).
+ <span style="color: #ff0000;">exact</span> proof_of_B.
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+
+<p>
+The command &ldquo;pose&rdquo; assigns the result of &ldquo;A<sub>implies</sub><sub>B</sub> proof<sub>of</sub><sub>A</sub>&rdquo; to the new hypothesis &ldquo;proof<sub>of</sub><sub>B</sub>&rdquo;.
+</p>
+
+<p>
+RULE: If you have an hypothesis &ldquo;&lt;hyp<sub>name</sub>&gt;: &lt;type1&gt; -&gt; &lt;type2&gt; -&gt; &#x2026; -&gt; &lt;result<sub>type</sub>&gt;&rdquo; OR an hypothesis &ldquo;&lt;hyp<sub>name</sub>&gt;: (forall &lt;obj1&gt;:&lt;type1&gt;, (forall &lt;obj2&gt;:&lt;type2&gt;, &#x2026; &lt;result<sub>type</sub>&gt; &#x2026;))&rdquo; OR any combination of &ldquo;-&gt;&rdquo; and &ldquo;forall&rdquo;, AND you have hypotheses of type &ldquo;type1&rdquo;, &ldquo;type2&rdquo;&#x2026;, Then use tactic &ldquo;pose&rdquo; to create something of type &ldquo;result<sub>type</sub>&rdquo;.
+</p>
+</div>
+<div id="outline-container-orgb36e829" class="outline-3">
+<h3 id="orgb36e829"><span class="section-number-3">4.1.</span> Backward proof</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+a &ldquo;backward proof&rdquo; that breaks the goal into smaller and simpler subgoals.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">forward_small</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A B</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; (A-&gt;B) -&gt; B).
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> A B.
+  <span style="color: #9370db;">intros</span> proof_of_A A_implies_B.
+  <span style="color: #9370db;">refine</span> (A_implies_B _).
+    <span style="color: #ff0000;">exact</span> proof_of_A
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">backward_huge</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A B C</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; (A-&gt;B) -&gt; (A-&gt;B-&gt;C) -&gt; C).
+<span style="color: #4EB8CA;">Proof</span>.
+ <span style="color: #9370db;">intros</span> A B C.
+ <span style="color: #9370db;">intros</span> proof_of_A A_implies_B A_imp_B_imp_C.
+ <span style="color: #9370db;">refine</span> (A_imp_B_imp_C _ _).
+   <span style="color: #ff0000;">exact</span> proof_of_A.
+
+   <span style="color: #9370db;">refine</span> (A_implies_B _).
+     <span style="color: #ff0000;">exact</span> proof_of_A.
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org00ff68f" class="outline-3">
+<h3 id="org00ff68f"><span class="section-number-3">4.2.</span> Proof going forward (huge)</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">forward_huge</span> : (<span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A B C</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; (A-&gt;B) -&gt; (A-&gt;B-&gt;C) -&gt; C).
+<span style="color: #4EB8CA;">Proof</span>.
+ <span style="color: #9370db;">intros</span> A B C.
+ <span style="color: #9370db;">intros</span> proof_of_A A_implies_B A_imp_B_imp_C.
+ <span style="color: #9370db;">pose</span> (proof_of_B := A_implies_B proof_of_A).
+ <span style="color: #9370db;">pose</span> (proof_of_C := A_imp_B_imp_C proof_of_A proof_of_B).
+ <span style="color: #ff0000;">exact</span> proof_of_C.
+<span style="color: #4EB8CA;">Show</span> <span style="color: #4EB8CA;">Proof</span>.
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0c694f" class="outline-2">
+<h2 id="orgb0c694f"><span class="section-number-2">5.</span> true and false vs. True and False</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orge9eeff5" class="outline-3">
+<h3 id="orge9eeff5"><span class="section-number-3">5.1.</span> Inductive</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Inducttive lets you create a new type.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-coq">   <span style="color: #4EB8CA;">Inductive</span> <span style="color: #b9c791;">False</span> : <span style="color: #b9c791;">Prop</span> := .
+
+   <span style="color: #4EB8CA;">Inductive</span> <span style="color: #b9c791;">True</span> : <span style="color: #b9c791;">Prop</span> :=
+     | I : <span style="color: #b9c791;">True</span>.
+
+   <span style="color: #4EB8CA;">Inductive</span> <span style="color: #91b9c7;">bool</span> : <span style="color: #b9c791;">Set</span> :=
+     | true : bool
+     | false : bool.:w
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Capital-F &ldquo;False&rdquo; is a Prop with no proofs.</li>
+<li>Capital-T &ldquo;True&rdquo; is a Prop that has a single proof called &ldquo;I&rdquo;. (That&rsquo;s a capital-I,
+not a number 1.)</li>
+<li>Lastly, &ldquo;bool&rdquo; is a Set and &ldquo;bool&rdquo; has two elements: lower-case-t &ldquo;true&rdquo; and
+lower-case-f &ldquo;false&rdquo;.</li>
+</ul>
+
+<p>
+<b>*</b> True is provable
+</p>
+<div class="org-src-container">
+<pre class="src src-coq">    <span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">True_can_be_proven</span> : <span style="color: #b9c791;">True</span>.
+      <span style="color: #ff0000;">exact</span> I.
+    <span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+
+
+<p>
+<b>*</b> Unprovability
+</p>
+</div>
+</div>
+<div id="outline-container-org2a06963" class="outline-3">
+<h3 id="org2a06963"><span class="section-number-3">5.2.</span> Reduce to ad absurdium</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-coq"><span style="color: #4EB8CA;">Theorem</span> <span style="color: #91b9c7;">absurd2</span> : <span style="color: #b9c791;">forall</span> <span style="color: #47ba99;">A C</span> : <span style="color: #b9c791;">Prop</span>, A -&gt; ~ A -&gt; C.
+<span style="color: #4EB8CA;">Proof</span>.
+  <span style="color: #9370db;">intros</span> A C.
+  <span style="color: #9370db;">intros</span> proof_of_A proof_that_A_cannot_be_proven.
+  <span style="color: #9370db;">unfold</span> not <span style="color: #b9c791;">in</span> proof_that_A_cannot_be_proven.
+  <span style="color: #9370db;">pose</span> (proof_of_False := proof_that_A_cannot_be_proven proof_of_A).
+  <span style="color: #9370db;">case</span> proof_of_False.
+<span style="color: #4EB8CA;">Qed</span>.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

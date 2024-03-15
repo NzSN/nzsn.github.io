@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ffmpeg streaming</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">ffmpeg streaming</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8f60509">1. Introduction</a></li>
+<li><a href="#orgf610f98">2. Informations</a>
+<ul>
+<li><a href="#org9cc8c0f">2.1. Call Paths</a></li>
+<li><a href="#org5b44d07">2.2. Misc</a></li>
+</ul>
+</li>
+<li><a href="#orgd1863eb">3. Memo</a></li>
+<li><a href="#orga01247d">4. Contexts and Functions</a>
+<ul>
+<li><a href="#org168644d">4.1. How detect AVInputFormat and AVIOContext during avformat<sub>oepn</sub><sub>input</sub> ?</a></li>
+<li><a href="#org52a340c">4.2. Write Routine (H.264)</a></li>
+<li><a href="#orge2c2bf1">4.3. Is H.264 muxer send packet with it&rsquo;s metadata ?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8f60509" class="outline-2">
+<h2 id="org8f60509"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="ffmpeg.html#ID-66df13da-5878-4d16-b9ad-4ef5b5956a08">FFmpeg</a> streaming is an operation that push datas of stream to
+another entities.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf610f98" class="outline-2">
+<h2 id="orgf610f98"><span class="section-number-2">2.</span> Informations</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9cc8c0f" class="outline-3">
+<h3 id="org9cc8c0f"><span class="section-number-3">2.1.</span> Call Paths</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Write:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #697375;">#</span><span style="color: #697375;">0  tcp_write (h=h@entry=0x55555723af40, buf=buf@entry=0x55555723b500 "",</span>
+    <span style="color: #47ba99;">size</span>=size@<span style="color: #47ba99;">entry</span>=<span style="color: #ef6787;">6444</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/tcp.c:251
+<span style="color: #697375;">#</span><span style="color: #697375;">1  0x0000555555913ead in retry_transfer_wrapper (</span>
+    <span style="color: #47ba99;">transfer_func</span>=0x555555a22ad0 &lt;tcp_write&gt;, <span style="color: #47ba99;">size_min</span>=6444, <span style="color: #47ba99;">size</span>=6444,
+    <span style="color: #47ba99;">buf</span>=0x55555723b500 <span style="color: #fbaed2;">""</span>, <span style="color: #47ba99;">h</span>=0x55555723af40<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/avio.c:378
+<span style="color: #697375;">#</span><span style="color: #697375;">2  ffurl_write (h=0x55555723af40, buf=0x55555723b500 "", size=6444)</span>
+    at libavformat/avio.c:431
+<span style="color: #697375;">#</span><span style="color: #697375;">3  0x000055555591439f in writeout (s=s@entry=0x555557221600,</span>
+    <span style="color: #47ba99;">data</span>=&lt;optimized out&gt;, <span style="color: #47ba99;">len</span>=<span style="color: #ef6787;">6444</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/aviobuf.c:158
+<span style="color: #697375;">#</span><span style="color: #697375;">4  0x000055555591590b in flush_buffer (s=0x555557221600)</span>
+    at libavformat/aviobuf.c:179
+<span style="color: #697375;">#</span><span style="color: #697375;">5  avio_flush (s=0x555557221600) at libavformat/aviobuf.c:236</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">6  0x0000555555915bcd in avio_write_marker (s=&lt;optimized out&gt;,</span>
+    <span style="color: #47ba99;">time</span>=&lt;optimized out&gt;, <span style="color: #47ba99;">type</span>=&lt;optimized out&gt;<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/aviobuf.c:475
+<span style="color: #697375;">#</span><span style="color: #697375;">7  0x00005555559bd663 in flush_if_needed (s=0x555557245e40)</span>
+    at libavformat/mux.c:473
+<span style="color: #697375;">#</span><span style="color: #697375;">8  write_packet (pkt=0x7fffffffcb80, s=0x555557245e40)</span>
+    at libavformat/mux.c:735
+<span style="color: #697375;">#</span><span style="color: #697375;">9  interleaved_write_packet (flush=&lt;optimized out&gt;, pkt=0x0,</span>
+    <span style="color: #47ba99;">s</span>=&lt;optimized out&gt;<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/mux.c:1104
+<span style="color: #697375;">#</span><span style="color: #697375;">10 write_packet_common (s=0x555557245e40, st=&lt;optimized out&gt;,</span>
+    <span style="color: #47ba99;">pkt</span>=&lt;optimized out&gt;, <span style="color: #47ba99;">interleaved</span>=&lt;optimized out&gt;<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/mux.c:1129
+<span style="color: #697375;">#</span><span style="color: #697375;">11 0x00005555559befb5 in write_packets_common (interleaved=1,</span>
+--Type &lt;RET&gt; for more, q to quit, c to continue without paging--
+    <span style="color: #47ba99;">pkt</span>=0x7fffffffcf10, <span style="color: #47ba99;">s</span>=0x555557245e40<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/mux.c:1186
+<span style="color: #697375;">#</span><span style="color: #697375;">12 av_interleaved_write_frame (s=0x555557245e40, pkt=0x7fffffffcf10)</span>
+    at libavformat/mux.c:1241
+<span style="color: #697375;">#</span><span style="color: #697375;">13 0x00005555556e9de2 in write_packet (pkt=0x7fffffffcf10,</span>
+    <span style="color: #47ba99;">ost</span>=0x55555721dcc0, <span style="color: #47ba99;">unqueue</span>=&lt;optimized out&gt;, <span style="color: #47ba99;">of</span>=&lt;optimized out&gt;,
+    <span style="color: #47ba99;">of</span>=&lt;optimized out&gt;<span style="color: #e84c58; background-color: #832729;">)</span> at fftools/ffmpeg.c:830
+<span style="color: #697375;">#</span><span style="color: #697375;">14 0x00005555556eacd0 in do_video_out (of=0x55555722b080, ost=0x55555721dcc0,</span>
+    <span style="color: #47ba99;">next_picture</span>=0x555557a1a580, <span style="color: #47ba99;">sync_ipts</span>=&lt;optimized out&gt;<span style="color: #e84c58; background-color: #832729;">)</span>
+    at fftools/ffmpeg.c:1312
+<span style="color: #697375;">#</span><span style="color: #697375;">15 0x00005555556ee557 in reap_filters (flush=0) at fftools/ffmpeg.c:1495</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">16 0x00005555556f2d99 in transcode_step () at fftools/ffmpeg.c:4622</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">17 transcode () at fftools/ffmpeg.c:4666</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">18 0x00005555556cd5ae in main (argc=6, argv=0x7fffffffddb8)</span>
+    at fftools/ffmpeg.c:4871
+</pre>
+</div>
+
+
+<p>
+Read:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #697375;">#</span><span style="color: #697375;">0  tcp_read (h=h@entry=0x7fff94001740, buf=buf@entry=0x7fff94002e80 "",</span>
+    <span style="color: #47ba99;">size</span>=size@<span style="color: #47ba99;">entry</span>=<span style="color: #ef6787;">32768</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/tcp.c:235
+<span style="color: #697375;">#</span><span style="color: #697375;">1  0x0000555555a0eafc in retry_transfer_wrapper (</span>
+    <span style="color: #47ba99;">transfer_func</span>=0x5555559d5d00 &lt;tcp_read&gt;, <span style="color: #47ba99;">size_min</span>=1, <span style="color: #47ba99;">size</span>=32768,
+    <span style="color: #47ba99;">buf</span>=0x7fff94002e80 <span style="color: #fbaed2;">""</span>, <span style="color: #47ba99;">h</span>=0x7fff94001740<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/avio.c:378
+<span style="color: #697375;">#</span><span style="color: #697375;">2  ffurl_read (h=0x7fff94001740, buf=0x7fff94002e80 "", size=32768)</span>
+    at libavformat/avio.c:413
+<span style="color: #697375;">#</span><span style="color: #697375;">3  0x00005555558ca44a in read_packet_wrapper (size=&lt;optimized out&gt;,</span>
+    <span style="color: #47ba99;">buf</span>=0x7fff94002e80 <span style="color: #fbaed2;">""</span>, <span style="color: #47ba99;">s</span>=0x7fff94001d80<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/aviobuf.c:513
+<span style="color: #697375;">#</span><span style="color: #697375;">4  fill_buffer (s=0x7fff94001d80) at libavformat/aviobuf.c:562</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">5  avio_read (s=s@entry=0x7fff94001d80, buf=&lt;optimized out&gt;,</span>
+    <span style="color: #47ba99;">size</span>=size@<span style="color: #47ba99;">entry</span>=<span style="color: #ef6787;">2048</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/aviobuf.c:655
+<span style="color: #697375;">#</span><span style="color: #697375;">6  0x00005555558f13a5 in av_probe_input_buffer2 (pb=0x7fff94001d80,</span>
+    <span style="color: #47ba99;">fmt</span>=0x7fff94000bc8,
+    <span style="color: #47ba99;">filename</span>=filename@<span style="color: #47ba99;">entry</span>=0x555557ff5dc0 <span style="color: #fbaed2;">"tcp://localhost:9999"</span>,
+    <span style="color: #47ba99;">logctx</span>=logctx@<span style="color: #47ba99;">entry</span>=0x7fff94000bc0, <span style="color: #47ba99;">offset</span>=offset@<span style="color: #47ba99;">entry</span>=0,
+    <span style="color: #47ba99;">max_probe_size</span>=<span style="color: #ef6787;">1048576</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/format.c:262
+<span style="color: #697375;">#</span><span style="color: #697375;">7  0x00005555559e9502 in init_input (options=0x7fff9bffec30,</span>
+    <span style="color: #47ba99;">filename</span>=0x555557ff5dc0 <span style="color: #fbaed2;">"tcp://localhost:9999"</span>, <span style="color: #47ba99;">s</span>=0x7fff94000bc0<span style="color: #e84c58; background-color: #832729;">)</span>
+    at libavformat/utils.c:440
+<span style="color: #697375;">#</span><span style="color: #697375;">8  avformat_open_input (ps=0x7fff9bffecd8,</span>
+    <span style="color: #47ba99;">filename</span>=0x555557ff5dc0 <span style="color: #fbaed2;">"tcp://localhost:9999"</span>, <span style="color: #47ba99;">fmt</span>=&lt;optimized out&gt;,
+    <span style="color: #47ba99;">options</span>=0x555556e893e8 &lt;format_opts&gt;<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/utils.c:572
+<span style="color: #697375;">#</span><span style="color: #697375;">9  0x00005555556d14d3 in read_thread (arg=0x555558079f00)</span>
+    at fftools/ffplay.c:2792
+<span style="color: #697375;">#</span><span style="color: #697375;">10 0x00007ffff7c5e720 in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">11 0x00007ffff7cd713d in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">12 0x00007ffff7848609 in start_thread (arg=&lt;optimized out&gt;)</span>
+    at pthread_create.c:477
+<span style="color: #697375;">#</span><span style="color: #697375;">13 0x00007ffff776d163 in clone ()</span>
+    at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #697375;">#</span><span style="color: #697375;">0  tcp_read (h=h@entry=0x7fff90001740,</span>
+    <span style="color: #47ba99;">buf</span>=buf@<span style="color: #47ba99;">entry</span>=0x7fff90012f40 <span style="color: #fbaed2;">"l\\\357\255I*\023h\231\234-W\223\267\252\300\352\350Q\306\002)\341\066/\a\363\344\033\004%\017\003%-C,\021&lt;\367 \266\r3\304\342s\210\244!K\300\245\n\236\357\253\327\061\221\241\016\351H&#60852;6\f*\242\275z\230\375n^&#1011;\360\274\327\371\220\n\357\266V\354{\325$=\220\254: N5\215l\002\222?\021\256N4X\373&#1256;8\241.\200\244&gt;\200\233x\352&#65395;\004\316\242\b\362\242\203\306\062-\243k\260\210\334\304\350\372\353\060\347(g\327\017\261\352\232\a.,[\270iq\325\020[\217\310\350\332$\271HL\262\030?\243W\222\210\t\252F\207\t\024\334_\250\321`\002f\vg\225\372\037\247\357\355\022"..., size=size@entry=32768) at libavformat/tcp.c:235</span>
+<span style="color: #fbaed2;">#1  0x0000555555a483cc in retry_transfer_wrapper (</span>
+<span style="color: #fbaed2;">    transfer_func=0x555555a0f580 &lt;tcp_read&gt;, size_min=1, size=32768,</span>
+<span style="color: #fbaed2;">    buf=0x7fff90012f40 "l\\\357\255I*\023h\231\234-W\223\267\252\300\352\350Q\306\002)\341\066/\a\363\344\033\004%\017\003%-C,\021&lt;\367 \266\r3\304\342s\210\244!K\300\245\n\236\357\253\327\061\221\241\016\351H&#60852;6\f*\242\275z\230\375n^&#1011;\360\274\327\371\220\n\357\266V\354{\325$=\220\254: N5\215l\002\222?\021\256N4X\373&#1256;8\241.\200\244&gt;\200\233x\352&#65395;\004\316\242\b\362\242\203\306\062-\243k\260\210\334\304\350\372\353\060\347(g\327\017\261\352\232\a.,[\270iq\325\020[\217\310\350\332$\271HL\262\030?\243W\222\210\t\252F\207\t\024\334_\250\321`\002f\vg\225\372\037\247\357\355\022"..., h=0x7fff90001740) at libavformat/avio.c:378</span>
+<span style="color: #fbaed2;">#2  ffurl_read (h=0x7fff90001740,</span>
+<span style="color: #fbaed2;">    buf=0x7fff90012f40 "l\\\357\255I*\023h\231\234-W\223\267\252\300\352\350Q\306\002)\341\066/\a\363\344\033\004%\017\003%-C,\021&lt;\367 \266\r3\304\342s\210\244!K\300\245\n\236\357\253\327\061\221\241\016\351H&#60852;6\f*\242\275z\230\375n^&#1011;\360\274\327\371\220\n\357\266V\354{\325$=\220\254: N5\215l\002\222?\021\256N4X\373&#1256;8\241.\200\244&gt;\200\233x\352&#65395;\004\316\242\b\362\242\203\306\062-\243k\260\210\334\304\350\372\353\060\347(g\327\017\261\352\232\a.,[\270iq\325\020[\217\310\350\332$\271HL\262\030?\243W\222\210\t\252F\207\t\024\334_\250\321`\002f\vg\225\372\037\247\357\355\022"..., size=32768) at libavformat/avio.c:413</span>
+<span style="color: #fbaed2;">#3  0x00005555559024e1 in read_packet_wrapper (size=&lt;optimized out&gt;,</span>
+<span style="color: #fbaed2;">    buf=&lt;optimized out&gt;, s=0x7fff90001d80) at libavformat/aviobuf.c:513</span>
+<span style="color: #fbaed2;">#4  fill_buffer (s=0x7fff90001d80) at libavformat/aviobuf.c:562</span>
+<span style="color: #fbaed2;">#5  0x0000555555904054 in avio_read_partial (s=0x7fff90001d80,</span>
+<span style="color: #fbaed2;">    buf=0x7fff904876f0 "\337\365H3\225~\211e\340\071\321Y\032\343]\252\222\232\255d\335*\035\223R\261\236]m\343\032\360\300\341\325\334\304\v\351\255\303dV\030&lt;\214\332\321\324=\"#8\241\032\064\062&#819;\244\234(\333NO\302\067\221\317(Y\245;\016\314&gt;\342K\342\226o`\036\300L\275\260\326&#1691;)\211Y\310</span><span style="color: #4FA8A3;">$</span><span style="color: #47ba99;">3</span><span style="color: #fbaed2;">&#879;]T\254\245\235bR\217&#717;y\240O\300\035\003\203{\023\r\204B\332P\356{DH}\264\315&#1913;e\357\066lD\337\\\237\357\030J\031\032&amp;\316a\255N\357\312\365&#1505;\027\210\272\320\312e\202a\254\222?d\373m&lt;&#1385;&#964;b\242\342hLe\275\022\225\nB\227S\177#\232&#265;\341\061\242s\254}\371\027\002",</span>
+<span style="color: #fbaed2;">    size=size@entry=1024) at libavformat/aviobuf.c:717</span>
+<span style="color: #fbaed2;">#6  0x00005555559d8349 in ff_raw_read_partial_packet (s=0x7fff90000bc0,</span>
+<span style="color: #fbaed2;">    pkt=0x7fff9f7fda60) at libavformat/rawdec.c:47</span>
+<span style="color: #fbaed2;">#7  0x0000555555a1f5f7 in ff_read_packet (s=s@entry=0x7fff90000bc0,</span>
+<span style="color: #fbaed2;">    pkt=pkt@entry=0x7fff9f7fda60) at libavformat/utils.c:856</span>
+<span style="color: #fbaed2;">#8  0x0000555555a1ff6b in read_frame_internal (s=s@entry=0x7fff90000bc0,</span>
+<span style="color: #fbaed2;">    pkt=pkt@entry=0x7fff9f7fda60) at libavformat/utils.c:1591</span>
+<span style="color: #fbaed2;">#9  0x0000555555a24cff in avformat_find_stream_info (ic=0x7fff90000bc0,</span>
+<span style="color: #fbaed2;">    options=0x7fff90002b40) at libavformat/utils.c:3838</span>
+<span style="color: #fbaed2;">#10 0x00005555556de31e in read_thread (arg=0x5555580e7cc0)</span>
+<span style="color: #fbaed2;">--Type &lt;RET&gt; for more, q to quit, c to continue without paging--</span>
+<span style="color: #fbaed2;">    at fftools/ffplay.c:2817</span>
+<span style="color: #fbaed2;">#11 0x00007ffff7c5e720 in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #fbaed2;">#12 0x00007ffff7cd713d in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #fbaed2;">#13 0x00007ffff758a609 in start_thread (arg=&lt;optimized out&gt;)</span>
+<span style="color: #fbaed2;">    at pthread_create.c:477</span>
+<span style="color: #fbaed2;">#14 0x00007ffff74af163 in clone ()</span>
+<span style="color: #fbaed2;">    at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #697375;">#</span><span style="color: #697375;">0  tcp_read (h=h@entry=0x7fff90001740,</span>
+    <span style="color: #47ba99;">buf</span>=buf@<span style="color: #47ba99;">entry</span>=0x7fff90012f40 <span style="color: #fbaed2;">"\355g\021|rbu&gt;\334"</span>, &lt;incomplete sequence \<span style="color: #ef6787;">343</span>\<span style="color: #ef6787;">202</span>&gt;, <span style="color: #47ba99;">size</span>=size@<span style="color: #47ba99;">entry</span>=<span style="color: #ef6787;">32768</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/tcp.c:235
+<span style="color: #697375;">#</span><span style="color: #697375;">1  0x0000555555a483cc in retry_transfer_wrapper (</span>
+    <span style="color: #47ba99;">transfer_func</span>=0x555555a0f580 &lt;tcp_read&gt;, <span style="color: #47ba99;">size_min</span>=1, <span style="color: #47ba99;">size</span>=32768,
+    <span style="color: #47ba99;">buf</span>=0x7fff90012f40 <span style="color: #fbaed2;">"\355g\021|rbu&gt;\334"</span>, &lt;incomplete sequence \<span style="color: #ef6787;">343</span>\<span style="color: #ef6787;">202</span>&gt;,
+    <span style="color: #47ba99;">h</span>=0x7fff90001740<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/avio.c:378
+<span style="color: #697375;">#</span><span style="color: #697375;">2  ffurl_read (h=0x7fff90001740,</span>
+    <span style="color: #47ba99;">buf</span>=0x7fff90012f40 <span style="color: #fbaed2;">"\355g\021|rbu&gt;\334"</span>, &lt;incomplete sequence \<span style="color: #ef6787;">343</span>\<span style="color: #ef6787;">202</span>&gt;,
+    <span style="color: #47ba99;">size</span>=<span style="color: #ef6787;">32768</span><span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/avio.c:413
+<span style="color: #697375;">#</span><span style="color: #697375;">3  0x00005555559037d9 in read_packet_wrapper (size=&lt;optimized out&gt;,</span>
+    <span style="color: #47ba99;">buf</span>=&lt;optimized out&gt;, <span style="color: #47ba99;">s</span>=0x7fff90001d80<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/aviobuf.c:513
+<span style="color: #697375;">#</span><span style="color: #697375;">4  fill_buffer (s=0x7fff90001d80) at libavformat/aviobuf.c:562</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">5  avio_feof (s=s@entry=0x7fff90001d80) at libavformat/aviobuf.c:362</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">6  0x0000555555904025 in avio_read_partial (s=0x7fff90001d80,</span>
+    <span style="color: #47ba99;">buf</span>=0x7fff90032db0 <span style="color: #fbaed2;">"\260\005"</span>, <span style="color: #47ba99;">size</span>=size@<span style="color: #47ba99;">entry</span>=<span style="color: #ef6787;">1024</span><span style="color: #e84c58; background-color: #832729;">)</span>
+    at libavformat/aviobuf.c:726
+<span style="color: #697375;">#</span><span style="color: #697375;">7  0x00005555559d8349 in ff_raw_read_partial_packet (s=0x7fff90000bc0,</span>
+    <span style="color: #47ba99;">pkt</span>=0x7fff9f7fdce0<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/rawdec.c:47
+<span style="color: #697375;">#</span><span style="color: #697375;">8  0x0000555555a1f5f7 in ff_read_packet (s=s@entry=0x7fff90000bc0,</span>
+    <span style="color: #47ba99;">pkt</span>=pkt@<span style="color: #47ba99;">entry</span>=0x7fff9f7fdce0<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/utils.c:856
+<span style="color: #697375;">#</span><span style="color: #697375;">9  0x0000555555a1ff6b in read_frame_internal (s=s@entry=0x7fff90000bc0,</span>
+    <span style="color: #47ba99;">pkt</span>=pkt@<span style="color: #47ba99;">entry</span>=0x7fff9f7fdce0<span style="color: #e84c58; background-color: #832729;">)</span> at libavformat/utils.c:1591
+<span style="color: #697375;">#</span><span style="color: #697375;">10 0x0000555555a20c88 in av_read_frame (s=0x7fff90000bc0, pkt=0x7fff9f7fdce0)</span>
+    at libavformat/utils.c:1795
+<span style="color: #697375;">#</span><span style="color: #697375;">11 0x00005555556de12c in read_thread (arg=0x5555580e7c40)</span>
+    at fftools/ffplay.c:3020
+<span style="color: #697375;">#</span><span style="color: #697375;">12 0x00007ffff7c5e720 in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">13 0x00007ffff7cd713d in ?? () from /lib/x86_64-linux-gnu/libSDL2-2.0.so.0</span>
+<span style="color: #697375;">#</span><span style="color: #697375;">14 0x00007ffff758a609 in start_thread (arg=&lt;optimized out&gt;)</span>
+    at pthread_create.c:477
+<span style="color: #697375;">#</span><span style="color: #697375;">15 0x00007ffff74af163 in clone ()</span>
+    at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5b44d07" class="outline-3">
+<h3 id="org5b44d07"><span class="section-number-3">2.2.</span> Misc</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+This muxer is used by ffmpeg with command
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">ffmpeg -i video.mp4 -f h264 tcp://address:port?listen
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #b9c791;">AVOutputFormat</span> <span style="color: #47ba99;">ff_h264_muxer</span> = <span style="color: #4EB8CA;">{</span>
+    .name              = <span style="color: #fbaed2;">"h264"</span>,
+    .long_name         = <span style="color: #4FA8A3;">NULL_IF_CONFIG_SMALL</span><span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"raw H.264 video"</span><span style="color: #91b9c7;">)</span>,
+    .extensions        = <span style="color: #fbaed2;">"h264,264"</span>,
+    .audio_codec       = <span style="color: #4FA8A3;">AV_CODEC_ID_NONE</span>,
+    .video_codec       = <span style="color: #4FA8A3;">AV_CODEC_ID_H264</span>,
+    .write_header      = force_one_stream,
+    .write_packet      = ff_raw_write_packet,
+    .check_bitstream   = h264_check_bitstream,
+    .flags             = <span style="color: #4FA8A3;">AVFMT_NOTIMESTAMPS</span>,
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd1863eb" class="outline-2">
+<h2 id="orgd1863eb"><span class="section-number-2">3.</span> Memo</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+With Copy:
+</p>
+
+<p>
+Before DTS: 8192, iTB: 1/15360, oTB: 1/90000
+After DTS: 48000, iTB: 1/15360, oTB: 1/90000
+Before DTS: 25600, iTB: 1/48000, oTB: 1/90000
+After DTS: 48000, iTB: 1/48000, oTB: 1/90000
+</p>
+
+
+<p>
+Without Copy:
+</p>
+
+<p>
+Before DTS: 24576, iTB: 1/48000, oTB: 1/48000
+After DTS: 24576, iTB: 1/48000, oTB: 1/48000
+Before DTS: 7936, iTB: 1/15360, oTB: 1/90000
+After DTS: 46500, iTB: 1/15360, oTB: 1/90000
+Before DTS: 8192, iTB: 1/15360, oTB: 1/90000
+After DTS: 48000, iTB: 1/15360, oTB: 1/90000
+Before DTS: 25600, iTB: 1/48000, oTB: 1/48000
+After DTS: 25600, iTB: 1/48000, oTB: 1/48000
+</p>
+</div>
+</div>
+<div id="outline-container-orga01247d" class="outline-2">
+<h2 id="orga01247d"><span class="section-number-2">4.</span> Contexts and Functions</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+read<sub>frame</sub><sub>internal</sub> (demux.c: 1220)   &#x2013;&gt;
+ff<sub>read</sub><sub>packet</sub>      (demux.c: 524)    &#x2013;&gt;
+AVFormatContext-&gt;iformat-&gt;read<sub>packet</sub> &#x2013;&gt;
+    Read a packet and setup pts and dts.
+read<sub>packet</sub><sub>wrapper</sub>                   &#x2013;&gt;
+AVIOContext-&gt;read<sub>packet</sub>              &#x2013;&gt;
+</p>
+</div>
+<div id="outline-container-org168644d" class="outline-3">
+<h3 id="org168644d"><span class="section-number-3">4.1.</span> How detect AVInputFormat and AVIOContext during avformat<sub>oepn</sub><sub>input</sub> ?</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Call Chain:
+</p>
+
+<p>
+    avformat<sub>open</sub><sub>input</sub>
+==&gt; init<sub>input</sub>
+==&gt; AVFormatContext-&gt;io<sub>open</sub> (io<sub>open</sub><sub>default</sub>)
+        Desc: Find out protocol
+    ==&gt; ffio<sub>open</sub><sub>whitelist</sub>
+        ==&gt; ffurl<sub>open</sub><sub>whitelist</sub>
+            ==&gt; ffurl<sub>alloc</sub>
+                ==&gt; url<sub>find</sub><sub>protocol</sub>
+</p>
+<div class="org-src-container">
+<pre class="src src-c">                    protocols = ffurl_get_protocols<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">NULL</span>, <span style="color: #4FA8A3;">NULL</span><span style="color: #4EB8CA;">)</span>;
+                    <span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">(</span><span style="color: #e84c58;">!</span>protocols<span style="color: #4EB8CA;">)</span>
+                        <span style="color: #4EB8CA;">return</span> <span style="color: #4FA8A3;">NULL</span>;
+                    <span style="color: #4EB8CA;">for</span> <span style="color: #4EB8CA;">(</span>i = <span style="color: #ef6787;">0</span>; <span style="color: #b9c791;">protocols</span><span style="color: #91b9c7;">[</span>i<span style="color: #91b9c7;">]</span>; i++<span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+                        <span style="color: #697375;">/* </span><span style="color: #697375;">Maching protocols</span><span style="color: #697375;"> */</span>
+                        ...
+                            <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+<p>
+                ==&gt; ffurl<sub>connect</sub>
+==&gt; av<sub>probe</sub><sub>input</sub><sub>buffer2</sub>
+        Desc: Find out Input format
+    ==&gt; (pending)
+</p>
+</div>
+</div>
+<div id="outline-container-org52a340c" class="outline-3">
+<h3 id="org52a340c"><span class="section-number-3">4.2.</span> Write Routine (H.264)</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+    av<sub>write</sub><sub>frame</sub>(AVFormatContext*, AVPacket)
+        Copy packet into AVFormatContext-&gt;parse<sub>pkt</sub>
+==&gt; write<sub>packets</sub><sub>common</sub>(AVFormatContext <b>s, AVPacket *pkt, int interleaved)
+==&gt; write<sub>packet</sub><sub>common</sub>(AVFormatContext *s, AVStream *st, AVPacket *pkt, int interleaved)
+==&gt; write<sub>packet</sub>(AVFormatContext</b>, AVPacket*)
+        Shift timestamps and call muxer; the original pts/dts are not kept.
+==&gt; AVOutputFormat-&gt;write<sub>packet</sub>(AVFormatContext*, AVPacket*) (ff<sub>raw</sub><sub>write</sub><sub>packet</sub>)
+==&gt; avio<sub>write</sub>(AVIOContext, const unsigned char* <i>* pkt-&gt;data*</i>, int <i>* pkt-&gt;size *</i> );
+==&gt; flush<sub>buffer</sub>(AVIOContext*)
+==&gt; writeout(AVIOContext *s, const uint8<sub>t</sub> *data, int len)
+==&gt; AVIOContext-&gt;write<sub>packet</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orge2c2bf1" class="outline-3">
+<h3 id="orge2c2bf1"><span class="section-number-3">4.3.</span> Is H.264 muxer send packet with it&rsquo;s metadata ?</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+No
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

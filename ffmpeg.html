@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FFmpeg</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">FFmpeg</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1fbf684">1. What is video ?</a></li>
+<li><a href="#org8d2341c">2. What is codec ? Why ?</a></li>
+<li><a href="#org4c501e6">3. Digital Container</a></li>
+<li><a href="#org3c718f2">4. What is FFmpeg ?</a>
+<ul>
+<li><a href="#org1274c31">4.1. Common video operations</a>
+<ul>
+<li><a href="#org0f79e2c">4.1.1. Transcoding</a></li>
+<li><a href="#org04a66d6">4.1.2. Transmuxing</a></li>
+<li><a href="#org6160716">4.1.3. Transrating</a></li>
+<li><a href="#org11ddcb4">4.1.4. Transsizing</a></li>
+<li><a href="#org38990cb">4.1.5. Adaptive Streaming</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf41d088">5. Learn FFmpeg libav the Hard Way</a>
+<ul>
+<li><a href="#orgae2da58">5.1. Syncing audio and vidio</a>
+<ul>
+<li><a href="#org39a055f">5.1.1. Timing</a></li>
+<li><a href="#org9f69683">5.1.2. PTS and DTS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2b14c24">6. How to API</a>
+<ul>
+<li><a href="#org3f1e6a8">6.1. Open a Media</a></li>
+<li><a href="#org65f3911">6.2. Prepare CoDec</a>
+<ul>
+<li><a href="#org886632b">6.2.1. Video Encoder</a></li>
+<li><a href="#orgd5a14a3">6.2.2. Audio Encoder</a></li>
+<li><a href="#org3ee9e2e">6.2.3. Decoder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org916658a">7. Command Line tool</a>
+<ul>
+<li><a href="#orga2f2e39">7.1. Windows</a>
+<ul>
+<li><a href="#orgbb93e07">7.1.1. List Devices</a></li>
+<li><a href="#org2663f23">7.1.2. Video Record</a></li>
+<li><a href="#org5cb3ae9">7.1.3. Audio Record</a></li>
+<li><a href="#orgba57468">7.1.4. Video and Audio Record</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org325bcd9">8. Scaling Video</a>
+<ul>
+<li><a href="#org3939231">8.1. Create scaling context</a></li>
+<li><a href="#orgfb73705">8.2. Allocate source and destination image buffers</a></li>
+<li><a href="#orgf7697fa">8.3. Fill data into image</a></li>
+<li><a href="#org209fc89">8.4. Do scaling</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1fbf684" class="outline-2">
+<h2 id="org1fbf684"><span class="section-number-2">1.</span> What is video ?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A video is a collection a picture running at a given rate.
+</p>
+</div>
+</div>
+<div id="outline-container-org8d2341c" class="outline-2">
+<h2 id="org8d2341c"><span class="section-number-2">2.</span> What is codec ? Why ?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+CODEC is an electronic circuit or software that compresses or decompresses
+digital audio/video.
+</p>
+
+<p>
+Without codec, an video may be too big to streaming.
+</p>
+</div>
+</div>
+<div id="outline-container-org4c501e6" class="outline-2">
+<h2 id="org4c501e6"><span class="section-number-2">3.</span> Digital Container</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A place to contains video stream and audio streams and metadatas (synchronization and general metadata, e,g, title).
+</p>
+</div>
+</div>
+<div id="outline-container-org3c718f2" class="outline-2">
+<h2 id="org3c718f2"><span class="section-number-2">4.</span> What is FFmpeg ?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A cross-platform solution to record, convert and stream audio and video.
+</p>
+</div>
+<div id="outline-container-org1274c31" class="outline-3">
+<h3 id="org1274c31"><span class="section-number-3">4.1.</span> Common video operations</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+<div id="outline-container-org0f79e2c" class="outline-4">
+<h4 id="org0f79e2c"><span class="section-number-4">4.1.1.</span> Transcoding</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+The act of converting one of the stream (audio or video) from one CODEC to
+another one.
+</p>
+</div>
+</div>
+<div id="outline-container-org04a66d6" class="outline-4">
+<h4 id="org04a66d6"><span class="section-number-4">4.1.2.</span> Transmuxing</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+The act of converting from one format (container) to another one.
+</p>
+</div>
+</div>
+<div id="outline-container-org6160716" class="outline-4">
+<h4 id="org6160716"><span class="section-number-4">4.1.3.</span> Transrating</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+The act of changing the bit rate, or producing other renditions.
+</p>
+
+<p>
+A video may be play on in a 2G connection using a less powerful smartphone
+or in a fiber internet connection on their 4K TVs.
+</p>
+</div>
+</div>
+<div id="outline-container-org11ddcb4" class="outline-4">
+<h4 id="org11ddcb4"><span class="section-number-4">4.1.4.</span> Transsizing</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+The act of converting from one resolution to another one.
+</p>
+
+<p>
+Reasons are about the same as for the transrating.
+</p>
+</div>
+</div>
+<div id="outline-container-org38990cb" class="outline-4">
+<h4 id="org38990cb"><span class="section-number-4">4.1.5.</span> Adaptive Streaming</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<p>
+The act of producing many resolutions (bit rates) and split the media
+into chunks and serve them via http.
+</p>
+
+<p>
+This act provide a flexible media that can be watched on a low end smartphone or on a 4K TV, it&rsquo;s also easy to scale and deploy but it can add latency.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf41d088" class="outline-2">
+<h2 id="orgf41d088"><span class="section-number-2">5.</span> Learn FFmpeg libav the Hard Way</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgae2da58" class="outline-3">
+<h3 id="orgae2da58"><span class="section-number-3">5.1.</span> Syncing audio and vidio</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-org39a055f" class="outline-4">
+<h4 id="org39a055f"><span class="section-number-4">5.1.1.</span> Timing</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li>Presentation Timestamp (PTS): A value to indicate that when to display.</li>
+
+<li><p>
+Timebase: Time length of smallest unit of time during performing a stream.
+</p>
+
+<p>
+For example: Meaning of timebase 1/75 is interval of time unit is 1/75 second.
+</p></li>
+
+<li>Timescale: timebase / 1 is timescale, timescale should be divisible by the frame rate (fps).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9f69683" class="outline-4">
+<h4 id="org9f69683"><span class="section-number-4">5.1.2.</span> PTS and DTS</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+PTS: timescale / FPS
+</p>
+
+<p>
+DTS: Decoding order.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b14c24" class="outline-2">
+<h2 id="org2b14c24"><span class="section-number-2">6.</span> How to API</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org3f1e6a8" class="outline-3">
+<h3 id="org3f1e6a8"><span class="section-number-3">6.1.</span> Open a Media</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+To open a media you need:
+</p>
+<ul class="org-ul">
+<li>Unpack It&rsquo;s digital container</li>
+<li>Find out all streams</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #b9c791;">AVFormatContext</span> *<span style="color: #47ba99;">input_format_context</span> = <span style="color: #4FA8A3;">NULL</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Open media file</span>
+avformat_open_input<span style="color: #4EB8CA;">(</span>&amp;input_format_context, <span style="color: #fbaed2;">"filename"</span>, <span style="color: #4FA8A3;">NULL</span>, <span style="color: #4FA8A3;">NULL</span><span style="color: #4EB8CA;">)</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Sometimes you may want to force parse stream info with specific</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">decoder. e.g. force input format with libvpx deocder due to default decoder</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">, vp8, unable to recognize alpha channel.</span>
+input_format_context-&gt;video_codec = avcodec_find_decoder_by_name<span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"libvpx"</span><span style="color: #4EB8CA;">)</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Find Stream infos</span>
+<span style="color: #697375;">// </span><span style="color: #697375;">Information of Streams is reside in input_format_context</span>
+avformat_find_stream_info<span style="color: #4EB8CA;">(</span>input_format_context, <span style="color: #4FA8A3;">NULL</span><span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org65f3911" class="outline-3">
+<h3 id="org65f3911"><span class="section-number-3">6.2.</span> Prepare CoDec</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+CoDec related structures are:
+</p>
+<ul class="org-ul">
+<li>AVCodec</li>
+<li>AVCodecContext</li>
+</ul>
+
+<p>
+Each stream of a digital cotnainer have a related CoDec.
+</p>
+</div>
+<div id="outline-container-org886632b" class="outline-4">
+<h4 id="org886632b"><span class="section-number-4">6.2.1.</span> Video Encoder</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+The majority part of prepare an encoder is to
+</p>
+<ul class="org-ul">
+<li>Open an Encoder (AVCodec)</li>
+<li>Setup an Encoder Context (AVCodecContext)
+<ul class="org-ul">
+<li><p>
+Height and Width
+</p>
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #b9c791;">AVCodecContext</span> *<span style="color: #47ba99;">cc</span>;
+    cc-&gt;height = height;
+    cc-&gt;width = width;
+</pre>
+</div></li>
+<li><p>
+bitrate
+</p>
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #b9c791;">AVCodecContext</span> *<span style="color: #47ba99;">cc</span>;
+    cc-&gt;bit_rate = bitrate;
+    cc-&gt;rc_max_rate = max_rate;
+    cc-&gt;rc_min_rate = min_rate;
+</pre>
+</div></li>
+<li><p>
+timebase
+</p>
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #b9c791;">AVCodecContext</span> *<span style="color: #47ba99;">cc</span>;
+    cc-&gt;time_base = timebase;
+</pre>
+</div></li>
+<li><p>
+framerate
+</p>
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #b9c791;">AVCodecContext</span> *<span style="color: #47ba99;">cc</span>;
+    cc-&gt;framerate = <span style="color: #4EB8CA;">{</span> .num = <span style="color: #ef6787;">1</span>, .den = <span style="color: #ef6787;">30</span> <span style="color: #4EB8CA;">}</span>;
+</pre>
+</div></li>
+<li><p>
+Codec
+,#+BEGIN<sub>SRC</sub> C++
+AVCodec *c;
+AVCodecContext *cc;
+</p>
+
+<p>
+c = avcodec<sub>find</sub><sub>encoder</sub><sub>by</sub><sub>name</sub>(id<sub>of</sub><sub>encoder</sub>);
+cc = avcodec<sub>alloc</sub><sub>context3</sub>(c);
+if (!c) abort();
+avcodec<sub>open2</sub>(cc, c);
+#+END<sub>SRC</sub>
+</p></li>
+<li><p>
+Pixel format
+</p>
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #b9c791;">AVCodecContext</span> *<span style="color: #47ba99;">cc</span>;
+    cc-&gt;pix_fmt = <span style="color: #4FA8A3;">AV_PIX_FMT_ARGB</span>;
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd5a14a3" class="outline-4">
+<h4 id="orgd5a14a3"><span class="section-number-4">6.2.2.</span> Audio Encoder</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+Setup Audio Encoder require different process. Cause Video Encoder handle things that different from things that deal by Audio Encoder.
+</p>
+
+<p>
+Audio datas have their own charaters, e.g, Channels, sample<sub>fmt</sub>, etc.
+</p>
+
+<p>
+Need to setup these value to AVCodecContext.
+</p>
+<ul class="org-ul">
+<li>Channels</li>
+<li>Channel<sub>layout</sub></li>
+<li>Sample rate</li>
+<li>Sample format</li>
+<li>Bitrate</li>
+<li>Timebase</li>
+<li>etc</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3ee9e2e" class="outline-4">
+<h4 id="org3ee9e2e"><span class="section-number-4">6.2.3.</span> Decoder</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+Just copy stream&rsquo;s codecpar to AVCodecContext and then open
+AVCodecContext for AVCodec;
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #b9c791;">AVStream</span> *<span style="color: #47ba99;">avs</span>;
+<span style="color: #b9c791;">AVCodec</span> **<span style="color: #47ba99;">avc</span>;
+<span style="color: #b9c791;">AVCodecContext</span> **<span style="color: #47ba99;">avcc</span>;
+
+*avc = avcodec_find_decoder<span style="color: #4EB8CA;">(</span>avs-&gt;codecpar-&gt;codec_id<span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">(</span><span style="color: #e84c58;">!</span>*avc<span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>logging<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"failed to find the codec"</span><span style="color: #91b9c7;">)</span>; <span style="color: #4EB8CA;">return</span> -<span style="color: #ef6787;">1</span>;<span style="color: #4EB8CA;">}</span>
+
+*avcc = avcodec_alloc_context3<span style="color: #4EB8CA;">(</span>*avc<span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">(</span><span style="color: #e84c58;">!</span>*avcc<span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>logging<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"failed to alloc memory for codec context"</span><span style="color: #91b9c7;">)</span>; <span style="color: #4EB8CA;">return</span> -<span style="color: #ef6787;">1</span>;<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">(</span>avcodec_parameters_to_context<span style="color: #91b9c7;">(</span>*avcc, avs-&gt;codecpar<span style="color: #91b9c7;">)</span> &lt; <span style="color: #ef6787;">0</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>logging<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"failed to fill codec context"</span><span style="color: #91b9c7;">)</span>; <span style="color: #4EB8CA;">return</span> -<span style="color: #ef6787;">1</span>;<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4EB8CA;">if</span> <span style="color: #4EB8CA;">(</span>avcodec_open2<span style="color: #91b9c7;">(</span>*avcc, *avc, <span style="color: #4FA8A3;">NULL</span><span style="color: #91b9c7;">)</span> &lt; <span style="color: #ef6787;">0</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>logging<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"failed to open codec"</span><span style="color: #91b9c7;">)</span>; <span style="color: #4EB8CA;">return</span> -<span style="color: #ef6787;">1</span>;<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org916658a" class="outline-2">
+<h2 id="org916658a"><span class="section-number-2">7.</span> Command Line tool</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orga2f2e39" class="outline-3">
+<h3 id="orga2f2e39"><span class="section-number-3">7.1.</span> Windows</h3>
+<div class="outline-text-3" id="text-7-1">
+</div>
+<div id="outline-container-orgbb93e07" class="outline-4">
+<h4 id="orgbb93e07"><span class="section-number-4">7.1.1.</span> List Devices</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<pre class="example" id="org7ca823f">
+ffmpeg -list-devices true -f dshow -i dummy
+</pre>
+</div>
+</div>
+<div id="outline-container-org2663f23" class="outline-4">
+<h4 id="org2663f23"><span class="section-number-4">7.1.2.</span> Video Record</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+ffmpeg -f dshow -i &ldquo;video-dev-name&rdquo;
+</p>
+</div>
+</div>
+<div id="outline-container-org5cb3ae9" class="outline-4">
+<h4 id="org5cb3ae9"><span class="section-number-4">7.1.3.</span> Audio Record</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+ffmepg -f dshow -i &ldquo;audio-dev-name&rdquo;
+</p>
+</div>
+</div>
+<div id="outline-container-orgba57468" class="outline-4">
+<h4 id="orgba57468"><span class="section-number-4">7.1.4.</span> Video and Audio Record</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<p>
+ffmepg -f dshow -i &ldquo;video-dev-name&rdquo; -f dshow -i &ldquo;audio-dev-name&rdquo;
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org325bcd9" class="outline-2">
+<h2 id="org325bcd9"><span class="section-number-2">8.</span> Scaling Video</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Complete example in <a href="file:///home/nzsn/Notes/Documents/CodeExamples/FFMPEG_EXAMPLES/scaling_video.c">scaling<sub>video.c</sub></a> .
+</p>
+</div>
+<div id="outline-container-org3939231" class="outline-3">
+<h3 id="org3939231"><span class="section-number-3">8.1.</span> Create scaling context</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-c++">sws_ctx = sws_getContext<span style="color: #4EB8CA;">(</span>src_w, src_h, src_pix_fmt,
+                             dst_w, dst_h, dst_pix_fmt,
+                             <span style="color: #4FA8A3;">SWS_BILINEAR</span>, <span style="color: #4FA8A3;">NULL</span>, <span style="color: #4FA8A3;">NULL</span>, <span style="color: #4FA8A3;">NULL</span><span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb73705" class="outline-3">
+<h3 id="orgfb73705"><span class="section-number-3">8.2.</span> Allocate source and destination image buffers</h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="org-src-container">
+<pre class="src src-c++">av_image_alloc<span style="color: #4EB8CA;">(</span>src_data, src_linesize,
+                              src_w, src_h, src_pix_fmt, <span style="color: #ef6787;">16</span><span style="color: #4EB8CA;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+Question here is what is linesize ?
+</p>
+
+<p>
+Answer:
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf7697fa" class="outline-3">
+<h3 id="orgf7697fa"><span class="section-number-3">8.3.</span> Fill data into image</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-c++"> <span style="color: #697375;">/* </span><span style="color: #697375;">generate synthetic video</span><span style="color: #697375;"> */</span>
+        fill_yuv_image<span style="color: #4EB8CA;">(</span>src_data, src_linesize, src_w, src_h, i<span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org209fc89" class="outline-3">
+<h3 id="org209fc89"><span class="section-number-3">8.4.</span> Do scaling</h3>
+<div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-c++">sws_scale<span style="color: #4EB8CA;">(</span>sws_ctx, <span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">uint8_t</span> * <span style="color: #4EB8CA;">const</span>*<span style="color: #91b9c7;">)</span>src_data,
+                  src_linesize, <span style="color: #ef6787;">0</span>, src_h, dst_data, dst_linesize<span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

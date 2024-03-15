@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TLA+</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">TLA+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org44c6a76">1. Basic Concepts</a></li>
+<li><a href="#orgb87c7ca">2. Temporal Logic</a>
+<ul>
+<li><a href="#org031957f">2.1. Temporal Operator</a></li>
+<li><a href="#orgefba85d">2.2. Proof Rule</a></li>
+<li><a href="#org210b844">2.3. Properties</a>
+<ul>
+<li><a href="#orgbf85d07">2.3.1. Safety Property</a></li>
+<li><a href="#orgfdf9d68">2.3.2. Liveness Property</a></li>
+<li><a href="#org681de0b">2.3.3. Fairness Property</a></li>
+<li><a href="#orgf1d46be">2.3.4. Quantification</a></li>
+<li><a href="#orgb26ebcc">2.3.5. Machine Closure</a></li>
+</ul>
+</li>
+<li><a href="#orgcb97052">2.4. Real Time</a></li>
+<li><a href="#orge8db91f">2.5. Composing Specifications</a>
+<ul>
+<li><a href="#orgb8a05ce">2.5.1. Categories of Composite specifications</a></li>
+<li><a href="#orgeb40520">2.5.2. Composition Rule</a></li>
+<li><a href="#orgf155cad">2.5.3. Shared-State Composition Rule</a></li>
+<li><a href="#org50f267f">2.5.4. Compositoin with Joint Actions</a></li>
+<li><a href="#orgb12ef17">2.5.5. Liveness and Hiding</a></li>
+</ul>
+</li>
+<li><a href="#orgc221f9d">2.6. Open-System Specifications</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org44c6a76" class="outline-2">
+<h2 id="org44c6a76"><span class="section-number-2">1.</span> Basic Concepts</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Behaviors: Sequence of states, where a state is an assignment of values to variables.
+A move from one state to it&rsquo;s successor is called step.</li>
+<li>Actions: A boolean formula to describe requirements that steps should satisfied.
+Able to assert or restrict <b>behaviors</b> by <b>actions</b>.</li>
+<li>State function: An ordinary expression (one with no prime or []) that
+can contain variables and constants.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb87c7ca" class="outline-2">
+<h2 id="orgb87c7ca"><span class="section-number-2">2.</span> Temporal Logic</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org031957f" class="outline-3">
+<h3 id="org031957f"><span class="section-number-3">2.1.</span> Temporal Operator</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>\(\sigma^{+n} := \sigma^{n} \rightarrow \sigma^{n+1} \rightarrow \text{...}\)</li>
+
+<li>\(\sigma \models \square F \triangleq \forall n \in \mathbb{N}: \sigma^{+n} \models F\) :
+Action \(F\) is always true for behavior \(\sigma\).</li>
+<li>\(\sigma \models \Diamond F \triangleq \sigma \models \neg \square \neg F\) :
+read as Action \(F\) is eventually true for behavior \(\sigma\).</li>
+<li>\(\sigma \models F \rightsquigarrow G \triangleq \sigma \models \square(F \Rightarrow \Diamond G)\) : Whenever \(F\) is true</li>
+<li>\(\sigma \models \Diamond \langle A \rangle_{v} \triangleq \neg\square[\neg A]_v\) :
+Assert that some step is an \(A \land (v^{'} \neq v)\), and have \(\langle A \rangle_{v} \triangleq A \land (v^{'} \neq v)\) .</li>
+<li>\(\sigma \models \square\Diamond F\) :
+Assert that \(F\) will infinitely eventually true.</li>
+<li>\(\sigma \models \Diamond \square F\) :
+Assert that F will eventually true and then always be true in consequences.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgefba85d" class="outline-3">
+<h3 id="orgefba85d"><span class="section-number-3">2.2.</span> Proof Rule</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><p>
+Generalization Rule:
+</p>
+<div class="org-src-container">
+<pre class="src src-tla">  F =&gt;[]F, for any temporal formula F.
+</pre>
+</div></li>
+
+<li><p>
+Implies Generalization Rule:
+</p>
+<div class="org-src-container">
+<pre class="src src-tla">  (F =&gt; G) =&gt;([]F =&gt;[]G), for any temporal forumulas F and G
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org210b844" class="outline-3">
+<h3 id="org210b844"><span class="section-number-3">2.3.</span> Properties</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orgbf85d07" class="outline-4">
+<h4 id="orgbf85d07"><span class="section-number-4">2.3.1.</span> Safety Property</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+A property P is defined to be a safety property iff it satisfies the following condition, for all behaviors b:
+</p>
+
+<p>
+b satisfies P iff every prefix s satisfied P.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfdf9d68" class="outline-4">
+<h4 id="orgfdf9d68"><span class="section-number-4">2.3.2.</span> Liveness Property</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+A property P is defined to be a livness property iff any finite sequence of states can be extended to behavior that satisfies P.
+</p>
+</div>
+</div>
+<div id="outline-container-org681de0b" class="outline-4">
+<h4 id="org681de0b"><span class="section-number-4">2.3.3.</span> Fairness Property</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+The most common definition of fairness is like below, it&rsquo;s about how scheduler to schedule process.
+</p>
+
+<ul class="org-ul">
+<li>Absolute Fairness: Every process should be executed infinitely often.</li>
+<li>Strong Fairness: Every process that is infinitely often enabled should be executed inifinitely often in a state where it is enabled.</li>
+<li>Weak Fairness: Every process that is always enabled should be executed infinitely often.</li>
+</ul>
+
+<p>
+Relations: AF =&gt; WF, SF =&gt; WF
+</p>
+
+<p>
+But in TLA+ the concept of process is an artifact of how the specification is written. The definition that encompasses all the uses of term is:
+</p>
+
+<p>
+L is a <b>fairness property</b> for S iff S,L is machine closed.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org4d6fedf"></a>WF Conjunction Rule<br />
+<div class="outline-text-5" id="text-2-3-3-1">
+<p>
+If \(A_{1},...,A_{n}\) are actions then for any distinct i and j, if \(\langle A_{i} \rangle_{v}\) is enabled then \(\langle A_{j} \rangle_{v}\) is disallowed to enabled until \(\langle A_{i} \rangle_{v}\) occured. Under this condtion we have \(WF_{v}(A_{1}) \land ... \land WF_{v}(A_{n}) \equiv WF_{v}(A_{1} \lor ... \lor A_{n})\).
+</p>
+</div>
+</li>
+<li><a id="orgc112753"></a>WF Quantifier Rule<br />
+<div class="outline-text-5" id="text-2-3-3-2">
+<p>
+If, for all \(i \in S\), \(A_{i}\) are actions such that, for any distinct i and j in S, whenever \(\langle A_{i} \rangle_{v}\) is enabled,
+\(\langle A_{j} \rangle_{v}\) cannot become enabled unless an \(\langle A_{i} \rangle_{v}\) step occurs, then \(\forall i \in S: WF_{v}(A_{i}) \equiv WF_{v}(\exists i \in S: A_{i})\).
+</p>
+</div>
+</li>
+<li><a id="org21c2264"></a>SF Conjunction Rule<br />
+<div class="outline-text-5" id="text-2-3-3-3">
+<p>
+If \(A_{1},...,A_{n}\) are actions, and there exists distinct variables i and j such that whenever \(\langle A_{j} \rangle_{v}\) is enable \(\langle A_{j} \rangle_{v}\) is disabled until \(\langle A_{j} \rangle_{v}\) is occured. then \(SF_{v}(A_{1}) \land ... \land SF_{v}(A_{n})\) is equivlant to
+\(SF_v(A_{1} \lor ... \lor A_{n})\).
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgf1d46be" class="outline-4">
+<h4 id="orgf1d46be"><span class="section-number-4">2.3.4.</span> Quantification</h4>
+</div>
+<div id="outline-container-orgb26ebcc" class="outline-4">
+<h4 id="orgb26ebcc"><span class="section-number-4">2.3.5.</span> Machine Closure</h4>
+</div>
+</div>
+<div id="outline-container-orgcb97052" class="outline-3">
+<h3 id="orgcb97052"><span class="section-number-3">2.4.</span> Real Time</h3>
+</div>
+
+<div id="outline-container-orge8db91f" class="outline-3">
+<h3 id="orge8db91f"><span class="section-number-3">2.5.</span> Composing Specifications</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-orgb8a05ce" class="outline-4">
+<h4 id="orgb8a05ce"><span class="section-number-4">2.5.1.</span> Categories of Composite specifications</h4>
+<div class="outline-text-4" id="text-2-5-1">
+</div>
+<ol class="org-ol">
+<li><a id="org5b5ee13"></a>Interleaving versus noninterleaving<br />
+<div class="outline-text-5" id="text-2-5-1-1">
+<p>
+An Interleaving Specifications only allow each step tGo change states of one component.
+Noninterleaving specifications allow each step to represent simultaneous operations of two or more
+components.
+</p>
+</div>
+</li>
+<li><a id="orga8c0534"></a>Disjoint-state versus shared-state<br />
+<div class="outline-text-5" id="text-2-5-1-2">
+<p>
+A disjoint-state specification is one which states can be partition into parts and each belong to a component.
+Each step can only to changed one of them. In a shared-state specification, some part can be changed
+by steps attributed to more than one component.
+</p>
+</div>
+</li>
+<li><a id="org7f7f0ee"></a>Joint-action versus seperate-action<br />
+<div class="outline-text-5" id="text-2-5-1-3">
+<p>
+A Joint-action specification is one which some step attributed to one component must
+occur simultaneously with a step attributed to another component. A Seperate-action specification
+is just a non Join-action specification.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgeb40520" class="outline-4">
+<h4 id="orgeb40520"><span class="section-number-4">2.5.2.</span> Composition Rule</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+For any set \(C\), if
+\((\forall k \in C: v_{k}^{'} = v_{k}) \equiv
+(v^{'} = v)\) then
+</p>
+
+<p>
+\((\forallk \in C: I_{k} \land \Box[N_{k}]_{v_{k}} \equiv \\ \land \forall k \in C: I_{k}
+\\ \land \Box [\lor \exists k \in C: N_{k} \land (\forall i \in C \backslash \{k\}: v_{i}^{'} = v_{i} \\
+\lor i,j \in C: (i \neq j) \land N_{i} \land N_{j} \land F_{ij}]\)
+</p>
+
+<p>
+where \(F_{ij}\) is an action.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf155cad" class="outline-4">
+<h4 id="orgf155cad"><span class="section-number-4">2.5.3.</span> Shared-State Composition Rule</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+Let \(v\) as a private state of components and \(w\) as a shared state.
+</p>
+
+<p>
+Then there are four conditions:
+</p>
+
+<ol class="org-ol">
+<li>\((\forall k \in C: v^{'}_{k} = v_{k}) \equiv
+   (v^{'} = v)\)</li>
+</ol>
+
+<ol class="org-ol">
+<li>\(\forall i,k \in C: N_{k} \land (i \neq k) \Rightarrow (v^{'}_{i} = v_{i})\)</li>
+</ol>
+
+<ol class="org-ol">
+<li>\(\forall i, k \in C: N_{k} \land (w^{'} \neq w)
+   \land (i \neq k) \Rightarrow \mu_{i}\)</li>
+</ol>
+
+<ol class="org-ol">
+<li>\((\forall k \in C: \mu_{k}) \equiv (w^{'} = w)\)</li>
+</ol>
+
+<p>
+These conditions imply
+\((\forall k \in C: I_{k} \land \Box[N_{k} \lor (\mu_{k} \land (v^{'}_{k} = v_{k}))]_{\langle w, v_{k} \rangle}) \equiv \\ (\forall k \in C: I_{k}) \land \Box [\exists k \in C: N_{k}]_{\langle w,v \rangle}\)
+</p>
+</div>
+</div>
+<div id="outline-container-org50f267f" class="outline-4">
+<h4 id="org50f267f"><span class="section-number-4">2.5.4.</span> Compositoin with Joint Actions</h4>
+<div class="outline-text-4" id="text-2-5-4">
+<p>
+Some situation you may unable to split a component that shared to another components and you don&rsquo;t like to treat it as a component. In such case can deal with this by define action of that component in those components that refer to the it. For example the module MemoryInterface because Send and Reply is unspecified you even don&rsquo;t know how to send and reply, more detail in Page 150 of <i>Specifiying Systems</i>.
+</p>
+
+<p>
+In such case you able to define both actions in related components.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb12ef17" class="outline-4">
+<h4 id="orgb12ef17"><span class="section-number-4">2.5.5.</span> Liveness and Hiding</h4>
+<div class="outline-text-4" id="text-2-5-5">
+</div>
+<ol class="org-ol">
+<li><a id="org8d48577"></a>Livness and Machine Closure<br />
+<ol class="org-ol">
+<li><a id="org825c89d"></a>Compositional Hiding Rule<br />
+<div class="outline-text-6" id="text-2-5-5-1-1">
+<p>
+If the variable h does not occur in the formula \(T_{i}\) , and \(S_{i}\) is obtained from \(T_{i}\) by subsituting \(h[i]\) from \(q\), then
+</p>
+
+<p>
+\((\bm{\exists} h: \forall i \in C: S_{i}) \equiv
+(\forall i \in C: \bm{\exists} q : T_{i})\)
+</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc221f9d" class="outline-3">
+<h3 id="orgc221f9d"><span class="section-number-3">2.6.</span> Open-System Specifications</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+an open-system specification is one that can serve as a contract between a user of the system and its implementer.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

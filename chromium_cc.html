@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chromium CC</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chromium CC</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0f0e42a">1. Terminology</a></li>
+<li><a href="#org6eeb978">2. Overview</a></li>
+<li><a href="#org421f26a">3. Content data flow overview</a>
+<ul>
+<li><a href="#org6b3fdd4">3.1. Paint</a>
+<ul>
+<li><a href="#org049632b">3.1.1. Phase</a></li>
+<li><a href="#orga3265d6">3.1.2. Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#org18fc38b">3.2. Processes</a></li>
+<li><a href="#org80a5e17">3.3. Threads</a></li>
+</ul>
+</li>
+<li><a href="#orgacac171">4. Misc</a>
+<ul>
+<li><a href="#org7e35801">4.1. PrePaintTreeWalk::Walk() Call stack</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0f0e42a" class="outline-2">
+<h2 id="org0f0e42a"><span class="section-number-2">1.</span> Terminology</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Layer: A Layer is a rectangle of content, with various properties describing how that content should appear on screen.</li>
+
+<li>GraphicsContext: A GraphicsContext is responsible for writing the pixels into a bitmap that eventually get displayed to the screen.</li>
+
+<li>compositor: The compositor is ultimately responsible for combining the bitmap output of GraphicsContexts together into a final screen image in a subsequent compositing pass.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6eeb978" class="outline-2">
+<h2 id="org6eeb978"><span class="section-number-2">2.</span> Overview</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+cc is short for &ldquo;Chrome compositor&rdquo;, now a days it&rsquo;s neither a chrome compositor nor a compositor any more.
+A more accurate name is &ldquo;content collator&rdquo;.
+</p>
+
+<p>
+cc is responsible for turning a painted representation of that content (e.g. a PaintRecord) into a rasterized representation (a software bitmap or a gpu texture) and figuring out where that rectangle appears on screen.
+</p>
+
+<p>
+cc reside in both <i><b>Browser Process</b></i> and <i><b>Renderer Process</b></i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org421f26a" class="outline-2">
+<h2 id="org421f26a"><span class="section-number-2">3.</span> Content data flow overview</h2>
+<div class="outline-text-2" id="text-3">
+
+<div id="orge1a965f" class="figure">
+<p><img src="figures/Chromium/cc/the_compositing_forest.png" alt="the_compositing_forest.png" />
+</p>
+</div>
+
+
+<div id="org9f456c7" class="figure">
+<p><img src="figures/Chromium/cc/how_cc_works-data_flow.png" alt="how_cc_works-data_flow.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org6b3fdd4" class="outline-3">
+<h3 id="org6b3fdd4"><span class="section-number-3">3.1.</span> Paint</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org049632b" class="outline-4">
+<h4 id="org049632b"><span class="section-number-4">3.1.1.</span> Phase</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li>PrePaint
+<ul class="org-ul">
+<li>Paint invalidation: marks anything that need to be painted differently from the original cached painting.</li>
+
+<li>Builds paint property trees</li>
+</ul></li>
+</ul>
+
+<p>
+PrePaintTreeWalk in file: third<sub>party</sub>/blink/renderer/core/paint/pre<sub>paint</sub><sub>tree</sub><sub>walk.h</sub>
+</p>
+
+<p>
+<i><b>Invalidation</b></i> and <i><b>builds paint property</b></i> trees by method.
+</p>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">Walk</span><span style="color: #4EB8CA;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">LayoutObject</span>&amp;,
+          <span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">PrePaintTreeWalkContext</span>&amp; <span style="color: #47ba99;">parent_context</span>,
+          <span style="color: #b9c791;">NGPrePaintInfo</span>*<span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+Paint
+</p>
+
+<p>
+LayoutObject -&#x2014;&gt; BlockPainter -&#x2014;&gt; display list -&#x2014;&gt; PaintController
+</p>
+
+<ul class="org-ul">
+<li>create display item list from LayoutObject tree.</li>
+<li>Groups the display list into paint chunks which share the same property tree state.</li>
+<li>Commits the results to the compositor
+<ul class="org-ul">
+<li>Choose which cc::Layers to create.</li>
+<li>Passes the paint chunks to the compositor in a cc::Layer list.</li>
+<li>blink property tree nodes -&gt; cc property tree nodes</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga3265d6" class="outline-4">
+<h4 id="orga3265d6"><span class="section-number-4">3.1.2.</span> Algorithms</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<pre class="example" id="org9d41e14">
+from layout
+  |
+  v
++------------------------------+
+| LayoutObject/PaintLayer tree |
++------------------------------+
+  |     |
+  |     | PrePaintTreeWalk::Walk()
+  |     |   PaintPropertyTreeBuider::UpdatePropertiesForSelf()
+  |     v
+  |   +--------------------------------+
+  |&lt;--|         Property trees         |
+  |   +--------------------------------+
+  |                                  |
+  | LocalFrameView::PaintTree()      |
+  |   FramePainter::Paint()          |
+  |     PaintLayerPainter::Paint()   |
+  |       ObjectPainter::Paint()     |
+  v                                  |
++---------------------------------+  |
+| DisplayItemList/PaintChunk list |  |
++---------------------------------+  |
+  |                                  |
+  |&lt;---------------------------------+
+  | LocalFrameView::PushPaintArtifactToCompositor()
+  |   PaintArtifactCompositor::Update()
+  |
+  +---+---------------------------------+
+  |   v                                 |
+  | +----------------------+            |
+  | | Chunk list for layer |            |
+  | +----------------------+            |
+  |   |                                 |
+  |   | PaintChunksToCcLayer::Convert() |
+  v   v                                 v
++----------------+ +-----------------------+
+| cc::Layer list | |   cc property trees   |
++----------------+ +-----------------------+
+  |                  |
+  +------------------+
+  | to compositor
+  v
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org18fc38b" class="outline-3">
+<h3 id="org18fc38b"><span class="section-number-3">3.2.</span> Processes</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Renderer</li>
+<li>Viz/Gpu Process</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org80a5e17" class="outline-3">
+<h3 id="org80a5e17"><span class="section-number-3">3.3.</span> Threads</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Main thread</li>
+<li>Compositor thread</li>
+<li>Raster threads</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgacac171" class="outline-2">
+<h2 id="orgacac171"><span class="section-number-2">4.</span> Misc</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org7e35801" class="outline-3">
+<h3 id="org7e35801"><span class="section-number-3">4.1.</span> PrePaintTreeWalk::Walk() Call stack</h3>
+<div class="outline-text-3" id="text-4-1">
+<pre class="example" id="org158df42">
+#0 0x7ffff7e6713c base::debug::CollectStackTrace()
+#1 0x7ffff7ba434a base::debug::StackTrace::StackTrace()
+#2 0x7ffff7ba4305 base::debug::StackTrace::StackTrace()
+#3 0x7ffff7e66bfc base::debug::(anonymous namespace)::StackDumpSignalHandler()
+#4 0x7fffb3aad520 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x4251f)
+#5 0x7fffb3b01a7c pthread_kill
+#6 0x7fffb3aad476 raise
+#7 0x7fffb3a937f3 abort
+#8 0x7fffb3a9371b (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2871a)
+#9 0x7fffb3aa4e96 __assert_fail
+#10 0x7fffc8b2593a blink::PrePaintTreeWalk::Walk()
+#11 0x7fffc8b258af blink::PrePaintTreeWalk::Walk()
+#12 0x7fffc8b2534e blink::PrePaintTreeWalk::WalkTree()
+#13 0x7fffc74cb40e blink::LocalFrameView::RunPrePaintLifecyclePhase()
+#14 0x7fffc74ca140 blink::LocalFrameView::UpdateLifecyclePhasesInternal()
+#15 0x7fffc74c8de7 blink::LocalFrameView::UpdateLifecyclePhases()
+#16 0x7fffc74c8470 blink::LocalFrameView::UpdateAllLifecyclePhases()
+#17 0x7fffc89388c7 blink::PageAnimator::UpdateAllLifecyclePhases()
+#18 0x7fffc891f9f4 blink::Page::UpdateLifecycle()
+#19 0x7fffc7628044 blink::WebFrameWidgetImpl::UpdateLifecycle()
+#20 0x7fffc16f1cf1 blink::WidgetBase::UpdateVisualState()
+#21 0x7fffc1680de5 blink::LayerTreeView::UpdateLayerTreeHost()
+#22 0x7fffef6c4c8a cc::LayerTreeHost::RequestMainFrameUpdate()
+#23 0x7fffef7d88fb cc::ProxyMain::BeginMainFrame()
+#24 0x7fffef7d5a2c base::internal::FunctorTraits&lt;&gt;::Invoke&lt;&gt;()
+#25 0x7fffef7d5922 base::internal::InvokeHelper&lt;&gt;::MakeItSo&lt;&gt;()
+#26 0x7fffef7d58be _ZN4base8internal7InvokerINS0_9BindStateIMN2cc9ProxyMainEFvNSt2Cr10unique_ptrINS3_28BeginMainFrameAndCommitStateENS5_14default_deleteIS7_EEEEEJNS_7WeakPtrIS4_EESA_EEEFvvEE7RunImplISC_NS5_5tupleIJSE_SA_EEEJLm0ELm1EEEEvOT_OT0_NS5_16integer_sequenceImJXspT1_EEEE
+#27 0x7fffef7d5807 base::internal::Invoker&lt;&gt;::RunOnce()
+#28 0x7ffff7b52b89 _ZNO4base12OnceCallbackIFvvEE3RunEv
+#29 0x7ffff7d4da1e base::TaskAnnotator::RunTaskImpl()
+#30 0x7ffff7da51d0 base::TaskAnnotator::RunTask&lt;&gt;()
+#31 0x7ffff7da4df3 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWorkImpl()
+#32 0x7ffff7da3fd2 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWork()
+#33 0x7ffff7da5103 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWork()
+#34 0x7ffff7c1c90f base::MessagePumpDefault::Run()
+#35 0x7ffff7da583d base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::Run()
+#36 0x7ffff7cd1789 base::RunLoop::Run()
+#37 0x7ffff551c0a8 content::RendererMain()
+#38 0x7ffff5d6839d content::RunZygote()
+#39 0x7ffff5d68ec6 content::RunOtherNamedProcessTypeMain()
+#40 0x7ffff5d6a186 content::ContentMainRunnerImpl::Run()
+#41 0x7ffff5d663b9 content::RunContentProcess()
+#42 0x7ffff5d66cc2 content::ContentMain()
+#43 0x55555aa586da ChromeMain
+#44 0x55555aa58512 main
+#45 0x7fffb3a94d90 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+#46 0x7fffb3a94e40 __libc_start_main
+#47 0x55555aa5842a _start
+  r8: 00007fffffffa7d0  r9: 0000000000000000 r10: 0000000000000008 r11: 0000000000000246
+ r12: 0000000000000006 r13: 0000000000000016 r14: 00007fffc4f241a7 r15: 00007ffff7ffd040
+  di: 0000000000000001  si: 0000000000000001  bp: 0000000000000001  bx: 00007fff9da806c0
+  dx: 0000000000000006  ax: 0000000000000000  cx: 00007fffb3b01a7c  sp: 00007fffffffa700
+  ip: 00007fffb3b01a7c efl: 0000000000000246 cgf: 002b000000000033 erf: 0000000000000000
+ trp: 0000000000000001 msk: 0000000000000000 cr2: 0000000000000000
+[end of stack trace]
+Received signal 11 &lt;unknown&gt; 000000000000
+#0 0x7ffff7e6713c base::debug::CollectStackTrace()
+#1 0x7ffff7ba434a base::debug::StackTrace::StackTrace()
+#2 0x7ffff7ba4305 base::debug::StackTrace::StackTrace()
+#3 0x7ffff7e66bfc base::debug::(anonymous namespace)::StackDumpSignalHandler()
+#4 0x7fffb3aad520 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x4251f)
+#5 0x7fffb3a93898 abort
+#6 0x7fffb3a9371b (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2871a)
+#7 0x7fffb3aa4e96 __assert_fail
+#8 0x7fffc8b2593a blink::PrePaintTreeWalk::Walk()
+#9 0x7fffc8b258af blink::PrePaintTreeWalk::Walk()
+#10 0x7fffc8b2534e blink::PrePaintTreeWalk::WalkTree()
+#11 0x7fffc74cb40e blink::LocalFrameView::RunPrePaintLifecyclePhase()
+#12 0x7fffc74ca140 blink::LocalFrameView::UpdateLifecyclePhasesInternal()
+#13 0x7fffc74c8de7 blink::LocalFrameView::UpdateLifecyclePhases()
+#14 0x7fffc74c8470 blink::LocalFrameView::UpdateAllLifecyclePhases()
+#15 0x7fffc89388c7 blink::PageAnimator::UpdateAllLifecyclePhases()
+#16 0x7fffc891f9f4 blink::Page::UpdateLifecycle()
+#17 0x7fffc7628044 blink::WebFrameWidgetImpl::UpdateLifecycle()
+#18 0x7fffc16f1cf1 blink::WidgetBase::UpdateVisualState()
+#19 0x7fffc1680de5 blink::LayerTreeView::UpdateLayerTreeHost()
+#20 0x7fffef6c4c8a cc::LayerTreeHost::RequestMainFrameUpdate()
+#21 0x7fffef7d88fb cc::ProxyMain::BeginMainFrame()
+#22 0x7fffef7d5a2c base::internal::FunctorTraits&lt;&gt;::Invoke&lt;&gt;()
+#23 0x7fffef7d5922 base::internal::InvokeHelper&lt;&gt;::MakeItSo&lt;&gt;()
+#24 0x7fffef7d58be _ZN4base8internal7InvokerINS0_9BindStateIMN2cc9ProxyMainEFvNSt2Cr10unique_ptrINS3_28BeginMainFrameAndCommitStateENS5_14default_deleteIS7_EEEEEJNS_7WeakPtrIS4_EESA_EEEFvvEE7RunImplISC_NS5_5tupleIJSE_SA_EEEJLm0ELm1EEEEvOT_OT0_NS5_16integer_sequenceImJXspT1_EEEE
+#25 0x7fffef7d5807 base::internal::Invoker&lt;&gt;::RunOnce()
+#26 0x7ffff7b52b89 _ZNO4base12OnceCallbackIFvvEE3RunEv
+#27 0x7ffff7d4da1e base::TaskAnnotator::RunTaskImpl()
+#28 0x7ffff7da51d0 base::TaskAnnotator::RunTask&lt;&gt;()
+#29 0x7ffff7da4df3 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWorkImpl()
+#30 0x7ffff7da3fd2 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWork()
+#31 0x7ffff7da5103 base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::DoWork()
+#32 0x7ffff7c1c90f base::MessagePumpDefault::Run()
+#33 0x7ffff7da583d base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::Run()
+#34 0x7ffff7cd1789 base::RunLoop::Run()
+#35 0x7ffff551c0a8 content::RendererMain()
+#36 0x7ffff5d6839d content::RunZygote()
+#37 0x7ffff5d68ec6 content::RunOtherNamedProcessTypeMain()
+#38 0x7ffff5d6a186 content::ContentMainRunnerImpl::Run()
+#39 0x7ffff5d663b9 content::RunContentProcess()
+#40 0x7ffff5d66cc2 content::ContentMain()
+#41 0x55555aa586da ChromeMain
+#42 0x55555aa58512 main
+#43 0x7fffb3a94d90 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+#44 0x7fffb3a94e40 __libc_start_main
+#45 0x55555aa5842a _start
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

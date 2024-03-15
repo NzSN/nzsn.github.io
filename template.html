@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Template</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Template</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb1bf081">1. Introduction</a></li>
+<li><a href="#orgbd60604">2. Categories of Template</a></li>
+<li><a href="#org4e91286">3. Tricky Basics</a>
+<ul>
+<li><a href="#org542f55d">3.1. Two-Phase Translation + Definition (before instantiation): Check template code for correctness ignoring the template parameters.</a></li>
+<li><a href="#orgb72bed7">3.2. Template Argument Deduction</a></li>
+<li><a href="#org40afc73">3.3. Type Conversions During Type Deduction</a></li>
+<li><a href="#orgf8bac01">3.4. Specialization</a>
+<ul>
+<li><a href="#orge9c17ca">3.4.1. Full Specification</a></li>
+<li><a href="#org45eb473">3.4.2. Partial Specification</a></li>
+</ul>
+</li>
+<li><a href="#org3c003e2">3.5. Keyword typename</a></li>
+<li><a href="#org3a05941">3.6. Member Templates</a>
+<ul>
+<li><a href="#orgd98919c">3.6.1. Specialization of Member Function Templates</a></li>
+<li><a href="#org114f4a6">3.6.2. Special Member Function Templates</a></li>
+</ul>
+</li>
+<li><a href="#org133f2e4">3.7. Generic Lambdas and Member Templates</a></li>
+<li><a href="#orgb2bb585">3.8. Variable Templates</a></li>
+<li><a href="#orga7d2d14">3.9. Template Template Parameters</a></li>
+</ul>
+</li>
+<li><a href="#org109d6f9">4. Move Semantics and enable<sub>if</sub>&lt;&gt;</a>
+<ul>
+<li><a href="#org26ab1cf">4.1. Perfect Forwarding</a></li>
+</ul>
+</li>
+<li><a href="#orgea932c2">5. Disable Templates with enable<sub>if</sub>&lt;&gt;</a></li>
+<li><a href="#org811919c">6. By Value or by Reference ?</a>
+<ul>
+<li><a href="#org0ca64ef">6.1. Passing by Value</a>
+<ul>
+<li><a href="#org4003e15">6.1.1. Cost</a></li>
+<li><a href="#org4433330">6.1.2. Decays</a></li>
+</ul>
+</li>
+<li><a href="#org27bccd4">6.2. Passing by Reference</a>
+<ul>
+<li><a href="#org082a055">6.2.1. Passing by Constant Reference</a></li>
+<li><a href="#org2281231">6.2.2. Passing by Nonconstant Refernce</a></li>
+<li><a href="#org54c41fc">6.2.3. Passing by Forwarding Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbd098d4">7. Dealing with String Literals and Raw Arrays</a>
+<ul>
+<li><a href="#orge40122b">7.1. By template parameters</a></li>
+<li><a href="#org7e636e0">7.2. By Type Traits</a></li>
+</ul>
+</li>
+<li><a href="#orgdb00c2d">8. Dealing with Return Values</a>
+<ul>
+<li><a href="#orgdaeccbe">8.1. Ways to ensure that function templates return by values</a></li>
+</ul>
+</li>
+<li><a href="#org28476d4">9. Template type deduced from function parameter type</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb1bf081" class="outline-2">
+<h2 id="orgb1bf081"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Purpose of <i><b>Template</b></i> in <a href="cpp.html#ID-c6bad242-6eb0-4057-b8e3-fad97e2ee5c0">CPP</a> is generic-programming.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd60604" class="outline-2">
+<h2 id="orgbd60604"><span class="section-number-2">2.</span> Categories of Template</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><a href="function_templates.html#ID-1c5111b9-ab6f-4a63-a87b-992a14ebd419">Function Templates</a></li>
+<li>Class Templates</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4e91286" class="outline-2">
+<h2 id="org4e91286"><span class="section-number-2">3.</span> Tricky Basics</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org542f55d" class="outline-3">
+<h3 id="org542f55d"><span class="section-number-3">3.1.</span> Two-Phase Translation + Definition (before instantiation): Check template code for correctness ignoring the template parameters.</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Instantiation: Check again, check codes generated after fullful specialization.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb72bed7" class="outline-3">
+<h3 id="orgb72bed7"><span class="section-number-3">3.2.</span> Template Argument Deduction</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Type parameters can be inferenced by the arguments that pass to function or you can explicit declare type of type parameter.
+</p>
+
+<p>
+For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">T</span> <span style="color: #91b9c7;">max</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #47ba99;">a</span>, <span style="color: #b9c791;">T</span> <span style="color: #47ba99;">b</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+
+max<span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2</span><span style="color: #4EB8CA;">)</span>;
+max<span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;(</span><span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2</span><span style="color: #4EB8CA;">)</span>;
+max<span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;(</span><span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2.0</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Passed</span>
+max<span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2.0</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">Errored</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org40afc73" class="outline-3">
+<h3 id="org40afc73"><span class="section-number-3">3.3.</span> Type Conversions During Type Deduction</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+automatic type conversions are limited during type deduction:
+</p>
+
+<ul class="org-ul">
+<li>Automatic conversions do not apply to type deduction if declareing call parameters by reference.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">doSomething_</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #47ba99;">a</span>, <span style="color: #b9c791;">T</span> <span style="color: #47ba99;">b</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    a = b;
+<span style="color: #4EB8CA;">}</span>
+
+
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">doSomething</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp; <span style="color: #47ba99;">a</span>, <span style="color: #b9c791;">T</span>&amp; <span style="color: #47ba99;">b</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    a = b;
+<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #b9c791;">int</span> <span style="color: #47ba99;">a</span>;
+<span style="color: #b9c791;">double</span> <span style="color: #47ba99;">b</span>;
+
+doSomething_<span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;(</span>a, b<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK</span>
+doSomething<span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;(</span>a, b<span style="color: #4EB8CA;">)</span>;  <span style="color: #697375;">// </span><span style="color: #697375;">Failed</span>
+<span style="color: #4EB8CA;">return</span> <span style="color: #ef6787;">0</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+When declaring call parameters by value, only trivial conversions that decay are supported.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">T</span> <span style="color: #91b9c7;">max</span> <span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #47ba99;">a</span>, <span style="color: #b9c791;">T</span> <span style="color: #47ba99;">b</span><span style="color: #4EB8CA;">)</span>;
+
+<span style="color: #b9c791;">int</span> <span style="color: #4EB8CA;">const</span> <span style="color: #47ba99;">c</span> = <span style="color: #ef6787;">42</span>;
+max<span style="color: #4EB8CA;">(</span>i, c<span style="color: #4EB8CA;">)</span>;       <span style="color: #697375;">// </span><span style="color: #697375;">OK: T is deduced as int</span>
+max<span style="color: #4EB8CA;">(</span>c, c<span style="color: #4EB8CA;">)</span>;       <span style="color: #697375;">// </span><span style="color: #697375;">OK: T is deduced as int</span>
+<span style="color: #b9c791;">int</span>&amp; <span style="color: #47ba99;">ir</span> = i;
+max<span style="color: #4EB8CA;">(</span>i, ir<span style="color: #4EB8CA;">)</span>;      <span style="color: #697375;">// </span><span style="color: #697375;">OK: T is deduced as int</span>
+<span style="color: #b9c791;">int</span> <span style="color: #47ba99;">arr</span><span style="color: #4EB8CA;">[</span><span style="color: #ef6787;">4</span><span style="color: #4EB8CA;">]</span>;
+foo<span style="color: #4EB8CA;">(</span>&amp;i, arr<span style="color: #4EB8CA;">)</span>;    <span style="color: #697375;">// </span><span style="color: #697375;">OK: T is deduced as int*</span>
+
+However, the following are <span style="color: #b9c791;">errors</span>:
+
+max<span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">4</span>, <span style="color: #ef6787;">7.2</span><span style="color: #4EB8CA;">)</span>;     <span style="color: #697375;">// </span><span style="color: #697375;">ERROR: T can be deduced as int or double</span>
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #47ba99;">s</span>;
+foo<span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"hello"</span>, s<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">ERROR: T can be deduced as char const[6] or std::string</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf8bac01" class="outline-3">
+<h3 id="orgf8bac01"><span class="section-number-3">3.4.</span> Specialization</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-orge9c17ca" class="outline-4">
+<h4 id="orge9c17ca"><span class="section-number-4">3.4.1.</span> Full Specification</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+Specify <i><b>Template Arguments</b></i> to a concrete type.
+</p>
+</div>
+</div>
+<div id="outline-container-org45eb473" class="outline-4">
+<h4 id="org45eb473"><span class="section-number-4">3.4.2.</span> Partial Specification</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+Specify <i><b>Templates Arguments</b></i> to a family of types.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #697375;">// </span><span style="color: #697375;">partial specialization of class Stack&lt;&gt; for pointers:</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Stack</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">T</span>*<span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">private</span>: <span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">T</span>*<span style="color: #91b9c7;">&gt;</span> <span style="color: #47ba99;">elems</span>; <span style="color: #697375;">// </span><span style="color: #697375;">elements</span>
+<span style="color: #4EB8CA;">public</span>: <span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">push</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">T</span>*<span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">push element</span>
+    <span style="color: #b9c791;">T</span>* <span style="color: #91b9c7;">pop</span><span style="color: #91b9c7;">()</span>; <span style="color: #697375;">// </span><span style="color: #697375;">pop element</span>
+    <span style="color: #b9c791;">T</span>* <span style="color: #91b9c7;">top</span><span style="color: #91b9c7;">()</span> <span style="color: #4EB8CA;">const</span>; <span style="color: #697375;">// </span><span style="color: #697375;">return top element</span>
+    <span style="color: #b9c791;">bool</span> <span style="color: #91b9c7;">empty</span><span style="color: #91b9c7;">()</span> <span style="color: #4EB8CA;">const</span> <span style="color: #91b9c7;">{</span> <span style="color: #697375;">// </span><span style="color: #697375;">return whether the stack is empty</span>
+        <span style="color: #4EB8CA;">return</span> elems.empty<span style="color: #4FA8A3;">()</span>;
+    <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+
+
+<span style="color: #697375;">// </span><span style="color: #697375;">partial specialization: both template parameters have same type</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">MyClass</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">T</span>,<span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>;
+<span style="color: #697375;">// </span><span style="color: #697375;">partial specialization: second type is int</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">MyClass</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">T</span>,<span style="color: #b9c791;">int</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>;
+<span style="color: #697375;">// </span><span style="color: #697375;">partial specialization: both template parameters are pointer types</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T1</span>, <span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T2</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">MyClass</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">T1</span>*,<span style="color: #b9c791;">T2</span>*<span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3c003e2" class="outline-3">
+<h3 id="org3c003e2"><span class="section-number-3">3.5.</span> Keyword typename</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+typename is used to declare template argument for a template. And it can also used to declare types that be qualifed by template argument.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">MyClass</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #91b9c7;">...</span>
+<span style="color: #b9c791;">void</span> foo<span style="color: #91b9c7;">()</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #4EB8CA;">typename</span> <span style="color: #4FA8A3;">T</span>::<span style="color: #b9c791;">SubType</span>* <span style="color: #47ba99;">ptr</span>;
+    <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+
+<p>
+The second <i><b>typename</b></i> declare ptr is a pointer point to T::SubType.
+</p>
+</div>
+</div>
+<div id="outline-container-org3a05941" class="outline-3">
+<h3 id="org3a05941"><span class="section-number-3">3.6.</span> Member Templates</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+<i><b>Member Templates</b></i> allow you to generate a series of member function. Which is very useful when you want to provide type conversion from another types to T where declare in <i><b>Class Template</b></i>.
+</p>
+
+<p>
+More detail in <i><b>Section 5.5 of C++ Template Second edition</b></i>.
+</p>
+</div>
+<div id="outline-container-orgd98919c" class="outline-4">
+<h4 id="orgd98919c"><span class="section-number-4">3.6.1.</span> Specialization of Member Function Templates</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<div class="org-src-container">
+<pre class="src src-cpp">
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">BoolString</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #91b9c7;">...</span>
+    <span style="color: #4EB8CA;">template</span><span style="color: #91b9c7;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span> = <span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span><span style="color: #91b9c7;">&gt;</span>
+    T get<span style="color: #91b9c7;">()</span> <span style="color: #4EB8CA;">const</span> <span style="color: #91b9c7;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Full specialization</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;&gt;</span>
+<span style="color: #4EB8CA;">inline</span> <span style="color: #b9c791;">bool</span> <span style="color: #4FA8A3;">BoolString</span>::<span style="color: #91b9c7;">get</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #91b9c7;">bool</span><span style="color: #4EB8CA;">&gt;</span><span style="color: #4EB8CA;">()</span> <span style="color: #4EB8CA;">const</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Partial Specialization</span>
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;&gt;</span>
+<span style="color: #4EB8CA;">inline</span> <span style="color: #b9c791;">bool</span> <span style="color: #4FA8A3;">BoolString</span>::<span style="color: #91b9c7;">get</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #91b9c7;">T*</span><span style="color: #4EB8CA;">&gt;</span><span style="color: #4EB8CA;">()</span> <span style="color: #4EB8CA;">const</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org114f4a6" class="outline-4">
+<h4 id="org114f4a6"><span class="section-number-4">3.6.2.</span> Special Member Function Templates</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<p>
+Template member functions can be used wherever special member functions allow copying or moving objects.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org133f2e4" class="outline-3">
+<h3 id="org133f2e4"><span class="section-number-3">3.7.</span> Generic Lambdas and Member Templates</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+Generic lambdas are shortcuts for member templates.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">[]</span> <span style="color: #4EB8CA;">(</span><span style="color: #4EB8CA;">auto</span> <span style="color: #47ba99;">x</span>, <span style="color: #4EB8CA;">auto</span> <span style="color: #47ba99;">y</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">return</span> x + y;
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<p>
+Above code&rsquo;s possible implementation is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">SomeCompilerSpecificName</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #91b9c7;">SomeCompilerSpecificName</span><span style="color: #91b9c7;">()</span>; <span style="color: #697375;">// </span><span style="color: #697375;">constructor only callable by compiler</span>
+    <span style="color: #4EB8CA;">template</span><span style="color: #91b9c7;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T1</span>,<span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T2</span><span style="color: #91b9c7;">&gt;</span>
+    <span style="color: #4EB8CA;">auto</span> <span style="color: #4EB8CA;">operator</span><span style="color: #91b9c7;">()</span> <span style="color: #91b9c7;">(</span><span style="color: #b9c791;">T1</span> <span style="color: #47ba99;">x</span>, <span style="color: #b9c791;">T2</span> <span style="color: #47ba99;">y</span><span style="color: #91b9c7;">)</span> <span style="color: #4EB8CA;">const</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #4EB8CA;">return</span> x + y;
+    <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>;
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb2bb585" class="outline-3">
+<h3 id="orgb2bb585"><span class="section-number-3">3.8.</span> Variable Templates</h3>
+<div class="outline-text-3" id="text-3-8">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">constexpr</span> <span style="color: #b9c791;">T</span> <span style="color: #47ba99;">pi</span><span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">3.14159265</span><span style="color: #4EB8CA;">}</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga7d2d14" class="outline-3">
+<h3 id="orga7d2d14"><span class="section-number-3">3.9.</span> Template Template Parameters</h3>
+</div>
+</div>
+<div id="outline-container-org109d6f9" class="outline-2">
+<h2 id="org109d6f9"><span class="section-number-2">4.</span> Move Semantics and enable<sub>if</sub>&lt;&gt;</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org26ab1cf" class="outline-3">
+<h3 id="org26ab1cf"><span class="section-number-3">4.1.</span> Perfect Forwarding</h3>
+</div>
+</div>
+<div id="outline-container-orgea932c2" class="outline-2">
+<h2 id="orgea932c2"><span class="section-number-2">5.</span> Disable Templates with enable<sub>if</sub>&lt;&gt;</h2>
+</div>
+
+<div id="outline-container-org811919c" class="outline-2">
+<h2 id="org811919c"><span class="section-number-2">6.</span> By Value or by Reference ?</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org0ca64ef" class="outline-3">
+<h3 id="org0ca64ef"><span class="section-number-3">6.1.</span> Passing by Value</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org4003e15" class="outline-4">
+<h4 id="org4003e15"><span class="section-number-4">6.1.1.</span> Cost</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+In intuition, <i><b>Passing by Value</b></i> is expensive but this is not the case. In fact, <i><b>Passing by Value</b></i> is expensive only if the expression you passed to template function is lvalue.
+</p>
+
+<p>
+Cost of Copy is optimized away by:
+</p>
+
+<ul class="org-ul">
+<li>Move Semantics</li>
+<li>Compiler optimizes (Not true before C++17)</li>
+</ul>
+
+<p>
+But Passing by Reference is required since call with a lvalue expression is a pretty common case.
+</p>
+</div>
+</div>
+<div id="outline-container-org4433330" class="outline-4">
+<h4 id="org4433330"><span class="section-number-4">6.1.2.</span> Decays</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+Argument you passed to <i><b>Template Function</b></i> is decayed before materialization.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org27bccd4" class="outline-3">
+<h3 id="org27bccd4"><span class="section-number-3">6.2.</span> Passing by Reference</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Cases of all materialization of <i><b>Template Functions</b></i> with <i><b>Passing by Reference</b></i> are no copys. Also, passing the argument never decays which make sure <i><b>Template Functions</b></i> unable to do something to argument that not allow by the caller.
+</p>
+</div>
+<div id="outline-container-org082a055" class="outline-4">
+<h4 id="org082a055"><span class="section-number-4">6.2.1.</span> Passing by Constant Reference</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">printR</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #4EB8CA;">const</span>&amp; <span style="color: #47ba99;">arg</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Example</span>
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #91b9c7;">returnString</span><span style="color: #4EB8CA;">()</span>;
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #47ba99;">s</span> = <span style="color: #fbaed2;">"hi"</span>;
+
+printR<span style="color: #4EB8CA;">(</span>s<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">1</span>
+print<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">std</span>::string<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"hi"</span><span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">2</span>
+printR<span style="color: #4EB8CA;">(</span>returnString<span style="color: #91b9c7;">()</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">3</span>
+printR<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">std</span>::move<span style="color: #91b9c7;">(</span>s<span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">4</span>
+</pre>
+</div>
+
+<p>
+<i><b>Constant Reference</b></i> in case 2 and 3 is used to prolong the lifetime of <i><b>Temporary Object</b></i>, those objects is destroyed when <i><b>printR</b></i> return.
+</p>
+</div>
+</div>
+<div id="outline-container-org2281231" class="outline-4">
+<h4 id="org2281231"><span class="section-number-4">6.2.2.</span> Passing by Nonconstant Refernce</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">outR</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp; <span style="color: #47ba99;">arg</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<p>
+calling outR with <i><b>prvalue</b></i> and <i><b>xvalue</b></i> usually is not allow. The case that allow to passing <i><b>rvalue</b></i> to outR:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #4EB8CA;">const</span> <span style="color: #47ba99;">c</span> = <span style="color: #fbaed2;">"hi"</span>;
+outR<span style="color: #4EB8CA;">(</span>c<span style="color: #4EB8CA;">)</span>;
+outR<span style="color: #4EB8CA;">(</span>returnConstString<span style="color: #91b9c7;">()</span><span style="color: #4EB8CA;">)</span>;
+</pre>
+</div>
+
+<p>
+In such cases, arg of outR becoming a declaration of a constant reference. This can be forbided by:
+</p>
+
+<ul class="org-ul">
+<li>static<sub>assert</sub></li>
+<li>std::enable<sub>if</sub></li>
+<li>concept</li>
+</ul>
+
+<p>
+detail at Page 111 of <i><b>C++ templates sec</b></i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org54c41fc" class="outline-4">
+<h4 id="org54c41fc"><span class="section-number-4">6.2.3.</span> Passing by Forwarding Reference</h4>
+<div class="outline-text-4" id="text-6-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgf3d245a"></a>Forwarding references<br />
+<div class="outline-text-5" id="text-6-2-3-1">
+<p>
+Special kinds of references that preserve the value category of a function argument.
+</p>
+
+<p>
+A reference is <i><b>Forwarding reference</b></i> if:
+</p>
+
+<ul class="org-ul">
+<li><p>
+<i><b>Function parameter</b></i> of a <i><b>Function Template</b></i> declared as <i><b>rvalue</b></i> reference to cv-unqualified type template parameter of that function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">f</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">x</span><span style="color: #4EB8CA;">)</span>                      <span style="color: #697375;">// </span><span style="color: #697375;">x is a forwarding reference</span>
+<span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">return</span> g<span style="color: #91b9c7;">(</span><span style="color: #4FA8A3;">std</span>::forward<span style="color: #4FA8A3;">&lt;</span><span style="color: #b9c791;">T</span><span style="color: #4FA8A3;">&gt;(</span>x<span style="color: #4FA8A3;">)</span><span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">and so can be forwarded</span>
+<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">main</span><span style="color: #4EB8CA;">()</span>
+<span style="color: #4EB8CA;">{</span>
+    <span style="color: #b9c791;">int</span> <span style="color: #47ba99;">i</span>;
+    f<span style="color: #91b9c7;">(</span>i<span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">argument is lvalue, calls f&lt;int&amp;&gt;(int&amp;), std::forward&lt;int&amp;&gt;(x) is lvalue</span>
+    f<span style="color: #91b9c7;">(</span><span style="color: #ef6787;">0</span><span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">argument is rvalue, calls f&lt;int&gt;(int&amp;&amp;), std::forward&lt;int&gt;(x) is rvalue</span>
+<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">g</span><span style="color: #4EB8CA;">(</span><span style="color: #4EB8CA;">const</span> <span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">x</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">x is not a forwarding reference: const T is not cv-unqualified</span>
+
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">A</span>
+<span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">template</span><span style="color: #91b9c7;">&lt;</span><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">U</span><span style="color: #91b9c7;">&gt;</span>
+    <span style="color: #91b9c7;">A</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">x</span>, <span style="color: #b9c791;">U</span>&amp;&amp; <span style="color: #47ba99;">y</span>, <span style="color: #b9c791;">int</span>* <span style="color: #47ba99;">p</span><span style="color: #91b9c7;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">x is not a forwarding reference: T is not a</span>
+                             <span style="color: #697375;">// </span><span style="color: #697375;">type template parameter of the constructor,</span>
+                             <span style="color: #697375;">// </span><span style="color: #697375;">but y is a forwarding reference</span>
+<span style="color: #4EB8CA;">}</span>;
+</pre>
+</div></li>
+
+<li><p>
+auto&amp;&amp; except when deduced from a brace-enclosed initializer list:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">auto</span>&amp;&amp; <span style="color: #47ba99;">vec</span> = foo<span style="color: #4EB8CA;">()</span>;       <span style="color: #697375;">// </span><span style="color: #697375;">foo() may be lvalue or rvalue, vec is a forwarding reference</span>
+<span style="color: #4EB8CA;">auto</span> <span style="color: #47ba99;">i</span> = <span style="color: #4FA8A3;">std</span>::begin<span style="color: #4EB8CA;">(</span>vec<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">works either way</span>
+<span style="color: #4EB8CA;">(</span>*i<span style="color: #4EB8CA;">)</span>++;                   <span style="color: #697375;">// </span><span style="color: #697375;">works either way</span>
+
+g<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">std</span>::forward<span style="color: #91b9c7;">&lt;</span><span style="color: #4EB8CA;">decltype</span><span style="color: #4FA8A3;">(</span>vec<span style="color: #4FA8A3;">)</span><span style="color: #91b9c7;">&gt;(</span>vec<span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">forwards, preserving value category</span>
+
+<span style="color: #4EB8CA;">for</span> <span style="color: #4EB8CA;">(</span><span style="color: #4EB8CA;">auto</span>&amp;&amp; <span style="color: #47ba99;">x</span>: f<span style="color: #91b9c7;">()</span><span style="color: #4EB8CA;">)</span>
+<span style="color: #4EB8CA;">{</span>
+    <span style="color: #697375;">// </span><span style="color: #697375;">x is a forwarding reference; this is the safest way to use range for loops</span>
+<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4EB8CA;">auto</span>&amp;&amp; <span style="color: #47ba99;">z</span> = <span style="color: #4EB8CA;">{</span><span style="color: #ef6787;">1</span>, <span style="color: #ef6787;">2</span>, <span style="color: #ef6787;">3</span><span style="color: #4EB8CA;">}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">*not* a forwarding reference (special case for initializer lists)</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</li>
+<li><a id="org9f7c72a"></a>How determine reference type of forward ?<br />
+<div class="outline-text-5" id="text-6-2-3-2">
+<p>
+If argument of <i><b>Function Template</b></i> is <i><b>lvalue</b></i> the <i><b>lvalue reference</b></i> otherwise <i><b>rvalue reference</b></i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">passR</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">arg</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #47ba99;">s</span> = <span style="color: #fbaed2;">"hi"</span>;
+passR<span style="color: #4EB8CA;">(</span>s<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as std::string&amp; (also the type of arg)</span>
+passR<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">std</span>::string<span style="color: #91b9c7;">(</span><span style="color: #fbaed2;">"hi"</span><span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as std::string, arg is std::string&amp;&amp;</span>
+passR<span style="color: #4EB8CA;">(</span>returnString<span style="color: #91b9c7;">()</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as std::string, arg is std::string&amp;&amp;</span>
+passR<span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">std</span>::move<span style="color: #91b9c7;">(</span>s<span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as std::string, arg is std::string&amp;&amp;</span>
+passR<span style="color: #4EB8CA;">(</span>arr<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as int(&amp;)[4] (also the type of arg)</span>
+</pre>
+</div>
+
+<p>
+some suprises:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span> <span style="color: #4EB8CA;">const</span> <span style="color: #47ba99;">c</span> =<span style="color: #fbaed2;">"hi"</span>;
+passR<span style="color: #4EB8CA;">(</span>c<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as std::string const&amp;</span>
+passR<span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"hi"</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as char const(&amp;)[3] (also the type of arg)</span>
+<span style="color: #b9c791;">int</span> <span style="color: #47ba99;">arr</span><span style="color: #4EB8CA;">[</span><span style="color: #ef6787;">4</span><span style="color: #4EB8CA;">]</span>;
+passR<span style="color: #4EB8CA;">(</span><span style="color: #fbaed2;">"hi"</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as int (&amp;)[4] (also the type of arg)</span>
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org4146e71"></a>Drawback<br />
+<div class="outline-text-5" id="text-6-2-3-3">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">passR</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">arg</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #697375;">// </span><span style="color: #697375;">arg is a forwarding reference</span>
+    <span style="color: #b9c791;">T</span> <span style="color: #47ba99;">x</span>; <span style="color: #697375;">// </span><span style="color: #697375;">for passed lvalues, x is a reference, which requires an initializer</span>
+    <span style="color: #91b9c7;">...</span>
+<span style="color: #4EB8CA;">}</span>
+
+foo<span style="color: #4EB8CA;">(</span><span style="color: #ef6787;">42</span><span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">OK: T deduced as int</span>
+
+<span style="color: #b9c791;">int</span> <span style="color: #47ba99;">i</span>;
+foo<span style="color: #4EB8CA;">(</span>i<span style="color: #4EB8CA;">)</span>; <span style="color: #697375;">// </span><span style="color: #697375;">ERROR: T deduced as int&amp;, which makes the declaration of x in passR() invalid</span>
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd098d4" class="outline-2">
+<h2 id="orgbd098d4"><span class="section-number-2">7.</span> Dealing with String Literals and Raw Arrays</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Ways to detect whether arrays are passed:
+</p>
+</div>
+<div id="outline-container-orge40122b" class="outline-3">
+<h3 id="orge40122b"><span class="section-number-3">7.1.</span> By template parameters</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span>, <span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">size_t</span> <span style="color: #47ba99;">L1</span>, <span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">size_t</span> <span style="color: #47ba99;">L2</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">foo</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #91b9c7;">(</span>&amp;<span style="color: #47ba99;">arg1</span><span style="color: #91b9c7;">)[</span>L1<span style="color: #91b9c7;">]</span>, <span style="color: #b9c791;">T</span> <span style="color: #91b9c7;">(</span>&amp;<span style="color: #47ba99;">arg2</span><span style="color: #91b9c7;">)[</span>L2<span style="color: #91b9c7;">]</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #b9c791;">T</span>* <span style="color: #47ba99;">pa</span> = arg1; <span style="color: #697375;">// </span><span style="color: #697375;">decay arg1</span>
+    <span style="color: #b9c791;">T</span>* <span style="color: #47ba99;">pb</span> = arg2; <span style="color: #697375;">// </span><span style="color: #697375;">decay arg2</span>
+    <span style="color: #4EB8CA;">if</span><span style="color: #91b9c7;">(</span>compareArrays<span style="color: #4FA8A3;">(</span>pa, L1, pb, L2<span style="color: #4FA8A3;">)</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #91b9c7;">...</span>
+    <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e636e0" class="outline-3">
+<h3 id="org7e636e0"><span class="section-number-3">7.2.</span> By Type Traits</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span>,
+         <span style="color: #4EB8CA;">typename</span> = <span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">enable_if_t</span><span style="color: #91b9c7;">&lt;</span><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">is_array_v</span><span style="color: #4FA8A3;">&lt;</span><span style="color: #b9c791;">T</span><span style="color: #4FA8A3;">&gt;</span><span style="color: #91b9c7;">&gt;</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">foo</span> <span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">arg1</span>, <span style="color: #b9c791;">T</span>&amp;&amp; <span style="color: #47ba99;">arg2</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #91b9c7;">...</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdb00c2d" class="outline-2">
+<h2 id="orgdb00c2d"><span class="section-number-2">8.</span> Dealing with Return Values</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Return a reference from a <i><b>Template Function</b></i> is potentially a source of trouble, cause the reference returned may refer to identity that no longer exists.
+</p>
+
+<p>
+Cases that need to returning references:
+</p>
+
+<ul class="org-ul">
+<li>Returning elements of container or strings</li>
+<li>Granting read/write access to class members</li>
+<li>Returning objects for chained calls</li>
+</ul>
+
+<p>
+All these cases may cause trouble if used improperly. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">string</span>* <span style="color: #47ba99;">s</span> = <span style="color: #4FA8A3;">newstd</span>::string<span style="color: #4EB8CA;">(</span> <span style="color: #fbaed2;">"whatever"</span><span style="color: #4EB8CA;">)</span>;
+<span style="color: #4EB8CA;">auto</span>&amp; <span style="color: #47ba99;">c</span> = <span style="color: #4EB8CA;">(</span>*s<span style="color: #4EB8CA;">)[</span><span style="color: #ef6787;">0</span><span style="color: #4EB8CA;">]</span>;
+<span style="color: #4EB8CA;">delete</span> s;
+<span style="color: #4FA8A3;">std</span>::cout &lt;&lt; c; <span style="color: #697375;">// </span><span style="color: #697375;">run-time ERROR</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgdaeccbe" class="outline-3">
+<h3 id="orgdaeccbe"><span class="section-number-3">8.1.</span> Ways to ensure that function templates return by values</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+For the problems that introduced above, we may need to ensure that <i><b>Template Function</b></i> return by values. There are two ways to do that
+</p>
+
+<ul class="org-ul">
+<li>Type trait <b>std::remove<sub>reference</sub>&lt;&gt;</b> to convert type T to a nonreference:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">typename</span> <span style="color: #4FA8A3;">std</span>::<span style="color: #4FA8A3;">remove_reference</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>::<span style="color: #b9c791;">type</span> <span style="color: #91b9c7;">retV</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #47ba99;">p</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">return</span> T<span style="color: #91b9c7;">{</span><span style="color: #91b9c7;">...</span><span style="color: #91b9c7;">}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">always returns by value</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>auto, because auto always decays:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">auto</span> <span style="color: #91b9c7;">retV</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span> <span style="color: #47ba99;">p</span><span style="color: #4EB8CA;">)</span> <span style="color: #697375;">// </span><span style="color: #697375;">by-value return type deduced by compiler</span>
+<span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">return</span> T<span style="color: #91b9c7;">{</span><span style="color: #91b9c7;">...</span><span style="color: #91b9c7;">}</span>; <span style="color: #697375;">// </span><span style="color: #697375;">always returns by value</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org28476d4" class="outline-2">
+<h2 id="org28476d4"><span class="section-number-2">9.</span> Template type deduced from function parameter type</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #ef6787;">#include</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #fbaed2;">iostream</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #ef6787;">#include</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #fbaed2;">functional</span><span style="color: #4EB8CA;">&gt;</span>
+
+<span style="color: #4EB8CA;">template</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">parameter_type</span>;
+
+<span style="color: #4EB8CA;">template</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">ReturnType</span>, <span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">ParameterType</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">struct</span> <span style="color: #b9c791;">parameter_type</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">function</span><span style="color: #91b9c7;">&lt;</span>ReturnType<span style="color: #4FA8A3;">(</span><span style="color: #b9c791;">ParameterType</span><span style="color: #4FA8A3;">)</span><span style="color: #91b9c7;">&gt;</span><span style="color: #4EB8CA;">&gt;</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">using</span> <span style="color: #b9c791;">ParameterT</span> = ParameterType;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #4EB8CA;">template</span> <span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">typename</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #4EB8CA;">using</span> <span style="color: #b9c791;">param_t</span> = <span style="color: #4EB8CA;">typename</span> <span style="color: #4FA8A3;">parameter_type</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">decltype</span><span style="color: #91b9c7;">(</span><span style="color: #4FA8A3;">std</span>::function<span style="color: #4FA8A3;">{</span><span style="color: #4FA8A3;">std</span>::declval<span style="color: #c791aa;">&lt;</span><span style="color: #b9c791;">T</span><span style="color: #c791aa;">&gt;()</span><span style="color: #4FA8A3;">}</span><span style="color: #91b9c7;">)</span><span style="color: #4EB8CA;">&gt;</span>::ParameterT;
+
+<span style="color: #4EB8CA;">template</span><span style="color: #4EB8CA;">&lt;</span><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">&gt;</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">whenMatchesType</span><span style="color: #4EB8CA;">(</span><span style="color: #b9c791;">T</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">using</span> <span style="color: #b9c791;">Parameter</span> = <span style="color: #b9c791;">param_t</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">T</span><span style="color: #91b9c7;">&gt;</span>;
+    <span style="color: #4EB8CA;">static_assert</span><span style="color: #91b9c7;">(</span><span style="color: #4FA8A3;">std</span>::<span style="color: #b9c791;">is_same_v</span><span style="color: #4FA8A3;">&lt;</span>Parameter, <span style="color: #b9c791;">int</span><span style="color: #4FA8A3;">&gt;</span>, <span style="color: #fbaed2;">"Only callables that take int as parameter is allowed"</span><span style="color: #91b9c7;">)</span>;
+<span style="color: #4EB8CA;">}</span>
+
+<span style="color: #b9c791;">int</span> <span style="color: #91b9c7;">main</span><span style="color: #4EB8CA;">()</span> <span style="color: #4EB8CA;">{</span>
+    whenMatchesType<span style="color: #91b9c7;">(</span><span style="color: #4FA8A3;">[](</span><span style="color: #b9c791;">int</span><span style="color: #4FA8A3;">){}</span><span style="color: #91b9c7;">)</span>;
+    <span style="color: #697375;">//</span><span style="color: #697375;">whenMatchesType([](double){});</span>
+<span style="color: #4EB8CA;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

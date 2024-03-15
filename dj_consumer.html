@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Consumer</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Consumer</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6c88cf1">1. Subtopic of</a></li>
+<li><a href="#org7486e47">2. Definition</a></li>
+<li><a href="#org554c3c8">3. Basic Layout</a>
+<ul>
+<li><a href="#orgdf9ef15">3.1. Handler name and message type</a></li>
+</ul>
+</li>
+<li><a href="#org1253339">4. When to use AsyncConsumer and when to use SyncConsumer ?</a></li>
+<li><a href="#org57392bf">5. Closing Consumers</a></li>
+<li><a href="#orgb2175f4">6. Scope</a></li>
+<li><a href="#org376397a">7. Generic Consumers</a>
+<ul>
+<li><a href="#org3b06c20">7.1. WebsocketConsumer</a>
+<ul>
+<li><a href="#org193dfa2">7.1.1. Accept or Deny Connection</a></li>
+</ul>
+</li>
+<li><a href="#org3fe631d">7.2. AsyncWebsocketConsumer</a></li>
+<li><a href="#org4a82eee">7.3. JsonWebsocketConsumer</a></li>
+<li><a href="#orgce9348e">7.4. AsyncJsonWebsocketConsumer</a></li>
+<li><a href="#org5722194">7.5. AsyncHttpConsumer</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6c88cf1" class="outline-2">
+<h2 id="org6c88cf1"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="django_channels.html#ID-2c633b7b-7bb1-422c-8c71-3b2f3d13726a">Django-Channels</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org7486e47" class="outline-2">
+<h2 id="org7486e47"><span class="section-number-2">2.</span> Definition</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A consumer is the basic unit of Channels code. We call it a consumer as it consumes events.
+</p>
+
+<p>
+A consumer is a subclass of either channels.consumer.AsyncConsumer or channels.consumer.SyncConsumer
+</p>
+
+<p>
+Consumer can work with <a href="dj_channel_layers.html#ID-f6620b1d-9065-4951-bf86-fcebb7eb4121">DJ-Channel-Layers</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org554c3c8" class="outline-2">
+<h2 id="org554c3c8"><span class="section-number-2">3.</span> Basic Layout</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Sync Version
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.consumer <span style="color: #4EB8CA;">import</span> SyncConsumer
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">EchoConsumer</span>(SyncConsumer):
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">websocket_connect</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #4EB8CA;">self</span>.send({
+            <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"websocket.accept"</span>,
+        })
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">websocket_receive</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #4EB8CA;">self</span>.send({
+            <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"websocket.send"</span>,
+            <span style="color: #fbaed2;">"text"</span>: event[<span style="color: #fbaed2;">"text"</span>],
+        })
+</pre>
+</div>
+</div>
+<div id="outline-container-orgdf9ef15" class="outline-3">
+<h3 id="orgdf9ef15"><span class="section-number-3">3.1.</span> Handler name and message type</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Consumers are structured around a series of named methods corresponding to the type value of the messages they are going to receive, with any . replaced by _.
+The two handlers above are handling websocket.connect and websocket.receive messages respectively.
+</p>
+
+<p>
+Async Version
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.consumer <span style="color: #4EB8CA;">import</span> AsyncConsumer
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">EchoConsumer</span>(AsyncConsumer):
+
+    <span style="color: #4EB8CA;">async def</span> <span style="color: #91b9c7;">websocket_connect</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #4EB8CA;">await</span> <span style="color: #4EB8CA;">self</span>.send({
+            <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"websocket.accept"</span>,
+        })
+
+    <span style="color: #4EB8CA;">async def</span> <span style="color: #91b9c7;">websocket_receive</span>(<span style="color: #4EB8CA;">self</span>, event):
+        <span style="color: #4EB8CA;">await</span> <span style="color: #4EB8CA;">self</span>.send({
+            <span style="color: #fbaed2;">"type"</span>: <span style="color: #fbaed2;">"websocket.send"</span>,
+            <span style="color: #fbaed2;">"text"</span>: event[<span style="color: #fbaed2;">"text"</span>],
+        })
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1253339" class="outline-2">
+<h2 id="org1253339"><span class="section-number-2">4.</span> When to use AsyncConsumer and when to use SyncConsumer ?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Depend on what codes you will calling in consumer. If call sync code and SyncConsumer is a better choice.
+If really want to use AsyncConsumer with sync code, take a lokk at asgiref.sync.sync<sub>to</sub><sub>async</sub>.
+</p>
+</div>
+</div>
+<div id="outline-container-org57392bf" class="outline-2">
+<h2 id="org57392bf"><span class="section-number-2">5.</span> Closing Consumers</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+When connection is closed, an event (http.disconnect or websocket.disconnect) will send to correspond consumer.
+Once you finished doing your post-disconnect processing, you need to raise channels.exceptions.StopConsumer
+to halt the ASGI application cleanly and let the server clean it up. Otherwise the server will kill application and
+raise a warning onece reach close timeout.
+</p>
+
+<p>
+The generic consumers below do this for you, so this is only needed if you are writing your own consumer class based on AsyncConsumer or SyncConsumer
+</p>
+
+<p>
+Background coroutines must be shutdown when the connection is finished otherwise leak.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2175f4" class="outline-2">
+<h2 id="orgb2175f4"><span class="section-number-2">6.</span> Scope</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The scope is a set of details about a single incoming connection.
+</p>
+
+<p>
+Consumers receive the connection&rsquo;s scope when they are called. Access by self.scope in side the consumer&rsquo;s methods.
+</p>
+
+
+<ul class="org-ul">
+<li>scope[&ldquo;path&rdquo;], the path on the request. (HTTP and WebSocket)</li>
+<li>scope[&ldquo;headers&rdquo;], raw name/value header pairs from the request (HTTP and WebSocket)</li>
+<li>scope[&ldquo;method&rdquo;], the method name used for the request. (HTTP)</li>
+</ul>
+
+<p>
+More details on <a href="https://github.com/django/asgiref/blob/master/specs/www.rst">the Web ASGI spec</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org376397a" class="outline-2">
+<h2 id="org376397a"><span class="section-number-2">7.</span> Generic Consumers</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Create your own consumers from generic consumer can reuse
+common funcionality provide by generic consumer.
+</p>
+</div>
+<div id="outline-container-org3b06c20" class="outline-3">
+<h3 id="org3b06c20"><span class="section-number-3">7.1.</span> WebsocketConsumer</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.generic.websocket <span style="color: #4EB8CA;">import</span> WebsocketConsumer
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">MyConsumer</span>(WebsocketConsumer):
+    <span style="color: #47ba99;">groups</span> <span style="color: #91b9c7;">=</span> [<span style="color: #fbaed2;">"broadcast"</span>]
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">connect</span>(<span style="color: #4EB8CA;">self</span>):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Called on connection.</span>
+        <span style="color: #697375;"># </span><span style="color: #697375;">To accept the connection call:</span>
+        <span style="color: #4EB8CA;">self</span>.accept()
+        <span style="color: #697375;"># </span><span style="color: #697375;">Or accept the connection and specify a chosen subprotocol.</span>
+        <span style="color: #697375;"># </span><span style="color: #697375;">A list of subprotocols specified by the connecting client</span>
+        <span style="color: #697375;"># </span><span style="color: #697375;">will be available in self.scope['subprotocols']</span>
+        <span style="color: #4EB8CA;">self</span>.accept(<span style="color: #fbaed2;">"subprotocol"</span>)
+        <span style="color: #697375;"># </span><span style="color: #697375;">To reject the connection, call:</span>
+        <span style="color: #4EB8CA;">self</span>.close()
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">receive</span>(<span style="color: #4EB8CA;">self</span>, text_data<span style="color: #91b9c7;">=</span><span style="color: #4FA8A3;">None</span>, bytes_data<span style="color: #91b9c7;">=</span><span style="color: #4FA8A3;">None</span>):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Called with either text_data or bytes_data for each frame</span>
+        <span style="color: #697375;"># </span><span style="color: #697375;">You can call:</span>
+        <span style="color: #4EB8CA;">self</span>.send(text_data<span style="color: #91b9c7;">=</span><span style="color: #fbaed2;">"Hello world!"</span>)
+        <span style="color: #697375;"># </span><span style="color: #697375;">Or, to send a binary frame:</span>
+        <span style="color: #4EB8CA;">self</span>.send(bytes_data<span style="color: #91b9c7;">=</span><span style="color: #fbaed2;">"Hello world!"</span>)
+        <span style="color: #697375;"># </span><span style="color: #697375;">Want to force-close the connection? Call:</span>
+        <span style="color: #4EB8CA;">self</span>.close()
+        <span style="color: #697375;"># </span><span style="color: #697375;">Or add a custom WebSocket error code!</span>
+        <span style="color: #4EB8CA;">self</span>.close(code<span style="color: #91b9c7;">=</span><span style="color: #ef6787;">4123</span>)
+
+    <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">disconnect</span>(<span style="color: #4EB8CA;">self</span>, close_code):
+        <span style="color: #697375;"># </span><span style="color: #697375;">Called when the socket closes</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org193dfa2" class="outline-4">
+<h4 id="org193dfa2"><span class="section-number-4">7.1.1.</span> Accept or Deny Connection</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+Able to accept connection via raise channels.exceptions.AcceptConnection from connect method
+Able to deny connection via raise channels.exceptions.DenyConnection from connect method.
+</p>
+
+<p>
+if you want reusable auth or rate-limiting.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3fe631d" class="outline-3">
+<h3 id="org3fe631d"><span class="section-number-3">7.2.</span> AsyncWebsocketConsumer</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Similar to WebsocketConsumer
+</p>
+</div>
+</div>
+<div id="outline-container-org4a82eee" class="outline-3">
+<h3 id="org4a82eee"><span class="section-number-3">7.3.</span> JsonWebsocketConsumer</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+Available as channels.generic.websocket.JsonWebsocketConsumer, this works like WebsocketConsumer,
+except it will auto-encode and decode to JSON sent as WebSocket text frames.
+</p>
+
+<p>
+The only API differences are:
+</p>
+
+<ul class="org-ul">
+<li>Your receive<sub>json</sub> method must take a single argument, content, that is the decoded JSON object.</li>
+<li>self.send<sub>json</sub> takes only a single argument, content, which will be encoded to JSON for you.</li>
+</ul>
+
+<p>
+If you want to customise the JSON encoding and decoding, you can override the encode<sub>json</sub> and decode<sub>json</sub> classmethods.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce9348e" class="outline-3">
+<h3 id="orgce9348e"><span class="section-number-3">7.4.</span> AsyncJsonWebsocketConsumer</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Similar to JsonWebsocketConsumer
+</p>
+</div>
+</div>
+<div id="outline-container-org5722194" class="outline-3">
+<h3 id="org5722194"><span class="section-number-3">7.5.</span> AsyncHttpConsumer</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+Available as channels.generic.http.AsyncHttpConsumer, this offers basic primitives to implement a HTTP endpoint:
+</p>
+
+<p>
+Simulate an http endpoint via websocket.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4EB8CA;">from</span> channels.generic.http <span style="color: #4EB8CA;">import</span> AsyncHttpConsumer
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">BasicHttpConsumer</span>(AsyncHttpConsumer):
+    <span style="color: #4EB8CA;">async def</span> <span style="color: #91b9c7;">handle</span>(<span style="color: #4EB8CA;">self</span>, body):
+        <span style="color: #4EB8CA;">await</span> asyncio.sleep(<span style="color: #ef6787;">10</span>)
+        <span style="color: #4EB8CA;">await</span> <span style="color: #4EB8CA;">self</span>.send_response(<span style="color: #ef6787;">200</span>, b<span style="color: #fbaed2;">"Your response bytes"</span>, headers<span style="color: #91b9c7;">=</span>[
+            (b<span style="color: #fbaed2;">"Content-Type"</span>, b<span style="color: #fbaed2;">"text/plain"</span>),
+        ])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:08</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design Pattern</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Design Pattern</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5b27665">1. Important Concept in C++ Related to Patterns</a>
+<ul>
+<li><a href="#org3928636">1.1. Curiously Recurring Template Pattern</a></li>
+<li><a href="#orgd6e9294">1.2. Mixin Inheritance</a></li>
+<li><a href="#orgfa4aad2">1.3. Properties</a></li>
+<li><a href="#org9916692">1.4. The SOLID Design Principles</a></li>
+</ul>
+</li>
+<li><a href="#org4f34bdd">2. Categories of Patterns</a>
+<ul>
+<li><a href="#org176e163">2.1. Creational Patterns</a>
+<ul>
+<li><a href="#orgadab393">2.1.1. Builder</a></li>
+<li><a href="#org8c8ede0">2.1.2. Factories</a></li>
+<li><a href="#org86170a4">2.1.3. Protype</a></li>
+<li><a href="#org6bb983e">2.1.4. Singleton</a></li>
+</ul>
+</li>
+<li><a href="#org196d3e5">2.2. Structural Patterns</a>
+<ul>
+<li><a href="#orgba9c565">2.2.1. Adapter</a></li>
+<li><a href="#org2f776e7">2.2.2. Bridge</a></li>
+<li><a href="#orgdd22779">2.2.3. Composite</a></li>
+<li><a href="#orgd428c88">2.2.4. Decorator</a></li>
+<li><a href="#org97dc236">2.2.5. Facade</a></li>
+<li><a href="#org66786bd">2.2.6. Proxy</a></li>
+</ul>
+</li>
+<li><a href="#org3e05f6f">2.3. Behavioral Patterns</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b27665" class="outline-2">
+<h2 id="org5b27665"><span class="section-number-2">1.</span> Important Concept in C++ Related to Patterns</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3928636" class="outline-3">
+<h3 id="org3928636"><span class="section-number-3">1.1.</span> Curiously Recurring Template Pattern</h3>
+</div>
+
+<div id="outline-container-orgd6e9294" class="outline-3">
+<h3 id="orgd6e9294"><span class="section-number-3">1.2.</span> Mixin Inheritance</h3>
+</div>
+
+<div id="outline-container-orgfa4aad2" class="outline-3">
+<h3 id="orgfa4aad2"><span class="section-number-3">1.3.</span> Properties</h3>
+</div>
+
+<div id="outline-container-org9916692" class="outline-3">
+<h3 id="org9916692"><span class="section-number-3">1.4.</span> The SOLID Design Principles</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Single Responsibility Principle</li>
+<li>Open-closed principle</li>
+<li>Liskov substitution principle</li>
+<li>Interface segregation principle</li>
+<li>Dependency inversion principle</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f34bdd" class="outline-2">
+<h2 id="org4f34bdd"><span class="section-number-2">2.</span> Categories of Patterns</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org176e163" class="outline-3">
+<h3 id="org176e163"><span class="section-number-3">2.1.</span> Creational Patterns</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgadab393" class="outline-4">
+<h4 id="orgadab393"><span class="section-number-4">2.1.1.</span> Builder</h4>
+</div>
+
+<div id="outline-container-org8c8ede0" class="outline-4">
+<h4 id="org8c8ede0"><span class="section-number-4">2.1.2.</span> Factories</h4>
+</div>
+
+<div id="outline-container-org86170a4" class="outline-4">
+<h4 id="org86170a4"><span class="section-number-4">2.1.3.</span> Protype</h4>
+</div>
+
+<div id="outline-container-org6bb983e" class="outline-4">
+<h4 id="org6bb983e"><span class="section-number-4">2.1.4.</span> Singleton</h4>
+</div>
+</div>
+<div id="outline-container-org196d3e5" class="outline-3">
+<h3 id="org196d3e5"><span class="section-number-3">2.2.</span> Structural Patterns</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Patterns of this category is all about to reach goal by modify structure of Class or a collection of classes and SOLID Principles remain hold.
+</p>
+
+<p>
+Our goals may some of following:
+</p>
+
+<ul class="org-ul">
+<li>Ehance types (Decorator, Proxy)</li>
+<li>State Mixing (Facade)</li>
+<li>Presentation (Adapter)</li>
+<li>Interact (Bridge)</li>
+<li>Deal with Collection of values (Composite)</li>
+</ul>
+</div>
+<div id="outline-container-orgba9c565" class="outline-4">
+<h4 id="orgba9c565"><span class="section-number-4">2.2.1.</span> Adapter</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Change the structure of informations or datas from outside view of classes. In short, Adapter is a structure that help transform type signature of one interface into another type.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Point</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>;
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Line</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Point</span><span style="color: #91b9c7;">&gt;</span> <span style="color: #91b9c7;">getPoints</span><span style="color: #91b9c7;">()</span> <span style="color: #4EB8CA;">const</span>;
+<span style="color: #4EB8CA;">private</span>:
+    <span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Point</span><span style="color: #91b9c7;">&gt;</span> <span style="color: #47ba99;">points</span>;
+<span style="color: #4EB8CA;">}</span>;
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">Rectangle</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Line</span><span style="color: #91b9c7;">&gt;</span> <span style="color: #91b9c7;">getLines</span><span style="color: #91b9c7;">()</span> <span style="color: #4EB8CA;">const</span>;
+<span style="color: #4EB8CA;">private</span>:
+    <span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Line</span><span style="color: #91b9c7;">&gt;</span> <span style="color: #47ba99;">lines</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">Interface to draw a shape on screen.</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">drawing</span><span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Point</span><span style="color: #91b9c7;">&gt;</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #47ba99;">start</span>, <span style="color: #4FA8A3;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Point</span><span style="color: #91b9c7;">&gt;</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #47ba99;">end</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span> <span style="color: #91b9c7;">...</span> <span style="color: #4EB8CA;">}</span>
+
+<span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">LineToPointAdapter</span> <span style="color: #4EB8CA;">{</span>
+<span style="color: #4EB8CA;">public</span>:
+    <span style="color: #4EB8CA;">using</span> <span style="color: #b9c791;">Points</span> = <span style="color: #b9c791;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Point</span><span style="color: #91b9c7;">&gt;</span>;
+
+    <span style="color: #91b9c7;">LineToPointAdapter</span><span style="color: #91b9c7;">(</span><span style="color: #b9c791;">Line</span> &amp;<span style="color: #47ba99;">line</span><span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+        points = line.getPoints<span style="color: #4FA8A3;">()</span>;
+    <span style="color: #91b9c7;">}</span>
+
+    <span style="color: #4EB8CA;">virtual</span> <span style="color: #4FA8A3;">Points</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #91b9c7;">begin</span><span style="color: #91b9c7;">()</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #4EB8CA;">return</span> points.begin<span style="color: #4FA8A3;">()</span>;
+    <span style="color: #91b9c7;">}</span>
+
+    <span style="color: #4EB8CA;">virtual</span> <span style="color: #4FA8A3;">Points</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #91b9c7;">end</span><span style="color: #91b9c7;">()</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #4EB8CA;">return</span> points.end<span style="color: #4FA8A3;">()</span>;
+    <span style="color: #91b9c7;">}</span>
+
+<span style="color: #4EB8CA;">private</span>:
+    <span style="color: #b9c791;">Points</span> <span style="color: #47ba99;">points</span>;
+<span style="color: #4EB8CA;">}</span>;
+
+<span style="color: #697375;">// </span><span style="color: #697375;">With adapter we are able to</span>
+<span style="color: #b9c791;">void</span> <span style="color: #91b9c7;">drawingLine</span><span style="color: #4EB8CA;">(</span><span style="color: #4FA8A3;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Line</span><span style="color: #91b9c7;">&gt;</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #47ba99;">start</span>, <span style="color: #4FA8A3;">vector</span><span style="color: #91b9c7;">&lt;</span><span style="color: #b9c791;">Line</span><span style="color: #91b9c7;">&gt;</span>::<span style="color: #b9c791;">iterator</span> <span style="color: #47ba99;">end</span><span style="color: #4EB8CA;">)</span> <span style="color: #4EB8CA;">{</span>
+    <span style="color: #4EB8CA;">for</span> <span style="color: #91b9c7;">(</span><span style="color: #4EB8CA;">auto</span>&amp; <span style="color: #47ba99;">i</span> = start; i &lt; end; ++i<span style="color: #91b9c7;">)</span> <span style="color: #91b9c7;">{</span>
+        <span style="color: #b9c791;">LineToPointAdapter</span> <span style="color: #47ba99;">ltp</span> <span style="color: #4FA8A3;">{</span> i <span style="color: #4FA8A3;">}</span>;
+        drawing<span style="color: #4FA8A3;">(</span>ltp.begin<span style="color: #c791aa;">()</span>, ltp.end<span style="color: #c791aa;">()</span><span style="color: #4FA8A3;">)</span>;
+    <span style="color: #91b9c7;">}</span>
+<span style="color: #4EB8CA;">}</span>
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2f776e7" class="outline-4">
+<h4 id="org2f776e7"><span class="section-number-4">2.2.2.</span> Bridge</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Provide a path so you are able to transfer some of your works to another class (or next layer or implementation class) to do what you want.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd22779" class="outline-4">
+<h4 id="orgdd22779"><span class="section-number-4">2.2.3.</span> Composite</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Give single objects and groups of objects an identical itnerface.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd428c88" class="outline-4">
+<h4 id="orgd428c88"><span class="section-number-4">2.2.4.</span> Decorator</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+allows us to enhance existing types without either modifying the original types (Open-Closed Principle) or causing an explosion of the number of derived types.
+</p>
+</div>
+</div>
+<div id="outline-container-org97dc236" class="outline-4">
+<h4 id="org97dc236"><span class="section-number-4">2.2.5.</span> Facade</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+Hide tons of complicated things under a simple interface.
+</p>
+</div>
+</div>
+<div id="outline-container-org66786bd" class="outline-4">
+<h4 id="org66786bd"><span class="section-number-4">2.2.6.</span> Proxy</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+Similar to <i><b>Decorator</b></i> but the main goal of <i><b>Proxy</b></i> is to preserve exactly (or as closely as possible) the API that is being used while offering certain internal ehancements.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3e05f6f" class="outline-3">
+<h3 id="org3e05f6f"><span class="section-number-3">2.3.</span> Behavioral Patterns</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>

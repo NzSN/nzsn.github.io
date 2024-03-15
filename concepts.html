@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concepts</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Concepts</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9261331">1. Subtopic of</a></li>
+<li><a href="#org1e6d7e6">2. Introduction</a>
+<ul>
+<li><a href="#orgdffb110">2.1. Machine</a></li>
+<li><a href="#orgfb2d778">2.2. Property</a></li>
+<li><a href="#orgcd59bf3">2.3. Operation specification</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9261331" class="outline-2">
+<h2 id="org9261331"><span class="section-number-2">1.</span> Subtopic of</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="devautomator.html#ID-d2f5dd5f-a589-4e22-a859-3c36384beabe">DevAutomator</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org1e6d7e6" class="outline-2">
+<h2 id="org1e6d7e6"><span class="section-number-2">2.</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We need some make some abstraction from objects that the system operate
+with, if not the system may unable to done it&rsquo;s tasks.
+</p>
+</div>
+<div id="outline-container-orgdffb110" class="outline-3">
+<h3 id="orgdffb110"><span class="section-number-3">2.1.</span> Machine</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Machine is the most important abstraction cause it represent the object
+that be tested or objects that do test.
+</p>
+
+<p>
+Let&rsquo;s give a formal definition to Machine. Machine is a triple
+\(<ID, Prop, OP>\), ID means identifier, prop is Properties, OP is operation
+that this machine able to do.
+</p>
+
+<p>
+For example, representation in python layer is :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">     <span style="color: #697375;">###############################################################################</span>
+     <span style="color: #697375;">#                  </span><span style="color: #697375;">BoxMachine, a machine that simulate a box                  #</span>
+     <span style="color: #697375;">###############################################################################</span>
+     <span style="color: #697375;"># </span><span style="color: #697375;">Box Properties</span>
+     <span style="color: #47ba99;">boxProperties</span> <span style="color: #91b9c7;">=</span> [
+         core.Property(<span style="color: #fbaed2;">"contain"</span>, <span style="color: #ef6787;">10</span>)
+     ]
+
+     <span style="color: #47ba99;">boxOpSpec</span> <span style="color: #91b9c7;">=</span> [
+         <span style="color: #697375;"># </span><span style="color: #697375;">Open</span>
+         core.OpSpec(<span style="color: #fbaed2;">"open"</span>, (), <span style="color: #4FA8A3;">None</span>),
+         <span style="color: #697375;"># </span><span style="color: #697375;">Close</span>
+         core.OpSpec(<span style="color: #fbaed2;">"close"</span>, (), <span style="color: #4FA8A3;">None</span>),
+         <span style="color: #697375;"># </span><span style="color: #697375;">Put</span>
+         core.OpSpec(<span style="color: #fbaed2;">"put"</span>, (<span style="color: #fbaed2;">"Candy"</span>, <span style="color: #91b9c7;">str</span>), <span style="color: #4FA8A3;">None</span>),
+         <span style="color: #697375;"># </span><span style="color: #697375;">Get</span>
+         core.OpSpec(<span style="color: #fbaed2;">"get"</span>, (), (<span style="color: #fbaed2;">"Candy"</span>, <span style="color: #91b9c7;">str</span>))
+     ]
+
+
+     <span style="color: #4EB8CA;">class</span> <span style="color: #b9c791;">BoxMachine</span>(core.Machine):
+         <span style="color: #BA667D;">"""</span>
+<span style="color: #BA667D;">         A machine that can open and close, just like a box.</span>
+<span style="color: #BA667D;">         """</span>
+
+         <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">__init__</span>(<span style="color: #4EB8CA;">self</span>) <span style="color: #91b9c7;">-&gt;</span> <span style="color: #4FA8A3;">None</span>:
+             core.Machine.__init__(<span style="color: #4EB8CA;">self</span>, <span style="color: #fbaed2;">"Box"</span>, boxProperties, boxOpSpec)
+
+         <span style="color: #b9c791;">@core.Machine.Operation</span>
+         <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">open</span>(<span style="color: #4EB8CA;">self</span>) <span style="color: #91b9c7;">-&gt;</span> core.Operation:
+             <span style="color: #4EB8CA;">return</span> core.Operation(<span style="color: #fbaed2;">"core"</span>, <span style="color: #fbaed2;">"Box"</span>, core.opTuple(<span style="color: #fbaed2;">"open"</span>, <span style="color: #4FA8A3;">None</span>))
+
+         <span style="color: #b9c791;">@core.Machine.Operation</span>
+         <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">close</span>(<span style="color: #4EB8CA;">self</span>) <span style="color: #91b9c7;">-&gt;</span> core.Operation:
+             <span style="color: #4EB8CA;">return</span> core.Operation(<span style="color: #fbaed2;">"core"</span>, <span style="color: #fbaed2;">"Box"</span>, core.opTuple(<span style="color: #fbaed2;">"close"</span>, <span style="color: #4FA8A3;">None</span>))
+
+         <span style="color: #b9c791;">@core.Machine.Operation</span>
+         <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">put</span>(<span style="color: #4EB8CA;">self</span>, candy: <span style="color: #91b9c7;">str</span>) <span style="color: #91b9c7;">-&gt;</span> core.Operation:
+             <span style="color: #4EB8CA;">return</span> core.Operation(<span style="color: #fbaed2;">"core"</span>, <span style="color: #fbaed2;">"Box"</span>, core.opTuple(<span style="color: #fbaed2;">"put"</span>, candy))
+
+         <span style="color: #b9c791;">@core.Machine.Operation</span>
+         <span style="color: #4EB8CA;">def</span> <span style="color: #91b9c7;">get</span>(<span style="color: #4EB8CA;">self</span>) <span style="color: #91b9c7;">-&gt;</span> core.Operation:
+             <span style="color: #4EB8CA;">return</span> core.Operation(<span style="color: #fbaed2;">"core"</span>, <span style="color: #fbaed2;">"Box"</span>, core.opTuple(<span style="color: #fbaed2;">"get"</span>, <span style="color: #4FA8A3;">None</span>))
+
+</pre>
+</div>
+
+<p>
+Of course, systemt unable to directly perform this python script,
+need to compile first then performed in DA layer.
+</p>
+
+<p>
+A Machine is an abstraction of some aspects of real machines. It has properties and
+operations. With this abstraction we are able to operate real machines to do some
+actions to affect real world.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb2d778" class="outline-3">
+<h3 id="orgfb2d778"><span class="section-number-3">2.2.</span> Property</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Property is apart of machine, it represent features of a machine and it also provide
+details about a feature, such as Whant things that a box machine able hold and how
+many of things can be contained, with Property we are able to shape an abstraction
+machine like a real machine.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd59bf3" class="outline-3">
+<h3 id="orgcd59bf3"><span class="section-number-3">2.3.</span> Operation specification</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Operation specification specify what action that a machine able to perform. Operation
+may affect the property of a machine or properties may affect some operations, in
+another words, operation may do read or write to some properties.
+</p>
+
+<p>
+An operation is essentially a message in DA layer, it&rsquo;s a message that from &rsquo;core&rsquo; to
+&rsquo;real machines&rsquo;.
+</p>
+
+<p>
+User able to define more concrete operation by exten class &rsquo;Operation&rsquo;, such as
+Config, Query.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:06</p>
+</div>
+</body>
+</html>

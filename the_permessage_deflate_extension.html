@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-15 Fri 16:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Permessage-deflate Extension</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">The Permessage-deflate Extension</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8a2ae99">1. Introduction</a></li>
+<li><a href="#orgafa2977">2. Terminology</a></li>
+<li><a href="#org10e3714">3. Properties</a>
+<ul>
+<li><a href="#org0b3c326">3.1. PMCE Name: &ldquo;permessage-deflate&rdquo;</a></li>
+<li><a href="#org17e743b">3.2. Extension Parameters:</a>
+<ul>
+<li><a href="#orgf911295">3.2.1. Parameters used to manage per-connection resource usage</a></li>
+<li><a href="#orgcb9aa90">3.2.2. Server<sub>No</sub><sub>Context</sub><sub>Takeover</sub></a></li>
+<li><a href="#org2b78600">3.2.3. Client<sub>No</sub><sub>Context</sub><sub>Takeover</sub></a></li>
+<li><a href="#org7fcea39">3.2.4. Server<sub>Max</sub><sub>Window</sub><sub>Bits</sub></a></li>
+<li><a href="#org2a2a195">3.2.5. Client<sub>Max</sub><sub>Window</sub><sub>Bits</sub></a></li>
+</ul>
+</li>
+<li><a href="#org5ac6b94">3.3. Message Payload Transformation</a>
+<ul>
+<li><a href="#org2e7642d">3.3.1. Compression</a></li>
+<li><a href="#org7ec42f9">3.3.2. Decompression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a2ae99" class="outline-2">
+<h2 id="org8a2ae99"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Compresses with DEFLATE [RFC1951] algorithm and use Byte boundary alignment method [RFC1979].
+</p>
+</div>
+</div>
+<div id="outline-container-orgafa2977" class="outline-2">
+<h2 id="orgafa2977"><span class="section-number-2">2.</span> Terminology</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>&ldquo;LZ77 sliding window&rdquo; [LZ77]: used in this section means the</li>
+</ul>
+<p>
+buffer used by the DEFLATE algorithm to store recently processed
+input. The DEFLATE compression algorithm searches the buffer for a
+match with the following input.
+</p>
+
+<ul class="org-ul">
+<li>&ldquo;use context takeover&rdquo;: used in this section means that the</li>
+</ul>
+<p>
+same LZ77 sliding window used by the endpoint to build frames of the
+previous sent message is reused to build frames of the next message
+to be sent.
+</p>
+</div>
+</div>
+<div id="outline-container-org10e3714" class="outline-2">
+<h2 id="org10e3714"><span class="section-number-2">3.</span> Properties</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org0b3c326" class="outline-3">
+<h3 id="org0b3c326"><span class="section-number-3">3.1.</span> PMCE Name: &ldquo;permessage-deflate&rdquo;</h3>
+</div>
+
+<div id="outline-container-org17e743b" class="outline-3">
+<h3 id="org17e743b"><span class="section-number-3">3.2.</span> Extension Parameters:</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-orgf911295" class="outline-4">
+<h4 id="orgf911295"><span class="section-number-4">3.2.1.</span> Parameters used to manage per-connection resource usage</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>&ldquo;server<sub>no</sub><sub>context</sub><sub>takeover</sub>&rdquo;</li>
+<li>&ldquo;client<sub>no</sub><sub>context</sub><sub>takeover</sub>&rdquo;</li>
+<li>&ldquo;server<sub>max</sub><sub>window</sub><sub>bits</sub>&rdquo;</li>
+<li>&ldquo;client<sub>max</sub><sub>window</sub><sub>bits</sub>&rdquo;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcb9aa90" class="outline-4">
+<h4 id="orgcb9aa90"><span class="section-number-4">3.2.2.</span> Server<sub>No</sub><sub>Context</sub><sub>Takeover</sub></h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Request/Notify By: Client, Server
+</p>
+
+<p>
+This parameter request/configure that server&rsquo;s compressor compress data with no context takeover.
+</p>
+
+<p>
+This parameter may request by client from negotiation offer or notify
+by server from negotiation response.
+</p>
+
+<p>
+Server should had better to support this request by client.
+</p>
+
+<p>
+Client may use no context takeover even if this parameter is included in agreed
+parameters. If this parameter is not included in agreed parameters, client must
+do context takeover.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org276c263"></a>Client -&gt; Server<br />
+<div class="outline-text-5" id="text-3-2-2-1">
+<p>
+In this situation, Server may either ignore the parameter or use the parameter by
+including such parameter in the corresponding response to the offer.
+</p>
+
+<p>
+It is RECOMMENDED that a server supports this parameter.
+</p>
+</div>
+</li>
+<li><a id="org82b7949"></a>Server -&gt; Client<br />
+<div class="outline-text-5" id="text-3-2-2-2">
+<p>
+This parameter may be informed to client by Server.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org2b78600" class="outline-4">
+<h4 id="org2b78600"><span class="section-number-4">3.2.3.</span> Client<sub>No</sub><sub>Context</sub><sub>Takeover</sub></h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+Notify By: Client
+</p>
+
+<p>
+This parameter&rsquo;s functionality is similar with &lt;server<sub>no</sub><sub>context</sub><sub>takeover</sub>&gt;.
+</p>
+
+<p>
+Except that this parameter only can informed by Client nor Server.
+</p>
+
+<p>
+Except that event if server not response with this parameter the client will
+still use &lt;client<sub>no</sub><sub>context</sub><sub>takeover</sub>&gt;.
+</p>
+
+<p>
+Note: Server may decompress each new message with an empty LZ77 sliding window even
+      if this parameter is included in agreed parameters.
+</p>
+
+<p>
+If this parameter is not included in agreed parameters, then server must do
+context takeover.
+</p>
+</div>
+</div>
+<div id="outline-container-org7fcea39" class="outline-4">
+<h4 id="org7fcea39"><span class="section-number-4">3.2.4.</span> Server<sub>Max</sub><sub>Window</sub><sub>Bits</sub></h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+Request/Notify By: Client, Server
+</p>
+
+<p>
+This parameter used to limit LZ77 sliding window size that the server will use to
+compress messages.
+</p>
+
+<p>
+With this parameter client can reduce the memory needed for the LZ77 sliding window.
+</p>
+
+<p>
+A Server declines an extension negotiation offer with this parameter if the server
+doesn&rsquo;t support it.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgcea6e09"></a>Client -&gt; Server<br />
+<div class="outline-text-5" id="text-3-2-4-1">
+<p>
+Server will declines such offer contain this parameter if the server doesn&rsquo;t support
+it.
+</p>
+</div>
+</li>
+<li><a id="org9547bb5"></a>Server -&gt; Client<br />
+<div class="outline-text-5" id="text-3-2-4-2">
+<p>
+This parameter may be informed by Server to client.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org2a2a195" class="outline-4">
+<h4 id="org2a2a195"><span class="section-number-4">3.2.5.</span> Client<sub>Max</sub><sub>Window</sub><sub>Bits</sub></h4>
+<div class="outline-text-4" id="text-3-2-5">
+<p>
+Notify By: Client
+This parameter used to limit LZ77 sliding window size that the client will use to compress messages.
+</p>
+
+<p>
+With this parameter client informs the peer server that it will use a LZ77 sliding
+window size that not greater thant the size event if the peer server not accept
+it.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5ac6b94" class="outline-3">
+<h3 id="org5ac6b94"><span class="section-number-3">3.3.</span> Message Payload Transformation</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-org2e7642d" class="outline-4">
+<h4 id="org2e7642d"><span class="section-number-4">3.3.1.</span> Compression</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>Compress all the octets of the payload of the message using DEFLATE.</li>
+<li>Do byte boundary alignment.</li>
+<li>Remove 4 octets from the tail end.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7ec42f9" class="outline-4">
+<h4 id="org7ec42f9"><span class="section-number-4">3.3.2.</span> Decompression</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>Append 4 octets of 0x00 0x00 0xff 0xff to the tail end of the payload of the
+message.</li>
+<li>Decompress the resulting data using DEFLATE.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2024-03-15 Fri 16:07</p>
+</div>
+</body>
+</html>
