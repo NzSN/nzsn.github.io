@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8228"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="Product_Concepts.svg">
+  <defs
+     id="defs8222" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="282.81072"
+     inkscape:cy="229.79664"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1941"
+     inkscape:window-height="1097"
+     inkscape:window-x="1593"
+     inkscape:window-y="316"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid8230" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata8225">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8232"
+       width="30.457848"
+       height="13.844476"
+       x="39.656734"
+       y="12.819034" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.24430227px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10610755"
+       x="42.029785"
+       y="21.525118"
+       id="text8238"><tspan
+         sodipodi:role="line"
+         id="tspan8236"
+         x="42.029785"
+         y="21.525118"
+         style="stroke-width:0.10610755">缺少功能测试</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8255"
+       width="24.920057"
+       height="12.460029"
+       x="74.960152"
+       y="14.301379" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.71183872px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.06779597"
+       x="77.004112"
+       y="21.968302"
+       id="text8259"><tspan
+         sodipodi:role="line"
+         id="tspan8257"
+         x="77.004112"
+         y="21.968302"
+         style="stroke-width:0.06779597">提供功能测试平台</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 70.114585,20.433502 h 4.845566"
+       id="path8261"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#e80000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8255-1"
+       width="24.920057"
+       height="12.460029"
+       x="58.346779"
+       y="33.585751" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.65571618px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.06639291"
+       x="59.8638"
+       y="40.933826"
+       id="text8282"><tspan
+         sodipodi:role="line"
+         id="tspan8280"
+         x="59.8638"
+         y="40.933826"
+         style="stroke-width:0.06639291">大量功能测试用例</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#e80000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8284"
+       width="33.226746"
+       height="12.460029"
+       x="89.496857"
+       y="33.585751" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.58723474px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.06468086"
+       x="92.627213"
+       y="41.071461"
+       id="text8288"><tspan
+         sodipodi:role="line"
+         id="tspan8286"
+         x="92.627213"
+         y="41.071461"
+         style="stroke-width:0.06468086">测试信息需要易于共享</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 88.80463,26.663512 v 3.46112 H 70.114585 v 3.46112"
+       id="path8290"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 88.80463,30.124632 H 105.418 v 3.46112"
+       id="path8292"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8255-1-2"
+       width="24.920057"
+       height="12.460029"
+       x="108.87912"
+       y="14.203479" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.56808543px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.06420214"
+       x="110.07697"
+       y="19.852808"
+       id="text8318"><tspan
+         sodipodi:role="line"
+         x="110.07697"
+         y="19.852808"
+         style="stroke-width:0.06420214"
+         id="tspan8885">测试结果可能需要在</tspan><tspan
+         sodipodi:role="line"
+         x="110.07697"
+         y="23.371691"
+         style="stroke-width:0.06420214"
+         id="tspan8889">测试后频繁访问</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 99.880208,19.741272 h 8.998912"
+       id="path8320"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8322"
+       width="24.920057"
+       height="8.99891"
+       x="58.346779"
+       y="49.506901" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.240695px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.05601738"
+       x="59.694786"
+       y="53.270924"
+       id="text8326"><tspan
+         sodipodi:role="line"
+         id="tspan8324"
+         x="59.694786"
+         y="53.270924"
+         style="stroke-width:0.05601738">测试用例可以单独存取</tspan><tspan
+         sodipodi:role="line"
+         x="59.694786"
+         y="56.341206"
+         style="stroke-width:0.05601738"
+         id="tspan8328">且可以大量存储</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 70.114585,46.045782 v 3.46111"
+       id="path8873"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8875"
+       width="26.304504"
+       height="8.99891"
+       x="92.95797"
+       y="49.506901" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.57614779px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0644037"
+       x="97.581818"
+       y="53.041462"
+       id="text8879"><tspan
+         sodipodi:role="line"
+         id="tspan8877"
+         x="97.581818"
+         y="53.041462"
+         style="stroke-width:0.0644037">系统需提供</tspan><tspan
+         sodipodi:role="line"
+         x="97.581818"
+         y="56.571384"
+         style="stroke-width:0.0644037"
+         id="tspan8881">Web访问方式</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 106.11022,46.045782 v 3.46111"
+       id="path8883"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8891"
+       width="30.457848"
+       height="12.460029"
+       x="128.2614"
+       y="33.585751" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.55594349px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.08889859"
+       x="131.58521"
+       y="38.847065"
+       id="text8895"><tspan
+         sodipodi:role="line"
+         id="tspan8893"
+         x="131.58521"
+         y="38.847065"
+         style="stroke-width:0.08889859">保存测试记录以</tspan><tspan
+         sodipodi:role="line"
+         x="131.58521"
+         y="43.719547"
+         style="stroke-width:0.08889859"
+         id="tspan8897">及产生的LOG</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 119.9547,26.663512 v 4.15334 h 22.15116 v 2.7689"
+       id="path8899"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.16268682;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8901"
+       width="30.457848"
+       height="40.148979"
+       x="128.2614"
+       y="50.199116" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 128.26138,54.352462 c 30.45785,0 30.45785,0 30.45785,0"
+       id="path8903"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.73278093px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.09331952"
+       x="139.98264"
+       y="53.609119"
+       id="text8907"><tspan
+         sodipodi:role="line"
+         id="tspan8905"
+         x="139.98264"
+         y="53.609119"
+         style="stroke-width:0.09331952">产品</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8909"
+       width="27.688951"
+       height="6.9222379"
+       x="129.64584"
+       y="55.736912" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.39331651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.08483291"
+       x="136.61145"
+       y="60.67487"
+       id="text8913"><tspan
+         sodipodi:role="line"
+         id="tspan8911"
+         x="136.61145"
+         y="60.67487"
+         style="stroke-width:0.08483291">Web访问</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8915"
+       width="27.688951"
+       height="6.9222379"
+       x="129.64584"
+       y="64.043594" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.12305975px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10307649"
+       x="133.55643"
+       y="68.970718"
+       id="text8921"><tspan
+         sodipodi:role="line"
+         id="tspan8919"
+         x="133.55643"
+         y="68.970718"
+         style="stroke-width:0.10307649">用例数据库</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 68.730137,58.505802 v 8.30669 h 60.915693"
+       id="path8923"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 104.72578,58.505802 v 2.7689 h 24.92005"
+       id="path8925"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8927"
+       width="27.688951"
+       height="8.3066864"
+       x="129.64584"
+       y="72.350281" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.2595067px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10648767"
+       x="133.2655"
+       y="78.202591"
+       id="text8931"><tspan
+         sodipodi:role="line"
+         id="tspan8929"
+         x="133.2655"
+         y="78.202591"
+         style="stroke-width:0.10648767">测试数据库</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 158.71923,39.123542 h 4.15335 v 37.38008 h -5.5378"
+       id="path8933"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15697674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8954"
+       width="27.688951"
+       height="6.9222379"
+       x="129.64584"
+       y="82.041412" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.9202106px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.09800526"
+       x="133.31178"
+       y="86.518982"
+       id="text8958"><tspan
+         sodipodi:role="line"
+         id="tspan8956"
+         x="133.31178"
+         y="86.518982"
+         style="stroke-width:0.09800526">用例解释器</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.13844477px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 68.730137,66.812492 v 17.99782 h 60.915693"
+       id="path8960"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8962"
+       width="27.78125"
+       height="13.229166"
+       x="25.135416"
+       y="105.17708" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.3901453px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10975364"
+       x="27.72357"
+       y="110.55518"
+       id="text8966"><tspan
+         sodipodi:role="line"
+         id="tspan8964"
+         x="27.72357"
+         y="110.55518"
+         style="stroke-width:0.10975364">用例数据库</tspan><tspan
+         sodipodi:role="line"
+         x="27.72357"
+         y="116.57071"
+         style="stroke-width:0.10975364"
+         id="tspan8982"> （TCDB）</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 38.364583,118.40624 v 17.19792"
+       id="path8968"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.69473684;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8970"
+       width="58.208328"
+       height="29.104164"
+       x="55.5625"
+       y="125.02082" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="58.208332"
+       y="128.98958"
+       id="text8974"><tspan
+         sodipodi:role="line"
+         id="tspan8972"
+         x="58.208332"
+         y="132.87398"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="58.472916"
+       y="129.91562"
+       id="text8980"><tspan
+         sodipodi:role="line"
+         x="58.472916"
+         y="129.91562"
+         style="stroke-width:0.26458332"
+         id="tspan8986">TCDB应该可以建立在多种</tspan><tspan
+         sodipodi:role="line"
+         x="58.472916"
+         y="135.93138"
+         style="stroke-width:0.26458332"
+         id="tspan8990">抽象上。</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8992"
+       width="52.916664"
+       height="10.583333"
+       x="58.208332"
+       y="139.57291" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="59.53125"
+       y="147.51041"
+       id="text8996"><tspan
+         sodipodi:role="line"
+         id="tspan8994"
+         x="59.53125"
+         y="147.51041"
+         style="stroke-width:0.26458332">至少支持Git, Local file</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 38.364583,135.60416 H 55.562499"
+       id="path8998"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9000"
+       width="58.208332"
+       height="31.75"
+       x="55.5625"
+       y="159.41666" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 38.364583,135.60416 v 37.04166 h 17.197916"
+       id="path9002"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="58.208332"
+       y="164.70833"
+       id="text9006"><tspan
+         sodipodi:role="line"
+         id="tspan9004"
+         x="58.208332"
+         y="164.70833"
+         style="stroke-width:0.26458332">TC应该可以被分类，这样可</tspan><tspan
+         sodipodi:role="line"
+         x="58.208332"
+         y="170.72409"
+         style="stroke-width:0.26458332"
+         id="tspan9010">以作更细致的测试。</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9014"
+       width="52.916664"
+       height="11.90625"
+       x="58.208332"
+       y="175.29166" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="60.060413"
+       y="179.78957"
+       id="text9018"><tspan
+         sodipodi:role="line"
+         id="tspan9016"
+         x="60.060413"
+         y="179.78957"
+         style="stroke-width:0.26458332">至少应该可以创建10个以</tspan><tspan
+         sodipodi:role="line"
+         x="60.060413"
+         y="185.80533"
+         style="stroke-width:0.26458332"
+         id="tspan9020">上的分组</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.31396094;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9022"
+       width="60.854172"
+       height="13.229171"
+       x="124.35416"
+       y="132.95833" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.98227429px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23999241"
+       x="126.33023"
+       y="140.2063"
+       id="text9026"><tspan
+         sodipodi:role="line"
+         id="tspan9024"
+         x="126.33023"
+         y="140.2063"
+         style="stroke-width:0.23999241">TCDB 支持Git， 文件系统。。。</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 113.77083,138.24999 h 10.58334"
+       id="path9028"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25021735;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9030"
+       width="42.333347"
+       height="15.875"
+       x="124.35416"
+       y="167.35416" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="129.64583"
+       y="177.93748"
+       id="text9034"><tspan
+         sodipodi:role="line"
+         id="tspan9032"
+         x="129.64583"
+         y="177.93748"
+         style="stroke-width:0.26458332">TCDB分组功能</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 113.77083,175.29166 h 10.58334"
+       id="path9036"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9038"
+       width="37.041668"
+       height="13.229166"
+       x="5.2916665"
+       y="230.85416" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.79428434px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.34919351"
+       x="12.033041"
+       y="239.55058"
+       id="text9042"><tspan
+         sodipodi:role="line"
+         id="tspan9040"
+         x="12.033041"
+         y="239.55058"
+         style="stroke-width:0.34919351">DevAuto</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 42.333333,237.46874 H 136.26041"
+       id="path9044"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9046"
+       width="34.395832"
+       height="10.583333"
+       x="47.625"
+       y="201.74998" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.73418593px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.22504133"
+       x="50.837227"
+       y="208.44063"
+       id="text9050"><tspan
+         sodipodi:role="line"
+         id="tspan9048"
+         x="50.837227"
+         y="208.44063"
+         style="stroke-width:0.22504133">As Web-Service</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 64.822916,212.33332 v 25.13542"
+       id="path9052"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 64.822916,217.62499 H 47.624999"
+       id="path9054"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="46.302082"
+       y="216.30208"
+       id="text9058"><tspan
+         sodipodi:role="line"
+         id="tspan9056"
+         x="46.302082"
+         y="220.18648"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.96575844px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.11846676"
+       x="34.631935"
+       y="218.12149"
+       id="text9062"><tspan
+         sodipodi:role="line"
+         id="tspan9060"
+         x="34.631935"
+         y="218.12149"
+         style="stroke-width:0.11846676">Query Infors</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 64.822916,220.27082 H 82.020832"
+       id="path9064"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.14211178px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12909472"
+       x="82.741844"
+       y="220.94698"
+       id="text9068"><tspan
+         sodipodi:role="line"
+         id="tspan9066"
+         x="82.741844"
+         y="220.94698"
+         style="stroke-width:0.12909472">Test Request</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.20999976;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9070"
+       width="22.224972"
+       height="9.2604046"
+       x="43.65625"
+       y="262.60416" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="48.683304"
+       y="269.21875"
+       id="text9074"><tspan
+         sodipodi:role="line"
+         id="tspan9072"
+         x="48.683304"
+         y="269.21875"
+         style="stroke-width:0.26458332">TCDB</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 55.562499,262.60415 V 237.46874"
+       id="path9076"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 55.562499,250.6979 H 66.145832"
+       id="path9078"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.10952902px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12713112"
+       x="66.759201"
+       y="251.3463"
+       id="text9082"><tspan
+         sodipodi:role="line"
+         x="66.759201"
+         y="251.3463"
+         style="stroke-width:0.12713112"
+         id="tspan9090">Upload</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 55.562499,255.98957 H 43.656249"
+       id="path9084"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.63159776px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.15859367"
+       x="35.486774"
+       y="256.60251"
+       id="text9088"><tspan
+         sodipodi:role="line"
+         id="tspan9086"
+         x="35.486774"
+         y="256.60251"
+         style="stroke-width:0.15859367">Group</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9094"
+       width="19.84375"
+       height="6.614583"
+       x="84.666664"
+       y="255.98958" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.39031935px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="87.232246"
+       y="260.42603"
+       id="text9098"><tspan
+         sodipodi:role="line"
+         id="tspan9096"
+         x="87.232246"
+         y="260.42603"
+         style="stroke-width:0.26458332">History</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 93.927082,255.98957 V 237.46874"
+       id="path9100"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 93.927082,245.40624 H 112.44792"
+       id="path9102"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.83817625px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17104317"
+       x="113.79102"
+       y="246.51262"
+       id="text9106"><tspan
+         sodipodi:role="line"
+         id="tspan9104"
+         x="113.79102"
+         y="246.51262"
+         style="stroke-width:0.17104317">Query</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 93.927082,250.6979 H 84.666666"
+       id="path9108"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.00503039px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18109865"
+       x="78.551842"
+       y="251.56364"
+       id="text9112"><tspan
+         sodipodi:role="line"
+         id="tspan9110"
+         x="78.551842"
+         y="251.56364"
+         style="stroke-width:0.18109865">Edit</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 85.989582,250.6979 v -3.96875"
+       id="path9114"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.2998426px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.07833523"
+       x="83.527557"
+       y="245.97137"
+       id="text9118"><tspan
+         sodipodi:role="line"
+         id="tspan9116"
+         x="83.527557"
+         y="245.97137"
+         style="stroke-width:0.07833523">delete</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 55.562499,245.40624 H 66.145832"
+       id="path9130"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.10146809px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12664533"
+       x="66.945038"
+       y="245.91231"
+       id="text9134"><tspan
+         sodipodi:role="line"
+         id="tspan9132"
+         x="66.945038"
+         y="245.91231"
+         style="stroke-width:0.12664533">Download</tspan></text>
+  </g>
+</svg>
