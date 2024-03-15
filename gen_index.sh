@@ -6,8 +6,9 @@ echo "<html>" > index.html
 echo "<body>" >> index.html
 
 for html in $HTMLS;
-do 
-  echo "<p><a href=\""$html"\">$html</a></p>" >> index.html
+do
+  y=${html%.html}
+  echo "<p><a href=\""$html"\">${y##*/}</a></p>" >> index.html
 done
 
 echo "</html>" >> index.html
