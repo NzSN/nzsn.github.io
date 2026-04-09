@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chromium Startup</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chromium Startup</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1ec9e6b">1. Entries</a></li>
+<li><a href="#orga43afcb">2. ChromeMain</a>
+<ul>
+<li><a href="#org0c84441">2.1. Entities</a></li>
+<li><a href="#org6e80117">2.2. Steps</a></li>
+</ul>
+</li>
+<li><a href="#org6eea25f">3. ContentMain</a>
+<ul>
+<li><a href="#org7c1e25f">3.1. ContentMainRunner</a></li>
+</ul>
+</li>
+<li><a href="#org583f16c">4. Steps to startup</a>
+<ul>
+<li><a href="#orgbb61b39">4.1. Platform specific</a></li>
+<li><a href="#orga6e6033">4.2. Common Initliazation</a></li>
+<li><a href="#orga94b0dc">4.3. Process-Type-Specific Main function</a>
+<ul>
+<li><a href="#org50e68fd">4.3.1. Browser-Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga8b65f3">5. Browser-Process Stages</a></li>
+<li><a href="#orgfe29f63">6. CallGraph (Deprecated)</a></li>
+</ul>
+</div>
+</div>
+<p>
+Assume Windows Platform.
+</p>
+<div id="outline-container-org1ec9e6b" class="outline-2">
+<h2 id="org1ec9e6b"><span class="section-number-2">1.</span> Entries</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>wWinMain (if a windows console app)</li>
+<li>otherwise main()</li>
+</ul>
+
+<p>
+both defined at &rsquo;//chrome/app/chrome<sub>exe</sub><sub>main</sub><sub>win.cc</sub>&rsquo;
+</p>
+
+<p>
+In the most outer most entry (wWinMain or main on windows platform), environment
+is setup, for example,
+</p>
+
+<ul class="org-ul">
+<li>Setup CWD (Current Working Directory)</li>
+<li>Run &rsquo;base::CommandLine::Init&rsquo; which will initialize the commandline
+singleton from the environment.</li>
+<li>Extract process type from commandline.</li>
+<li>Finally, load chrome.dll via <b>MainDllLoader</b>. Load dll and get the address of
+symbol &rsquo;ChromeMain&rsquo; and call from the address of &rsquo;ChromeMain&rsquo;.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga43afcb" class="outline-2">
+<h2 id="orga43afcb"><span class="section-number-2">2.</span> ChromeMain</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+At &rsquo;//chrome/app/chrome<sub>main.cc</sub>&rsquo;.
+</p>
+</div>
+<div id="outline-container-org0c84441" class="outline-3">
+<h3 id="org0c84441"><span class="section-number-3">2.1.</span> Entities</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>ChromeMainDelegate: A type that allow embedder to do extra operations on stages across browser startup.</li>
+<li>ContentMainParams: Contain params that used by content layer.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6e80117" class="outline-3">
+<h3 id="org6e80117"><span class="section-number-3">2.2.</span> Steps</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Run &rsquo;base::CommandLine::Init&rsquo; for commandline initialization.</li>
+<li>trap into content::ContentMain</li>
+</ul>
+
+<p>
+ChromeMain more like a stage that prepare for content initialization.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6eea25f" class="outline-2">
+<h2 id="org6eea25f"><span class="section-number-2">3.</span> ContentMain</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+At &rsquo;//content/app/content<sub>main.cc</sub>&rsquo;
+</p>
+
+<p>
+Initialize <b>ContentMainRunner</b> and let the <b>Runner</b> runs.
+</p>
+</div>
+<div id="outline-container-org7c1e25f" class="outline-3">
+<h3 id="org7c1e25f"><span class="section-number-3">3.1.</span> ContentMainRunner</h3>
+</div>
+</div>
+<div id="outline-container-org583f16c" class="outline-2">
+<h2 id="org583f16c"><span class="section-number-2">4.</span> Steps to startup</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgbb61b39" class="outline-3">
+<h3 id="orgbb61b39"><span class="section-number-3">4.1.</span> Platform specific</h3>
+</div>
+<div id="outline-container-orga6e6033" class="outline-3">
+<h3 id="orga6e6033"><span class="section-number-3">4.2.</span> Common Initliazation</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Commandline initialize: Process able to get it&rsquo;s process type from <b>base::CommandLine</b> once it&rsquo;s initialized.
+After that system may append some extra arguments to commandline. Also commandline setup for headless mode.</li>
+<li>Load Mojo DLL if MojoCore DLL provided.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga94b0dc" class="outline-3">
+<h3 id="orga94b0dc"><span class="section-number-3">4.3.</span> Process-Type-Specific Main function</h3>
+<div class="outline-text-3" id="text-4-3">
+</div>
+<div id="outline-container-org50e68fd" class="outline-4">
+<h4 id="org50e68fd"><span class="section-number-4">4.3.1.</span> Browser-Process</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li>Initialize MojoCore.</li>
+<li>Start browser thread pool.</li>
+<li>Run BrowserMain.
+<ul class="org-ul">
+<li>Initialize main runner and run it.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8b65f3" class="outline-2">
+<h2 id="orga8b65f3"><span class="section-number-2">5.</span> Browser-Process Stages</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+see content/public/browser/browser<sub>main</sub><sub>parts.h</sub>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe29f63" class="outline-2">
+<h2 id="orgfe29f63"><span class="section-number-2">6.</span> CallGraph (Deprecated)</h2>
+<div class="outline-text-2" id="text-6">
+<pre class="example" id="org42dfa26">
+    main (chrome/app/chrome_exe_main_aura.cc)
+==&gt; ChromeMain (chrome/app/chrome_main.cc)
+==&gt; content::ContentMain (content/app/content_main.cc)
+==&gt; content::RunContentProcess (content/app/content_main.cc)
+==&gt; content::ContentMainRunnderImpl::Run (content/app/content_main_runner_impl.cc)
+==&gt; content::RunBrowser (content/app/content_main_runner_impl.cc)
+==&gt; content::RunBrowserProcessMain (...)
+==&gt; BrowserMain (content/browser/browser_main.cc)
+</pre>
+
+<pre class="example" id="orgb72d473">
+    main (chrome/app/chrome_exe_main_aura.cc)
+==&gt; ChromeMain (chrome/app/chrome_main.cc)
+==&gt; content::ContentMain (content/app/content_main.cc)
+==&gt; content::RunContentProcess (content/app/content_main.cc)
+==&gt; content::ContentMainRunnderImpl::Run (content/app/content_main_runner_impl.cc)
+==&gt; content::RunOtherNamedProcessTypeMain (content/app/content_main_runner_impl.cc)
+==&gt; RendererMain (content/Renderer/renderer_main.cc)
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:01</p>
+</div>
+</body>
+</html>

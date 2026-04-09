@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Async/Await vs Then</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Async/Await vs Then</h1>
+<p>
+Async/Await example:
+</p>
+
+<p>
+JS:
+</p>
+<div class="org-src-container">
+<pre class="src src-javascript"><code><span style="color: #93a61a; font-weight: bold;">async</span> <span style="color: #93a61a; font-weight: bold;">function</span> f() {
+    <span style="color: #93a61a; font-weight: bold;">return</span> 5;
+}
+console.log(f());
+</code></pre>
+</div>
+
+<p>
+Bytescode:
+</p>
+<pre class="example" id="org314fb27">
+PS D:\Codebase\electron\src&gt; .\out\Release_v36_standard\d8.exe --print-bytecode test.js
+[generated bytecode for function:  (0x025e00198759 &lt;SharedFunctionInfo&gt;)]
+Bytecode length: 35
+Parameter count 1
+Register count 4
+Frame size 32
+         0000014B00140064 @    0 : 13 00             LdaConstant [0]
+         0000014B00140066 @    2 : cd                Star1
+         0000014B00140067 @    3 : 1b fe f7          Mov &lt;closure&gt;, r2
+         0000014B0014006A @    6 : 6c 6a 01 f8 02    CallRuntime [DeclareGlobals], r1-r2
+         0000014B0014006F @   11 : 23 01 00          LdaGlobal [1], [0]
+         0000014B00140072 @   14 : cc                Star2
+         0000014B00140073 @   15 : 33 f7 02 02       GetNamedProperty r2, [2], [2]
+         0000014B00140078 @   20 : 23 03 04          LdaGlobal [3], [4]
+         0000014B0014007B @   23 : cb                Star3
+         0000014B0014007C @   24 : 68 f6 06          CallUndefinedReceiver0 r3, [6]
+         0000014B0014007F @   27 : cb                Star3
+         0000014B00140080 @   28 : 65 f8 f7 f6 08    CallProperty1 r1, r2, r3, [8]
+         0000014B00140085 @   33 : ce                Star0
+         0000014B00140086 @   34 : b3                Return
+Constant pool (size = 4)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+[generated bytecode for function: f (0x025e001987b9 &lt;SharedFunctionInfo f&gt;)]
+Bytecode length: 36
+Parameter count 1
+Register count 4
+Frame size 32
+         0000014B001400C8 @    0 : 1b fe f8          Mov &lt;closure&gt;, r1
+         0000014B001400CB @    3 : 1b 02 f7          Mov &lt;this&gt;, r2
+         0000014B001400CE @    6 : 6f 01 f8 02       InvokeIntrinsic [_AsyncFunctionEnter], r1-r2
+         0000014B001400D2 @   10 : ce                Star0
+         0000014B001400D3 @   11 : 1b ff f8          Mov &lt;context&gt;, r1
+         0000014B001400D6 @   14 : 0d 05             LdaSmi [5]
+         0000014B001400D8 @   16 : cb                Star3
+         0000014B001400D9 @   17 : 1b f9 f7          Mov r0, r2
+         0000014B001400DC @   20 : 6f 03 f7 02       InvokeIntrinsic [_AsyncFunctionResolve], r2-r3
+         0000014B001400E0 @   24 : b3                Return
+         0000014B001400E1 @   25 : cb                Star3
+         0000014B001400E2 @   26 : 10                LdaTheHole
+         0000014B001400E3 @   27 : b0                SetPendingMessage
+         0000014B001400E4 @   28 : 1b f9 f7          Mov r0, r2
+         0000014B001400E7 @   31 : 6f 02 f7 02       InvokeIntrinsic [_AsyncFunctionReject], r2-r3
+         0000014B001400EB @   35 : b3                Return
+Constant pool (size = 0)
+Handler Table (size = 16)
+Source Position Table (size = 0)
+[object Promise]
+</pre>
+
+<p>
+Then example:
+</p>
+<div class="org-src-container">
+<pre class="src src-javascript"><code><span style="color: #93a61a; font-weight: bold;">const</span> <span style="color: #8d9fa1;">my_promise</span> = <span style="color: #93a61a; font-weight: bold;">new</span> <span style="color: #c49619; font-style: italic;">Promise</span>((resolve, reject) =&gt; {
+  resolve(5);
+});
+my_promise.then((data) =&gt; { console.log(data); })
+</code></pre>
+</div>
+
+<p>
+Bytecode:
+</p>
+
+<pre class="example" id="org5b504d7">
+[generated bytecode for function:  (0x013f00198785 &lt;SharedFunctionInfo&gt;)]
+Bytecode length: 38
+Parameter count 1
+Register count 4
+Frame size 32
+         0000028000140078 @    0 : 23 00 00          LdaGlobal [0], [0]
+         000002800014007B @    3 : cd                Star1
+         000002800014007C @    4 : 89 01 00 00       CreateClosure [1], [0], #0
+         0000028000140080 @    8 : cc                Star2
+         0000028000140081 @    9 : 0b f8             Ldar r1
+         0000028000140083 @   11 : 70 f8 f7 01 02    Construct r1, r2-r2, [2]
+         0000028000140088 @   16 : 29 03             StaCurrentScriptContextSlot [3]
+         000002800014008A @   18 : 19 03             LdaImmutableCurrentContextSlot [3]
+         000002800014008C @   20 : cc                Star2
+         000002800014008D @   21 : 33 f7 02 04       GetNamedProperty r2, [2], [4]
+         0000028000140091 @   25 : cd                Star1
+         0000028000140092 @   26 : 89 03 01 00       CreateClosure [3], [1], #0
+         0000028000140096 @   30 : cb                Star3
+         0000028000140097 @   31 : 65 f8 f7 f6 06    CallProperty1 r1, r2, r3, [6]
+         000002800014009C @   36 : ce                Star0
+         000002800014009D @   37 : b3                Return
+Constant pool (size = 4)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+[generated bytecode for function:  (0x013f001987dd &lt;SharedFunctionInfo&gt;)]
+Bytecode length: 9
+Parameter count 3
+Register count 2
+Frame size 16
+         00000280001400C8 @    0 : 0d 05             LdaSmi [5]
+         00000280001400CA @    2 : cd                Star1
+         00000280001400CB @    3 : 69 03 f8 00       CallUndefinedReceiver1 a0, r1, [0]
+         00000280001400CF @    7 : 0e                LdaUndefined
+         00000280001400D0 @    8 : b3                Return
+Constant pool (size = 0)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+[generated bytecode for function:  (0x013f0019880d &lt;SharedFunctionInfo&gt;)]
+Bytecode length: 16
+Parameter count 2
+Register count 2
+Frame size 16
+         000002800014010C @    0 : 23 00 00          LdaGlobal [0], [0]
+         000002800014010F @    3 : cd                Star1
+         0000028000140110 @    4 : 33 f8 01 02       GetNamedProperty r1, [1], [2]
+         0000028000140114 @    8 : ce                Star0
+         0000028000140115 @    9 : 65 f9 f8 03 04    CallProperty1 r0, r1, a0, [4]
+         000002800014011A @   14 : 0e                LdaUndefined
+         000002800014011B @   15 : b3                Return
+Constant pool (size = 2)
+Handler Table (size = 0)
+Source Position Table (size = 0)
+5
+</pre>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:02</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chromium Problems</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chromium Problems</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf592542">1. JS don&rsquo;t reclaims all unused memory</a>
+<ul>
+<li><a href="#org63317e0">1.1. What</a></li>
+<li><a href="#org0ec55d9">1.2. When</a></li>
+<li><a href="#org3a1d58d">1.3. Why</a></li>
+<li><a href="#orgcc7d3c2">1.4. How</a></li>
+<li><a href="#orgdb916c5">1.5. Records</a>
+<ul>
+<li><a href="#org65fe52e">1.5.1. Source Tracking</a></li>
+</ul>
+</li>
+<li><a href="#org0f2294c">1.6. Important Code snippets</a></li>
+</ul>
+</li>
+<li><a href="#org72b9a85">2. Webgl extension &rsquo;ANGLE<sub>instanced</sub><sub>arrays</sub>&rsquo; disabled</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf592542" class="outline-2">
+<h2 id="orgf592542"><span class="section-number-2">1.</span> JS don&rsquo;t reclaims all unused memory</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org63317e0" class="outline-3">
+<h3 id="org63317e0"><span class="section-number-3">1.1.</span> What</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Unused memory is not been release back to OS.
+</p>
+</div>
+</div>
+<div id="outline-container-org0ec55d9" class="outline-3">
+<h3 id="org0ec55d9"><span class="section-number-3">1.2.</span> When</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+After update Chromium version from 114 (V8 version 11.4.183.8) to 124 (V8 version is  12.4.254.12)
+</p>
+</div>
+</div>
+<div id="outline-container-org3a1d58d" class="outline-3">
+<h3 id="org3a1d58d"><span class="section-number-3">1.3.</span> Why</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Still don&rsquo;t know. Maybe it&rsquo;s cause of GC does not return back those
+memory that been collected to OS.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcc7d3c2" class="outline-3">
+<h3 id="orgcc7d3c2"><span class="section-number-3">1.4.</span> How</h3>
+</div>
+
+<div id="outline-container-orgdb916c5" class="outline-3">
+<h3 id="orgdb916c5"><span class="section-number-3">1.5.</span> Records</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org65fe52e" class="outline-4">
+<h4 id="org65fe52e"><span class="section-number-4">1.5.1.</span> Source Tracking</h4>
+<div class="outline-text-4" id="text-1-5-1">
+</div>
+<ol class="org-ol">
+<li><a id="org9051cb5"></a>Heap Initialization<br />
+<div class="outline-text-5" id="text-1-5-1-1">
+<p>
+V8 use HeapAllocator to allocate memory on heap.
+</p>
+
+<p>
+Heap in isolate is setup in isolate::Init
+</p>
+<pre class="example" id="org1c0bdde">
+#0  v8::internal::Isolate::Init (this=this@entry=0x5555555db000,
+    startup_snapshot_data=startup_snapshot_data@entry=0x7fffffffd770,
+    read_only_snapshot_data=read_only_snapshot_data@entry=0x7fffffffd730,
+    shared_heap_snapshot_data=shared_heap_snapshot_data@entry=0x7fffffffd748, can_rehash=true)
+    at ../../src/execution/isolate.cc:4580
+#1  0x00007ffff5c6fa31 in v8::internal::Isolate::InitWithSnapshot (warning: Could not find DWO CU obj/v8_base_without_compiler/api.dwo(0x13d8d2ca7fd9ae25) referenced by CU at offset 0xec [in module /home/nzsn/Codebases/v8/v8/out/Debug/libv8.so]
+this=0x5555555db000,
+    startup_snapshot_data=0x7fffffffd770, read_only_snapshot_data=0x7fffffffd730,
+    shared_heap_snapshot_data=0x7fffffffd748, can_rehash=true) at ../../src/execution/isolate.cc:4376
+#2  0x00007ffff66a1f35 in v8::internal::Snapshot::Initialize (isolate=0x5555555db000)
+    at ../../src/snapshot/snapshot.cc:198
+#3  0x00007ffff5933e33 in v8::Isolate::Initialize(v8::Isolate*, v8::Isolate::CreateParams const&amp;) ()
+    at ../../src/api/api.cc:9706
+</pre>
+</div>
+</li>
+<li><a id="org38762a2"></a>Garbage Collection<br />
+<div class="outline-text-5" id="text-1-5-1-2">
+<p>
+Entry function to collect garbages
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><code><span style="color: #3c98e0; font-weight: bold;">v8</span>::<span style="color: #3c98e0; font-weight: bold;">internal</span>::<span style="color: #3c98e0; font-weight: bold;">Heap</span>::CollectGarbage
+</code></pre>
+</div>
+
+<p>
+Parts of GC:
+</p>
+
+<ul class="org-ul">
+<li>Prologue</li>
+<li>Main garbage collection phase</li>
+<li>Epilogue</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org0f2294c" class="outline-3">
+<h3 id="org0f2294c"><span class="section-number-3">1.6.</span> Important Code snippets</h3>
+</div>
+</div>
+<div id="outline-container-org72b9a85" class="outline-2">
+<h2 id="org72b9a85"><span class="section-number-2">2.</span> Webgl extension &rsquo;ANGLE<sub>instanced</sub><sub>arrays</sub>&rsquo; disabled</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+may cause by opengl and opengl es&rsquo;s version is too low (&lt; 3.1, &lt; 3.0)
+</p>
+
+<p>
+Determined in method:
+</p>
+
+<p>
+GenerateCaps() :: third<sub>party</sub>/angle/src/libANGLE/renderer/gl/renderergl<sub>utils.cpp</sub>
+</p>
+
+
+<p>
+Backtrack of function where to determined enable of this extension
+</p>
+<pre class="example" id="orgc07bff3">
+#0  rx::nativegl_gl::GenerateCaps(rx::FunctionsGL const*, angle::FeaturesGL const&amp;, gl::Caps*, gl::TextureCapsMap*, gl::Extensions*, gl::Limitations*, gl::Version*, rx::MultiviewImplementationTypeGL*, ShPixelLocalStorageOptions*)
+    (functions=0x378c000f4800, features=..., caps=0x378c004ec040, textureCapsMap=0x378c004ec3f0, extensions=0x378c004ee2f0, limitations=0x378c004ee3e0, maxSupportedESVersion=0x378c004ec008, multiviewImplementationType=0x378c004ee3f8, plsOptions=0x378c004ee3f4)
+    at ../../third_party/angle/src/libANGLE/renderer/gl/renderergl_utils.cpp:734
+#1  0x00007f922686f058 in rx::RendererGL::generateCaps(gl::Caps*, gl::TextureCapsMap*, gl::Extensions*, gl::Limitations*) const
+    (this=0x378c004ec000, outCaps=0x378c004ec040, outTextureCaps=0x378c004ec3f0, outExtensions=0x378c004ee2f0, outLimitations=0x378c004ee3e0)
+    at ../../third_party/angle/src/libANGLE/renderer/gl/RendererGL.cpp:280
+#2  0x00007f922686f108 in rx::RendererGL::ensureCapsInitialized() const (this=0x378c004ec000)
+    at ../../third_party/angle/src/libANGLE/renderer/gl/RendererGL.cpp:302
+#3  0x00007f922686e659 in rx::RendererGL::getNativeCaps() const (this=0x378c004ec000)
+    at ../../third_party/angle/src/libANGLE/renderer/gl/RendererGL.cpp:309
+#4  0x00007f922686e155 in rx::RendererGL::RendererGL(std::__Cr::unique_ptr&lt;rx::FunctionsGL, std::__Cr::default_delete&lt;rx::FunctionsGL&gt; &gt;, egl::AttributeMap const&amp;, rx::DisplayGL*)
+    (this=0x378c004ec000, functions=..., attribMap=..., display=0x378c00014000)
+    at ../../third_party/angle/src/libANGLE/renderer/gl/RendererGL.cpp:168
+#5  0x00007f92268cda26 in rx::DisplayGLX::initialize(egl::Display*)
+     (this=0x378c00014000, display=0x378c00101800) at ../../third_party/angle/src/libANGLE/renderer/gl/glx/DisplayGLX.cpp:314
+#6  0x00007f92264cba0d in egl::Display::initialize() (this=0x378c00101800)
+    at ../../third_party/angle/src/libANGLE/Display.cpp:1079
+#7  0x00007f9225f6f89b in egl::Initialize(egl::Thread*, egl::Display*, int*, int*)
+     (thread=0x378c00007780, display=0x378c00101800, major=0x0, minor=0x0)
+    at ../../third_party/angle/src/libGLESv2/egl_stubs.cpp:520
+#8  0x00007f9225f766c5 in EGL_Initialize(EGLDisplay, EGLint*, EGLint*)
+    (dpy=0x378c00101800, major=0x0, minor=0x0)
+    at ../../third_party/angle/src/libGLESv2/entry_points_egl_autogen.cpp:571
+#9  0x00007f922585454e in eglInitialize(EGLDisplay, EGLint*, EGLint*)
+    (dpy=0x378c00101800, major=0x0, minor=0x0)
+    at ../../third_party/angle/src/libEGL/libEGL_autogen.cpp:177
+#10 0x00007f9290e9cfda in gl::EGLApiBase::eglInitializeFn(void*, int*, int*)
+     (this=0x378c00030e40, dpy=0x378c00101800, major=0x0, minor=0x0)
+    at ../../ui/gl/gl_bindings_autogen_egl.cc:774
+#11 0x00007f9290f82150 in gl::GLDisplayEGL::InitializeDisplay(bool, std::__Cr::vector&lt;gl::DisplayType, std::__Cr::allocator&lt;gl::DisplayType&gt; &gt;, gl::EGLDisplayPlatform, gl::GLDisplayEGL*)
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:20</p>
+</div>
+</body>
+</html>

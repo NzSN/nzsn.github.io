@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Memo</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Memo</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgec1ad51">1. VerManager Deployment with GL5610</a></li>
+<li><a href="#orga27921f">2. Memo 9/1/2021</a>
+<ul>
+<li><a href="#org4ba50cd">2.1. Kubernete Persistent Volume</a></li>
+<li><a href="#orgf501346">2.2. Haskell hls <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-09-22 Wed&gt;</span></span></a></li>
+<li><a href="#org45161a9">2.3. Run Python ast nodes</a></li>
+<li><a href="#org5a7680b">2.4. How to list all key-bindings available in a given buffer ?</a></li>
+<li><a href="#orgc3a3d98">2.5. Dap-template example</a></li>
+<li><a href="#orgfd631a7">2.6. K8S Windows comeback after reboot</a></li>
+<li><a href="#org65e4721">2.7. Nodejs udpate</a></li>
+<li><a href="#org4657e78">2.8. Emacs packages update</a></li>
+<li><a href="#orgd949e1e">2.9. Emacs error</a></li>
+<li><a href="#orgb9b2c36">2.10. Ubuntu APT Proxy</a></li>
+<li><a href="#org4d5ae6e">2.11. Ubuntu 20.04 pinyin</a></li>
+<li><a href="#org2d84183">2.12. python deep copy</a></li>
+<li><a href="#orge70807b">2.13. Pyright config</a></li>
+</ul>
+</li>
+<li><a href="#orgee9e246">3. C/C++ Style change</a></li>
+<li><a href="#orgced57b2">4. Emacs with Zotero</a></li>
+<li><a href="#orgf672fed">5. Latex preview font size</a></li>
+<li><a href="#orgb051b41">6. LSP file watchers</a></li>
+<li><a href="#orga6d3110">7. WSLG display chinese</a></li>
+<li><a href="#org8858e43">8. Set default emacs frame height and width</a></li>
+<li><a href="#org3d65b21">9. Whiteboard Runner key</a></li>
+<li><a href="#orgbdc040c">10. Find out docker&rsquo;s NIC</a></li>
+<li><a href="#org70614fe">11. Control another container in container</a></li>
+<li><a href="#org2e415a6">12. Emacs Align Equals</a></li>
+<li><a href="#orgb915f8a">13. WSL Get Host IP</a></li>
+<li><a href="#orgf0b916d">14. CMAKE Unittests</a></li>
+<li><a href="#org54bc56d">15. Zsh show username only</a></li>
+<li><a href="#org39b33d3">16. DDG settings passphrase</a></li>
+<li><a href="#org6981ec1">17. Zlibrary Onion</a></li>
+<li><a href="#orgfcabb6b">18. ccls search problem on ubuntu&nbsp;&nbsp;&nbsp<span class="tag"><span class="clang">clang</span>&nbsp;<span class="lsp">lsp</span></span></a></li>
+<li><a href="#org579deae">19. bits/c++config.h not found</a></li>
+<li><a href="#orga38e866">20. FFMPEG</a>
+<ul>
+<li><a href="#orga1b6d6c">20.1. Commands</a>
+<ul>
+<li><a href="#org48d353d">20.1.1. vflip</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3aa734e">21. Latex preview</a>
+<ul>
+<li><a href="#org26528d9">21.1. Scale</a></li>
+</ul>
+</li>
+<li><a href="#org7fbdd65">22. V8</a></li>
+<li><a href="#orgc0993ac">23. Emacs .h in C++-mode</a></li>
+<li><a href="#orgaabe7e1">24. Emacs lsp Performance</a></li>
+<li><a href="#orga9823e8">25. WSL2 Ubuntu Chinese</a></li>
+<li><a href="#orgde572fc">26. .git fix error &ldquo;object file is empty&rdquo;</a></li>
+<li><a href="#org2e7894c">27. How to draw planes in 3-Dimentional space</a></li>
+<li><a href="#org41c4109">28. Enable Chromium logging on windows</a></li>
+<li><a href="#org5c75c5a">29. Windows remove hibernate file to save space of system partition</a></li>
+<li><a href="#org87ff6b1">30. Change gnome cursor size permanent</a></li>
+<li><a href="#org94cf08b">31. Bazel 7.0.0 with rules<sub>foreign</sub><sub>cc</sub>, symlinked problems&nbsp;&nbsp;&nbsp<span class="tag"><span class="bazel">bazel</span>&nbsp;<span class="rules_foreign_cc">rules_foreign_cc</span></span></a></li>
+<li><a href="#orgc552c98">32. Org mode default agenda files&nbsp;&nbsp;&nbsp<span class="tag"><span class="org">org</span>&nbsp;<span class="mode">mode</span>&nbsp;<span class="agaenda">agaenda</span></span></a></li>
+<li><a href="#orgc5fba18">33. Caution to generate pdf for https://github.com/0xAX/linux-insides&nbsp;&nbsp;&nbsp<span class="tag"><span class="linux_insides">linux_insides</span></span></a>
+<ul>
+<li><a href="#org9221d0d">33.1. Error: cb.apply is not a function</a></li>
+<li><a href="#org563dd98">33.2. Install ebook-convert</a></li>
+</ul>
+</li>
+<li><a href="#org182c2ed">34. Install lastest GCC On Ubuntu&nbsp;&nbsp;&nbsp<span class="tag"><span class="gcc">gcc</span>&nbsp;<span class="Ubuntu">Ubuntu</span></span></a></li>
+<li><a href="#orga15e026">35. CMD to gen compile<sub>commands.json</sub> from bazel</a></li>
+<li><a href="#org20e66c9">36. Zotero annotation configure</a></li>
+<li><a href="#orgce79205">37. Jest with 0x</a></li>
+<li><a href="#orgf0ff30a">38. org-mode no prompt for passphrase for descrypt</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec1ad51" class="outline-2">
+<h2 id="orgec1ad51"><span class="section-number-2">1.</span> VerManager Deployment with GL5610</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+output<sub>bin</sub><sub>gl5610.bat</sub> use flash, link as tool, so these three should
+be with in the same directory:
+</p>
+
+<ul class="org-ul">
+<li>output<sub>bin</sub><sub>gl5610.bat</sub></li>
+<li>link/</li>
+<li>flash/</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga27921f" class="outline-2">
+<h2 id="orga27921f"><span class="section-number-2">2.</span> Memo 9/1/2021</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Whitenoise to help daphne read static files.</li>
+
+<li>Daphne with VerManager is working fine on local machine, but failed in
+pod.</li>
+</ul>
+</div>
+<div id="outline-container-org4ba50cd" class="outline-3">
+<h3 id="org4ba50cd"><span class="section-number-3">2.1.</span> Kubernete Persistent Volume</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Resources:
+</p>
+<ul class="org-ul">
+<li><a href="https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-volumes-example-nfs-persistent-volume.html">https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-volumes-example-nfs-persistent-volume.html</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf501346" class="outline-3">
+<h3 id="orgf501346"><span class="section-number-3">2.2.</span> Haskell hls <span class="timestamp-wrapper"><span class="timestamp">&lt;2021-09-22 Wed&gt;</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+generate hie.yaml with <a href="https://github.com/Avi-D-coder/implicit-hie">implicit-hie</a>.
+</p>
+
+<p>
+need to run command in a project:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><code>     stack build
+</code></pre>
+</div>
+<p>
+before you use lsp-mode to visit haskell code of that project.
+</p>
+</div>
+</div>
+<div id="outline-container-org45161a9" class="outline-3">
+<h3 id="org45161a9"><span class="section-number-3">2.3.</span> Run Python ast nodes</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-python"><code>     <span style="color: #8d9fa1;">src</span> <span style="color: #db5823;">=</span> inspect.getsource(f)
+     <span style="color: #8d9fa1;">ast_nodes</span> <span style="color: #db5823;">=</span> ast.parse(src, mode<span style="color: #db5823;">=</span><span style="color: #93a61a;">'exec'</span>)
+
+     <span style="color: #8d9fa1;">golb</span>, <span style="color: #8d9fa1;">loc</span> <span style="color: #db5823;">=</span> {}, {}
+     <span style="color: #3c98e0; font-style: italic;">exec</span>(<span style="color: #3c98e0; font-style: italic;">compile</span>(ast_nodes, <span style="color: #93a61a;">'&lt;ast&gt;'</span>, <span style="color: #93a61a;">'exec'</span>), glob, loc)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5a7680b" class="outline-3">
+<h3 id="org5a7680b"><span class="section-number-3">2.4.</span> How to list all key-bindings available in a given buffer ?</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+C-h b will list all the bindings available in a buffer. This is a mnemonic for help (C-h) bindings (b).
+</p>
+
+<p>
+You can also get a list of keybindings via C-h m, which is help for the major and minor modes for the buffer. The formatting of this is a little clearer, but includes additional information about the modes beyond just listing the keybinding
+</p>
+</div>
+</div>
+<div id="outline-container-orgc3a3d98" class="outline-3">
+<h3 id="orgc3a3d98"><span class="section-number-3">2.5.</span> Dap-template example</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-elisp"><code>     (<span style="color: #3c98e0; font-weight: bold;">dap-register-debug-template</span>
+      <span style="color: #93a61a;">"DevAutomator Testing"</span>
+      (<span style="color: #3c98e0; font-weight: bold;">list</span> <span style="color: #3c98e0; font-style: italic;">:type</span> <span style="color: #93a61a;">"python"</span>
+            <span style="color: #3c98e0; font-style: italic;">:args</span> <span style="color: #93a61a;">""</span>
+            <span style="color: #3c98e0; font-style: italic;">:cwd</span> nil
+            <span style="color: #3c98e0; font-style: italic;">:program</span> <span style="color: #93a61a;">"/home/aydenlin/Codebase/DevWork/DevAutomator/src/lang/TestCases"</span>
+            <span style="color: #3c98e0; font-style: italic;">:module</span> <span style="color: #93a61a;">"pytest"</span>
+            <span style="color: #3c98e0; font-style: italic;">:request</span> <span style="color: #93a61a;">"launch"</span>
+            <span style="color: #3c98e0; font-style: italic;">:name</span> <span style="color: #93a61a;">"DevAutomator Testing"</span>))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd631a7" class="outline-3">
+<h3 id="orgfd631a7"><span class="section-number-3">2.6.</span> K8S Windows comeback after reboot</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+<a href="https://github.com/kubernetes-sigs/sig-windows-tools/issues/89">ISSUE</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org65e4721" class="outline-3">
+<h3 id="org65e4721"><span class="section-number-3">2.7.</span> Nodejs udpate</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+Try NVM <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a> .
+</p>
+</div>
+</div>
+<div id="outline-container-org4657e78" class="outline-3">
+<h3 id="org4657e78"><span class="section-number-3">2.8.</span> Emacs packages update</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Run:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-elisp"><code>  package-refresh-contents
+  package-list-packages
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li>Then type U x</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd949e1e" class="outline-3">
+<h3 id="orgd949e1e"><span class="section-number-3">2.9.</span> Emacs error</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+if ((bytecomp &ldquo;Symbol&rsquo;s function definition is void: gv-setter&rdquo; :error &ldquo;<b>Compile-Log</b>&rdquo;))
+</p>
+
+<p>
+then delete ~/.emacs.d/eln-cach/28.1-HASH and reboot emacs.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9b2c36" class="outline-3">
+<h3 id="orgb9b2c36"><span class="section-number-3">2.10.</span> Ubuntu APT Proxy</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+With following code snippet:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><code>  <span style="color: #c49619; font-style: italic;">sudo</span> <span style="color: #c49619; font-style: italic;">touch</span> /etc/apt/apt.conf.d/proxy.conf
+  Acquire::http::Proxy <span style="color: #93a61a;">"http://user:password@proxy.server:port/"</span>;
+  Acquire::https::Proxy <span style="color: #93a61a;">"https://user:password@proxy.server:port/"</span>;
+</code></pre>
+</div>
+
+<p>
+then apt will use the proxy next time you run it.
+</p>
+</div>
+</div>
+<div id="outline-container-org4d5ae6e" class="outline-3">
+<h3 id="org4d5ae6e"><span class="section-number-3">2.11.</span> Ubuntu 20.04 pinyin</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+Install ibus-pinyin and add input method in ibus-setup.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d84183" class="outline-3">
+<h3 id="org2d84183"><span class="section-number-3">2.12.</span> python deep copy</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
+package copy.deepCopy(object)
+</p>
+</div>
+</div>
+<div id="outline-container-orge70807b" class="outline-3">
+<h3 id="orge70807b"><span class="section-number-3">2.13.</span> Pyright config</h3>
+<div class="outline-text-3" id="text-2-13">
+<p>
+pyrightconfig.json:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml"><code>{
+  <span style="color: #93a61a;">"include"</span>: [
+    <span style="color: #93a61a;">"src"</span>
+  ],
+
+  <span style="color: #93a61a;">"exclude"</span>: [
+    <span style="color: #93a61a;">"**/node_modules"</span>,
+    <span style="color: #93a61a;">"**/__pycache__"</span>,
+    <span style="color: #93a61a;">"src/experimental"</span>,
+    <span style="color: #93a61a;">"src/typestubs"</span>
+  ],
+
+  <span style="color: #93a61a;">"ignore"</span>: [
+    <span style="color: #93a61a;">"src/oldstuff"</span>
+  ],
+
+  <span style="color: #93a61a;">"stubPath"</span>: <span style="color: #93a61a;">"src/stubs"</span>,
+  <span style="color: #93a61a;">"venv"</span>: <span style="color: #93a61a;">"env367"</span>,
+
+  <span style="color: #93a61a;">"reportMissingImports"</span>: <span style="color: #3c98e0; font-weight: bold;">true</span>,
+  <span style="color: #93a61a;">"reportMissingTypeStubs"</span>: <span style="color: #3c98e0; font-weight: bold;">false</span>,
+
+  <span style="color: #93a61a;">"pythonVersion"</span>: <span style="color: #93a61a;">"3.6"</span>,
+  <span style="color: #93a61a;">"pythonPlatform"</span>: <span style="color: #93a61a;">"Linux"</span>,
+
+  <span style="color: #93a61a;">"executionEnvironments"</span>: [
+    {
+      <span style="color: #93a61a;">"root"</span>: <span style="color: #93a61a;">"src/web"</span>,
+      <span style="color: #93a61a;">"pythonVersion"</span>: <span style="color: #93a61a;">"3.5"</span>,
+      <span style="color: #93a61a;">"pythonPlatform"</span>: <span style="color: #93a61a;">"Windows"</span>,
+      <span style="color: #93a61a;">"extraPaths"</span>: [
+        <span style="color: #93a61a;">"src/service_libs"</span>
+      ]
+    },
+    {
+      <span style="color: #93a61a;">"root"</span>: <span style="color: #93a61a;">"src/sdk"</span>,
+      <span style="color: #93a61a;">"pythonVersion"</span>: <span style="color: #93a61a;">"3.0"</span>,
+      <span style="color: #93a61a;">"extraPaths"</span>: [
+        <span style="color: #93a61a;">"src/backend"</span>
+      ]
+    },
+    {
+      <span style="color: #93a61a;">"root"</span>: <span style="color: #93a61a;">"src/tests"</span>,
+      <span style="color: #93a61a;">"extraPaths"</span>: [
+        <span style="color: #93a61a;">"src/tests/e2e"</span>,
+        <span style="color: #93a61a;">"src/sdk"</span>
+      ]
+    },
+    {
+      <span style="color: #93a61a;">"root"</span>: <span style="color: #93a61a;">"src"</span>
+    }
+  ]
+}
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgee9e246" class="outline-2">
+<h2 id="orgee9e246"><span class="section-number-2">3.</span> C/C++ Style change</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+By variable &rsquo;c-default-style&rsquo;
+</p>
+</div>
+</div>
+<div id="outline-container-orgced57b2" class="outline-2">
+<h2 id="orgced57b2"><span class="section-number-2">4.</span> Emacs with Zotero</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="https://github.com/emacsmirror/zotxt">https://github.com/emacsmirror/zotxt</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf672fed" class="outline-2">
+<h2 id="orgf672fed"><span class="section-number-2">5.</span> Latex preview font size</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="var:org-format-latex-options">var:org-format-latex-options</a>
+</p>
+
+<p>
+:scale 2
+</p>
+</div>
+</div>
+<div id="outline-container-orgb051b41" class="outline-2">
+<h2 id="orgb051b41"><span class="section-number-2">6.</span> LSP file watchers</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+(setq lsp-enable-file-watchers nil) to speedup lsp in golang.
+</p>
+</div>
+</div>
+<div id="outline-container-orga6d3110" class="outline-2">
+<h2 id="orga6d3110"><span class="section-number-2">7.</span> WSLG display chinese</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+uncomment zh<sub>CN.UTF</sub>-8 from /etc/locale.gen.
+</p>
+</div>
+</div>
+<div id="outline-container-org8858e43" class="outline-2">
+<h2 id="org8858e43"><span class="section-number-2">8.</span> Set default emacs frame height and width</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-elisp"><code>    (<span style="color: #3c98e0;">add-to-list</span> <span style="color: #db5823;">'</span><span style="color: #8d9fa1;">default-frame-alist</span> <span style="color: #db5823;">'</span>(height . 24))
+    (<span style="color: #3c98e0;">add-to-list</span> <span style="color: #db5823;">'</span><span style="color: #8d9fa1;">default-frame-alist</span> <span style="color: #db5823;">'</span>(width . 80))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3d65b21" class="outline-2">
+<h2 id="org3d65b21"><span class="section-number-2">9.</span> Whiteboard Runner key</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Url: <a href="https://gitlab.ilaihua.com/">https://gitlab.ilaihua.com/</a>
+token: q9sftsojATJA-THWqsGo
+</p>
+</div>
+</div>
+<div id="outline-container-orgbdc040c" class="outline-2">
+<h2 id="orgbdc040c"><span class="section-number-2">10.</span> Find out docker&rsquo;s NIC</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Find Link id
+</p>
+<pre class="example" id="org767aa79">
+docker exec -ti &lt;container id&gt; cat /sys/class/net/eth0/iflink
+
+28
+</pre>
+
+<pre class="example" id="org2513de4">
+ip link | grep 28
+
+28: veth11b0a6c@if27: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP mode DEFAULT group default
+</pre>
+
+<p>
+Then veth11b0a6c is the NIC the docker used.
+</p>
+</div>
+</div>
+<div id="outline-container-org70614fe" class="outline-2">
+<h2 id="org70614fe"><span class="section-number-2">11.</span> Control another container in container</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-shell"><code>$ docker run <span style="color: #93a61a;">\</span>
+  -v /var/run/docker.sock:/var/run/docker.sock <span style="color: #93a61a;">\</span>
+  -v /usr/bin/docker:/usr/bin/docker <span style="color: #93a61a;">\</span>
+  -v /usr/lib/libdevmapper.so.1.02:/usr/lib/libdevmapper.so.1.02 <span style="color: #93a61a;">\</span>
+  ubuntu docker --version
+
+Docker version 1.1.2, build d84a070
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e415a6" class="outline-2">
+<h2 id="org2e415a6"><span class="section-number-2">12.</span> Emacs Align Equals</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>Choose regions by visual</li>
+<li>M-x align or M-x align-regexp</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb915f8a" class="outline-2">
+<h2 id="orgb915f8a"><span class="section-number-2">13.</span> WSL Get Host IP</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+In /etc/resolve.conf
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0b916d" class="outline-2">
+<h2 id="orgf0b916d"><span class="section-number-2">14.</span> CMAKE Unittests</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+<pre class="src src-cmake"><code><span style="color: #3c98e0;">cmake_minimum_required</span>(VERSION 2.8)
+
+<span style="color: #3c98e0;">project</span> (ValgrindExample)
+
+<span style="color: #3c98e0;">include</span> (CTest)
+<span style="color: #3c98e0;">add_executable</span>(example main.cpp)
+<span style="color: #3c98e0;">add_test</span>(example_test example)
+</code></pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell"><code>cmake -B build -DCMAKE_BUILD_TYPE=Debug .
+<span style="color: #c49619; font-style: italic;">cd</span> build
+ctest -T memcheck
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org54bc56d" class="outline-2">
+<h2 id="org54bc56d"><span class="section-number-2">15.</span> Zsh show username only</h2>
+<div class="outline-text-2" id="text-15">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #3c98e0;">prompt_context</span>() {
+  <span style="color: #93a61a; font-weight: bold;">if</span> [[ <span style="color: #93a61a;">"</span><span style="color: #3c98e0; font-weight: bold;">$</span><span style="color: #8d9fa1;">USER</span><span style="color: #93a61a;">"</span> != <span style="color: #93a61a;">"</span><span style="color: #3c98e0; font-weight: bold;">$</span><span style="color: #8d9fa1;">DEFAULT_USER</span><span style="color: #93a61a;">"</span> || -n <span style="color: #93a61a;">"</span><span style="color: #3c98e0; font-weight: bold;">$</span><span style="color: #8d9fa1;">SSH_CLIENT</span><span style="color: #93a61a;">"</span> ]]; <span style="color: #93a61a; font-weight: bold;">then</span>
+    prompt_segment black default <span style="color: #93a61a;">"%(!.%{%F{yellow}%}.)</span><span style="color: #3c98e0; font-weight: bold;">$</span><span style="color: #8d9fa1;">USER</span><span style="color: #93a61a;">"</span>
+  <span style="color: #93a61a; font-weight: bold;">fi</span>
+}
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org39b33d3" class="outline-2">
+<h2 id="org39b33d3"><span class="section-number-2">16.</span> DDG settings passphrase</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+miser bomb queue 1975
+</p>
+</div>
+</div>
+<div id="outline-container-org6981ec1" class="outline-2">
+<h2 id="org6981ec1"><span class="section-number-2">17.</span> Zlibrary Onion</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcabb6b" class="outline-2">
+<h2 id="orgfcabb6b"><span class="section-number-2">18.</span> ccls search problem on ubuntu&nbsp;&nbsp;&nbsp<span class="tag"><span class="clang">clang</span>&nbsp;<span class="lsp">lsp</span></span></h2>
+<div class="outline-text-2" id="text-18">
+<p>
+Use this to see search list of clang:
+</p>
+<pre class="example" id="org33ef79c">
+clang -v -fsyntax-only -x c++ /dev/null
+</pre>
+
+<p>
+If c++ headers not in the list then add following lines to .ccls
+</p>
+<pre class="example" id="orge92a039">
+-I/usr/include/c++/11
+-I/usr/include/x86_64-linux-gnu/c++/11
+</pre>
+
+<p>
+You can use another number instead of &rsquo;11&rsquo;.
+</p>
+
+<p>
+And there is another way to handle this:
+</p>
+
+<ul class="org-ul">
+<li>Install libstdc++-xx-dev (xx is the number of g++ you use)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org579deae" class="outline-2">
+<h2 id="org579deae"><span class="section-number-2">19.</span> bits/c++config.h not found</h2>
+<div class="outline-text-2" id="text-19">
+<div class="org-src-container">
+<pre class="src src-shell"><code><span style="color: #c49619; font-style: italic;">sudo</span> apt-get install gcc-multilib g++-multilib
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga38e866" class="outline-2">
+<h2 id="orga38e866"><span class="section-number-2">20.</span> FFMPEG</h2>
+<div class="outline-text-2" id="text-20">
+</div>
+<div id="outline-container-orga1b6d6c" class="outline-3">
+<h3 id="orga1b6d6c"><span class="section-number-3">20.1.</span> Commands</h3>
+<div class="outline-text-3" id="text-20-1">
+</div>
+<div id="outline-container-org48d353d" class="outline-4">
+<h4 id="org48d353d"><span class="section-number-4">20.1.1.</span> vflip</h4>
+<div class="outline-text-4" id="text-20-1-1">
+<p>
+ffmpeg -i vivi.webm -codec:v libvpx -vf &ldquo;vflip&rdquo; -metadata:s:v rotate=0 \\n-codec:v libvpx -b:v 20000k -bufsize 2m output.webm
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3aa734e" class="outline-2">
+<h2 id="org3aa734e"><span class="section-number-2">21.</span> Latex preview</h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-org26528d9" class="outline-3">
+<h3 id="org26528d9"><span class="section-number-3">21.1.</span> Scale</h3>
+<div class="outline-text-3" id="text-21-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><code>(<span style="color: #3c98e0; font-weight: bold;">require</span> <span style="color: #db5823;">'</span><span style="color: #3c98e0; font-weight: bold;">org</span>)
+(<span style="color: #93a61a; font-weight: bold;">setq</span> <span style="color: #8d9fa1;">org-format-latex-options</span> (<span style="color: #3c98e0; font-weight: bold;">plist-put</span> <span style="color: #8d9fa1;">org-format-latex-options</span> <span style="color: #3c98e0; font-style: italic;">:scale</span> 2.0))
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7fbdd65" class="outline-2">
+<h2 id="org7fbdd65"><span class="section-number-2">22.</span> V8</h2>
+<div class="outline-text-2" id="text-22">
+<p>
+third<sub>party</sub>/blink/renderer/bindings/modules/v8/v8<sub>context</sub><sub>snapshot</sub><sub>impl.cc</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orgc0993ac" class="outline-2">
+<h2 id="orgc0993ac"><span class="section-number-2">23.</span> Emacs .h in C++-mode</h2>
+<div class="outline-text-2" id="text-23">
+<p>
+Add following codes to .dir-locals.el.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><code>((<span style="color: #3c98e0; font-weight: bold;">c-mode</span> . ((mode . c++))))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaabe7e1" class="outline-2">
+<h2 id="orgaabe7e1"><span class="section-number-2">24.</span> Emacs lsp Performance</h2>
+<div class="outline-text-2" id="text-24">
+<p>
+export LSP<sub>USE</sub><sub>PLISTS</sub>=true
+</p>
+
+<p>
+lsp-lens have huge impact on performance while edit big file.
+</p>
+
+<p>
+able to disable with
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><code>(<span style="color: #93a61a; font-weight: bold;">setq</span> <span style="color: #8d9fa1;">lsp-lens-enable</span> nil).
+</code></pre>
+</div>
+
+<p>
+or
+</p>
+
+<p>
+disable in directory local variables via <i><b>add-dir-local-variable</b></i> command
+</p>
+</div>
+</div>
+<div id="outline-container-orga9823e8" class="outline-2">
+<h2 id="orga9823e8"><span class="section-number-2">25.</span> WSL2 Ubuntu Chinese</h2>
+<div class="outline-text-2" id="text-25">
+<ul class="org-ul">
+<li>Env</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #3c98e0; font-style: italic;">export</span> <span style="color: #8d9fa1;">GTK_IM_MODULE</span>=fcitx
+<span style="color: #3c98e0; font-style: italic;">export</span> <span style="color: #8d9fa1;">QT_IM_MODULE</span>=fcitx
+<span style="color: #3c98e0; font-style: italic;">export</span> <span style="color: #8d9fa1;">XMODIFIERS</span>=<span style="color: #93a61a;">"@im=fcitx"</span>
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li>Set locals</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #c49619; font-style: italic;">sudo</span> vim /etc/locale.gen
+<span style="color: #c49619; font-style: italic;">sudo</span> locale-gen
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li>Install Packages</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #8d9fa1;">LANG</span>=zh_CN.UTF-8 <span style="color: #8d9fa1;">LANGUAGE</span>=zh_CN:en_US <span style="color: #8d9fa1;">LC_CTYPE</span>=zh_CN.UTF-8 <span style="color: #c49619; font-style: italic;">sudo</span> apt install fcitx fcitx-frontend-all fcitx-frontend-gtk2 fcitx-frontend-gtk3 fcitx-libpinyin:amd64
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li>Add fcitx service</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-shell"><code>[Unit]
+<span style="color: #8d9fa1;">Description</span>=Flexible Input Method Framework
+<span style="color: #8d9fa1;">Documentation</span>=man:fcitx(1)
+<span style="color: #8d9fa1;">Conflicts</span>=ibus.service
+
+[Service]
+<span style="color: #8d9fa1;">ExecStart</span>=/usr/bin/fcitx -D
+<span style="color: #8d9fa1;">Environment</span>=<span style="color: #8d9fa1;">GTK_IM_MODULE</span>=fcitx <span style="color: #8d9fa1;">XMODIFIERS</span>=<span style="color: #93a61a;">"@im=fcitx"</span> <span style="color: #8d9fa1;">QT_IM_MODULE</span>=fcitx
+
+[Install]
+<span style="color: #8d9fa1;">Alias</span>=input-method.service
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li>With WSLg Emacs</li>
+</ul>
+<p>
+Append these envs to target of icon that start your emacs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><code><span style="color: #8d9fa1;">LC_CTYPE</span>=zh_CN.UTF-8 <span style="color: #8d9fa1;">XMODIFIERS</span>=@<span style="color: #8d9fa1;">im</span>=fcitx
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde572fc" class="outline-2">
+<h2 id="orgde572fc"><span class="section-number-2">26.</span> .git fix error &ldquo;object file is empty&rdquo;</h2>
+<div class="outline-text-2" id="text-26">
+<div class="org-src-container">
+<pre class="src src-shell"><code><span style="color: #c49619; font-style: italic;">find</span> .git/objects/ -type f -empty | xargs <span style="color: #c49619; font-style: italic;">rm</span>
+<span style="color: #c49619; font-style: italic;">git</span> fetch -p
+<span style="color: #c49619; font-style: italic;">git</span> fsck --full
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e7894c" class="outline-2">
+<h2 id="org2e7894c"><span class="section-number-2">27.</span> How to draw planes in 3-Dimentional space</h2>
+<div class="outline-text-2" id="text-27">
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #93a61a; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #93a61a; font-weight: bold;">as</span> plt
+<span style="color: #93a61a; font-weight: bold;">import</span> numpy <span style="color: #93a61a; font-weight: bold;">as</span> np
+<span style="color: #93a61a; font-weight: bold;">from</span> mpl_toolkits.mplot3d <span style="color: #93a61a; font-weight: bold;">import</span> Axes3D
+
+
+<span style="color: #8d9fa1;">fig</span> <span style="color: #db5823;">=</span> plt.figure()
+
+<span style="color: #62787f; font-style: italic;"># </span><span style="color: #62787f; font-style: italic;">Coordinates
+</span><span style="color: #8d9fa1;">x</span> <span style="color: #db5823;">=</span> np.linspace(<span style="color: #db5823;">-</span>10,10, 20)
+<span style="color: #8d9fa1;">y</span> <span style="color: #db5823;">=</span> np.linspace(<span style="color: #db5823;">-</span>10,10, 20)
+
+<span style="color: #8d9fa1;">X</span>,<span style="color: #8d9fa1;">Y</span> <span style="color: #db5823;">=</span> np.meshgrid(x, y)
+<span style="color: #8d9fa1;">Z</span> <span style="color: #db5823;">=</span> (4 <span style="color: #db5823;">-</span> X <span style="color: #db5823;">-</span> 3 <span style="color: #db5823;">*</span> Y) <span style="color: #db5823;">/</span> 5
+<span style="color: #8d9fa1;">Z1</span> <span style="color: #db5823;">=</span> (5 <span style="color: #db5823;">-</span> X <span style="color: #db5823;">-</span> 2 <span style="color: #db5823;">*</span> Y) <span style="color: #db5823;">/</span> <span style="color: #db5823;">-</span>3
+<span style="color: #8d9fa1;">Z2</span> <span style="color: #db5823;">=</span> (8 <span style="color: #db5823;">-</span> 2 <span style="color: #db5823;">*</span> X <span style="color: #db5823;">-</span> 5 <span style="color: #db5823;">*</span> Y) <span style="color: #db5823;">/</span> 2
+
+<span style="color: #8d9fa1;">ax</span> <span style="color: #db5823;">=</span> fig.add_subplot(111, projection<span style="color: #db5823;">=</span><span style="color: #93a61a;">'3d'</span>)
+ax.plot_surface(X, Y, Z)
+ax.plot_surface(X, Y, Z1)
+ax.plot_surface(X, Y, Z2)
+plt.show()
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org41c4109" class="outline-2">
+<h2 id="org41c4109"><span class="section-number-2">28.</span> Enable Chromium logging on windows</h2>
+<div class="outline-text-2" id="text-28">
+<div class="org-src-container">
+<pre class="src src-shell"><code>--enable-logging=stderr --v=1 <span style="color: #62787f; font-style: italic;"># </span><span style="color: #62787f; font-style: italic;">Output will be printed to standard error (eg. printed in the console) and to the debugger</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5c75c5a" class="outline-2">
+<h2 id="org5c75c5a"><span class="section-number-2">29.</span> Windows remove hibernate file to save space of system partition</h2>
+<div class="outline-text-2" id="text-29">
+<p>
+This file could use space which equal to the amout of your memory
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><code>powercfg -h off&#8203;
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org87ff6b1" class="outline-2">
+<h2 id="org87ff6b1"><span class="section-number-2">30.</span> Change gnome cursor size permanent</h2>
+<div class="outline-text-2" id="text-30">
+<div class="org-src-container">
+<pre class="src src-shell"><code><span style="color: #c49619; font-style: italic;">sudo</span> vim /usr/share/glib-2.0/schemas/org.gnome.desktop.interface.gschema.xml
+
+<span style="color: #62787f; font-style: italic;"># </span><span style="color: #62787f; font-style: italic;">then search for cursor-size and change it's value.</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org94cf08b" class="outline-2">
+<h2 id="org94cf08b"><span class="section-number-2">31.</span> Bazel 7.0.0 with rules<sub>foreign</sub><sub>cc</sub>, symlinked problems&nbsp;&nbsp;&nbsp<span class="tag"><span class="bazel">bazel</span>&nbsp;<span class="rules_foreign_cc">rules_foreign_cc</span></span></h2>
+<div class="outline-text-2" id="text-31">
+<p>
+<a href="https://github.com/bazelbuild/rules_foreign_cc/issues/1129">ISSUE</a>
+</p>
+
+<p>
+WORKAROUND: Build with &ndash;noincompatible<sub>sandbox</sub><sub>hermetic</sub><sub>tmp</sub> .
+</p>
+</div>
+</div>
+<div id="outline-container-orgc552c98" class="outline-2">
+<h2 id="orgc552c98"><span class="section-number-2">32.</span> Org mode default agenda files&nbsp;&nbsp;&nbsp<span class="tag"><span class="org">org</span>&nbsp;<span class="mode">mode</span>&nbsp;<span class="agaenda">agaenda</span></span></h2>
+<div class="outline-text-2" id="text-32">
+<div class="org-src-container">
+<pre class="src src-elisp"><code>(<span style="color: #93a61a; font-weight: bold;">setq</span> <span style="color: #8d9fa1;">org-agenda-files</span>
+    (<span style="color: #3c98e0; font-weight: bold;">find-lisp-find-files</span> <span style="color: #93a61a;">"~/Notes"</span> <span style="color: #93a61a;">"</span><span style="color: #c49619;">\</span><span style="color: #93a61a;">.org$"</span>))
+(<span style="color: #93a61a; font-weight: bold;">setq</span> <span style="color: #8d9fa1;">org-agenda-text-search-extra-files</span>
+    <span style="color: #db5823;">'</span>(agenda-archives
+        <span style="color: #93a61a;">"~/Notes/Schedules/Schedule.org.gpg"</span>))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc5fba18" class="outline-2">
+<h2 id="orgc5fba18"><span class="section-number-2">33.</span> Caution to generate pdf for <a href="https://github.com/0xAX/linux-insides">https://github.com/0xAX/linux-insides</a>&nbsp;&nbsp;&nbsp<span class="tag"><span class="linux_insides">linux_insides</span></span></h2>
+<div class="outline-text-2" id="text-33">
+</div>
+<div id="outline-container-org9221d0d" class="outline-3">
+<h3 id="org9221d0d"><span class="section-number-3">33.1.</span> Error: cb.apply is not a function</h3>
+<div class="outline-text-3" id="text-33-1">
+<p>
+comment line 62-64 of file /usr/local/lib/node<sub>modules</sub>/gitbook-cli/node<sub>modules</sub>/npm/node<sub>modules</sub>/graceful-fs/polyfills.js
+</p>
+</div>
+</div>
+<div id="outline-container-org563dd98" class="outline-3">
+<h3 id="org563dd98"><span class="section-number-3">33.2.</span> Install ebook-convert</h3>
+<div class="outline-text-3" id="text-33-2">
+<p>
+By command
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #c49619; font-style: italic;">sudo</span> -v &amp;&amp; wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | <span style="color: #c49619; font-style: italic;">sudo</span> sh /dev/stdin
+</code></pre>
+</div>
+
+<p>
+then ebook-convert will be installed in /usr/bin
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org182c2ed" class="outline-2">
+<h2 id="org182c2ed"><span class="section-number-2">34.</span> Install lastest GCC On Ubuntu&nbsp;&nbsp;&nbsp<span class="tag"><span class="gcc">gcc</span>&nbsp;<span class="Ubuntu">Ubuntu</span></span></h2>
+<div class="outline-text-2" id="text-34">
+<p>
+You can change the version of gcc in this example.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #c49619; font-style: italic;">sudo</span> apt-get update &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get install build-essential software-properties-common -y &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> add-apt-repository ppa:ubuntu-toolchain-r/test -y &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get update &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get install gcc-snapshot -y &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get update &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get install gcc-6 g++-6 -y &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> apt-get install gcc-4.8 g++-4.8 -y &amp;&amp; <span style="color: #93a61a;">\</span>
+<span style="color: #c49619; font-style: italic;">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8;
+
+When completed, you must change to the gcc you want to work with by default. Type<span style="color: #93a61a; font-weight: bold;"> in</span> your terminal:
+<span style="color: #c49619; font-style: italic;">sudo</span> update-alternatives --config gcc
+
+To verify if it worked. Just type<span style="color: #93a61a; font-weight: bold;"> in</span> your terminal
+gcc -v
+
+If everything went fine you should see gcc 6.1.1  by the time I am writing this gist
+
+Happy coding!
+
+See my blog post at https://www.application2000.com
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga15e026" class="outline-2">
+<h2 id="orga15e026"><span class="section-number-2">35.</span> CMD to gen compile<sub>commands.json</sub> from bazel</h2>
+<div class="outline-text-2" id="text-35">
+<p>
+By this bazel module:
+<a href="https://github.com/hedronvision/bazel-compile-commands-extractor">https://github.com/hedronvision/bazel-compile-commands-extractor</a>
+</p>
+
+
+<p>
+With this commands to gen compile<sub>commands.json</sub>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>bazel run @hedron_compile_commands//:refresh_all
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org20e66c9" class="outline-2">
+<h2 id="org20e66c9"><span class="section-number-2">36.</span> Zotero annotation configure</h2>
+<div class="outline-text-2" id="text-36">
+<pre class="example" id="org9cec285">
+Objective, #ffd400, Assumption, #ff6666, Method, #e56eee, Theory, #f19837, Conclusion, #aaaaaa, Contribution, #69af15, Background, #ee8574, Present, #6a99e7, Problem, #e65fa1, Solution, #62e0ef, Definition, #7ec8e0, Terminology, #31bbba, Drawback, #ff4444, Content, #bbbbaa
+</pre>
+</div>
+</div>
+<div id="outline-container-orgce79205" class="outline-2">
+<h2 id="orgce79205"><span class="section-number-2">37.</span> Jest with 0x</h2>
+<div class="outline-text-2" id="text-37">
+<div class="org-src-container">
+<pre class="src src-bash"><code>0x ./node_modules/jest/bin/jest.js --no-coverage --runInBand
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0ff30a" class="outline-2">
+<h2 id="orgf0ff30a"><span class="section-number-2">38.</span> org-mode no prompt for passphrase for descrypt</h2>
+<div class="outline-text-2" id="text-38">
+<p>
+setup somewhere
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #3c98e0; font-style: italic;">export</span> <span style="color: #8d9fa1;">GPG_TTY</span>=$(tty)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:02</p>
+</div>
+</body>
+</html>

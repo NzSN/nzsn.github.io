@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Real Numbers</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">The Real Numbers</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb8bbe0f">1. Order Completness</a></li>
+<li><a href="#org8fe7e29">2. Dedekind&rsquo;s Construction of the Real Numbers</a></li>
+<li><a href="#org8e50768">3. Square root</a></li>
+<li><a href="#org473f9c5">4. Supremum and Infimum</a></li>
+<li><a href="#orgdd46eec">5. Archimedean Property</a></li>
+<li><a href="#org99c6392">6. Density of Rational Numbers</a></li>
+<li><a href="#org82e6014">7. Density of Irrational Numbers</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb8bbe0f" class="outline-2">
+<h2 id="orgb8bbe0f"><span class="section-number-2">1.</span> Order Completness</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Every nonempty subset of R that is bounded has supremum and infinum.
+</p>
+</div>
+</div>
+<div id="outline-container-org8fe7e29" class="outline-2">
+<h2 id="org8fe7e29"><span class="section-number-2">2.</span> Dedekind&rsquo;s Construction of the Real Numbers</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Function to embed \(\mathbf{Q}\) into \(\mathbf{R}\) is:
+</p>
+
+<p>
+\[ \mathbf{Q} \rightarrow \mathbf{R}, r \mapsto \{ x \in \mathbf{Q} \mid x > r \} \]
+</p>
+
+<p>
+Idea is to identifying the missing number by a pair of rational sets. The way to identifying the missing number is used a pair of <b>rational set</b>, for example, \(\sqrt{2} := \{x \in \mathbf{Q} \mid (x > 0) \land (x^2 > 2) \}\). Order completeness is a character expected as an extension field of \(\mathbf{Q}\).
+</p>
+
+<p>
+Order on \(\mathbf{R}\):
+</p>
+
+<p>
+\[ \mathbb{R_1} \leq \mathbb{R_2} := \mathbb{R_1} \supseteq \mathbb{R_2} \]
+</p>
+
+<p>
+As we know, \(\subseteq\) on ses is <b>Partial Order</b>, but with the restrict of how those \(\mathbb{R}\) spawned we say this relation is totally ordered.
+</p>
+
+<p>
+<b>Order Completness</b> is expected on \(\mathbf{R}\). Suppose that \(\mathbb{R_1} \subseteq \mathbf{R}\) is nonempty and bounded below, that is, there is some \(\mathbb{A} \in \mathbf{R}\) such that \(\forall r \in \mathbf{A}: r \subseteq \mathbf{A}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org8e50768" class="outline-2">
+<h2 id="org8e50768"><span class="section-number-2">3.</span> Square root</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Prop. For all \(a \in \mathbb{R^+}\) and \(n \in \mathbb{N^{\times}}\), there is unique \(x \in \mathbb{R^+}\) such that x<sup>n</sup> = a.
+</p>
+
+<p>
+Proof:
+</p>
+
+<p>
+Uniqueness of solution can be derived from formula which
+already proved:
+\(a^n - b^n = (a-b)\displaystyle\sum_{k=0}^{n-1} a^{k}b^{n-k} > 0\)
+</p>
+
+<p>
+Suppose \(x > a\) and have \(x^n > x > a\), assume that a &gt; 1. Next to approximate the solution
+by declare a set that a as an upper bound:
+\(\mathbf{X} := \{ x \in \mathbb{R^+}; x^n < a \}\)
+</p>
+
+<p>
+Supremum of \mathbf{X} should be solution of \(x^n = a\) I think, let&rsquo;s to
+prove it. Let \(s_n := sup(X)\) and since \(\mathbb{R}\) is totally order so
+able to prove this by assume \(s^n > a\) or \(s^n = a\) or \(s^n < a\).
+</p>
+
+<p>
+First to suppose that \(s^n < a\). Then we can find some \(\epsilon \in \mathbb{R}\)
+such that \(0 < \epsilon < (a - s^n)\), from this inequality have $s<sup>n</sup> + &epsilon; &lt; a $.
+Intuitively, there should be real numbers between a and \(s^n\) but because s is sup(\mathbb{X}).
+Let to prove this is a contradiction.
+Let \(b := \displaystyle\sum_{k=0}^{n-1} \binom{n}{k} s^k\), and have \(0 < \epsilon < \frac{a - s^n}{b}\)
+able to assume \(\epsilon\) is small enought so that \(\epsilon < 1\). Then
+</p>
+
+<p>
+\((s + \epsilon)^n = s^n - \displaystyle\sum_{k=0}^{n-1} \binom{n}{k} s^k \epsilon^{n-k} \leq
+                    s^n - (\displaystyle\sum_{k=0}^{n-1} \binom{n}{k} s^k)\epsilon < a\)
+which implies that \(s + \epsilon \in \mathbb{X}\)
+but which is impossible so \(s^n < a\) is not true.
+</p>
+
+<p>
+Assume that \(s^n > a\). \(0 < \epsilon < s^n - a\). Similarly, to reveal contradiction that some real
+numbers between \(s^n\) and a so there are some upper bound least than \(s^n\).
+Let \(b := \displaystyle\sum^* \binom{n}{2j - 1} s^{2j - 1} > 0\) so
+\(0 < \epsilon < \frac{s^n - a}{b}\) with \(\epsilon \leq 1 \land s\). Thus we have
+</p>
+\begin{equation}
+\begin{align*}
+(s^n - \epsilon) & := \displaystyle\sum_{k=0}^{n} \binom{n}{k} s^n (-\epsilon)^{n-k} \\
+               & = s^n + \displaystyle\sum_{k=0}^{n-1} (-1)^{n-k}s^n \epsilon^{n-k} \\
+               & > s^n - \displaystyle\sum^* \binom{n}{2j - 1} s^{2j - 1} \epsilon^{n - 2j + 1} \\
+               & > s^n - (\displaystyle\sum^* \binom{n}{2j - 1} s^{2j - 1})\epsilon  & > a
+\end{align*}
+\end{equation}
+<p>
+Now let \(x \in \mathbb{R^+}\) such that \(x > (s^n - \epsilon)\), and from above equation we have
+\(x^n > (s^n - \epsilon) > a\) which implies that \(s^n - \epsilon\) is an upper bound of \(\mathbb{X}\)
+which is impossible. Due to \(\mathbb{R^+}\) is totally order so \(s^n = a\).
+</p>
+
+<p>
+Now to deal with the case the \(0 < a < 1\). Let \(b := \frac{1}{a}\), and there exists \(y \in \mathbb{R+}\)
+such that \(y^n = b\) then \(x := \frac{1}{y}\) is the solution of \(x^n = a\).
+</p>
+</div>
+</div>
+<div id="outline-container-org473f9c5" class="outline-2">
+<h2 id="org473f9c5"><span class="section-number-2">4.</span> Supremum and Infimum</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Prop.
+</p>
+<ol class="org-ol">
+<li>if \[ \mathbb{A} \subseteq \mathbb{R}\] and \[x \in \mathbb{R} \] then
+<ol class="org-ol">
+<li>\[ x < sup(A) \iff \exists a \in A: a > x \]</li>
+<li>\[ x > inf(A) \iff \exists \in A: a < x \]</li>
+</ol></li>
+<li>Every subset \[ \bf{A} \] of \[ \mathbb{R} \] has a supremum and an infimum in \[ \mathbb{\bar{R}} \].</li>
+</ol>
+
+<p>
+Proof.
+a.1. Assume that \[ x < sup(\mathbf(A)) \]. Suppose \[ \forall a \in \mathbb{A}: a < x \] then \[ x := sup(\mathbf{A}) \] which
+     is contratry to assumption. Hence, \[ \exists a \in \mathbb{A}: a > x \].
+a.2  Similar to a.1.
+</p>
+<ol class="org-ol">
+<li>If \[ \mathbf{A} \] is nonempty and bounded then claim is derived directly from order completeness.
+If \[ \mathbf{A} \] is nonempty and not bounded then \[ sup(\mathbf{A}) := \infty \] and \[ inf(\mathbf{A}) := -\infty \].
+So the claim is true \[ \blacksquare \]</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdd46eec" class="outline-2">
+<h2 id="orgdd46eec"><span class="section-number-2">5.</span> Archimedean Property</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Prop. For \[ x \in \mathbb{R} \], there exists some \[ n \in \mathbb{N} \] such that \[ n > x \].
+Proof.
+  Let \[ x \in \mathbb{R} \] and \[ \mathbf{X} := \{ n \in \mathbb{N} \mid n < x \} \]. \[ s := sup(\mathbf{X}) \] then by (Prop Supremum and Infimum)
+  there exists \[ a \in \mathbf{X} \] such that \[ s - 1/2 < a \] and let \[ n := a + 1\] so have \[ n > s \] so \[ n \notin \mathbf{X} \]
+  Hence, \[ n > x \].
+</p>
+</div>
+</div>
+<div id="outline-container-org99c6392" class="outline-2">
+<h2 id="org99c6392"><span class="section-number-2">6.</span> Density of Rational Numbers</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Prop. For all \(a,b \in \mathbb{R}\) such that \(a < b\) there is some \(r \in \mathbb{Q}\) such that \(a < r < b\).
+</p>
+
+<p>
+Proof.
+Because of \(a < b\) so \(b - a > 0\). By Archimedean property have \(n > \frac{1}{b-a}\), \(n \in \mathbb{N}\), so \(nb - na > 1\)
+and have \(nb > na + 1\). Archimedean property again, exists \(m_1 > na\) and \(m_2 > -na\) so \(-m_2 < na < m_1\).
+Consequence there exists \(m \in \mathbb{Z}\) such that \(m < na + 1 < m + 1\). Together with both of two inequality we have:
+</p>
+
+<p>
+\[ na < m \leq na + 1 < nb \Rightarrow a < \frac{m}{n} \leq a + \frac{1}{n} < b \]
+</p>
+
+<p>
+so exists some rational number \(\frac{m}{n}\) between arbiterary pair of rational numbers.
+</p>
+</div>
+</div>
+<div id="outline-container-org82e6014" class="outline-2">
+<h2 id="org82e6014"><span class="section-number-2">7.</span> Density of Irrational Numbers</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Prop. For any \(a,b \in \mathbb{R}\) such that \(a < b\), there is some \(\xi \in \mathbb{R} \backslash \mathbb{Q}\) such that \(a < \xi < b\).
+Idea is to construct an identity between a and b that can be proved is an irrational. As we known \(\sqrt{2}\)  is an irrational. So can try to represent \(\xi\) by \(\sqrt{2}\).
+</p>
+
+<p>
+Proof:
+A directly definition of \(\xi\) is \(a + \frac{b - a}{\sqrt{2}}\) but \(\sqrt{2} = \frac{b-a}{\xi-a}\) cannot gurantee that \(\xi\) is an irrational cause a and b  may be irrational too so \(\xi\) can be rational in this equation.
+</p>
+
+<p>
+Fortunately, density of rational numbers can help. By density of rational numbers we have \(a < r_1 < b\)   and \(a < r_2 < b\) such that \(r_1 < r_2\). Hence, \(\xi := r_1 + \frac{(r_2 - r_1)}{\sqrt{2}}\). Clearly, \(a < r_1 < \xi < r_2 < b\) and \(\xi\) is irrational due to
+\[ \sqrt{2} = \frac{r_2 - r_1}{\xi - r_1} \]
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:02</p>
+</div>
+</body>
+</html>

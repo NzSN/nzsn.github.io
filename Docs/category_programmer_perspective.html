@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Category (Programmer Perspective)</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Category (Programmer Perspective)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0df8f53">1. Notations</a></li>
+<li><a href="#org4bf731d">2. What is Category ?</a></li>
+<li><a href="#org3b11af3">3. Structure of a Category</a>
+<ul>
+<li><a href="#org9df791d">3.1. Universal Construction</a></li>
+<li><a href="#org30b2a9e">3.2. Duality</a>
+<ul>
+<li><a href="#org14f08b3">3.2.1. Asymmetry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4ad45c4">4. Functors</a></li>
+<li><a href="#orgd073e8c">5. Functoriality</a>
+<ul>
+<li><a href="#orgc786903">5.1. What is functorial ?</a></li>
+<li><a href="#org0f9cb24">5.2. BiFunctors</a></li>
+<li><a href="#org2e6d9db">5.3. Product and Coproduct Bifunctors</a></li>
+<li><a href="#orge570b14">5.4. Functorial Algebraic Data Types</a></li>
+</ul>
+</li>
+<li><a href="#org8132719">6. Covariant and Contravariant Functors</a></li>
+<li><a href="#org72831f3">7. Profunctors</a></li>
+<li><a href="#orgb252f67">8. Hom-Functor</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0df8f53" class="outline-2">
+<h2 id="org0df8f53"><span class="section-number-2">1.</span> Notations</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>\(Hom_{C}(a,b)\): A set of morphisms from object a to object b in a category \(C\) is called a hom-set and is written as \(C(a,b)\) (or, sometimes, \(Hom_{A}(a,b)\) )</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4bf731d" class="outline-2">
+<h2 id="org4bf731d"><span class="section-number-2">2.</span> What is Category ?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Category is all about objects and arrows (morphisms), morphisms here not require to be a &rsquo;structure-preserving mapping&rsquo; it can be just a map or another things.
+</p>
+
+<p>
+A Category has two basics properties:
+</p>
+
+<ul class="org-ul">
+<li>Existence of an identity arrow for each object.</li>
+<li><p>
+Arrows should be composable, for example, if
+\(f : A \rightarrow B\) and \(g : B \rightarrow C\) then there must also exists \(z: A \rightarrow C\).
+</p>
+
+<p>
+Properties of Composition
+</p>
+
+<ol class="org-ol">
+<li>Asociative: \((h \circ g) \circ f == h \circ (g \circ f)\)</li>
+<li>Unit of composition:
+Suppose \(f: A \rightarrow B\) then \(f \circ id_{A} = f\) and \(id_{B} \circ f = f\) .</li>
+</ol></li>
+</ul>
+
+<p>
+A set of morphisms from object \(a\) to object \(b\) in category \(\mathbf{C}\) is called a hom-set and is written as \(\mathbf{C}(a,b)\).
+</p>
+</div>
+</div>
+<div id="outline-container-org3b11af3" class="outline-2">
+<h2 id="org3b11af3"><span class="section-number-2">3.</span> Structure of a Category</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This section is about the ways to construct <b>Category</b>.
+</p>
+</div>
+<div id="outline-container-org9df791d" class="outline-3">
+<h3 id="org9df791d"><span class="section-number-3">3.1.</span> Universal Construction</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Category is science of analogy. Many of structure in Category is come from field of non-category.
+The ways to move structure (or pattern) into category is called &rsquo;Universal Construction&rsquo;.
+</p>
+
+<p>
+The content of &rsquo;Universal Construction&rsquo; is about how you moving structure into category.
+</p>
+
+<ul class="org-ul">
+<li>Pick up a structure then try to simulate it by objects and morphisms.</li>
+<li>If there are many categories created by simulated then ranking those
+categories under some conditions and to pick the best one as analogy
+in category for the choosen structure.</li>
+</ul>
+
+<p>
+<a href="examples_of_universal_construction.html#ID-e8cc0bb9-233d-48cd-ae9f-2536ecdb03ab">Examples of Universal Construction</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org30b2a9e" class="outline-3">
+<h3 id="org30b2a9e"><span class="section-number-3">3.2.</span> Duality</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+We are able to create a new category by reverse direction of all arrow. This property of <b>Category</b> is called duality.
+For example, <b>Initial Object</b> can be obtained by reverse all direction of morphism of in <b>Category</b> where <b>Terminal Object</b>
+reside in.
+</p>
+
+<p>
+For each <b>Category</b> \(C\) we are able to get a new <b>Category</b> \(C^{op}\) by reverse direction of morphism in \(C\). The constructions in the
+opposite category are often prefixed with &ldquo;co&rdquo;. For example, <b>Product</b> and <b>Coproduct</b>.
+</p>
+</div>
+<div id="outline-container-org14f08b3" class="outline-4">
+<h4 id="org14f08b3"><span class="section-number-4">3.2.1.</span> Asymmetry</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Category \(C\) and it&rsquo;s opposite Category \(C^{op}\) can has different properties. For example, Size of Product and CoProduct, or the meaning
+of these two construction in <b>Algebra</b>, product represent product of two types but CoProduct represent sum of two types.
+</p>
+
+<p>
+Constructions with bijective morphisms is symmetric under duality construction.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ad45c4" class="outline-2">
+<h2 id="org4ad45c4"><span class="section-number-2">4.</span> Functors</h2>
+</div>
+<div id="outline-container-orgd073e8c" class="outline-2">
+<h2 id="orgd073e8c"><span class="section-number-2">5.</span> Functoriality</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgc786903" class="outline-3">
+<h3 id="orgc786903"><span class="section-number-3">5.1.</span> What is functorial ?</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Basically, when you have some expression \(E\)
+that contains \(F\), and we say \(E\) is functorial in \(F\),
+it means that \(F \rightarrow E\) , is a functor.
+</p>
+</div>
+</div>
+<div id="outline-container-org0f9cb24" class="outline-3">
+<h3 id="org0f9cb24"><span class="section-number-3">5.2.</span> BiFunctors</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+\(bifunctor :: C \times D \rightarrow E\) where \(C,D,E \in \mathbf{Cat}\)
+</p>
+
+<p>
+Bifunctor also mapping morphism of category \(C \times D\) to \(E\). Morphism of
+\(C \times D\) if just a pair of morphism from category \(C \times D\). These pairs
+of morphisms can be composed in the obvious way:
+</p>
+
+<p>
+\((f,g) \circ (f',g') = (f \circ f', g \circ g')\)
+</p>
+
+<p>
+The composition is associative and it has an identity, (id, id). So a Cartesian product
+of categories is indeed a category.
+</p>
+</div>
+</div>
+<div id="outline-container-org2e6d9db" class="outline-3">
+<h3 id="org2e6d9db"><span class="section-number-3">5.3.</span> Product and Coproduct Bifunctors</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+In previous section we have already defined categorical product. If the product exists
+for any pair of objects, the mapping from those objects to the product is bifunctorial.
+</p>
+
+<p>
+Here&rsquo;s the Bifunctor instance for a pair constructor, the simplest product type:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><code><span style="color: #93a61a; font-weight: bold;">instance</span> <span style="color: #c49619; font-style: italic;">Bifunctor</span> <span style="color: #c49619; font-style: italic;">(,)</span> <span style="color: #93a61a; font-weight: bold;">where</span>
+  bimap <span style="color: #8d9fa1;">::</span> (a <span style="color: #8d9fa1;">-&gt;</span> c) <span style="color: #8d9fa1;">-&gt;</span> (b <span style="color: #8d9fa1;">-&gt;</span> d) <span style="color: #8d9fa1;">-&gt;</span> (a, b) <span style="color: #8d9fa1;">-&gt;</span> (c, d)
+  bimap f g (x, y) <span style="color: #8d9fa1;">=</span> (f x, g y)
+</code></pre>
+</div>
+
+<p>
+By duality, a coproduct exists, if it&rsquo;s defined for every pair of objects in a category, is also a bifunctor.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><code><span style="color: #93a61a; font-weight: bold;">instance</span> <span style="color: #c49619; font-style: italic;">Bifunctor</span> <span style="color: #c49619; font-style: italic;">Either</span> <span style="color: #93a61a; font-weight: bold;">where</span>
+  bimap f <span style="color: #93a61a; font-weight: bold;">_</span> (<span style="color: #c49619; font-style: italic;">Left</span> x) <span style="color: #8d9fa1;">=</span> <span style="color: #c49619; font-style: italic;">Left</span> (f x)
+  bimap <span style="color: #93a61a; font-weight: bold;">_</span> g (<span style="color: #c49619; font-style: italic;">Right</span> y) <span style="color: #8d9fa1;">=</span> <span style="color: #c49619; font-style: italic;">Right</span> (g y)
+</code></pre>
+</div>
+
+<p>
+If treat bifunctorial as functorial, then product and coproduct are both functorial.
+</p>
+</div>
+</div>
+<div id="outline-container-orge570b14" class="outline-3">
+<h3 id="orge570b14"><span class="section-number-3">5.4.</span> Functorial Algebraic Data Types</h3>
+<div class="outline-text-3" id="text-5-4">
+<div class="org-src-container">
+<pre class="src src-haskell"><code><span style="color: #93a61a; font-weight: bold;">data</span> <span style="color: #c49619; font-style: italic;">Maybe</span> a <span style="color: #8d9fa1;">=</span> <span style="color: #c49619; font-style: italic;">Nothing</span> <span style="color: #8d9fa1;">|</span> <span style="color: #c49619; font-style: italic;">Just</span> a
+<span style="color: #62787f; font-style: italic;">-- </span><span style="color: #62787f; font-style: italic;">Equivalent form
+</span><span style="color: #93a61a; font-weight: bold;">type</span> <span style="color: #c49619; font-style: italic;">Maybe</span> a <span style="color: #8d9fa1;">=</span> <span style="color: #c49619; font-style: italic;">Either</span> (<span style="color: #c49619; font-style: italic;">Const</span> <span style="color: #c49619; font-style: italic;">()</span> a) (<span style="color: #c49619; font-style: italic;">Identity</span> a)
+</code></pre>
+</div>
+
+<p>
+In the second case, Maybe is defined from Bifunctor Either and two functor, Const () and Identity.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8132719" class="outline-2">
+<h2 id="org8132719"><span class="section-number-2">6.</span> Covariant and Contravariant Functors</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Covariant functor is regular functor. Contravariant Functor are functors
+that maps objects the same way regular functor does, but when it comes to
+mapping morphisms, it reverses them.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><code><span style="color: #93a61a; font-weight: bold;">class</span> <span style="color: #c49619; font-style: italic;">Contravariant</span> f <span style="color: #93a61a; font-weight: bold;">where</span>
+  contramap <span style="color: #8d9fa1;">::</span> (b <span style="color: #8d9fa1;">-&gt;</span> a) <span style="color: #8d9fa1;">-&gt;</span> (f a <span style="color: #8d9fa1;">-&gt;</span> f b)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org72831f3" class="outline-2">
+<h2 id="org72831f3"><span class="section-number-2">7.</span> Profunctors</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Function-arrow operator that first argument is contravariant and covariant in the second is called a profunctor.
+</p>
+
+<p>
+\(\mathbf{C}^{op} \times \mathbf{D} \rightarrow \mathbf{Set}\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgb252f67" class="outline-2">
+<h2 id="orgb252f67"><span class="section-number-2">8.</span> Hom-Functor</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Description on wiki is more easily to understand.
+</p>
+
+<p>
+Suppose C is <b>Hom-Functor</b> then we have:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><code><span style="color: #62787f; font-style: italic;">-- </span><span style="color: #62787f; font-style: italic;">Mapping on morphisms
+</span><span style="color: #3c98e0;">f</span> <span style="color: #8d9fa1;">::</span> <span style="color: #c49619; font-style: italic;">X</span> <span style="color: #8d9fa1;">-&gt;</span> <span style="color: #c49619; font-style: italic;">Y</span>
+<span style="color: #3c98e0;">g</span> <span style="color: #8d9fa1;">::</span> <span style="color: #c49619; font-style: italic;">X</span> <span style="color: #8d9fa1;">-&gt;</span> <span style="color: #c49619; font-style: italic;">Y</span>
+
+<span style="color: #c49619; font-style: italic;">C</span>(f,g) <span style="color: #8d9fa1;">::</span> <span style="color: #c49619; font-style: italic;">C</span>(<span style="color: #c49619; font-style: italic;">Y</span>,<span style="color: #c49619; font-style: italic;">X</span>) <span style="color: #8d9fa1;">-&gt;</span> <span style="color: #c49619; font-style: italic;">C</span>(<span style="color: #c49619; font-style: italic;">X</span>,<span style="color: #c49619; font-style: italic;">Y</span>)
+</code></pre>
+</div>
+
+<p>
+For all objects A and B in C we define two functors to the category of sets as follows
+(show only mapping on objects here, mapping on morphisms is shown above) :
+</p>
+
+<ul class="org-ul">
+<li>Covariant functor
+Hom(A, _) maps each object X in C to the set of morphisms, Hom(A, X)</li>
+<li>Contravariant functor
+Hom(_, A) maps each object X in C to the set of morphisms, Hom(X, A)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:09</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Debugging</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Debugging</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga32c29b">1. gdb/lldb debugging</a>
+<ul>
+<li><a href="#org1f1869d">1.1. How it work ?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga32c29b" class="outline-2">
+<h2 id="orga32c29b"><span class="section-number-2">1.</span> gdb/lldb debugging</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org1f1869d" class="outline-3">
+<h3 id="org1f1869d"><span class="section-number-3">1.1.</span> How it work ?</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Debugger mainly use following two things to debugging
+target.
+</p>
+
+<ul class="org-ul">
+<li>debug info</li>
+<li>ptrace</li>
+</ul>
+
+<p>
+With debug info debugger can determine where is a symbol
+reside in source code and stop on which instruction.
+</p>
+
+<p>
+For example there is a program:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><code><span style="color: #c49619; font-style: italic;">int</span> <span style="color: #3c98e0;">work</span>() {
+  <span style="color: #93a61a; font-weight: bold;">return</span> 0;
+}
+
+<span style="color: #c49619; font-style: italic;">int</span> <span style="color: #3c98e0;">main</span>() {
+  work();
+  <span style="color: #93a61a; font-weight: bold;">return</span> 0;
+}
+</code></pre>
+</div>
+
+<p>
+and debug<sub>info</sub> section of this program is:
+</p>
+
+<pre class="example" id="orgac9649a">
+main.o:     file format elf64-x86-64
+
+Contents of the .debug_info section (loaded from main.o):
+
+  Compilation Unit @ offset 0x0:
+   Length:        0x6e (32-bit)
+   Version:       5
+   Unit Type:     DW_UT_compile (1)
+   Abbrev Offset: 0x0
+   Pointer Size:  8
+ &lt;0&gt;&lt;c&gt;: Abbrev Number: 1 (DW_TAG_compile_unit)
+    &lt;d&gt;   DW_AT_producer    : (indirect string, offset: 0xa): GNU C17 13.1.0 -mtune=generic -march=x86-64 -g -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection
+    &lt;11&gt;   DW_AT_language    : 29       (C11)
+    &lt;12&gt;   DW_AT_name        : (indirect line string, offset: 0x14): main.c
+    &lt;16&gt;   DW_AT_comp_dir    : (indirect line string, offset: 0x0): /home/nzsn/Misc/XXX
+    &lt;1a&gt;   DW_AT_low_pc      : 0x0
+    &lt;22&gt;   DW_AT_high_pc     : 0x28
+    &lt;2a&gt;   DW_AT_stmt_list   : 0x0
+ &lt;1&gt;&lt;2e&gt;: Abbrev Number: 2 (DW_TAG_subprogram)
+    &lt;2f&gt;   DW_AT_external    : 1
+    &lt;2f&gt;   DW_AT_name        : (indirect string, offset: 0x0): main
+    &lt;33&gt;   DW_AT_decl_file   : 1
+    &lt;34&gt;   DW_AT_decl_line   : 4
+    &lt;35&gt;   DW_AT_decl_column : 5
+    &lt;36&gt;   DW_AT_type        : &lt;0x4c&gt;
+    &lt;3a&gt;   DW_AT_low_pc      : 0xf
+    &lt;42&gt;   DW_AT_high_pc     : 0x19
+    &lt;4a&gt;   DW_AT_frame_base  : 1 byte block: 9c         (DW_OP_call_frame_cfa)
+    &lt;4c&gt;   DW_AT_call_all_tail_calls: 1
+ &lt;1&gt;&lt;4c&gt;: Abbrev Number: 3 (DW_TAG_base_type)
+    &lt;4d&gt;   DW_AT_byte_size   : 4
+    &lt;4e&gt;   DW_AT_encoding    : 5        (signed)
+    &lt;4f&gt;   DW_AT_name        : int
+ &lt;1&gt;&lt;53&gt;: Abbrev Number: 4 (DW_TAG_subprogram)
+    &lt;54&gt;   DW_AT_external    : 1
+    &lt;54&gt;   DW_AT_name        : (indirect string, offset: 0x5): work
+    &lt;58&gt;   DW_AT_decl_file   : 1
+    &lt;59&gt;   DW_AT_decl_line   : 2
+    &lt;5a&gt;   DW_AT_decl_column : 5
+    &lt;5b&gt;   DW_AT_type        : &lt;0x4c&gt;
+    &lt;5f&gt;   DW_AT_low_pc      : 0x0
+    &lt;67&gt;   DW_AT_high_pc     : 0xf
+    &lt;6f&gt;   DW_AT_frame_base  : 1 byte block: 9c         (DW_OP_call_frame_cfa)
+    &lt;71&gt;   DW_AT_call_all_calls: 1
+ &lt;1&gt;&lt;71&gt;: Abbrev Number: 0
+</pre>
+<p>
+(Obtain by command objdump -g main.o)
+</p>
+
+<p>
+DW<sub>AT</sub><sub>decl</sub><sub>file</sub>: define in which file
+DW<sub>AT</sub><sub>decl</sub><sub>line</sub>: which line of above file
+DW<sub>AT</sub><sub>decl</sub><sub>column</sub>: similar
+DW<sub>AT</sub><sub>low</sub><sub>pc</sub>: offset of first instruction of correspond symbol
+DW<sub>AT</sub><sub>high</sub><sub>pc</sub>: offset of next of last instruction of correspond symbol
+</p>
+
+
+<p>
+Debugger able to debug target program by use of those information and ptrace interface.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:02</p>
+</div>
+</body>
+</html>

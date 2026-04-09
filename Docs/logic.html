@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Logic</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Logic</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4a6fb2b">1. Introduction</a></li>
+<li><a href="#org4f89b23">2. Fundamentals of Logic</a>
+<ul>
+<li><a href="#org657a8d3">2.1. Negation</a></li>
+<li><a href="#org4cfb5dc">2.2. Conjunction (\(\land\)) and Disjunction(\(\lor\))</a></li>
+<li><a href="#org6ed76f5">2.3. Quantifier and Property</a>
+<ul>
+<li><a href="#orgfa3f1da">2.3.1. Property</a></li>
+<li><a href="#org4995683">2.3.2. Quantifier</a></li>
+</ul>
+</li>
+<li><a href="#org363a6f0">2.4. Implication</a></li>
+<li><a href="#org8bd550c">2.5. Equivalence</a></li>
+<li><a href="#org183c322">2.6. Others</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Let me try to conclude what I learned from this book chapter.
+Very basically, logic &ndash; more specifically, first-order logic is about propositional
+logic with non-logical objects. With this, we are able to make propositions about objects,
+such as natural numbers and complex numbers. These objects are non-logical objects.
+</p>
+
+<p>
+The context of this section is about:
+</p>
+<ol class="org-ol">
+<li>Operations on propositions: neg, land, lor</li>
+<li>Quantifiers on non-logical objects: exists, forall.</li>
+</ol>
+<p>
+Finally, a first-order logic statement looks like the following:
+exists x in X : E(x)
+This statement works as a proposition that expects there to exist an x in X
+such that the property E(x) holds. E(x) can be an expression that involves lor, land, 
+neg as operators.
+The above is about the definition of an individual proposition; relations between
+properties are also described by implication.
+</p>
+
+<p>
+In short, the first section is about properties and relations between properties.
+</p>
+
+<p>
+The purpose of the first chapter is mainly to help us enable or improve the ability to make inferences via first-order logic. The basic tools that can be used to make inferences are:
+</p>
+<ol class="org-ol">
+<li>operators on propositions. land, lor,</li>
+</ol>
+<p>
+eg
+</p>
+<ol class="org-ol">
+<li>Quantifiers forall, exists.</li>
+<li>implication, Rightarrow.</li>
+</ol>
+
+<p>
+Hence, this section expects that the reader can do inferences via first-order logic more easily.
+</p>
+
+<p>
+This section introduce <b>First-Order Logic</b>. First-order logic only quantifies over elements of sets. <a href="second_order_logic.html#ID-2d458f89-2d5d-4b5d-982d-b5c28357e394">Second-Order Logic</a> based on <b>First-Order Logic</b>.
+</p>
+<div id="outline-container-org4a6fb2b" class="outline-2">
+<h2 id="org4a6fb2b"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Symbolic logic is about statements which one can meaningfully claim to
+be true or false. An example of statement is &ldquo;The light is on.&rdquo; or
+&ldquo;The linght is off&rdquo;. With symbolic logic we are able to deduce truth
+value of statements on a paper.
+</p>
+</div>
+</div>
+<div id="outline-container-org4f89b23" class="outline-2">
+<h2 id="org4f89b23"><span class="section-number-2">2.</span> Fundamentals of Logic</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org657a8d3" class="outline-3">
+<h3 id="org657a8d3"><span class="section-number-3">2.1.</span> Negation</h3>
+<div class="outline-text-3" id="text-2-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\neg A\)</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org4cfb5dc" class="outline-3">
+<h3 id="org4cfb5dc"><span class="section-number-3">2.2.</span> Conjunction (\(\land\)) and Disjunction(\(\lor\))</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">B</td>
+<td class="org-left">\(A \land B\)</td>
+<td class="org-left">\(A \lor B\)</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6ed76f5" class="outline-3">
+<h3 id="org6ed76f5"><span class="section-number-3">2.3.</span> Quantifier and Property</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orgfa3f1da" class="outline-4">
+<h4 id="orgfa3f1da"><span class="section-number-4">2.3.1.</span> Property</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+If \(E(x)\) is an expression which becomes a statement when
+x replace with a object or a specified class of objects then
+E is a property.
+</p>
+
+<p>
+\(E(x)\) is true means &ldquo;x has property E&rdquo;
+</p>
+
+<p>
+\(\{ x \in X; E(x) \}\) means every x in X has property E.
+</p>
+</div>
+</div>
+<div id="outline-container-org4995683" class="outline-4">
+<h4 id="org4995683"><span class="section-number-4">2.3.2.</span> Quantifier</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+There has two quantifier:
+</p>
+<ul class="org-ul">
+<li>\(\exists\): Exist at least one</li>
+<li>\(\exists !\): Exactly one</li>
+<li>\(\forall\): For all</li>
+</ul>
+
+<p>
+and with property we write:
+</p>
+<ul class="org-ul">
+<li>\(\forall x \in X: E(x)\)</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org4a34faa"></a>Order of Quantifier<br />
+<div class="outline-text-5" id="text-2-3-2-1">
+<p>
+Order of quantifier is significant. For example, &ldquo;\(\forall x \exists y: E(x,y)\)&rdquo; and
+&ldquo;\(\exists y \forall x: E(x, y)\)&rdquo;.
+</p>
+
+<p>
+&ldquo;\(\forall x \exists y: E(x,y)\)&rdquo; means for all x there is some y such that E(x,y) is
+True.
+</p>
+
+<p>
+&ldquo;\(\exists y \forall x: E(x, y)\)&rdquo; means it suffices to find a fixed y such that
+E(x,y) is true for all x.
+</p>
+</div>
+</li>
+<li><a id="org80927e4"></a>Negation with Quantifier<br />
+<div class="outline-text-5" id="text-2-3-2-2">
+<p>
+When apply negation to a statement which contain quantifier these quantifier should
+be interchanged between \(\forall\) and \(\exists\).
+</p>
+
+<p>
+For example:
+</p>
+<ul class="org-ul">
+<li>\(\neg\neg A := \neg(\neg A) = A\)</li>
+<li>\(\neg(A \land B) = (\neg A) \lor (\neg B)\)</li>
+<li>\(\neg(A \lor B) = (\neg A) \land (\neg B)\)</li>
+<li>\(\neg(\exists x \in X: E(x)) = (\forall x \in X: \neg E(x))\)</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org363a6f0" class="outline-3">
+<h3 id="org363a6f0"><span class="section-number-3">2.4.</span> Implication</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+\((A \Rightarrow B) :=  (\neg A) \lor B\)
+</p>
+
+<p>
+\(A \Rightarrow B\) is common to express as &ldquo;To prove B is suffices to prove A&rdquo; or
+&ldquo;B is necessary for A to be true&rdquo;, in other words, A is a suffice condition for B,
+and B is a necessary condition for A.
+</p>
+
+<p>
+remark
+</p>
+<ul class="org-ul">
+<li>a := b, means a is defined by b</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8bd550c" class="outline-3">
+<h3 id="org8bd550c"><span class="section-number-3">2.5.</span> Equivalence</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+\((A \Leftrightarrow B) := (A \Rightarrow B) \land (B \Rightarrow A)\)
+</p>
+
+<p>
+So, \((A \Leftrightarrow B)\) is true when both \(A \Rightarrow B\) and it&rsquo;s converse
+\(B \Rightarrow A\) is true, means A is suffice and necessary condition for B.
+Common way to expressing this is to say &rsquo;A is true if and only if B is true.
+</p>
+
+<p>
+By observation:
+</p>
+<ul class="org-ul">
+<li>\((A \Rightarrow B) \Leftrightarrow (\neg B \Rightarrow \neg A)\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org183c322" class="outline-3">
+<h3 id="org183c322"><span class="section-number-3">2.6.</span> Others</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+\(A :\Leftrightarrow B\), say &rsquo;A is true, by definition, if B is true&rsquo;
+</p>
+
+<p>
+REMARK:
+</p>
+
+<p>
+A true statement is often called proposition, theorem, lemma or corollary.
+propositions are often in the form \(A \Rightarrow B\), the statement is
+automatically to be true if A is false, so the only intrested case is A is true.
+</p>
+
+<p>
+Thus to prove \(A \Rightarrow B\), one suppose is A is true.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:02</p>
+</div>
+</body>
+</html>

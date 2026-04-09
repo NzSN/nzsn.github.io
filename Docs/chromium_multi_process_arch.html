@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chromium-Multi-Process-Arch</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Chromium-Multi-Process-Arch</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc028e53">1. Problem</a></li>
+<li><a href="#orgb34bf8c">2. Architectural Overview</a>
+<ul>
+<li><a href="#org317df2e">2.1. Managing render processes</a></li>
+</ul>
+</li>
+<li><a href="#org68646ea">3. Components and interfaces</a></li>
+<li><a href="#org609d18c">4. Sharing the renderer process</a></li>
+<li><a href="#org05d919d">5. Sandboxing the renderer</a></li>
+<li><a href="#org58205e2">6. How Browser boot named tasks</a>
+<ul>
+<li><a href="#org34367a2">6.1. How Renderer is spawn</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc028e53" class="outline-2">
+<h2 id="orgc028e53"><span class="section-number-2">1.</span> Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Chromium&rsquo;s architecture aims for this more robust design.
+</p>
+
+<p>
+Chromium use <i><b>Multi Process Arch</b></i>. It put each of applications into a seperate process. Browser will not crashes or hangs by misbehaving applications, of course another applications are also.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb34bf8c" class="outline-2">
+<h2 id="orgb34bf8c"><span class="section-number-2">2.</span> Architectural Overview</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>browser process: runs the UI and manages renderer and other processes.</li>
+
+<li><p>
+renderer processes: handle web content, use the Blink open-source layout engin for interpreting and laying out HTML.
+</p>
+
+<p>
+More information in <a href="chromium_renderer_process.html#ID-337fb2ce-b694-497e-a0ea-380a1b1d704a">Chromium-Renderer-Process</a>.
+</p></li>
+</ul>
+
+
+<div id="org2b46c20" class="figure">
+<p><img src="figures/Chromium/arch.png" alt="arch.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org317df2e" class="outline-3">
+<h3 id="org317df2e"><span class="section-number-3">2.1.</span> Managing render processes</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Browser process maintains a corresponding <i><b>RenderProcessHost</b></i> for each renderer process.
+</p>
+
+<p>
+Each renderer process has a global <i><b>RenderProcess</b></i> manages communication with <i><b>Browser process</b></i> and maintain global state.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org68646ea" class="outline-2">
+<h2 id="org68646ea"><span class="section-number-2">3.</span> Components and interfaces</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+In the renderer process:
+</p>
+
+<ul class="org-ul">
+<li>RenderProcess: Handle IPC</li>
+<li>RenderFrame: Communicates with its corresponding RenderFrameHost in the browser process (via Mojo).</li>
+</ul>
+
+<p>
+In the browser process:
+</p>
+
+<ul class="org-ul">
+<li>Browser object represents a top-level browser window.</li>
+<li>RenderProcessHost: Handle IPC with corresponding <i><b>Renderer Process</b></i>.</li>
+<li>RenderFrameHost: encapsulates communication with the <i><b>RenderFrame</b></i>.</li>
+<li>RenderWidgetHost: Handles the input and painting for RenderWidget in the browser.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org609d18c" class="outline-2">
+<h2 id="org609d18c"><span class="section-number-2">4.</span> Sharing the renderer process</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Sometimes it is necessary or desirable to share the <i><b>Renderer process</b></i> between tabs.
+</p>
+
+<p>
+Chromium provide capabilities to achieve such requirement.
+</p>
+
+<p>
+More details in <a href="chromium_process_models.html#ID-92ed1262-447b-4d41-a478-46c6493f113e">Chromium-Process-Models</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org05d919d" class="outline-2">
+<h2 id="org05d919d"><span class="section-number-2">5.</span> Sandboxing the renderer</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Each <i><b>Renderer</b></i> reside in a seperate process which provide a way to restrict it&rsquo;s access to resources by sandboxing (<a href="chromium_sandboxing.html#ID-2d7c7744-b776-41c8-b6d3-4c75d783f527">Chromium-Sandboxing</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org58205e2" class="outline-2">
+<h2 id="org58205e2"><span class="section-number-2">6.</span> How Browser boot named tasks</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+BrowserMain()
+BrowserMainRunnerImpl::Initialize()
+BrowserMainLoop::CreateStartupTasks()
+BrowserMainLoop:PostCreateThreads()
+BrowserMainLoop::PostCreateThreadsImpl()
+&hellip;
+BrowserChildProcessHostImpl::LaunchWithoutExtraCommandLineSwitches() called by
+GpuSandboxedProcessLanucherDelegate
+</p>
+</div>
+<div id="outline-container-org34367a2" class="outline-3">
+<h3 id="org34367a2"><span class="section-number-3">6.1.</span> How Renderer is spawn</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+In short, <b>Renderer</b> is created by <b>RenderProcessHost</b> which use <b>ChildProcessLauncher</b> to create <b>Render</b> process asynchronously on LauncherThread.
+</p>
+
+<p>
+Following section is a stack trace where <b>RenderProcessHost</b> create <b>Render</b> process.
+</p>
+
+<p>
+Top of stack is where render process crated. The whole stack shows the path of browser initialize renderer.
+</p>
+
+<pre class="example" id="org00e197a">
+content::RenderProcessHostImpl::Init()
+content::SpareRenderProcessHostManager::WarmupSpareRenderProcessHost(content::BrowserContext *)
+content::SpareRenderProcessHostManager::PrepareForFutureRequests(content::BrowserContext *, std::__Cr::optional&lt;base::TimeDelta&gt;)
+content::RenderProcessHostImpl::NotifySpareManagerAboutRecentlyUsedSiteInstance(content::SiteInstance *, bool)
+content::RenderFrameHostManager::GetSiteInstanceForNavigation(const content::UrlInfo &amp;, content::SiteInstanceImpl *, content::SiteInstanceImpl *, content::SiteInstanceImpl *, ui::PageTransition, content::NavigationRequest::ErrorPageProcess, bool, bool, content::RenderFrameHostManager::IsSameSiteGetter &amp;, bool, bool, bool, content::CoopSwapResult, bool, bool, content::BrowsingContextGroupSwap *, std::__Cr::basic_string&lt;char,std::__Cr::char_traits&lt;char&gt;,std::__Cr::allocator&lt;char&gt;&gt; *)
+content::RenderFrameHostManager::GetSiteInstanceForNavigationRequest(content::NavigationRequest *, content::RenderFrameHostManager::IsSameSiteGetter &amp;, content::BrowsingContextGroupSwap *, std::__Cr::basic_string&lt;char,std::__Cr::char_traits&lt;char&gt;,std::__Cr::allocator&lt;char&gt;&gt; *)
+content::RenderFrameHostManager::GetFrameHostForNavigation(content::NavigationRequest *, content::BrowsingContextGroupSwap *, std::__Cr::basic_string&lt;char,std::__Cr::char_traits&lt;char&gt;,std::__Cr::allocator&lt;char&gt;&gt; *)
+content::RenderFrameHostManager::DidCreateNavigationRequest(content::NavigationRequest *)
+content::FrameTreeNode::TakeNavigationRequest(std::__Cr::unique_ptr&lt;content::NavigationRequest,std::__Cr::default_delete&lt;content::NavigationRequest&gt;&gt;)
+content::Navigator::Navigate(std::__Cr::unique_ptr&lt;content::NavigationRequest,std::__Cr::default_delete&lt;content::NavigationRequest&gt;&gt;, content::ReloadType)
+content::NavigationControllerImpl::NavigateWithoutEntry(const content::NavigationController::LoadURLParams &amp;)
+content::NavigationControllerImpl::LoadURLWithParams(const content::NavigationController::LoadURLParams &amp;)
+`anonymous namespace'::LoadURLInContents(content::WebContents *, const GURL &amp;, NavigateParams *)
+Navigate(NavigateParams *)
+chrome::AddAndReturnTabAt(Browser *, const GURL &amp;, int, bool, std::__Cr::optional&lt;tab_groups::TabGroupId&gt;)
+chrome::AddTabAt(Browser *, const GURL &amp;, int, bool, std::__Cr::optional&lt;tab_groups::TabGroupId&gt;)
+StartupBrowserCreatorImpl::OpenTabsInBrowser(Browser *, chrome::startup::IsProcessStartup, const std::__Cr::vector&lt;StartupTab,std::__Cr::allocator&lt;StartupTab&gt;&gt; &amp;)
+StartupBrowserCreatorImpl::RestoreOrCreateBrowser(const std::__Cr::vector&lt;StartupTab,std::__Cr::allocator&lt;StartupTab&gt;&gt; &amp;, StartupBrowserCreatorImpl::BrowserOpenBehavior, unsigned int, chrome::startup::IsProcessStartup, bool)
+StartupBrowserCreatorImpl::DetermineURLsAndLaunch(chrome::startup::IsProcessStartup, bool)
+StartupBrowserCreatorImpl::Launch(Profile *, chrome::startup::IsProcessStartup, std::__Cr::unique_ptr&lt;OldLaunchModeRecorder,std::__Cr::default_delete&lt;OldLaunchModeRecorder&gt;&gt;, bool)
+StartupBrowserCreator::LaunchBrowser(const base::CommandLine &amp;, Profile *, const base::FilePath &amp;, chrome::startup::IsProcessStartup, chrome::startup::IsFirstRun, std::__Cr::unique_ptr&lt;OldLaunchModeRecorder,std::__Cr::default_delete&lt;OldLaunchModeRecorder&gt;&gt;, bool)
+StartupBrowserCreator::ProcessLastOpenedProfiles(const base::CommandLine &amp;, const base::FilePath &amp;, chrome::startup::IsProcessStartup, chrome::startup::IsFirstRun, Profile *, const std::__Cr::vector&lt;Profile *,std::__Cr::allocator&lt;Profile *&gt;&gt; &amp;)
+StartupBrowserCreator::LaunchBrowserForLastProfiles(const base::CommandLine &amp;, const base::FilePath &amp;, chrome::startup::IsProcessStartup, chrome::startup::IsFirstRun, StartupProfileInfo, const std::__Cr::vector&lt;Profile *,std::__Cr::allocator&lt;Profile *&gt;&gt; &amp;, bool)
+StartupBrowserCreator::ProcessCmdLineImpl(const base::CommandLine &amp;, const base::FilePath &amp;, chrome::startup::IsProcessStartup, StartupProfileInfo, const std::__Cr::vector&lt;Profile *,std::__Cr::allocator&lt;Profile *&gt;&gt; &amp;)
+StartupBrowserCreator::Start(const base::CommandLine &amp;, const base::FilePath &amp;, StartupProfileInfo, const std::__Cr::vector&lt;Profile *,std::__Cr::allocator&lt;Profile *&gt;&gt; &amp;)
+ChromeBrowserMainParts::PreMainMessageLoopRunImpl()
+ChromeBrowserMainParts::PreMainMessageLoopRun()
+content::BrowserMainLoop::PreMainMessageLoopRun()
+base::internal::DecayedFunctorTraits&lt;int (content::BrowserMainLoop::*)(),content::BrowserMainLoop *&gt;::Invoke&lt;int (content::BrowserMainLoop::*)(),content::BrowserMainLoop *&gt;(int(content::BrowserMainLoop::*)(), content::BrowserMainLoop * &amp;&amp;)
+base::internal::InvokeHelper&lt;0,base::internal::FunctorTraits&lt;int (content::BrowserMainLoop::*&amp;&amp;)(),content::BrowserMainLoop *&gt;,int,0&gt;::MakeItSo&lt;int (content::BrowserMainLoop::*)(),std::__Cr::tuple&lt;base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt;&gt;(int(content::BrowserMainLoop::*)() &amp;&amp;, std::__Cr::tuple&lt;base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt; &amp;&amp;)
+base::internal::Invoker&lt;base::internal::FunctorTraits&lt;int (content::BrowserMainLoop::*&amp;&amp;)(),content::BrowserMainLoop *&gt;,base::internal::BindState&lt;1,1,0,int (content::BrowserMainLoop::*)(),base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt;,int ()&gt;::RunImpl&lt;int (content::BrowserMainLoop::*)(),std::__Cr::tuple&lt;base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt;,0&gt;(int(content::BrowserMainLoop::*)() &amp;&amp;, std::__Cr::tuple&lt;base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt; &amp;&amp;, std::__Cr::integer_sequence&lt;unsigned long long,0&gt;)
+base::internal::Invoker&lt;base::internal::FunctorTraits&lt;int (content::BrowserMainLoop::*&amp;&amp;)(),content::BrowserMainLoop *&gt;,base::internal::BindState&lt;1,1,0,int (content::BrowserMainLoop::*)(),base::internal::UnretainedWrapper&lt;content::BrowserMainLoop,base::unretained_traits::MayNotDangle,0&gt;&gt;,int ()&gt;::RunOnce(base::internal::BindStateBase *)
+base::OnceCallback&lt;int ()&gt;::Run()
+content::StartupTaskRunner::RunAllTasksNow()
+content::BrowserMainLoop::CreateStartupTasks()
+content::BrowserMainRunnerImpl::Initialize(content::MainFunctionParams)
+content::BrowserMain(content::MainFunctionParams)
+content::RunBrowserProcessMain(content::MainFunctionParams, content::ContentMainDelegate *)
+content::ContentMainRunnerImpl::RunBrowser(content::MainFunctionParams, bool)
+content::ContentMainRunnerImpl::Run()
+content::RunContentProcess(content::ContentMainParams, content::ContentMainRunner *)
+content::ContentMain(content::ContentMainParams)
+ChromeMain(HINSTANCE__ *, sandbox::SandboxInterfaceInfo *, __int64)
+MainDllLoader::Launch(HINSTANCE__ *, base::TimeTicks)
+wWinMain(HINSTANCE__ *, HINSTANCE__ *, wchar_t *, int)
+[外部代码]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:20</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-09 Thu 23:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Rational Numbers</title>
+<meta name="author" content="NzSN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">The Rational Numbers</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc40d651">1. Construction of Integers</a>
+<ul>
+<li><a href="#org57882fd">1.1. Definition of Integers</a></li>
+</ul>
+</li>
+<li><a href="#orge8e4b2d">2. Construction of Rational</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc40d651" class="outline-2">
+<h2 id="orgc40d651"><span class="section-number-2">1.</span> Construction of Integers</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The motivation to construct <b>Integers</b> is to extend <b>Addition</b> of <a href="the_natural_numbers.html#ID-32b5f21e-079a-4dab-b75e-ec9cd19bf4cf">Naturals</a> to be
+a <b>Group Operator</b>. Let&rsquo;s look at why <b>Addition</b> of <a href="the_natural_numbers.html#ID-32b5f21e-079a-4dab-b75e-ec9cd19bf4cf">Naturals</a> not a <b>Group Operator</b>
+</p>
+
+<p>
+By definition of <a href="groups.html#ID-6ba334c9-f984-4801-964c-408414784947">Groups</a>, it&rsquo;s operation should has property that
+                \[ \forall g \in \mathbb{G}, \exists g^b \in \mathbb{G}: g \odot g^b = e\]
+</p>
+
+<p>
+In <b>Naturals</b> we have \(e = 0\). Then let \(N \ni g = 1\) and if <b>Naturals</b>  is a group t-
+hen we should be able to find out \(g^b\) such that \(g \odot g^b = 0\). In fact, we are unabl-
+e to do that cause there is not element because \[1 + \mathbb{N} = \mathbb{N} \backslash \{0\}\].
+</p>
+
+<p>
+Obviously, <b>Addition</b> of <b>Naturals</b> is associatetive and has identity element. So
+The reason is it doesn&rsquo;t not satisfied the third property of <b>Group Operator</b>. T-
+hen need to extend <b>Naturals</b> so that each of elements in <b>Naturals</b> has negative.
+</p>
+
+<p>
+Then the most straight solution is to extend \[ \mathbb{N} \] so it able to represent \[ g^b \]. Intu-
+tively, have \[          \]\[ \forall n \in \mathbb{N}: n + (0 - n) = 0 \] and this can be written as
+        \[ \forall n \in \mathbb{N} : (n - 0) + (0 - n) = n - n = 0 \]
+so we can build a set, \[ \mathbb{N}^2 \], that each element, \[ (x,y) \], represent \[ x - y \]. The name of
+the set is <b>Integer</b>.
+</p>
+</div>
+<div id="outline-container-org57882fd" class="outline-3">
+<h3 id="org57882fd"><span class="section-number-3">1.1.</span> Definition of Integers</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Let \[\mathbb{Z} := (\mathbb{Z},+,\cdot)\] be <b>Integers</b> and \[(\mathbb{Z}, +)\] is a <b>Group</b>. \[\mathbb{Z}\] is defined as
+</p>
+
+<p>
+\[ \mathbb{Z} := \mathbb{N}^{2} \backslash \sim \] with <a href="relations_and_operations.html#ID-1efec497-87f9-4f54-a183-40f22ce4dcad">Equivalence Relation</a>, \[ \sim \], that defined as
+        \[ (m,n) \sim (m',n') := m + n' = m' + n\]
+Addition is defined as
+\[ [(m,n)] + [(m',n')] := (m - n) + (m' - n') = (m + m') - (n + n') = [(m+n',n+n')] \]
+Multiplication is defined as
+\[ [(m,n)] \cdot [(m',n')] := (m - n) \cdot (m' - n') = (mm' + nn') - (mn' + m'n) = [(mm'+nn', nm'+m'n)] \]
+</p>
+
+<p>
+The Function \[ f: \mathbb{N} \rightarrow \mathbb{Z}, n \mapsto [(n,0)] \] is injective which implies that \[ \mathbb{N} \] is inclusion in \[ \mathbb{Z} \]
+and operation of \[ \mathbb{Z} \] is compatible with \[ \mathbb{N} \].
+</p>
+
+<p>
+Let \[ \mathbb{Z} \] be a commutative ring with unity, 1, and without zero divisor. Operation
+on \[ \mathbb{Z} \] are restrict to usual operation on \[ \mathbb{N} \]. Let \[ g: \mathbb{Z} \rightarrow \mathbb{N} \], injective, be a function
+such that \[ g \mid \mathbb{N} = \text{(inclusion of N in Z)} \]. This implies that uniqueness of \[ \mathbb{Z} \] up to
+isomorphism.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge8e4b2d" class="outline-2">
+<h2 id="orge8e4b2d"><span class="section-number-2">2.</span> Construction of Rational</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+But \[ \mathbb{Z} \] still not a <a href="rings_fields_and_polynomials.html#ID-e4b7c282-6301-43a6-9d24-68f1cd34101e">Fields</a> so next to extend \[ \mathbb{Z} \] so that we have a field struct-
+ure that extended from \[ \mathbb{N} \].
+</p>
+
+<p>
+The reason why \[ \mathbb{Z} \] can not be a <a href="rings_fields_and_polynomials.html#ID-e4b7c282-6301-43a6-9d24-68f1cd34101e">Fields</a> similar to why <b>Naturals</b> is not a group,
+due to abcense of negation of elements with respect to <b>multiplication</b> in \[ \mathbb{Z} \].
+</p>
+
+<p>
+So solution is similar, need to identifying \[ \frac{x}{y} \] from \[ \mathbb{Z} \] and by <b>8.7 Remarks</b>, we
+have
+</p>
+
+<p>
+\[ \mathbb{Q} := (\mathbb{Q} := \mathbb{Z}^{2}/\sim, +, \cdot) \]
+where \[ (x,y) \sim (x',y') := \frac{x}{y'} = \frac{x'}{y} \]
+</p>
+
+<p>
+Addition:
+\[ [(x,y)] + [(x',y')] := [(xy' + x'y, y \cdot y')] \]
+</p>
+
+<p>
+Multiplication:
+\[ [(x,y)] \cdot [(x',y')] := [(xx',yy')] \]
+</p>
+
+<p>
+Obviously, \[ \mathbb{Q} \] is a field.
+</p>
+
+<p>
+The function \[ f: \mathbb{Z} \rightarrow \mathbb{Q}, z \mapsto [(z, 1)] \] is injective and operation on \[ \mathbb{Q} \] is comp-
+atible with \[ \mathbb{Z} \]. Which implies that \[ \mathbb{Z} \subseteq \mathbb{Q} \], each \[ z \in \mathbb{Z} \] is identifying with its
+image under this function.
+</p>
+
+<p>
+Due to both \[ \mathbb{Q} \] and \[ \mathbb{Z} \] are both countable, so there exists a function
+\[ g: \mathbb{Q} \rightarrow \mathbb{Z} \] such that \[ g \mid \mathbb{Z} = \text{inclusion of \mathbb{Z} in \mathbb{Q}} \]. which implies that unique-
+ness of \[ \mathbb{Q} \] up to isomorphism.
+</p>
+
+<ul class="org-ul">
+<li>1 Prop. \[ r \in \mathbb{Q} \iff \exists (p,q) \in \mathbb{Z} \times \mathbb{N^{\times}} : \frac{p}{q} = r \]
+Proof. Let \[ \mathbb{Q} \ni r = \frac{p}{q} \] .  If \[ r < 0 \land q < 0 \] then we can rewrite
+r as \[ \frac{(-1)p \in \mathbb{Z}}{(-1)q \in \mathbb{N^{\times}}} \].  This implies the claim of this proposition is true \[ \blacksquare \]</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+2 Prop.  \[ \mathbb{Z} \] and \[ \mathbb{Q} \] are countably infinite.
+</p>
+
+<p>
+Proof. Let \[ f: \mathbb{N} \rightarrow \mathbb{Z} \] be an injective function such that
+</p>
+
+<p>
+\[ f(n \in \mathbb{N}) =
+  \begin{cases}
+       n/2 & \quad \text{if n is even} \\
+       -(n+1)/2 & \quad \text{if n is odd}
+  \end{cases}\]
+</p>
+
+<p>
+Hence, \[ \mathbb{Z} \] is countable. So \[ \mathbb{Z} \times \mathbb{N^{\times}} \] is countable too which implies that
+\[ \mathbb{Q} \] is countable too due to there exist injective function (by (1 Prop) in this section) between
+\[ \mathbb{Q} \] and \[ \mathbb{Z} \times \mathbb{N^{\times}} \] \[ \blacksquare \]
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: NzSN</p>
+<p class="date">Created: 2026-04-09 Thu 23:20</p>
+</div>
+</body>
+</html>
