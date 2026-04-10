@@ -1,30 +1,1247 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   NEXTRA-STYLE CSS DESIGN SYSTEM
+   Clean, professional docs theme
+   ============================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Typography Scale - Nextra uses Inter */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* Spacing Scale (4px base - Nextra style) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* Layout widths */
+  --sidebar-width: 268px;
+  --toc-width: 256px;
+  --content-max-width: 720px;
+  --header-height: 64px;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+  
+  /* Z-Index Scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-overlay: 400;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Light Theme - Nextra clean white */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-elevated: #ffffff;
+  --bg-muted: #e5e7eb;
+  --bg-sidebar: #f9fafb;
+  
+  --fg-primary: #111827;
+  --fg-secondary: #374151;
+  --fg-tertiary: #6b7280;
+  --fg-muted: #9ca3af;
+  
+  --accent-primary: #3b82f6;
+  --accent-secondary: #2563eb;
+  --accent-muted: #dbeafe;
+  
+  --border-default: #e5e7eb;
+  --border-muted: #f3f4f6;
+  --border-strong: #d1d5db;
+  
+  --code-bg: #f3f4f6;
+  --code-border: #e5e7eb;
+  
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover: #f9fafb;
+  
+  --search-bg: #f3f4f6;
+  --search-border: #e5e7eb;
+}
+
+/* Dark Theme - Nextra dark (default) */
+[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --bg-elevated: #161b22;
+  --bg-muted: #30363d;
+  --bg-sidebar: #0d1117;
+  
+  --fg-primary: #e6edf3;
+  --fg-secondary: #c9d1d9;
+  --fg-tertiary: #8b949e;
+  --fg-muted: #6e7681;
+  
+  --accent-primary: #58a6ff;
+  --accent-secondary: #388bfd;
+  --accent-muted: #1f6feb;
+  
+  --border-default: #21262d;
+  --border-muted: #30363d;
+  --border-strong: #484f58;
+  
+  --code-bg: #161b22;
+  --code-border: #21262d;
+  
+  --card-bg: #161b22;
+  --card-border: #21262d;
+  --card-hover: #21262d;
+  
+  --search-bg: #161b22;
+  --search-border: #21262d;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--accent-muted);
+  color: var(--fg-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 a {
-  color: inherit;
+  color: var(--accent-primary);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
+  color: var(--accent-secondary);
+}
+
+/* ============================================
+   NEXTRA-STYLE HEADER
+   ============================================ */
+
+.nextra-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: var(--z-sticky);
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-default);
+  backdrop-filter: blur(8px);
+}
+
+.nextra-header-inner {
+  max-width: calc(var(--sidebar-width) + var(--content-max-width) + var(--toc-width) + var(--space-16));
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.nextra-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+}
+
+.nextra-header-center {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.nextra-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nextra-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--fg-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-lg);
+  transition: opacity var(--transition-fast);
+}
+
+.nextra-logo:hover {
+  opacity: 0.85;
+  color: var(--fg-primary);
+}
+
+.nextra-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: var(--radius-md);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ============================================
+   NEXTRA-STYLE NAVIGATION
+   ============================================ */
+
+.nextra-nav-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.nextra-nav-link:hover {
+  color: var(--fg-primary);
+  background: var(--bg-tertiary);
+}
+
+.nextra-nav-link.active {
+  color: var(--accent-primary);
+  background: var(--accent-muted);
+}
+
+/* ============================================
+   NEXTRA-STYLE SEARCH
+   ============================================ */
+
+.nextra-search {
+  position: relative;
+  width: 100%;
+}
+
+.nextra-search-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-10);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--fg-primary);
+  background: var(--search-bg);
+  border: 1px solid var(--search-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.nextra-search-input::placeholder {
+  color: var(--fg-muted);
+}
+
+.nextra-search-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 20%, transparent);
+}
+
+.nextra-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-muted);
+  pointer-events: none;
+}
+
+/* ============================================
+   NEXTRA-STYLE THEME TOGGLE
+   ============================================ */
+
+.nextra-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.nextra-theme-toggle:hover {
+  background: var(--bg-tertiary);
+  color: var(--fg-primary);
+  border-color: var(--border-muted);
+}
+
+/* ============================================
+   NEXTRA-STYLE SIDEBAR (LEFT)
+   ============================================ */
+
+.nextra-sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-default);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-6) var(--space-4);
+  z-index: var(--z-sticky);
+}
+
+.nextra-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nextra-sidebar-section {
+  margin-bottom: var(--space-6);
+}
+
+.nextra-sidebar-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.nextra-sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--fg-tertiary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.nextra-sidebar-link:hover {
+  color: var(--fg-primary);
+  background: var(--bg-tertiary);
+}
+
+.nextra-sidebar-link.active {
+  color: var(--accent-primary);
+  background: var(--accent-muted);
+  font-weight: 500;
+}
+
+/* Collapsible sections */
+.nextra-sidebar-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--fg-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.nextra-sidebar-collapse:hover {
+  background: var(--bg-tertiary);
+}
+
+.nextra-sidebar-collapse-icon {
+  transition: transform var(--transition-base);
+}
+
+.nextra-sidebar-collapse.open .nextra-sidebar-collapse-icon {
+  transform: rotate(90deg);
+}
+
+.nextra-sidebar-collapse-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-left: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.nextra-sidebar-collapse-content.collapsed {
+  display: none;
+}
+
+/* ============================================
+   NEXTRA-STYLE TOC (RIGHT SIDEBAR)
+   ============================================ */
+
+.nextra-toc {
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  bottom: 0;
+  width: var(--toc-width);
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-default);
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-4);
+  z-index: var(--z-dropdown);
+}
+
+.nextra-toc-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.nextra-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nextra-toc-item {
+  margin: 0;
+}
+
+.nextra-toc-link {
+  display: block;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--fg-tertiary);
+  border-left: 2px solid transparent;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nextra-toc-link:hover {
+  color: var(--fg-primary);
+  border-left-color: var(--border-muted);
+}
+
+.nextra-toc-link.active {
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+  font-weight: 500;
+}
+
+/* Indentation for heading levels */
+.nextra-toc-link[data-level="3"] {
+  padding-left: var(--space-5);
+}
+
+.nextra-toc-link[data-level="4"] {
+  padding-left: var(--space-7);
+}
+
+/* ============================================
+   NEXTRA-STYLE MAIN CONTENT
+   ============================================ */
+
+.nextra-content-container {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+}
+
+.nextra-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+.nextra-content-full {
+  /* When TOC is hidden */
+  margin-right: 0;
+}
+
+/* ============================================
+   NEXTRA-STYLE FOOTER
+   ============================================ */
+
+.nextra-footer {
+  padding: var(--space-8) var(--space-6);
+  border-top: 1px solid var(--border-default);
+  background: var(--bg-primary);
+}
+
+.nextra-footer-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nextra-footer-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nextra-footer-link {
+  font-size: var(--text-sm);
+  color: var(--fg-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.nextra-footer-link:hover {
+  color: var(--fg-primary);
+}
+
+.nextra-footer-copyright {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+/* ============================================
+   NEXTRA-STYLE NAVIGATION (Prev/Next)
+   ============================================ */
+
+.nextra-nav-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-default);
+}
+
+.nextra-nav-link-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  color: var(--fg-secondary);
+  transition: all var(--transition-fast);
+  max-width: 280px;
+  text-decoration: none;
+}
+
+.nextra-nav-link-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-muted);
+  color: var(--fg-primary);
+}
+
+.nextra-nav-link-card.prev {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.nextra-nav-link-label {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nextra-nav-link-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--fg-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nextra-nav-link-card:hover .nextra-nav-link-title {
+  color: var(--fg-primary);
+}
+
+.nextra-nav-link-icon {
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.nextra-nav-link-card:hover .nextra-nav-link-icon {
+  color: var(--accent-primary);
+}
+
+/* ============================================
+   NEXTRA-STYLE PROSE
+   ============================================ */
+
+.nextra-prose {
+  color: var(--fg-primary);
+  line-height: var(--leading-relaxed);
+}
+
+.nextra-prose h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-6) 0;
+  color: var(--fg-primary);
+  line-height: var(--leading-tight);
+}
+
+.nextra-prose h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: var(--space-10) 0 var(--space-4) 0;
+  color: var(--fg-primary);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.nextra-prose h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin: var(--space-8) 0 var(--space-3) 0;
+  color: var(--fg-primary);
+}
+
+.nextra-prose h4 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: var(--space-6) 0 var(--space-2) 0;
+  color: var(--fg-secondary);
+}
+
+.nextra-prose p {
+  margin: 0 0 var(--space-4) 0;
+}
+
+.nextra-prose a {
+  color: var(--accent-primary);
   text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.nextra-prose a:hover {
+  color: var(--accent-secondary);
+}
+
+.nextra-prose strong {
+  font-weight: 600;
+  color: var(--fg-primary);
+}
+
+.nextra-prose ul,
+.nextra-prose ol {
+  margin: 0 0 var(--space-4) 0;
+  padding-left: var(--space-6);
+}
+
+.nextra-prose li {
+  margin: var(--space-1) 0;
+}
+
+.nextra-prose li::marker {
+  color: var(--accent-primary);
+}
+
+.nextra-prose blockquote {
+  margin: var(--space-6) 0;
+  padding: var(--space-4) var(--space-6);
+  border-left: 4px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-style: italic;
+  color: var(--fg-secondary);
+}
+
+.nextra-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: var(--space-1) var(--space-2);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-sm);
+  color: var(--accent-primary);
+}
+
+.nextra-prose pre {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+
+.nextra-prose pre code {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--fg-primary);
+}
+
+.nextra-prose table {
+  width: 100%;
+  margin: var(--space-6) 0;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.nextra-prose th,
+.nextra-prose td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.nextra-prose th {
+  font-weight: 600;
+  color: var(--fg-primary);
+  background: var(--bg-secondary);
+}
+
+.nextra-prose tr:hover td {
+  background: var(--bg-secondary);
+}
+
+.nextra-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  margin: var(--space-4) 0;
+}
+
+.nextra-prose hr {
+  margin: var(--space-8) 0;
+  border: none;
+  border-top: 1px solid var(--border-default);
+}
+
+/* Org Mode specific styles */
+.nextra-prose .todo {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-2);
+  background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+  color: var(--accent-primary);
+  border-radius: var(--radius-sm);
+}
+
+.nextra-prose .done {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-2);
+  background: color-mix(in srgb, #22c55e 15%, transparent);
+  color: #22c55e;
+  border-radius: var(--radius-sm);
+}
+
+.nextra-prose .tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-tertiary);
+  color: var(--fg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.nextra-prose .timestamp {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.nextra-prose pre {
+  border: none !important;
+  border-radius: var(--radius-md);
+  background: var(--code-bg);
+}
+
+.nextra-prose pre code {
+  border: none !important;
+  background: none !important;
+}
+
+.nextra-prose img {
+  max-width: 100%;
+  height: auto;
+  border: none !important;
+  border-radius: var(--radius-md);
+}
+
+.nextra-prose table {
+  border: none !important;
+}
+
+.nextra-prose table th,
+.nextra-prose table td {
+  border: none !important;
+  border-bottom: 1px solid var(--border-default) !important;
+}
+
+.nextra-prose .figure {
+  border: none !important;
+}
+
+/* ============================================
+   NEXTRA-STYLE HERO (Homepage)
+   ============================================ */
+
+.nextra-hero {
+  text-align: center;
+  padding: var(--space-16) var(--space-6) var(--space-12);
+}
+
+.nextra-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 var(--space-4) 0;
+  color: var(--fg-primary);
+}
+
+.nextra-hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--fg-tertiary);
+  margin: 0 0 var(--space-6) 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nextra-hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.nextra-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nextra-stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.nextra-stat-label {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   NEXTRA-STYLE DOC GRID (Homepage)
+   ============================================ */
+
+.nextra-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nextra-doc-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--fg-primary);
+  transition: all var(--transition-base);
+}
+
+.nextra-doc-card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent-muted);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.nextra-doc-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.nextra-doc-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.nextra-doc-card-title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--fg-primary);
+  margin: 0 0 var(--space-1) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nextra-doc-card-path {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+
+.nextra-doc-card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.nextra-doc-card:hover .nextra-doc-card-arrow {
+  color: var(--accent-primary);
+  transform: translateX(4px);
+}
+
+/* ============================================
+   NEXTRA-STYLE SEARCH (Homepage)
+   ============================================ */
+
+.nextra-search-container {
+  padding: var(--space-6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nextra-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nextra-search-large {
+  width: 100%;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--fg-primary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
+}
+
+.nextra-search-large::placeholder {
+  color: var(--fg-muted);
+}
+
+.nextra-search-large:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  background: var(--bg-elevated);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+.nextra-search-large-icon {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--fg-muted);
+  pointer-events: none;
+}
+
+.nextra-search-clear {
+  position: absolute;
+  right: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: var(--bg-tertiary);
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--fg-tertiary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.nextra-search-clear:hover {
+  background: var(--bg-muted);
+  color: var(--fg-primary);
+}
+
+/* ============================================
+   NEXTRA-STYLE EMPTY STATE
+   ============================================ */
+
+.nextra-empty {
+  text-align: center;
+  padding: var(--space-16) var(--space-6);
+  color: var(--fg-muted);
+}
+
+.nextra-empty-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-4);
+  color: var(--fg-muted);
+}
+
+.nextra-empty-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--fg-secondary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.nextra-empty-text {
+  font-size: var(--text-base);
+  margin: 0;
+}
+
+/* ============================================
+   MOBILE SIDEBAR TOGGLE
+   ============================================ */
+
+.nextra-sidebar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.nextra-sidebar-toggle:hover {
+  background: var(--bg-tertiary);
+  color: var(--fg-primary);
+}
+
+.nextra-mobile-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: calc(var(--z-overlay) - 1);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.nextra-mobile-sidebar-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1280px) {
+  .nextra-toc {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
+  
+  .nextra-header-inner {
+    padding: 0 var(--space-4);
+  }
+  
+  .nextra-hero {
+    padding: var(--space-10) var(--space-4) var(--space-8);
+  }
+  
+  .nextra-hero-title {
+    font-size: var(--text-3xl);
+  }
+  
+  .nextra-hero-subtitle {
+    font-size: var(--text-base);
+  }
+  
+  .nextra-hero-stats {
+    gap: var(--space-6);
+  }
+  
+  .nextra-stat-value {
+    font-size: var(--text-2xl);
+  }
+  
+  .nextra-doc-grid {
+    grid-template-columns: 1fr;
+    padding: var(--space-4);
+  }
+  
+  .nextra-content {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .nextra-footer {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .nextra-footer-inner {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .nextra-nav-footer {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .nextra-nav-link-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .nextra-nav-link-card.prev {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .nextra-logo-text {
+    display: none;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nextra-doc-card {
+  animation: fadeInUp 0.3s ease backwards;
 }

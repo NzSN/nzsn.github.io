@@ -1,6 +1,7 @@
-import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import { Layout } from "./components/Layout";
+import { DocsList } from "./components/DocsList";
 
 interface DocFile {
   name: string;
@@ -28,20 +29,22 @@ export default async function Home() {
   const docs = await getDocFiles();
 
   return (
-    <main className="min-h-screen p-8 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Documentation</h1>
-      <p className="text-gray-600 mb-8">Total documents: {docs.length}</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {docs.map((doc) => (
-          <Link
-            key={doc.path}
-            href={`/docs/${doc.path}`}
-            className="block p-4 border rounded-lg hover:border-blue-500 transition-colors"
-          >
-            <span className="text-blue-600 text-sm">/docs/{doc.path}</span>
-          </Link>
-        ))}
-      </div>
-    </main>
+    <Layout documents={docs} isHomePage>
+      <section className="nextra-hero">
+        <h1 className="nextra-hero-title">Documentation Library</h1>
+        <p className="nextra-hero-subtitle">
+          Browse and search through {docs.length} documents exported from Org Mode
+        </p>
+        
+        <div className="nextra-hero-stats">
+          <div className="nextra-stat">
+            <span className="nextra-stat-value">{docs.length}</span>
+            <span className="nextra-stat-label">Documents</span>
+          </div>
+        </div>
+      </section>
+
+      <DocsList documents={docs} />
+    </Layout>
   );
 }

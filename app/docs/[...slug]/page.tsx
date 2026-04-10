@@ -1,13 +1,13 @@
-import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
+import { Layout } from "../../components/Layout";
 
 interface PageProps {
   params: Promise<{ slug: string[] }>;
 }
 
-async function getDocFiles(): Promise<string[]> {
+async function getDocFiles(): Promise<{ name: string; path: string }[]> {
   const docsDir = path.join(process.cwd(), "Docs");
 
   if (!fs.existsSync(docsDir)) {
@@ -17,11 +17,15 @@ async function getDocFiles(): Promise<string[]> {
   return fs
     .readdirSync(docsDir)
     .filter((file) => file.endsWith(".html"))
-    .map((file) => `/Docs/${file}`);
+    .map((file) => ({
+      name: file.replace(".html", ""),
+      path: file.replace(".html", ""),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 async function getDocContent(docPath: string): Promise<string | null> {
-  const fullPath = path.join(process.cwd(), docPath);
+  const fullPath = path.join(process.cwd(), "Docs", `${docPath}.html`);
 
   if (!fs.existsSync(fullPath)) {
     return null;
@@ -30,14 +34,28 @@ async function getDocContent(docPath: string): Promise<string | null> {
   return fs.readFileSync(fullPath, "utf-8");
 }
 
-function rewriteHtmlLinks(content: string, docName: string): string {
+function rewriteHtmlLinks(content: string): string {
   let result = content;
+  
+  result = result.replace(/<\?xml[^>]*\?>/gi, "");
+  result = result.replace(/<!DOCTYPE[^>]*>/gi, "");
+  
   result = result.replace(/<link[^>]*href=["']style\.css["'][^>]*>/gi, "");
   result = result.replace(/<link[^>]*href=["']\.\/style\.css["'][^>]*>/gi, "");
   result = result.replace(/<script[^>]*src=["']\.\/[^"']+\.js["'][^>]*><\/script>/gi, "");
+  result = result.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+  
+  result = result.replace(/<a[^>]*class=["']doc-home-btn["'][^>]*>.*?<\/a>/gi, "");
+  
+  result = result.replace(/<div[^>]*id=["']content["'][^>]*>/gi, "<div>");
+  result = result.replace(/<div[^>]*id=["']postamble["'][^>]*>/gi, "<div>");
+  result = result.replace(/<div[^>]*id=["']table-of-contents["'][^>]*>/gi, "<div>");
+  result = result.replace(/<div[^>]*id=["']outline-container-[^"']*["'][^>]*>/gi, "<div>");
+  result = result.replace(/<div[^>]*class=["'][^"']*outline-[^"']*["'][^>]*>/gi, "<div>");
+  
   result = result.replace(
     /(href|src)=["'](\.\/)?([^"']+\.html)(#[^"']*)?["']/g,
-    (match, attr, slash, file, hash) => {
+    (_match, attr, _slash, file, hash) => {
       const baseName = file.replace(/\.html$/, "");
       if (hash) {
         return `${attr}="/docs/${baseName}${hash}"`;
@@ -45,78 +63,81 @@ function rewriteHtmlLinks(content: string, docName: string): string {
       return `${attr}="/docs/${baseName}"`;
     }
   );
+  
+  result = result.replace(/<html[^>]*>/gi, "");
+  result = result.replace(/<\/html>/gi, "");
+  result = result.replace(/<head[^>]*>.*?<\/head>/gis, "");
+  result = result.replace(/<body[^>]*>/gi, "");
+  result = result.replace(/<\/body>/gi, "");
+  
   return result;
+}
+
+function extractTocItems(content: string): { id: string; text: string; level: number }[] {
+  const tocItems: { id: string; text: string; level: number }[] = [];
+  const headingRegex = /<h([1-4])[^>]*id=["']([^"']+)["'][^>]*>(.*?)<\/h\1>/gi;
+  
+  let match;
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = parseInt(match[1]);
+    const id = match[2];
+    const text = match[3].replace(/<[^>]*>/g, "").trim();
+    
+    if (text && level >= 2) {
+      tocItems.push({ id, text, level });
+    }
+  }
+  
+  return tocItems;
+}
+
+function formatTitle(name: string): string {
+  return name
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 export async function generateStaticParams() {
   const files = await getDocFiles();
   return files.map((file) => ({
-    slug: file.replace(/^\/Docs\//, "").replace(/\.html$/, "").split("/"),
+    slug: [file.path],
   }));
 }
 
 export default async function DocPage({ params }: PageProps) {
   const { slug } = await params;
   const docPath = slug.join("/");
-  const fullPath = `/Docs/${docPath}.html`;
-  const rawContent = await getDocContent(fullPath);
+  const rawContent = await getDocContent(docPath);
 
   if (!rawContent) {
     notFound();
   }
 
-  const content = rewriteHtmlLinks(rawContent, docPath);
+  const content = rewriteHtmlLinks(rawContent);
 
   const titleMatch = content.match(/<title>(.*?)<\/title>/i);
-  const title = titleMatch ? titleMatch[1] : docPath;
+  const title = titleMatch ? titleMatch[1] : formatTitle(docPath);
+
+  const tocItems = extractTocItems(content);
 
   const allDocs = await getDocFiles();
-  const currentIndex = allDocs.findIndex(
-    (d) => d === fullPath || d === fullPath.replace(/\/$/, "")
-  );
+  const currentIndex = allDocs.findIndex((d) => d.path === docPath);
   const prevDoc = currentIndex > 0 ? allDocs[currentIndex - 1] : null;
-  const nextDoc =
-    currentIndex < allDocs.length - 1 ? allDocs[currentIndex + 1] : null;
+  const nextDoc = currentIndex < allDocs.length - 1 ? allDocs[currentIndex + 1] : null;
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="p-4 border-b">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            ← Back to Index
-          </Link>
-        </div>
-      </header>
-      <main className="flex-1 max-w-6xl mx-auto w-full p-8">
-        <div
-          className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+    <Layout
+      documents={allDocs}
+      currentPath={docPath}
+      tocItems={tocItems}
+      prevDoc={prevDoc}
+      nextDoc={nextDoc}
+    >
+      <main className="nextra-content">
+        <article className="nextra-prose">
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </article>
       </main>
-      <footer className="p-4 border-t">
-        <div className="max-w-6xl mx-auto flex justify-between">
-          {prevDoc ? (
-            <Link
-              href={`/docs/${prevDoc.replace("/Docs/", "").replace(".html", "")}`}
-              className="text-blue-600 hover:underline"
-            >
-              ← {prevDoc.replace("/Docs/", "").replace(".html", "")}
-            </Link>
-          ) : (
-            <span />
-          )}
-          {nextDoc ? (
-            <Link
-              href={`/docs/${nextDoc.replace("/Docs/", "").replace(".html", "")}`}
-              className="text-blue-600 hover:underline"
-            >
-              {nextDoc.replace("/Docs/", "").replace(".html", "")} →
-            </Link>
-          ) : (
-            <span />
-          )}
-        </div>
-      </footer>
-    </div>
+    </Layout>
   );
 }
