@@ -388,9 +388,32 @@ footer a:hover {
     color: var(--text-primary);
     font-size: 0.9rem;
     transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .graph-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Doc page home button */
+.doc-home-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.doc-home-btn:hover {
     border-color: var(--accent);
     color: var(--accent);
 }
