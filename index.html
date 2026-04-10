@@ -6,6 +6,7 @@
     <title>NzSN Docs</title>
     <meta name="description" content="Technical documentation collection covering programming, mathematics, systems, and more">
     <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <header>
@@ -19,8 +20,21 @@
         </div>
         <div class="stats">
             <span id="doc-count">Loading...</span> documents
+            <button id="view-toggle" class="view-toggle" title="Toggle graph view">
+                <span class="view-icon">⊞</span>
+            </button>
         </div>
     </header>
+    
+    <div id="graph-container" class="graph-container hidden">
+        <svg id="graph"></svg>
+        <div class="graph-controls">
+            <input type="text" id="graph-search" class="graph-search" placeholder="Search nodes..." autocomplete="off">
+            <button id="zoom-reset" class="graph-btn">Reset</button>
+            <button id="zoom-in" class="graph-btn">+</button>
+            <button id="zoom-out" class="graph-btn">-</button>
+        </div>
+    </div>
 
     <main>
         <div class="filter-tags">

@@ -611,4 +611,270 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDocCount(filtered.length);
         });
     });
+    
+    initGraph();
+    
+    fetch('graph-data.json')
+        .then(res => res.json())
+        .then(graphData => {
+            window.graphData = graphData;
+        })
+        .catch(err => console.error('Failed to load graph data:', err));
 });
+
+function generateGraphData(docList) {
+    const fileToIndex = {};
+    docList.forEach((doc, index) => {
+        fileToIndex[doc.file] = index;
+    });
+    
+    const nodes = docList.map((doc, index) => ({
+        id: index,
+        file: doc.file,
+        title: doc.title,
+        category: getCategory(doc.file, doc.title)
+    }));
+    
+    let links = [];
+    
+    if (window.graphData && window.graphData.links && window.graphData.links.length > 0) {
+        const graphFileToIndex = {};
+        window.graphData.nodes.forEach((node, i) => {
+            graphFileToIndex[node.file] = i;
+        });
+        
+        links = window.graphData.links
+            .filter(link => {
+                const sourceFile = window.graphData.nodes[link.source]?.file;
+                const targetFile = window.graphData.nodes[link.target]?.file;
+                return sourceFile && targetFile && 
+                       fileToIndex[sourceFile] !== undefined && 
+                       fileToIndex[targetFile] !== undefined;
+            })
+            .map(link => {
+                const sourceFile = window.graphData.nodes[link.source].file;
+                const targetFile = window.graphData.nodes[link.target].file;
+                return {
+                    source: fileToIndex[sourceFile],
+                    target: fileToIndex[targetFile]
+                };
+            });
+    }
+    
+    return { nodes, links };
+}
+
+let graphSimulation = null;
+let zoomBehavior = null;
+
+function initGraph() {
+    const toggle = document.getElementById('view-toggle');
+    const graphContainer = document.getElementById('graph-container');
+    
+    if (!toggle || !graphContainer) return;
+    
+    toggle.addEventListener('click', () => {
+        const isHidden = graphContainer.classList.contains('hidden');
+        
+        if (isHidden) {
+            graphContainer.classList.remove('hidden');
+            toggle.classList.add('active');
+            if (!graphSimulation) {
+                renderGraph();
+            }
+        } else {
+            graphContainer.classList.add('hidden');
+            toggle.classList.remove('active');
+        }
+    });
+    
+    document.getElementById('zoom-reset')?.addEventListener('click', () => {
+        const svg = d3.select('#graph');
+        const g = svg.select('g');
+        if (zoomBehavior && !g.empty()) {
+            svg.transition().duration(300).call(zoomBehavior.transform, d3.zoomIdentity);
+        }
+    });
+    
+    document.getElementById('zoom-in')?.addEventListener('click', () => {
+        const svg = d3.select('#graph');
+        svg.transition().duration(200).call(zoomBehavior.scaleBy, 1.3);
+    });
+    
+    document.getElementById('zoom-out')?.addEventListener('click', () => {
+        const svg = d3.select('#graph');
+        svg.transition().duration(200).call(zoomBehavior.scaleBy, 0.7);
+    });
+    
+    document.getElementById('graph-search')?.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        highlightMatchingNodes(query);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !graphContainer.classList.contains('hidden')) {
+            graphContainer.classList.add('hidden');
+            toggle.classList.remove('active');
+        }
+        if (e.key === '/' && graphContainer.classList.contains('hidden') === false) {
+            e.preventDefault();
+            document.getElementById('graph-search').focus();
+        }
+    });
+}
+
+let graphNodes = null;
+let graphLinks = null;
+
+function highlightMatchingNodes(query) {
+    if (!graphNodes) return;
+    
+    graphNodes.selectAll('circle')
+        .transition()
+        .duration(200)
+        .attr('r', d => {
+            if (!query) return 8;
+            return d.title.toLowerCase().includes(query) ? 14 : 6;
+        })
+        .style('opacity', d => {
+            if (!query) return 1;
+            return d.title.toLowerCase().includes(query) ? 1 : 0.3;
+        });
+    
+    graphNodes.selectAll('text')
+        .transition()
+        .duration(200)
+        .style('opacity', d => {
+            if (!query) return 1;
+            return d.title.toLowerCase().includes(query) ? 1 : 0.2;
+        });
+    
+    graphLinks
+        .transition()
+        .duration(200)
+        .style('opacity', d => {
+            if (!query) return 1;
+            const sourceMatch = d.source.title.toLowerCase().includes(query);
+            const targetMatch = d.target.title.toLowerCase().includes(query);
+            return (sourceMatch || targetMatch) ? 1 : 0.1;
+        });
+}
+
+function renderGraph() {
+    const container = document.getElementById('graph-container');
+    if (!container) return;
+    
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    const svg = d3.select('#graph')
+        .attr('width', width)
+        .attr('height', height);
+    
+    svg.selectAll('*').remove();
+    
+    const g = svg.append('g');
+    
+    zoomBehavior = d3.zoom()
+        .scaleExtent([0.1, 4])
+        .on('zoom', (event) => {
+            g.attr('transform', event.transform);
+        });
+    
+    svg.call(zoomBehavior);
+    
+    const { nodes, links } = generateGraphData(docs);
+    
+    const categoryColors = {
+        cpp: '#00599C',
+        chromium: '#4285F4',
+        v8: '#34A853',
+        math: '#EA4335',
+        web: '#FBBC05',
+        haskell: '#5E5086',
+        kube: '#326CE5',
+        systems: '#00ADD8',
+        other: '#8b949e'
+    };
+    
+    const link = g.append('g')
+        .attr('class', 'links')
+        .selectAll('line')
+        .data(links)
+        .enter()
+        .append('line')
+        .attr('class', 'link');
+    
+    graphLinks = link;
+    
+    const node = g.append('g')
+        .attr('class', 'nodes')
+        .selectAll('g')
+        .data(nodes)
+        .enter()
+        .append('g')
+        .attr('class', d => `node node-${d.category}`)
+        .call(d3.drag()
+            .on('start', dragstarted)
+            .on('drag', dragged)
+            .on('end', dragended));
+    
+    graphNodes = node;
+    
+    node.append('circle')
+        .attr('r', 8)
+        .attr('fill', d => categoryColors[d.category] || categoryColors.other)
+        .on('mouseover', (event, d) => {
+            tooltip.transition().duration(200).style('opacity', 1);
+            tooltip.html(`<strong>${d.title}</strong><br><span style="color: ${categoryColors[d.category]}">${d.category}</span>`)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY - 10) + 'px');
+        })
+        .on('mouseout', () => {
+            tooltip.transition().duration(200).style('opacity', 0);
+        })
+        .on('click', (_, d) => {
+            window.location.href = `Docs/${d.file}`;
+        });
+    
+    node.append('text')
+        .attr('dy', 20)
+        .text(d => d.title.length > 20 ? d.title.substring(0, 20) + '...' : d.title);
+    
+    const tooltip = d3.select('body').append('div')
+        .attr('class', 'graph-tooltip')
+        .style('opacity', 0);
+    
+    graphSimulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(links).id(d => d.id).distance(50))
+        .force('charge', d3.forceManyBody().strength(-100))
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collision', d3.forceCollide().radius(20));
+    
+    graphSimulation.on('tick', () => {
+        link
+            .attr('x1', d => d.source.x)
+            .attr('y1', d => d.source.y)
+            .attr('x2', d => d.target.x)
+            .attr('y2', d => d.target.y);
+        
+        node.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+    
+    function dragstarted(event, d) {
+        if (!event.active) graphSimulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+    }
+    
+    function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+    }
+    
+    function dragended(event, d) {
+        if (!event.active) graphSimulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
+}
